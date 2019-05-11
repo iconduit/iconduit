@@ -1,0 +1,32 @@
+{
+  "name": "Iconduit",
+  "colors": {
+    "background": "iconduitorange",
+    "mask": "iconduitpink",
+    "theme": "iconduitorange",
+    "tile": "iconduitpink"
+  },
+  "targets": {
+    "browser": "last 2 versions",
+    "installer": [
+      "dmg"
+    ],
+    "os": [
+      "ios",
+      "macos",
+      "windows"
+    ],
+    "web": [
+      "facebook",
+      "reddit",
+      "twitter"
+    ]
+  },
+  "definitions": {
+    "color": {
+      "iconduitorange": "#D58B41",
+      "iconduitpink": "#D5415C"
+    },
+    "size": {}
+  }
+}
