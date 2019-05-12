@@ -7,6 +7,7 @@ module.exports = {
 function selectOutputs (config) {
   const {
     definitions: {
+      output,
       target: {
         browser: browserDefinitions,
         installer: installerDefinitions,
@@ -22,22 +23,22 @@ function selectOutputs (config) {
     },
   } = config
 
-  const outputs = new Set()
+  const names = new Set()
 
-  selectBrowserOutputs(outputs, browserDefinitions, browser)
-  selectOutputsForCategory(outputs, 'installer', installerDefinitions, installer)
-  selectOutputsForCategory(outputs, 'os', osDefinitions, os)
-  selectOutputsForCategory(outputs, 'web', webDefinitions, web)
+  selectBrowserOutputs(names, browserDefinitions, browser)
+  selectOutputsForCategory(names, 'installer', installerDefinitions, installer)
+  selectOutputsForCategory(names, 'os', osDefinitions, os)
+  selectOutputsForCategory(names, 'web', webDefinitions, web)
 
-  return outputs
+  return mapOutputNamesToDefinitions(names, output)
 }
 
-function selectBrowserOutputs (set, definitions, browser) {
+function selectBrowserOutputs (names, definitions, browser) {
   if (browser.length < 1) return
 
   const {all} = definitions
 
-  selectDefinitionOutputs(set, all)
+  selectDefinitionOutputs(names, all)
 
   const selectedBrowsers = new Set(
     browserslist(browser)
@@ -47,22 +48,36 @@ function selectBrowserOutputs (set, definitions, browser) {
   for (const target of selectedBrowsers) {
     const definition = definitions[target]
 
-    if (definition) selectDefinitionOutputs(set, definition)
+    if (definition) selectDefinitionOutputs(names, definition)
   }
 }
 
-function selectOutputsForCategory (set, type, definitions, targets) {
+function selectOutputsForCategory (names, type, definitions, targets) {
   for (const target of targets) {
     const definition = definitions[target]
 
     if (!definition) throw new Error(`Unable to find definition for target.${type}.${target}`)
 
-    selectDefinitionOutputs(set, definition)
+    selectDefinitionOutputs(names, definition)
   }
 }
 
-function selectDefinitionOutputs (set, definition) {
+function selectDefinitionOutputs (names, definition) {
   const {outputs} = definition
 
-  for (const output of outputs) set.add(output)
+  for (const output of outputs) names.add(output)
+}
+
+function mapOutputNamesToDefinitions (names, definitions) {
+  const mapped = {}
+
+  for (const name of names) {
+    const definition = definitions[name]
+
+    if (!definition) throw new Error(`Unable to find definition for output.${name}`)
+
+    mapped[name] = definition
+  }
+
+  return mapped
 }
