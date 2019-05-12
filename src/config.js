@@ -151,7 +151,7 @@ function normalizeInputs (inputs) {
   return inputs
 }
 
-const DEFAULT_BROWSER_TARGET = 'not dead'
+const DEFAULT_BROWSER_TARGET = 'defaults'
 
 const INSTALLER_DMG = 'dmg'
 

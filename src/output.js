@@ -1,3 +1,5 @@
+const browserslist = require('browserslist')
+
 module.exports = {
   selectOutputs,
 }
@@ -33,10 +35,19 @@ function selectOutputs (config) {
 function selectBrowserOutputs (set, definitions, browser) {
   if (browser.length < 1) return
 
-  for (const definition of Object.values(definitions)) {
-    const {outputs} = definition
+  const {all} = definitions
 
-    for (const output of outputs) set.add(output)
+  selectDefinitionOutputs(set, all)
+
+  const selectedBrowsers = new Set(
+    browserslist(browser)
+      .map(result => result.substring(0, result.indexOf(' ')))
+  )
+
+  for (const target of selectedBrowsers) {
+    const definition = definitions[target]
+
+    if (definition) selectDefinitionOutputs(set, definition)
   }
 }
 
@@ -46,8 +57,12 @@ function selectOutputsForCategory (set, type, definitions, targets) {
 
     if (!definition) throw new Error(`Unable to find definition for target.${type}.${target}`)
 
-    const {outputs} = definition
-
-    for (const output of outputs) set.add(output)
+    selectDefinitionOutputs(set, definition)
   }
+}
+
+function selectDefinitionOutputs (set, definition) {
+  const {outputs} = definition
+
+  for (const output of outputs) set.add(output)
 }

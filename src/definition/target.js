@@ -22,7 +22,7 @@ module.exports = {
         'windows-tile',
       ],
     },
-    ios: {
+    ios_saf: {
       outputs: [
         'safari-mask-icon',
       ],
