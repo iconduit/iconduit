@@ -1,6 +1,7 @@
 {
   "extends": "standard",
   "plugins": [
+    "json",
     "mocha"
   ],
   "env": {
