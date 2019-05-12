@@ -4,10 +4,12 @@ module.exports = {
   createContext,
 }
 
-async function createContext (config) {
+async function createContext (services, config) {
+  const {logger} = services
   const outputs = selectOutputs(config)
 
   return {
+    logger,
     outputs,
   }
 }

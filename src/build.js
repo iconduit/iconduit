@@ -3,5 +3,7 @@ module.exports = {
 }
 
 async function buildOutput (context, name, output) {
-  console.log(`Building ${name}`)
+  const {logger} = context
+
+  logger.debug(`Building ${name}`)
 }
