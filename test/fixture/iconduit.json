@@ -8,30 +8,12 @@
   },
   "colors": {
     "background": "iconduitorange",
-    "mask": "iconduitpink",
-    "theme": "iconduitorange",
-    "tile": "iconduitpink"
+    "foreground": "iconduitpink"
   },
   "inputs": {
     "icon": "icon/icon.png",
     "icon-background": "icon/background.svg",
     "icon-bleed": "icon/bleed.svg",
     "icon-silhouette": "icon/silhouette.svg"
-  },
-  "targets": {
-    "browser": "last 2 versions",
-    "installer": [
-      "dmg"
-    ],
-    "os": [
-      "ios",
-      "macos",
-      "windows"
-    ],
-    "web": [
-      "facebook",
-      "reddit",
-      "twitter"
-    ]
   }
 }
