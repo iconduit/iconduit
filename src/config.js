@@ -1,3 +1,11 @@
+const standardDeviceDefinitions = require('./definition/device.js')
+const standardDisplayDefinitions = require('./definition/display.js')
+const standardInputDefinitions = require('./definition/input.js')
+const standardOutputDefinitions = require('./definition/output.js')
+const standardSizeDefinitions = require('./definition/size.js')
+const standardStyleDefinitions = require('./definition/style.js')
+const standardTargetDefinitions = require('./definition/target.js')
+
 module.exports = {
   normalize,
 }
@@ -52,12 +60,26 @@ function normalizeColors (colors) {
 function normalizeDefinitions (definitions) {
   const {
     color = {},
+    device = {},
+    display = {},
+    input = {},
+    output = {},
+    size = {},
+    style = {},
+    target = {},
   } = definitions
 
   assertObjectOfNonEmptyStrings(color, 'definitions.color')
 
   return {
     color,
+    device: {...standardDeviceDefinitions, ...device},
+    display: {...standardDisplayDefinitions, ...display},
+    input: {...standardInputDefinitions, ...input},
+    output: {...standardOutputDefinitions, ...output},
+    size: {...standardSizeDefinitions, ...size},
+    style: {...standardStyleDefinitions, ...style},
+    target: {...standardTargetDefinitions, ...target},
   }
 }
 
