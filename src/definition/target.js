@@ -16,7 +16,7 @@ module.exports = {
         'windows-tile',
       ],
     },
-    explorer: {
+    ie: {
       outputs: [
         'browserconfig-xml',
         'windows-tile',
@@ -58,7 +58,7 @@ module.exports = {
       ],
     },
   },
-  social: {
+  web: {
     facebook: {
       outputs: [
         'facebook-app-icon',

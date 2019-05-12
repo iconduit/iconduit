@@ -6,12 +6,19 @@ const standardSizeDefinitions = require('./definition/size.js')
 const standardStyleDefinitions = require('./definition/style.js')
 const standardTargetDefinitions = require('./definition/target.js')
 
+const {
+  browser: standardBrowserTargetDefinitions,
+  installer: standardInstallerTargetDefinitions,
+  os: standardOsTargetDefinitions,
+  web: standardWebTargetDefinitions,
+} = standardTargetDefinitions
+
 module.exports = {
   normalize,
 }
 
 function normalize (config) {
-  if (config === null || typeof config !== 'object') throw new Error('Invalid config')
+  assertObject(config, 'config')
 
   const {
     colors = {},
@@ -33,6 +40,8 @@ function normalize (config) {
 }
 
 function normalizeColors (colors) {
+  assertObject(colors, 'colors')
+
   const {background, foreground} = colors
 
   assertNonEmptyString(background, 'colors.background')
@@ -58,6 +67,8 @@ function normalizeColors (colors) {
 }
 
 function normalizeDefinitions (definitions) {
+  assertObject(definitions, 'definitions')
+
   const {
     color = {},
     device = {},
@@ -79,8 +90,59 @@ function normalizeDefinitions (definitions) {
     output: {...standardOutputDefinitions, ...output},
     size: {...standardSizeDefinitions, ...size},
     style: {...standardStyleDefinitions, ...style},
-    target: {...standardTargetDefinitions, ...target},
+    target: normalizeTargetDefinitions(target),
   }
+}
+
+function normalizeTargetDefinitions (target) {
+  assertObject(target, 'definitions.target')
+
+  const {
+    browser = {},
+    installer = {},
+    os = {},
+    web = {},
+  } = target
+
+  return {
+    browser: normalizeTargetDefinitionCategory(
+      standardBrowserTargetDefinitions,
+      browser,
+      'definitions.target.browser'
+    ),
+    installer: normalizeTargetDefinitionCategory(
+      standardInstallerTargetDefinitions,
+      installer,
+      'definitions.target.installer'
+    ),
+    os: normalizeTargetDefinitionCategory(
+      standardOsTargetDefinitions,
+      os,
+      'definitions.target.os'
+    ),
+    web: normalizeTargetDefinitionCategory(
+      standardWebTargetDefinitions,
+      web,
+      'definitions.target.web'
+    ),
+  }
+}
+
+function normalizeTargetDefinitionCategory (standardDefinitions, definitions, setting) {
+  assertObject(definitions, setting)
+
+  for (const key in definitions) {
+    const definitionSetting = `${setting}.${key}`
+    const definition = definitions[key]
+
+    assertObject(definition, definitionSetting)
+
+    const {outputs = []} = definition
+
+    assertArrayOfNonEmptyStrings(outputs, `${definitionSetting}.outputs`)
+  }
+
+  return {...standardDefinitions, ...definitions}
 }
 
 function normalizeInputs (inputs) {
@@ -102,6 +164,8 @@ const WEB_REDDIT = 'reddit'
 const WEB_TWITTER = 'twitter'
 
 function normalizeTargets (targets) {
+  assertObject(targets, 'targets')
+
   const {
     browser = [DEFAULT_BROWSER_TARGET],
     installer = [INSTALLER_DMG],
@@ -131,18 +195,26 @@ function assertNonEmptyString (value, setting) {
   if (typeof value !== 'string') throw new Error(`Invalid value for ${setting}`)
 }
 
-function assertArrayOfNonEmptyStrings (value, setting) {
+function assertArray (value, setting) {
   assertExists(value, setting)
   if (!Array.isArray(value)) throw new Error(`Invalid value for ${setting}`)
+}
+
+function assertArrayOfNonEmptyStrings (value, setting) {
+  assertArray(value, setting)
 
   for (let index = 0; index < value.length; ++index) {
     if (typeof value[index] !== 'string') throw new Error(`Invalid value for ${setting}[${index}]`)
   }
 }
 
-function assertObjectOfNonEmptyStrings (value, setting) {
+function assertObject (value, setting) {
   assertExists(value, setting)
   if (value === null || typeof value !== 'object') throw new Error(`Invalid value for ${setting}`)
+}
+
+function assertObjectOfNonEmptyStrings (value, setting) {
+  assertObject(value, setting)
 
   for (const key in value) {
     if (typeof value[key] !== 'string') throw new Error(`Invalid value for ${setting}.${key}`)
