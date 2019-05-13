@@ -8,6 +8,9 @@
   "main": "src/index.js",
   "dependencies": {
     "browserslist": "^4.5.6",
+    "file-url": "^3.0.0",
+    "globby": "^9.2.0",
+    "puppeteer": "^1.15.0",
     "winston": "^3.2.1"
   },
   "devDependencies": {
