@@ -37,7 +37,7 @@ module.exports = {
   },
   'dmg-background': {
     input: 'dmg-background',
-    name: 'dmg-background[atFactorX].png',
+    name: 'dmg-background[atPixelRatioX].png',
     sizes: ['dmg-background@2x', 'dmg-background'],
   },
   'facebook-app-icon': {

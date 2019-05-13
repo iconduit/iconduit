@@ -70,28 +70,73 @@ function normalizeDefinitions (definitions) {
   assertObject(definitions, 'definitions')
 
   const {
-    color = {},
-    device = {},
-    display = {},
-    input = {},
-    output = {},
-    size = {},
-    style = {},
-    target = {},
+    color: userColorDefinitions = {},
+    device: userDeviceDefinitions = {},
+    display: userDisplayDefinitions = {},
+    input: userInputDefinitions = {},
+    output: userOutputDefinitions = {},
+    size: userSizeDefinitions = {},
+    style: userStyleDefinitions = {},
+    target: userTargetDefinitions = {},
   } = definitions
 
-  assertObjectOfNonEmptyStrings(color, 'definitions.color')
+  assertObjectOfNonEmptyStrings(userColorDefinitions, 'definitions.color')
+
+  const color = userColorDefinitions
+  const device = {...standardDeviceDefinitions, ...userDeviceDefinitions}
+  const display = {...standardDisplayDefinitions, ...userDisplayDefinitions}
+  const input = {...standardInputDefinitions, ...userInputDefinitions}
+  const output = {...standardOutputDefinitions, ...userOutputDefinitions}
+  const size = normalizeSizeDefinitions(device, display, userSizeDefinitions)
+  const style = {...standardStyleDefinitions, ...userStyleDefinitions}
+  const target = normalizeTargetDefinitions(userTargetDefinitions)
 
   return {
     color,
-    device: {...standardDeviceDefinitions, ...device},
-    display: {...standardDisplayDefinitions, ...display},
-    input: {...standardInputDefinitions, ...input},
-    output: {...standardOutputDefinitions, ...output},
-    size: {...standardSizeDefinitions, ...size},
-    style: {...standardStyleDefinitions, ...style},
-    target: normalizeTargetDefinitions(target),
+    device,
+    display,
+    input,
+    output,
+    size,
+    style,
+    target,
   }
+}
+
+function normalizeSizeDefinitions (device, display, size) {
+  const displaySizes = {}
+  const deviceSizes = {}
+
+  for (const displayName in display) {
+    const {resolution: {horizontal, vertical}, pixelDensity, pixelRatio, orientation} = display[displayName]
+    const orientationSize = {width: horizontal, height: vertical, pixelDensity, pixelRatio}
+    const rotatedSize = {width: vertical, height: horizontal, pixelDensity, pixelRatio}
+    const portraitSize = `display.${displayName}.portrait`
+    const landscapeSize = `display.${displayName}.landscape`
+
+    if (orientation === 'portrait') {
+      displaySizes[portraitSize] = orientationSize
+      displaySizes[landscapeSize] = rotatedSize
+    } else if (orientation === 'landscape') {
+      displaySizes[portraitSize] = rotatedSize
+      displaySizes[landscapeSize] = orientationSize
+    } else {
+      throw new Error(`Invalid value for definitions.display.${displayName}.orientation`)
+    }
+  }
+
+  for (const deviceName in device) {
+    const {display: displayName} = device[deviceName]
+
+    if (!display[displayName]) {
+      throw new Error(`Missing definition for display.${displayName} in definitions.device.${displayName}.display`)
+    }
+
+    deviceSizes[`device.${deviceName}.portrait`] = displaySizes[`display.${displayName}.portrait`]
+    deviceSizes[`device.${deviceName}.landscape`] = displaySizes[`display.${displayName}.landscape`]
+  }
+
+  return {...displaySizes, ...deviceSizes, ...standardSizeDefinitions, ...size}
 }
 
 function normalizeTargetDefinitions (target) {
