@@ -1,3 +1,4 @@
+const rmfr = require('rmfr')
 const {promisify} = require('util')
 
 module.exports = {
@@ -10,6 +11,7 @@ function promisifyFileSystem (fs) {
   return {
     mkdir: promisify(mkdir),
     readFile: promisify(readFile),
+    rmfr: async filePath => rmfr(filePath, fs),
     writeFile: promisify(writeFile),
   }
 }
