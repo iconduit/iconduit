@@ -104,8 +104,11 @@ function normalizeDefinitions (definitions) {
 }
 
 function normalizeSizeDefinitions (device, display, size) {
+  assertObject(size, 'definitions.size')
+
   const displaySizes = {}
   const deviceSizes = {}
+  const userSizes = {}
 
   for (const displayName in display) {
     const {resolution: {horizontal, vertical}, pixelDensity, pixelRatio, orientation} = display[displayName]
@@ -136,7 +139,33 @@ function normalizeSizeDefinitions (device, display, size) {
     deviceSizes[`device.${deviceName}.landscape`] = displaySizes[`display.${displayName}.landscape`]
   }
 
-  return {...displaySizes, ...deviceSizes, ...standardSizeDefinitions, ...size}
+  for (const name in size) {
+    const userSize = size[name]
+    const sizeSetting = `definitions.size.${name}`
+
+    assertObject(userSize, sizeSetting)
+
+    const {
+      width,
+      height,
+      pixelDensity = 72,
+      pixelRatio = 1,
+    } = size[name]
+
+    assertInteger(width, `${sizeSetting}.width`)
+    assertInteger(height, `${sizeSetting}.height`)
+    assertInteger(pixelDensity, `${sizeSetting}.pixelDensity`)
+    assertInteger(pixelRatio, `${sizeSetting}.pixelRatio`)
+
+    userSizes[name] = {
+      width,
+      height,
+      pixelDensity,
+      pixelRatio,
+    }
+  }
+
+  return {...displaySizes, ...deviceSizes, ...standardSizeDefinitions, ...userSizes}
 }
 
 function normalizeTargetDefinitions (target) {
@@ -232,12 +261,17 @@ function normalizeTargets (targets) {
 }
 
 function assertExists (value, setting) {
-  if (!value) throw new Error(`Missing value for ${setting}`)
+  if (value === null || typeof value === 'undefined') throw new Error(`Missing value for ${setting}`)
 }
 
 function assertNonEmptyString (value, setting) {
   assertExists(value, setting)
   if (typeof value !== 'string') throw new Error(`Invalid value for ${setting}`)
+}
+
+function assertInteger (value, setting) {
+  assertExists(value, setting)
+  if (!Number.isInteger(value)) throw new Error(`Invalid value for ${setting}`)
 }
 
 function assertArray (value, setting) {
@@ -255,7 +289,7 @@ function assertArrayOfNonEmptyStrings (value, setting) {
 
 function assertObject (value, setting) {
   assertExists(value, setting)
-  if (value === null || typeof value !== 'object') throw new Error(`Invalid value for ${setting}`)
+  if (typeof value !== 'object') throw new Error(`Invalid value for ${setting}`)
 }
 
 function assertObjectOfNonEmptyStrings (value, setting) {
