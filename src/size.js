@@ -1,9 +1,19 @@
 module.exports = {
+  dipSize,
   generateFileNameSizeMap,
   resolveSize,
 }
 
 const FILE_NAME_TOKEN_PATTERN = /\[([^\]]+)]/g
+
+function dipSize (size) {
+  const {width, height, pixelRatio} = size
+
+  return {
+    width: width / pixelRatio,
+    height: height / pixelRatio,
+  }
+}
 
 function generateFileNameSizeMap (template, sizes) {
   const map = {}
@@ -33,9 +43,14 @@ function resolveSize (definitions, selector) {
 
 function generateFileName (template, size) {
   const {width, height, pixelDensity, pixelRatio} = size
+  const {width: dipWidth, height: dipHeight} = dipSize(size)
+
   const replacements = {
     atPixelRatioX: pixelRatio === 1 ? '' : `@${pixelRatio}x`,
     dimensions: `${width}x${height}`,
+    dipDimensions: `${dipWidth}x${dipHeight}`,
+    dipHeight: dipHeight.toString(),
+    dipWidth: dipWidth.toString(),
     height: height.toString(),
     pixelDensity: pixelDensity.toString(),
     pixelRatio: pixelRatio.toString(),
@@ -65,7 +80,7 @@ function applyMultiplier (definition, multiplier) {
   return {
     width: width / pixelRatio * multiplier,
     height: height / pixelRatio * multiplier,
-    pixelDensity: pixelDensity / pixelDensity * multiplier,
+    pixelDensity: pixelDensity / pixelRatio * multiplier,
     pixelRatio: multiplier,
   }
 }
