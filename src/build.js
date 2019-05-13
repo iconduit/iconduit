@@ -98,18 +98,17 @@ async function findInputInDirectory (directoryPath, glob) {
 
 async function buildOutputContent (services, name, inputPath, type, sizes) {
   switch (type) {
-    case '.png': return buildOutputPng(services, name, inputPath, sizes)
+    case '.png': return buildOutputImage(services, name, inputPath, sizes, 'png')
   }
 }
 
 const SCREENSHOT_OPTIONS = {
-  type: 'png',
   fullPage: false,
   omitBackground: true,
   encoding: 'binary',
 }
 
-async function buildOutputPng (services, name, inputPath, sizes) {
+async function buildOutputImage (services, name, inputPath, sizes, type) {
   const {browser} = services
   const size = assertFirstSize(sizes, name)
   const sizeViewport = viewport(size)
@@ -122,7 +121,7 @@ async function buildOutputPng (services, name, inputPath, sizes) {
     await page.setViewport(sizeViewport)
     await page.goto(inputUrl)
 
-    image = await page.screenshot(SCREENSHOT_OPTIONS)
+    image = await page.screenshot({...SCREENSHOT_OPTIONS, type})
   } finally {
     await page.close()
   }
