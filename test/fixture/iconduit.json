@@ -15,5 +15,10 @@
     "icon-background": "icon/background.svg",
     "icon-bleed": "icon/bleed.svg",
     "icon-silhouette": "icon/silhouette.svg"
+  },
+  "targets": {
+    "browser": [],
+    "os": [],
+    "web": []
   }
 }
