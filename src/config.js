@@ -86,7 +86,7 @@ function normalizeDefinitions (definitions) {
   const device = {...standardDeviceDefinitions, ...userDeviceDefinitions}
   const display = {...standardDisplayDefinitions, ...userDisplayDefinitions}
   const input = {...standardInputDefinitions, ...userInputDefinitions}
-  const output = {...standardOutputDefinitions, ...userOutputDefinitions}
+  const output = normalizeOutputDefinitions(userOutputDefinitions)
   const size = normalizeSizeDefinitions(device, display, userSizeDefinitions)
   const style = {...standardStyleDefinitions, ...userStyleDefinitions}
   const target = normalizeTargetDefinitions(userTargetDefinitions)
@@ -101,6 +101,37 @@ function normalizeDefinitions (definitions) {
     style,
     target,
   }
+}
+
+function normalizeOutputDefinitions (output) {
+  assertObject(output, 'definitions.output')
+
+  const normalized = {...standardOutputDefinitions}
+
+  for (const outputName in output) {
+    const definition = output[outputName]
+    const outputSetting = `definitions.output.${outputName}`
+
+    assertObject(definition, outputSetting)
+
+    const {
+      input,
+      name,
+      sizes = [],
+    } = definition
+
+    assertNonEmptyString(input, `${outputSetting}.input`)
+    assertNonEmptyString(name, `${outputSetting}.name`)
+    assertArrayOfNonEmptyStrings(sizes, `${outputSetting}.sizes`)
+
+    normalized[outputName] = {
+      input,
+      name,
+      sizes,
+    }
+  }
+
+  return normalized
 }
 
 function normalizeSizeDefinitions (device, display, size) {
@@ -205,9 +236,9 @@ function normalizeTargetDefinitions (target) {
 function normalizeTargetDefinitionCategory (standardDefinitions, definitions, setting) {
   assertObject(definitions, setting)
 
-  for (const key in definitions) {
-    const definitionSetting = `${setting}.${key}`
-    const definition = definitions[key]
+  for (const name in definitions) {
+    const definitionSetting = `${setting}.${name}`
+    const definition = definitions[name]
 
     assertObject(definition, definitionSetting)
 

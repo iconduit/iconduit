@@ -4,7 +4,7 @@ module.exports = {
       outputs: [
         'favicon-ico',
         'favicon-png',
-        'html',
+        'index-html',
         'manifest-json',
         'maskable-icon',
         'service-worker',

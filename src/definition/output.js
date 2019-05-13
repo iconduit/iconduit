@@ -33,7 +33,9 @@ module.exports = {
     ],
   },
   'browserconfig-xml': {
+    input: 'browserconfig-xml',
     name: 'browserconfig.xml',
+    sizes: [],
   },
   'dmg-background': {
     input: 'dmg-background',
@@ -55,8 +57,10 @@ module.exports = {
     name: 'favicon-[dimensions].png',
     sizes: ['favicon-medium', 'favicon-small'],
   },
-  html: {
+  'index-html': {
+    input: 'index-html',
     name: 'index.html',
+    sizes: [],
   },
   'macos-icns': {
     input: 'masked-icon',
@@ -76,7 +80,9 @@ module.exports = {
     ],
   },
   'manifest-json': {
+    input: 'manifest-json',
     name: 'manifest.json',
+    sizes: [],
   },
   'maskable-icon': {
     input: 'maskable-icon',
@@ -91,9 +97,12 @@ module.exports = {
   'safari-mask-icon': {
     input: 'safari-mask-icon',
     name: 'safari-mask-icon.svg',
+    sizes: [],
   },
   'service-worker': {
+    input: 'service-worker',
     name: 'service-worker.js',
+    sizes: [],
   },
   'twitter-card-image': {
     input: 'twitter-card-image',
