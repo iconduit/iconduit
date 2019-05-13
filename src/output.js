@@ -1,7 +1,27 @@
 const browserslist = require('browserslist')
 
+const {resolveSize} = require('./size.js')
+
 module.exports = {
+  resolveSizesForOutputs,
   selectOutputs,
+}
+
+function resolveSizesForOutputs (config, outputs) {
+  const {definitions: {size: definitions}} = config
+  const sizes = {}
+
+  for (const name in outputs) {
+    sizes[name] = resolveSizesForOutput(definitions, name, outputs[name])
+  }
+
+  return sizes
+}
+
+function resolveSizesForOutput (definitions, name, output) {
+  const {sizes = []} = output
+
+  return sizes.map(resolveSize.bind(null, definitions))
 }
 
 function selectOutputs (config) {
