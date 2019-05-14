@@ -1,31 +1,29 @@
 const fileUrl = require('file-url')
-const globby = require('globby')
 const {dirname, extname, join} = require('path')
 
+const {createInputBuilder} = require('./input.js')
 const {generateFileNameSizeMap} = require('./size.js')
-const {launchBrowser, viewport} = require('./puppeteer.js')
+const {launchBrowser, screenshot} = require('./puppeteer.js')
 const {resolveSizesForOutputs, selectOutputs} = require('./output.js')
 
 module.exports = {
   build,
 }
 
-async function build (services, options) {
-  const {basePath, config, outputPath} = options
-  const {inputs: inputGlobs} = config
-
+async function build (services, options, config) {
   const outputs = selectOutputs(config)
   const outputSizes = resolveSizesForOutputs(config, outputs)
+  const buildInput = createInputBuilder(services, config, options)
 
   const browser = await launchBrowser()
 
   try {
-    services = {...services, browser}
+    services = {...services, browser, buildInput}
 
     const threads = []
 
     for (const name in outputs) {
-      threads.push(buildOutput(services, name, outputs[name], outputSizes[name], basePath, inputGlobs, outputPath))
+      threads.push(buildOutput(services, options, config, name, outputs[name], outputSizes[name]))
     }
 
     await Promise.all(threads)
@@ -34,103 +32,42 @@ async function build (services, options) {
   }
 }
 
-async function buildOutput (services, name, output, sizes, basePath, inputGlobs, outputPath) {
-  const {fs} = services
+async function buildOutput (services, options, config, outputName, output, sizes) {
+  const {fileSystem: {mkdir, writeFile}} = services
+  const {outputPath} = options
   const {input: inputName, name: fileNameTemplate} = output
 
-  const inputPath = await findInput(basePath, inputGlobs, inputName)
   const sizesByFilename = generateFileNameSizeMap(fileNameTemplate, sizes)
 
   for (const filename in sizesByFilename) {
     const fullOutputPath = join(outputPath, filename)
+    const outputType = extname(filename)
+    const outputSizes = sizesByFilename[filename]
 
-    const content = await buildOutputContent(services, name, inputPath, extname(filename), sizesByFilename[filename])
-    await fs.mkdir(dirname(fullOutputPath), {recursive: true})
-    await fs.writeFile(fullOutputPath, content)
+    const content = await buildOutputContent(services, inputName, outputName, outputType, outputSizes)
+    await mkdir(dirname(fullOutputPath), {recursive: true})
+    await writeFile(fullOutputPath, content)
   }
 }
 
-const BUILT_IN_INPUT_DIRECTORY = join(__dirname, '../input')
-
-async function findInput (basePath, inputGlobs, inputName) {
-  const userGlob = inputGlobs[inputName]
-
-  if (userGlob) {
-    const match = await findInputInDirectory(basePath, userGlob)
-
-    if (!match) throw new Error(`Unable to find input ${inputName} at ${join(basePath, userGlob)}`)
-
-    return match
-  }
-
-  const glob = `${inputName}.+(html|svg|png|gif|jpg)`
-  const userMatch = await findInputInDirectory(basePath, glob)
-
-  if (userMatch) return userMatch
-
-  const builtInMatch = await findInputInDirectory(BUILT_IN_INPUT_DIRECTORY, glob)
-
-  if (builtInMatch) return builtInMatch
-
-  return null
-}
-
-async function findInputInDirectory (directoryPath, glob) {
-  const matches = await globby(glob, {cwd: directoryPath})
-
-  if (matches.length < 1) return null
-
-  const byExtension = {}
-
-  for (const match of matches) {
-    byExtension[extname(match).toLowerCase()] = match
-  }
-
-  const bestMatch =
-    byExtension['.html'] ||
-    byExtension['.svg'] ||
-    byExtension['.png'] ||
-    byExtension['.gif'] ||
-    byExtension['.jpg']
-
-  return bestMatch ? join(directoryPath, bestMatch) : null
-}
-
-async function buildOutputContent (services, name, inputPath, type, sizes) {
-  switch (type) {
-    case '.png': return buildOutputImage(services, name, inputPath, sizes, 'png')
+async function buildOutputContent (services, inputName, outputName, outputType, outputSizes) {
+  switch (outputType) {
+    case '.png': return buildOutputImage(services, inputName, outputName, outputSizes, 'png')
   }
 }
 
-const SCREENSHOT_OPTIONS = {
-  fullPage: false,
-  omitBackground: true,
-  encoding: 'binary',
-}
-
-async function buildOutputImage (services, name, inputPath, sizes, type) {
-  const {browser} = services
-  const size = assertFirstSize(sizes, name)
-  const sizeViewport = viewport(size)
+async function buildOutputImage (services, inputName, outputName, outputSizes, imageType) {
+  const {browser, buildInput} = services
+  const source = `output.${outputName}`
+  const size = assertFirstSize(outputSizes, outputName)
+  const inputPath = await buildInput({name: inputName, type: 'renderable', source, size})
   const inputUrl = fileUrl(inputPath)
 
-  const page = await browser.newPage()
-  let image
-
-  try {
-    await page.setViewport(sizeViewport)
-    await page.goto(inputUrl)
-
-    image = await page.screenshot({...SCREENSHOT_OPTIONS, type})
-  } finally {
-    await page.close()
-  }
-
-  return image
+  return screenshot(browser, inputUrl, size, {type: imageType})
 }
 
-function assertFirstSize (sizes, name) {
-  if (sizes.length > 1) throw new Error(`Input ${name} requires size data`)
+function assertFirstSize (outputSizes, outputName) {
+  if (outputSizes.length > 1) throw new Error(`Output ${outputName} requires size data`)
 
-  return sizes[0]
+  return outputSizes[0]
 }

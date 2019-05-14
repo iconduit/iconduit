@@ -1,29 +1,32 @@
-const fs = require('fs')
 const {join} = require('path')
 
 const {build} = require('./build.js')
 const {createLogger} = require('./logging.js')
+const {fileSystem} = require('./fs.js')
 const {normalize} = require('./config.js')
-const {promisifyFileSystem} = require('./fs.js')
 
 async function main (services) {
-  const {fs} = services
+  const {fileSystem: {readFile, withTempDir}} = services
 
   const fixturePath = join(__dirname, '../test/fixture')
-  const basePath = join(fixturePath, 'input')
-  const configPath = join(basePath, 'iconduit.json')
+  const userInputDir = join(fixturePath, 'input')
+  const configPath = join(userInputDir, 'iconduit.json')
   const outputPath = join(fixturePath, 'output')
 
-  const config = normalize(JSON.parse(await fs.readFile(configPath)))
-  const options = {basePath, config, outputPath}
+  const config = normalize(JSON.parse(await readFile(configPath)))
 
-  await build(services, options)
+  await withTempDir(async tempPath => {
+    const options = {outputPath, tempPath, userInputDir}
+
+    await build(services, options, config)
+  })
 }
 
 const {env, exit} = process
 const logger = createLogger(env)
 const services = {
-  fs: promisifyFileSystem(fs),
+  defaultInputDir: join(__dirname, '../input'),
+  fileSystem,
   logger,
 }
 
