@@ -7,13 +7,6 @@ module.exports = {
   screenshot,
 }
 
-const SCREENSHOT_OPTIONS = {
-  encoding: 'binary',
-  fullPage: false,
-  omitBackground: true,
-  type: 'png',
-}
-
 async function launchBrowser () {
   return puppeteer.launch()
 }
@@ -28,7 +21,14 @@ async function screenshot (browser, url, size, options = {}) {
     await page.setViewport(sizeViewport)
     await page.goto(url)
 
-    image = await page.screenshot({...SCREENSHOT_OPTIONS, ...options})
+    image = await page.screenshot({
+      encoding: 'binary',
+      fullPage: false,
+      omitBackground: true,
+      type: 'png',
+
+      ...options,
+    })
   } finally {
     await page.close()
   }

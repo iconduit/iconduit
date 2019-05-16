@@ -1,6 +1,6 @@
 const winston = require('winston')
 
-const DEFAULT_LOG_LEVEL = 'info'
+const {DEFAULT_LOG_LEVEL} = require('./constant.js')
 
 module.exports = {
   createLogger,

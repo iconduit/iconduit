@@ -1,10 +1,10 @@
+const {FILE_NAME_TOKEN_PATTERN, SIZE_SELECTOR_PATTERN} = require('./constant.js')
+
 module.exports = {
   dipSize,
   generateFileNameSizeMap,
   resolveSize,
 }
-
-const FILE_NAME_TOKEN_PATTERN = /\[([^\]]+)]/g
 
 function dipSize (size) {
   const {width, height, pixelRatio} = size
@@ -16,6 +16,8 @@ function dipSize (size) {
 }
 
 function generateFileNameSizeMap (template, sizes) {
+  if (sizes.length < 1) return {[template]: []}
+
   const map = {}
 
   for (const size of sizes) {
@@ -62,10 +64,8 @@ function generateFileName (template, size) {
   })
 }
 
-const SELECTOR_PATTERN = /^([^@]*)(?:@(\d+)x)?$/
-
 function parseSelector (selector) {
-  const match = SELECTOR_PATTERN.exec(selector)
+  const match = SIZE_SELECTOR_PATTERN.exec(selector)
 
   if (!match) throw new Error(`Invalid size selector ${JSON.stringify(selector)}`)
 

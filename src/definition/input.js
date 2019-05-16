@@ -1,97 +1,108 @@
 module.exports = {
   'apple-touch-icon': {
-    type: 'composite',
+    strategy: 'composite',
     options: {
+      mask: null,
       layers: [
         {input: 'icon-foreground', style: 'apple-touch-icon-scale'},
         {input: 'icon-background', style: 'apple-touch-icon-scale'},
       ],
     },
   },
-  'apple-touch-startup': {},
-  'background-color': {},
-  'dmg-background': {},
-  icon: {},
   'icon-background': {
+    strategy: 'degrade',
     options: {
-      fallback: 'background-color',
+      to: 'background-color',
     },
   },
-  'icon-bleed': {},
-  'icon-foreground': {
-    type: 'composite',
+  'icon-bleed': {
+    strategy: 'degrade',
     options: {
+      to: 'transparent',
+    },
+  },
+  'icon-foreground': {
+    strategy: 'composite',
+    options: {
+      mask: null,
       layers: [
         {input: 'icon'},
-        {input: 'icon-bleed', optional: true},
+        {input: 'icon-bleed'},
       ],
     },
   },
   'icon-mask': {
+    strategy: 'degrade',
     options: {
-      fallback: 'icon-mask-android-circle',
+      to: 'icon-mask-android-circle',
     },
   },
-  'icon-mask-android-circle': {},
-  'icon-mask-android-rounded-square': {},
-  'icon-mask-android-square': {},
-  'icon-mask-android-squircle': {},
-  'icon-mask-android-teardrop': {},
   'icon-silhouette': {
+    strategy: 'degrade',
     options: {
-      fallback: 'icon',
+      to: 'icon',
     },
   },
   'maskable-icon': {
-    type: 'composite',
+    strategy: 'composite',
     options: {
-      layers: ['icon-foreground', 'icon-background'],
-    },
-  },
-  'masked-icon': {
-    type: 'composite',
-    options: {
-      mask: 'icon-mask',
-      layers: ['icon-foreground', 'icon-background'],
-    },
-  },
-  'open-graph-image': {
-    options: {
-      fallback: 'social-share-image',
-    },
-  },
-  'safari-mask-icon': {
-    type: 'composite',
-    options: {
+      mask: null,
       layers: [
-        {input: 'icon-silhouette', style: 'safari-mask-icon-scale'},
+        {input: 'icon-foreground'},
+        {input: 'icon-background'},
       ],
     },
   },
-  'social-share-image': {
-    type: 'composite',
+  'masked-icon': {
+    strategy: 'composite',
     options: {
+      mask: 'icon-mask',
+      layers: [
+        {input: 'icon-foreground'},
+        {input: 'icon-background'},
+      ],
+    },
+  },
+  'open-graph-image': {
+    strategy: 'degrade',
+    options: {
+      to: 'social-share-image',
+    },
+  },
+  'safari-mask-icon': {
+    strategy: 'degrade',
+    options: {
+      to: 'icon-silhouette',
+    },
+  },
+  'social-share-image': {
+    strategy: 'composite',
+    options: {
+      mask: null,
       layers: [
         {input: 'icon-silhouette', style: 'social-share-icon-scale'},
       ],
     },
   },
   'twitter-card-image': {
+    strategy: 'degrade',
     options: {
-      fallback: 'social-share-image',
+      to: 'social-share-image',
     },
   },
   'windows-tile': {
-    type: 'composite',
+    strategy: 'composite',
     options: {
+      mask: null,
       layers: [
         {input: 'windows-tile-icon', style: 'windows-tile-icon-position'},
       ],
     },
   },
   'windows-tile-icon': {
+    strategy: 'degrade',
     options: {
-      fallback: 'icon-silhouette',
+      to: 'icon-silhouette',
     },
   },
 }

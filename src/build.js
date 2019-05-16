@@ -3,6 +3,7 @@ const {dirname, extname, join} = require('path')
 
 const {createInputBuilder} = require('./input.js')
 const {generateFileNameSizeMap} = require('./size.js')
+const {INPUT_TYPE_RENDERABLE, INPUT_TYPE_SVG} = require('./constant.js')
 const {launchBrowser, screenshot} = require('./puppeteer.js')
 const {resolveSizesForOutputs, selectOutputs} = require('./output.js')
 
@@ -53,21 +54,38 @@ async function buildOutput (services, options, config, outputName, output, sizes
 async function buildOutputContent (services, inputName, outputName, outputType, outputSizes) {
   switch (outputType) {
     case '.png': return buildOutputImage(services, inputName, outputName, outputSizes, 'png')
+    case '.svg': return buildOutputSvg(services, inputName, outputName, outputSizes, 'png')
   }
+
+  throw new Error('Not implemented')
 }
 
 async function buildOutputImage (services, inputName, outputName, outputSizes, imageType) {
   const {browser, buildInput} = services
-  const source = `output.${outputName}`
   const size = assertFirstSize(outputSizes, outputName)
-  const inputPath = await buildInput({name: inputName, type: 'renderable', source, size})
+  const stack = [`output.${outputName}`]
+  const inputPath = await buildInput({name: inputName, type: INPUT_TYPE_RENDERABLE, size, stack})
   const inputUrl = fileUrl(inputPath)
 
   return screenshot(browser, inputUrl, size, {type: imageType})
+}
+
+async function buildOutputSvg (services, inputName, outputName, outputSizes, imageType) {
+  const {buildInput, fileSystem: {readFile}} = services
+  assertNoSizes(outputSizes, outputName)
+
+  const stack = [`output.${outputName}`]
+  const inputPath = await buildInput({name: inputName, type: INPUT_TYPE_SVG, stack})
+
+  return readFile(inputPath)
 }
 
 function assertFirstSize (outputSizes, outputName) {
   if (outputSizes.length > 1) throw new Error(`Output ${outputName} requires size data`)
 
   return outputSizes[0]
+}
+
+function assertNoSizes (outputSizes, outputName) {
+  if (outputSizes.length > 0) throw new Error(`Output ${outputName} cannot accept size data`)
 }

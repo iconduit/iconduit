@@ -7,6 +7,19 @@ const standardStyleDefinitions = require('./definition/style.js')
 const standardTargetDefinitions = require('./definition/target.js')
 
 const {
+  BROWSER_TARGET_DEFAULTS,
+  INPUT_STRATEGY_COMPOSITE,
+  INPUT_STRATEGY_DEGRADE,
+  INSTALLER_DMG,
+  OS_IOS,
+  OS_MACOS,
+  OS_WINDOWS,
+  WEB_FACEBOOK,
+  WEB_REDDIT,
+  WEB_TWITTER,
+} = require('./constant.js')
+
+const {
   browser: standardBrowserTargetDefinitions,
   installer: standardInstallerTargetDefinitions,
   os: standardOsTargetDefinitions,
@@ -87,7 +100,7 @@ function normalizeDefinitions (definitions) {
   const color = userColorDefinitions
   const device = {...standardDeviceDefinitions, ...userDeviceDefinitions}
   const display = {...standardDisplayDefinitions, ...userDisplayDefinitions}
-  const input = {...standardInputDefinitions, ...userInputDefinitions}
+  const input = normalizeInputDefinitions(userInputDefinitions)
   const output = normalizeOutputDefinitions(userOutputDefinitions)
   const size = normalizeSizeDefinitions(device, display, userSizeDefinitions)
   const style = {...standardStyleDefinitions, ...userStyleDefinitions}
@@ -102,6 +115,88 @@ function normalizeDefinitions (definitions) {
     size,
     style,
     target,
+  }
+}
+
+function normalizeInputDefinitions (input) {
+  assertObject(input, 'definitions.input')
+
+  const normalized = {...standardInputDefinitions}
+
+  for (const inputName in input) {
+    const definition = input[inputName]
+    const inputSetting = `definitions.input.${inputName}`
+
+    const {
+      strategy,
+      options = {},
+    } = definition
+
+    normalized[inputName] = {
+      strategy,
+      options: normalizeInputDefinitionOptions(strategy, options, inputSetting),
+    }
+  }
+
+  return normalized
+}
+
+function normalizeInputDefinitionOptions (strategy, options, inputSetting) {
+  const optionsSetting = `${inputSetting}.options`
+
+  assertObject(options, optionsSetting)
+
+  switch (strategy) {
+    case INPUT_STRATEGY_COMPOSITE: return normalizeCompositeInputDefinitionOptions(options, optionsSetting)
+    case INPUT_STRATEGY_DEGRADE: return normalizeDegradeInputDefinitionOptions(options, optionsSetting)
+  }
+
+  throw new Error(`Invalid value for ${inputSetting}.strategy`)
+}
+
+function normalizeCompositeInputDefinitionOptions (options, optionsSetting) {
+  const {
+    layers,
+    mask = null,
+  } = options
+
+  if (mask !== null) assertNonEmptyString(mask, `${optionsSetting}.mask`)
+
+  return {
+    layers: normalizeCompositeInputDefinitionLayers(layers, `${optionsSetting}.layers`),
+    mask,
+  }
+}
+
+function normalizeCompositeInputDefinitionLayers (layers, layersSetting) {
+  assertNonEmptyArray(layers, layersSetting)
+
+  const normalized = []
+
+  for (let index = 0; index < layers.length; ++index) {
+    const layerSetting = `${layersSetting}[${index}]`
+
+    const {
+      input,
+      style = null,
+    } = layers[index]
+
+    assertNonEmptyString(input, `${layerSetting}.input`)
+    if (style !== null) assertNonEmptyString(style, `${layerSetting}.style`)
+  }
+
+  return normalized
+}
+
+function normalizeDegradeInputDefinitionOptions (options, optionsSetting) {
+  const {
+    to,
+  } = options
+
+  assertNonEmptyString(to, `${optionsSetting}.to`)
+
+  return {
+    to,
   }
 }
 
@@ -270,23 +365,11 @@ function normalizeOutputs (outputs) {
   }
 }
 
-const DEFAULT_BROWSER_TARGET = 'defaults'
-
-const INSTALLER_DMG = 'dmg'
-
-const OS_IOS = 'ios'
-const OS_MACOS = 'macos'
-const OS_WINDOWS = 'windows'
-
-const WEB_FACEBOOK = 'facebook'
-const WEB_REDDIT = 'reddit'
-const WEB_TWITTER = 'twitter'
-
 function normalizeTargets (targets) {
   assertObject(targets, 'targets')
 
   const {
-    browser = [DEFAULT_BROWSER_TARGET],
+    browser = [BROWSER_TARGET_DEFAULTS],
     installer = [INSTALLER_DMG],
     os = [OS_IOS, OS_MACOS, OS_WINDOWS],
     web = [WEB_FACEBOOK, WEB_REDDIT, WEB_TWITTER],
@@ -322,6 +405,11 @@ function assertInteger (value, setting) {
 function assertArray (value, setting) {
   assertExists(value, setting)
   if (!Array.isArray(value)) throw new Error(`Invalid value for ${setting}`)
+}
+
+function assertNonEmptyArray (value, setting) {
+  assertArray(value, setting)
+  if (value.length < 1) throw new Error(`Invalid value for ${setting}`)
 }
 
 function assertArrayOfNonEmptyStrings (value, setting) {

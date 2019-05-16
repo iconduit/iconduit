@@ -2,9 +2,6 @@ module.exports = {
   'apple-touch-icon-scale': {
     transform: 'scale(1.8)',
   },
-  'safari-mask-icon-scale': {
-    transform: 'scale(.8)',
-  },
   'social-share-icon-scale': {
     transform: 'scale(.5)',
   },
