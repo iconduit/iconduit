@@ -35,6 +35,10 @@ function selectOutputs (config) {
         web: webDefinitions,
       },
     },
+    outputs: {
+      include,
+      exclude,
+    },
     targets: {
       browser,
       installer,
@@ -49,6 +53,9 @@ function selectOutputs (config) {
   selectOutputsForCategory(names, 'installer', installerDefinitions, installer)
   selectOutputsForCategory(names, 'os', osDefinitions, os)
   selectOutputsForCategory(names, 'web', webDefinitions, web)
+
+  include.forEach(output => names.add(output))
+  exclude.forEach(output => names.delete(output))
 
   return mapOutputNamesToDefinitions(names, output)
 }

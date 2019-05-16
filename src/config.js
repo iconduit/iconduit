@@ -25,6 +25,7 @@ function normalize (config) {
     definitions = {},
     inputs = {},
     name,
+    outputs = {},
     targets = {},
   } = config
 
@@ -35,6 +36,7 @@ function normalize (config) {
     definitions: normalizeDefinitions(definitions),
     inputs: normalizeInputs(inputs),
     name,
+    outputs: normalizeOutputs(outputs),
     targets: normalizeTargets(targets),
   }
 }
@@ -254,6 +256,18 @@ function normalizeInputs (inputs) {
   assertObjectOfNonEmptyStrings(inputs, 'inputs')
 
   return inputs
+}
+
+function normalizeOutputs (outputs) {
+  const {
+    include = [],
+    exclude = [],
+  } = outputs
+
+  return {
+    include,
+    exclude,
+  }
 }
 
 const DEFAULT_BROWSER_TARGET = 'defaults'

@@ -18,7 +18,13 @@
   },
   "targets": {
     "browser": [],
+    "installer": [],
     "os": [],
     "web": []
+  },
+  "outputs": {
+    "include": [
+      "dmg-background"
+    ]
   }
 }
