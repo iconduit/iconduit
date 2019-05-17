@@ -1,6 +1,7 @@
 const fileUrl = require('file-url')
 const {extname, join} = require('path')
 
+const {applyMultiplier} = require('./size.js')
 const {generateFileName} = require('./size.js')
 const {screenshot} = require('./puppeteer.js')
 
@@ -116,7 +117,7 @@ async function deriveCompositeInput (services, config, options, request, definit
   const template = await readTemplate(TEMPLATE_COMPOSITE)
 
   const layersVariable = await Promise.all(layers.map(async layer => {
-    const {input, style} = layer
+    const {input, multiplier, style} = layer
 
     const styleDefinition = style === null ? {} : styleDefinitions[style]
 
@@ -125,7 +126,7 @@ async function deriveCompositeInput (services, config, options, request, definit
     const path = await buildInput(services, config, options, {
       name: input,
       type: INPUT_TYPE_IMAGE,
-      size,
+      size: applyMultiplier(size, multiplier),
       stack: subStack,
     })
     const url = fileUrl(path)

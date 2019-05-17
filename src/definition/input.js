@@ -4,8 +4,8 @@ module.exports = {
     options: {
       mask: null,
       layers: [
-        {input: 'icon-foreground', style: 'apple-touch-icon-scale'},
-        {input: 'icon-background', style: 'apple-touch-icon-scale'},
+        {input: 'icon', multiplier: 2, style: 'apple-touch-icon-scale'},
+        {input: 'icon-background', multiplier: 2, style: 'apple-touch-icon-scale'},
       ],
     },
   },
@@ -26,8 +26,8 @@ module.exports = {
     options: {
       mask: null,
       layers: [
-        {input: 'icon', style: null},
-        {input: 'icon-bleed', style: null},
+        {input: 'icon', multiplier: 1, style: null},
+        {input: 'icon-bleed', multiplier: 1, style: null},
       ],
     },
   },
@@ -48,8 +48,8 @@ module.exports = {
     options: {
       mask: null,
       layers: [
-        {input: 'icon-foreground', style: null},
-        {input: 'icon-background', style: null},
+        {input: 'icon-foreground', multiplier: 1, style: null},
+        {input: 'icon-background', multiplier: 1, style: null},
       ],
     },
   },
@@ -58,8 +58,8 @@ module.exports = {
     options: {
       mask: 'icon-mask',
       layers: [
-        {input: 'icon-foreground', style: null},
-        {input: 'icon-background', style: null},
+        {input: 'icon-foreground', multiplier: 1, style: null},
+        {input: 'icon-background', multiplier: 1, style: null},
       ],
     },
   },
@@ -80,7 +80,7 @@ module.exports = {
     options: {
       mask: null,
       layers: [
-        {input: 'icon-silhouette', style: 'social-share-icon-scale'},
+        {input: 'icon-silhouette', multiplier: 1, style: 'social-share-icon-scale'},
       ],
     },
   },
@@ -95,7 +95,7 @@ module.exports = {
     options: {
       mask: null,
       layers: [
-        {input: 'windows-tile-icon', style: 'windows-tile-icon-position'},
+        {input: 'windows-tile-icon', multiplier: 1, style: 'windows-tile-icon-position'},
       ],
     },
   },

@@ -24,6 +24,7 @@
   },
   "outputs": {
     "include": [
+      "apple-touch-icon",
       "dmg-background",
       "favicon-png",
       "safari-mask-icon"

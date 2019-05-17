@@ -178,11 +178,19 @@ function normalizeCompositeInputDefinitionLayers (layers, layersSetting) {
 
     const {
       input,
+      multiplier = 1,
       style = null,
     } = layers[index]
 
     assertNonEmptyString(input, `${layerSetting}.input`)
+    assertInteger(multiplier, `${layerSetting}.multiplier`)
     if (style !== null) assertNonEmptyString(style, `${layerSetting}.style`)
+
+    normalized[index] = {
+      input,
+      multiplier,
+      style,
+    }
   }
 
   return normalized
