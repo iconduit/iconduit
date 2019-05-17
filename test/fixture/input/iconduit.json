@@ -4,6 +4,25 @@
     "color": {
       "iconduitorange": "#D58B41",
       "iconduitpink": "#D5415C"
+    },
+    "input": {
+      "apple-touch-icon-masked": {
+        "strategy": "composite",
+        "options": {
+          "mask": "icon-mask-ios-squircle",
+          "layers": [
+            {"input": "icon", "multiplier": 2, "style": "apple-touch-icon-scale"},
+            {"input": "icon-background", "multiplier": 2, "style": "apple-touch-icon-scale"}
+          ]
+        }
+      }
+    },
+    "output": {
+      "apple-touch-icon-masked": {
+        "input": "apple-touch-icon-masked",
+        "name": "apple-touch-icon-masked-[dimensions].png",
+        "sizes": ["apple-touch-icon-retina"]
+      }
     }
   },
   "colors": {
@@ -25,6 +44,7 @@
   "outputs": {
     "include": [
       "apple-touch-icon",
+      "apple-touch-icon-masked",
       "dmg-background",
       "favicon-png",
       "safari-mask-icon"
