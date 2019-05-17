@@ -5,35 +5,42 @@ const {join} = require('path')
 const {promisify} = require('util')
 const {tmpdir} = require('os')
 
-const access = promisify(fs.access)
-const mkdir = promisify(fs.mkdir)
-const mkdtemp = promisify(fs.mkdtemp)
-const readFile = promisify(fs.readFile)
-const writeFile = promisify(fs.writeFile)
-
-const fileSystem = {
-  access,
-  globby,
-  mkdir,
-  mkdtemp,
-  readFile,
-  rmfr,
-  withTempDir,
-  writeFile,
-}
-
 module.exports = {
-  fileSystem,
+  createFileSystem,
 }
 
-async function withTempDir (fn) {
-  const tempDirPath = await mkdtemp(join(tmpdir(), 'iconduit-'))
+function createFileSystem (env, logger) {
+  const access = promisify(fs.access)
+  const mkdir = promisify(fs.mkdir)
+  const mkdtemp = promisify(fs.mkdtemp)
+  const readFile = promisify(fs.readFile)
+  const writeFile = promisify(fs.writeFile)
+
+  return {
+    access,
+    globby,
+    mkdir,
+    mkdtemp,
+    readFile,
+    rmfr,
+    withTempDir: withTempDir.bind(null, env, logger, mkdtemp),
+    writeFile,
+  }
+}
+
+async function withTempDir (env, logger, mkdtemp, fn) {
+  const {KEEP_TEMP_DIRS = ''} = env
+  const tempPath = await mkdtemp(join(tmpdir(), 'iconduit-'))
   let result
 
   try {
-    result = await fn(tempDirPath)
+    result = await fn(tempPath)
   } finally {
-    await rmfr(tempDirPath)
+    if (KEEP_TEMP_DIRS) {
+      logger.debug(`Keeping temporary directory ${tempPath}`)
+    } else {
+      await rmfr(tempPath)
+    }
   }
 
   return result

@@ -3,7 +3,7 @@ const {dirname, extname, join} = require('path')
 
 const {createInputBuilder} = require('./input.js')
 const {generateFileNameSizeMap} = require('./size.js')
-const {INPUT_TYPE_RENDERABLE, INPUT_TYPE_SVG} = require('./constant.js')
+const {IMAGE_TYPE_PNG, INPUT_TYPE_RENDERABLE, INPUT_TYPE_SVG} = require('./constant.js')
 const {launchBrowser, screenshot} = require('./puppeteer.js')
 const {resolveSizesForOutputs, selectOutputs} = require('./output.js')
 
@@ -14,12 +14,12 @@ module.exports = {
 async function build (services, options, config) {
   const outputs = selectOutputs(config)
   const outputSizes = resolveSizesForOutputs(config, outputs)
-  const buildInput = createInputBuilder(services, config, options)
 
   const browser = await launchBrowser()
 
   try {
-    services = {...services, browser, buildInput}
+    services = {...services, browser}
+    services = {...services, buildInput: createInputBuilder(services, config, options)}
 
     const threads = []
 
@@ -53,8 +53,8 @@ async function buildOutput (services, options, config, outputName, output, sizes
 
 async function buildOutputContent (services, inputName, outputName, outputType, outputSizes) {
   switch (outputType) {
-    case '.png': return buildOutputImage(services, inputName, outputName, outputSizes, 'png')
-    case '.svg': return buildOutputSvg(services, inputName, outputName, outputSizes, 'png')
+    case '.png': return buildOutputImage(services, inputName, outputName, outputSizes, IMAGE_TYPE_PNG)
+    case '.svg': return buildOutputSvg(services, inputName, outputName, outputSizes)
   }
 
   throw new Error('Not implemented')
@@ -70,7 +70,7 @@ async function buildOutputImage (services, inputName, outputName, outputSizes, i
   return screenshot(browser, inputUrl, size, {type: imageType})
 }
 
-async function buildOutputSvg (services, inputName, outputName, outputSizes, imageType) {
+async function buildOutputSvg (services, inputName, outputName, outputSizes) {
   const {buildInput, fileSystem: {readFile}} = services
   assertNoSizes(outputSizes, outputName)
 

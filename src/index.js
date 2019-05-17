@@ -1,8 +1,9 @@
 const {join} = require('path')
 
 const {build} = require('./build.js')
+const {createFileSystem} = require('./fs.js')
 const {createLogger} = require('./logging.js')
-const {fileSystem} = require('./fs.js')
+const {createTemplateReader} = require('./template.js')
 const {normalize} = require('./config.js')
 
 async function main (services) {
@@ -24,10 +25,12 @@ async function main (services) {
 
 const {env, exit} = process
 const logger = createLogger(env)
+const fileSystem = createFileSystem(env, logger)
 const services = {
   defaultInputDir: join(__dirname, '../input'),
   fileSystem,
   logger,
+  readTemplate: createTemplateReader(fileSystem, join(__dirname, '../template')),
 }
 
 main(services).catch(({stack}) => {

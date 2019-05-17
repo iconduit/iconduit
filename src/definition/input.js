@@ -26,8 +26,8 @@ module.exports = {
     options: {
       mask: null,
       layers: [
-        {input: 'icon'},
-        {input: 'icon-bleed'},
+        {input: 'icon', style: null},
+        {input: 'icon-bleed', style: null},
       ],
     },
   },
@@ -48,8 +48,8 @@ module.exports = {
     options: {
       mask: null,
       layers: [
-        {input: 'icon-foreground'},
-        {input: 'icon-background'},
+        {input: 'icon-foreground', style: null},
+        {input: 'icon-background', style: null},
       ],
     },
   },
@@ -58,8 +58,8 @@ module.exports = {
     options: {
       mask: 'icon-mask',
       layers: [
-        {input: 'icon-foreground'},
-        {input: 'icon-background'},
+        {input: 'icon-foreground', style: null},
+        {input: 'icon-background', style: null},
       ],
     },
   },

@@ -2,6 +2,7 @@ const {FILE_NAME_TOKEN_PATTERN, SIZE_SELECTOR_PATTERN} = require('./constant.js'
 
 module.exports = {
   dipSize,
+  generateFileName,
   generateFileNameSizeMap,
   resolveSize,
 }

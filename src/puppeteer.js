@@ -1,6 +1,7 @@
 const puppeteer = require('puppeteer')
 
 const {dipSize} = require('./size.js')
+const {IMAGE_TYPE_PNG} = require('./constant.js')
 
 module.exports = {
   launchBrowser,
@@ -25,7 +26,7 @@ async function screenshot (browser, url, size, options = {}) {
       encoding: 'binary',
       fullPage: false,
       omitBackground: true,
-      type: 'png',
+      type: IMAGE_TYPE_PNG,
 
       ...options,
     })

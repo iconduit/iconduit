@@ -5,6 +5,11 @@ exports.INPUT_TYPE_SVG = 'svg'
 exports.INPUT_STRATEGY_COMPOSITE = 'composite'
 exports.INPUT_STRATEGY_DEGRADE = 'degrade'
 
+exports.IMAGE_TYPE_JPEG = 'jpeg'
+exports.IMAGE_TYPE_PNG = 'png'
+
+exports.TEMPLATE_COMPOSITE = 'composite.html'
+
 exports.BROWSER_TARGET_DEFAULTS = 'defaults'
 
 exports.INSTALLER_DMG = 'dmg'

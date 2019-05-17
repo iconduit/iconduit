@@ -1,0 +1,42 @@
+<html>
+<head>
+  <style>
+    body {
+      margin: 0;
+      display: grid;
+      grid-template-areas: "layer";
+      overflow: hidden;
+    }
+
+    .layer {
+      grid-area: layer;
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .layer img {
+      width: 100vw;
+      height: 100vh;
+    }
+  </style>
+
+  <script>
+    window.ready =
+      fn => { document.readyState !== 'loading' ? fn() : document.addEventListener('DOMContentLoaded', fn) }
+  </script>
+</head>
+<body>
+  <% for (let index = layers.length - 1; index >= 0; --index) { %>
+    <div class="layer layer-<%- index %>"><img src="<%- layers[index].url %>" /></div>
+    <script>
+      ready(() => {
+        const style = <%= JSON.stringify(layers[index].styleDefinition) %>
+        const layer = document.querySelector(<%= JSON.stringify(`.layer-${index}`) %>)
+        Object.entries(style).forEach(([property, value]) => { layer.style[property] = value })
+      })
+    </script>
+  <% } %>
+</body>
+</html>

@@ -25,6 +25,7 @@
   "outputs": {
     "include": [
       "dmg-background",
+      "favicon-png",
       "safari-mask-icon"
     ]
   }
