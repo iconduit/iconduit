@@ -107,14 +107,14 @@ async function deriveCompositeInput (services, config, options, request, definit
 
   if (type === INPUT_TYPE_SVG) throw new Error(`SVG inputs cannot be composites:\n${renderStack(stack)}`)
 
+  const subStack = [`input.${name}`, ...stack]
   const {fileSystem: {writeFile}, readTemplate} = services
   const {definitions: {style: styleDefinitions}} = config
   const {tempPath} = options
-  const {options: {layers}} = definition
-
-  const cachePath = join(tempPath, generateCacheFileName(request, '.html'))
+  const {options: {layers, mask}} = definition
 
   const template = await readTemplate(TEMPLATE_COMPOSITE)
+
   const layersVariable = await Promise.all(layers.map(async layer => {
     const {input, style} = layer
 
@@ -126,14 +126,31 @@ async function deriveCompositeInput (services, config, options, request, definit
       name: input,
       type: INPUT_TYPE_IMAGE,
       size,
-      stack: [`input.${name}`, ...stack],
+      stack: subStack,
     })
     const url = fileUrl(path)
 
     return {...layer, styleDefinition, url}
   }))
-  const rendered = template({layers: layersVariable})
 
+  let maskUrl
+
+  if (mask !== null) {
+    const path = await buildInput(services, config, options, {
+      name: mask,
+      type: INPUT_TYPE_SVG,
+      size,
+      stack: subStack,
+    })
+    maskUrl = fileUrl(path)
+  }
+
+  const rendered = template({
+    layers: layersVariable,
+    maskUrl,
+  })
+
+  const cachePath = join(tempPath, generateCacheFileName(request, '.html'))
   await writeFile(cachePath, rendered)
 
   return cachePath

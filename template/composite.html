@@ -3,9 +3,15 @@
   <style>
     body {
       margin: 0;
+    }
+
+    .viewport {
+      width: 100vw;
+      height: 100vh;
       display: grid;
       grid-template-areas: "layer";
-      overflow: hidden;
+
+      <% if (maskUrl) { %>-webkit-mask-image: url(<%= maskUrl %>);<% } %>
     }
 
     .layer {
@@ -28,15 +34,17 @@
   </script>
 </head>
 <body>
-  <% for (let index = layers.length - 1; index >= 0; --index) { %>
-    <div class="layer layer-<%- index %>"><img src="<%- layers[index].url %>" /></div>
-    <script>
-      ready(() => {
-        const style = <%= JSON.stringify(layers[index].styleDefinition) %>
-        const layer = document.querySelector(<%= JSON.stringify(`.layer-${index}`) %>)
-        Object.entries(style).forEach(([property, value]) => { layer.style[property] = value })
-      })
-    </script>
-  <% } %>
+  <div class="viewport">
+    <% for (let index = layers.length - 1; index >= 0; --index) { %>
+      <div class="layer layer-<%- index %>"><img src="<%- layers[index].url %>" /></div>
+      <script>
+        ready(() => {
+          const style = <%= JSON.stringify(layers[index].styleDefinition) %>
+          const layer = document.querySelector(<%= JSON.stringify(`.layer-${index}`) %>)
+          Object.entries(style).forEach(([property, value]) => { layer.style[property] = value })
+        })
+      </script>
+    <% } %>
+  </div>
 </body>
 </html>
