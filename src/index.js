@@ -1,3 +1,4 @@
+const NodeCache = require('node-cache')
 const {join} = require('path')
 
 const {build} = require('./build.js')
@@ -25,8 +26,11 @@ async function main (services) {
 
 const {env, exit} = process
 const logger = createLogger(env)
+const cache = new NodeCache()
+cache.on('set', (key, value) => { logger.debug(`Setting cache key ${key} to ${JSON.stringify(value)}`) })
 const fileSystem = createFileSystem(env, logger)
 const services = {
+  cache,
   defaultInputDir: join(__dirname, '../input'),
   fileSystem,
   logger,

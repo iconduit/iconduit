@@ -24,32 +24,41 @@ function createInputBuilder (services, config, options) {
 }
 
 async function buildInput (services, config, options, request) {
-  const [isHit, cachePath] = await findCache(services, options, request)
+  const {cache: {get, set}} = services
+  const {name, size, type} = request
 
-  if (isHit) return cachePath
+  const cacheKey = buildCacheKey(`input.${name}.${type}`, size)
+  const cachePath = get(cacheKey)
 
-  const filePath = await findFile(services, config, options, request)
-  const path = filePath || await deriveInput(services, config, options, request)
+  if (cachePath) return cachePath
 
-  return convertInput(services, options, request, path)
+  const sourcePath = await findSource(services, config, options, request)
+  const path = await convertInput(services, options, request, sourcePath)
+
+  set(cacheKey, path)
+
+  return path
 }
 
-async function findCache (services, options, request) {
-  const {fileSystem: {globby}} = services
-  const {tempPath} = options
-
-  const glob = generateCacheFileName(request, '.*')
-  const matches = await globby(glob, {cwd: tempPath})
-
-  return matches.length < 1 ? [false, null] : [true, join(tempPath, matches[0])]
+function buildCacheKey (prefix, size) {
+  return size ? generateFileName(`${prefix}.[dimensions]r[pixelRatio]`, size) : prefix
 }
 
-function generateCacheFileName (request, extension) {
+async function findSource (services, config, options, request) {
+  const {cache: {get, set}} = services
   const {name, size} = request
 
-  return size
-    ? generateFileName(`input-${name}-[dimensions]r[pixelRatio]d[pixelDensity]${extension}`, size)
-    : `input-${name}${extension}`
+  const cacheKey = buildCacheKey(`input.${name}.source`, size)
+  const cachePath = get(cacheKey)
+
+  if (cachePath) return cachePath
+
+  const filePath = await findFile(services, config, options, request)
+  const path = filePath || await deriveSource(services, config, options, request)
+
+  set(cacheKey, path)
+
+  return path
 }
 
 async function findFile (services, config, options, request) {
@@ -86,7 +95,7 @@ async function findFileInDir (services, dir, glob, name) {
   throw new Error(`Multiple file inputs found for ${name} at ${join(dir, glob)}`)
 }
 
-async function deriveInput (services, config, options, request) {
+async function deriveSource (services, config, options, request) {
   const {name, stack} = request
   const {definitions: {input: {[name]: definition}}} = config
 
@@ -96,14 +105,26 @@ async function deriveInput (services, config, options, request) {
   const {strategy} = definition
 
   switch (strategy) {
-    case INPUT_STRATEGY_COMPOSITE: return deriveCompositeInput(services, config, options, request, definition)
-    case INPUT_STRATEGY_DEGRADE: return deriveDegradeInput(services, config, options, request, definition)
+    case INPUT_STRATEGY_COMPOSITE: return deriveCompositeSource(services, config, options, request, definition)
+    case INPUT_STRATEGY_DEGRADE: return deriveDegradeSource(services, config, options, request, definition)
   }
 
   throw new Error('Not implemented')
 }
 
-async function deriveCompositeInput (services, config, options, request, definition) {
+function assertNonRecursive (request) {
+  const {name, stack} = request
+
+  const seen = [name]
+
+  for (const frame of stack) {
+    if (seen.includes(frame)) throw new Error(`Recursive definition found for input.${name}:\n${renderStack(stack)}`)
+
+    seen.push(frame)
+  }
+}
+
+async function deriveCompositeSource (services, config, options, request, definition) {
   const {name, size, stack, type} = request
 
   if (type === INPUT_TYPE_SVG) throw new Error(`SVG inputs cannot be composites:\n${renderStack(stack)}`)
@@ -151,13 +172,14 @@ async function deriveCompositeInput (services, config, options, request, definit
     maskUrl,
   })
 
-  const cachePath = join(tempPath, generateCacheFileName(request, '.html'))
-  await writeFile(cachePath, rendered)
+  const renderedFileName = `${buildCacheKey(`input.${name}.composite`, size)}.html`
+  const renderedPath = join(tempPath, renderedFileName)
+  await writeFile(renderedPath, rendered)
 
-  return cachePath
+  return renderedPath
 }
 
-async function deriveDegradeInput (services, config, options, request, definition) {
+async function deriveDegradeSource (services, config, options, request, definition) {
   const {name, size, stack, type} = request
   const {options: {to}} = definition
 
@@ -169,52 +191,47 @@ async function deriveDegradeInput (services, config, options, request, definitio
   })
 }
 
-function assertNonRecursive (request) {
-  const {name, stack} = request
-
-  const seen = [name]
-
-  for (const frame of stack) {
-    if (seen.includes(frame)) throw new Error(`Recursive definition found for input.${name}:\n${renderStack(stack)}`)
-
-    seen.push(frame)
-  }
-}
-
-async function convertInput (services, options, request, path) {
+async function convertInput (services, options, request, sourcePath) {
   const {stack, type} = request
 
   switch (type) {
-    case INPUT_TYPE_IMAGE: return convertInputToImage(services, options, request, path)
+    case INPUT_TYPE_IMAGE: return convertInputToImage(services, options, request, sourcePath)
 
     case INPUT_TYPE_RENDERABLE:
     case INPUT_TYPE_SVG:
-      return path
+      return sourcePath
   }
 
   throw new Error(`Invalid input type ${JSON.stringify(type)} requested:\n${renderStack(stack)}`)
 }
 
-async function convertInputToImage (services, options, request, path) {
-  switch (extname(path).toLowerCase()) {
+async function convertInputToImage (services, options, request, sourcePath) {
+  if (isImagePath(sourcePath)) return sourcePath
+
+  const {browser, fileSystem: {writeFile}} = services
+  const {tempPath} = options
+  const {name, size} = request
+
+  const imagePath = join(tempPath, generateFileName(`input.${name}.image.[dimensions]r[pixelRatio].png`, size))
+  const url = fileUrl(sourcePath)
+
+  const image = await screenshot(browser, url, size, {type: IMAGE_TYPE_PNG})
+  await writeFile(imagePath, image)
+
+  return imagePath
+}
+
+function isImagePath (sourcePath) {
+  switch (extname(sourcePath).toLowerCase()) {
     case '.gif':
     case '.jpeg':
     case '.jpg':
     case '.png':
     case '.svg':
-      return path
+      return true
   }
 
-  const {browser, fileSystem: {writeFile}} = services
-  const {tempPath} = options
-  const {size} = request
-  const url = fileUrl(path)
-
-  const cachePath = join(tempPath, generateCacheFileName(request, '.png'))
-  const image = await screenshot(browser, url, size, {type: IMAGE_TYPE_PNG})
-  await writeFile(cachePath, image)
-
-  return cachePath
+  return false
 }
 
 function renderStack (stack) {
