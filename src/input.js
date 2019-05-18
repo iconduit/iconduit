@@ -2,7 +2,7 @@ const fileUrl = require('file-url')
 const {extname, join} = require('path')
 
 const {applyMultiplier} = require('./size.js')
-const {generateFileName} = require('./size.js')
+const {buildFileName} = require('./size.js')
 const {screenshot} = require('./puppeteer.js')
 
 const {
@@ -38,10 +38,6 @@ async function buildInput (services, config, options, request) {
   set(cacheKey, path)
 
   return path
-}
-
-function buildCacheKey (prefix, size) {
-  return size ? generateFileName(`${prefix}.[dimensions]r[pixelRatio]`, size) : prefix
 }
 
 async function findSource (services, config, options, request) {
@@ -172,8 +168,7 @@ async function deriveCompositeSource (services, config, options, request, defini
     maskUrl,
   })
 
-  const renderedFileName = `${buildCacheKey(`input.${name}.composite`, size)}.html`
-  const renderedPath = join(tempPath, renderedFileName)
+  const renderedPath = buildCachePath(tempPath, `input.${name}.composite`, '.html', size)
   await writeFile(renderedPath, rendered)
 
   return renderedPath
@@ -212,7 +207,7 @@ async function convertInputToImage (services, options, request, sourcePath) {
   const {tempPath} = options
   const {name, size} = request
 
-  const imagePath = join(tempPath, generateFileName(`input.${name}.image.[dimensions]r[pixelRatio].png`, size))
+  const imagePath = buildCachePath(tempPath, `input.${name}.image`, '.png', size)
   const url = fileUrl(sourcePath)
 
   const image = await screenshot(browser, url, size, {type: IMAGE_TYPE_PNG})
@@ -232,6 +227,14 @@ function isImagePath (sourcePath) {
   }
 
   return false
+}
+
+function buildCacheKey (prefix, size) {
+  return size ? buildFileName(`${prefix}.[dimensions]r[pixelRatio]`, size) : prefix
+}
+
+function buildCachePath (tempPath, prefix, extension, size) {
+  return join(tempPath, `${buildCacheKey(prefix, size)}${extension}`)
 }
 
 function renderStack (stack) {

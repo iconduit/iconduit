@@ -2,9 +2,9 @@ const {FILE_NAME_TOKEN_PATTERN, SIZE_SELECTOR_PATTERN} = require('./constant.js'
 
 module.exports = {
   applyMultiplier,
+  buildFileName,
+  buildFileNameSizeMap,
   dipSize,
-  generateFileName,
-  generateFileNameSizeMap,
   parseSelector,
   resolveSize,
 }
@@ -20,16 +20,7 @@ function applyMultiplier (definition, multiplier) {
   }
 }
 
-function dipSize (size) {
-  const {width, height, pixelRatio} = size
-
-  return {
-    width: width / pixelRatio,
-    height: height / pixelRatio,
-  }
-}
-
-function generateFileName (template, size) {
+function buildFileName (template, size) {
   const {width, height, pixelDensity, pixelRatio} = size
   const {width: dipWidth, height: dipHeight} = dipSize(size)
 
@@ -50,13 +41,13 @@ function generateFileName (template, size) {
   })
 }
 
-function generateFileNameSizeMap (template, sizes) {
+function buildFileNameSizeMap (template, sizes) {
   if (sizes.length < 1) return {[template]: []}
 
   const map = {}
 
   for (const size of sizes) {
-    const name = generateFileName(template, size)
+    const name = buildFileName(template, size)
     const existing = map[name]
 
     if (existing) {
@@ -67,6 +58,15 @@ function generateFileNameSizeMap (template, sizes) {
   }
 
   return map
+}
+
+function dipSize (size) {
+  const {width, height, pixelRatio} = size
+
+  return {
+    width: width / pixelRatio,
+    height: height / pixelRatio,
+  }
 }
 
 function parseSelector (selector) {

@@ -1,8 +1,8 @@
 const fileUrl = require('file-url')
 const {dirname, extname, join} = require('path')
 
+const {buildFileNameSizeMap} = require('./size.js')
 const {createInputBuilder} = require('./input.js')
-const {generateFileNameSizeMap} = require('./size.js')
 const {IMAGE_TYPE_PNG, INPUT_TYPE_RENDERABLE, INPUT_TYPE_SVG} = require('./constant.js')
 const {launchBrowser, screenshot} = require('./puppeteer.js')
 const {resolveSizesForOutputs, selectOutputs} = require('./output.js')
@@ -38,7 +38,7 @@ async function buildOutput (services, options, config, outputName, output, sizes
   const {outputPath} = options
   const {input: inputName, name: fileNameTemplate} = output
 
-  const sizesByFilename = generateFileNameSizeMap(fileNameTemplate, sizes)
+  const sizesByFilename = buildFileNameSizeMap(fileNameTemplate, sizes)
 
   for (const filename in sizesByFilename) {
     const fullOutputPath = join(outputPath, filename)
