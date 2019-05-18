@@ -35,19 +35,24 @@
     "icon-bleed": "icon/bleed.svg",
     "icon-silhouette": "icon/silhouette.svg"
   },
-  "targets": {
-    "browser": [],
-    "installer": [],
-    "os": [],
-    "web": []
-  },
   "outputs": {
     "include": [
-      "apple-touch-icon",
-      "apple-touch-icon-masked",
-      "dmg-background",
-      "favicon-png",
-      "safari-mask-icon"
+      "apple-touch-icon-masked"
+    ],
+    "exclude": [
+      "apple-touch-startup",
+      "browserconfig-xml",
+      "facebook-app-icon",
+      "favicon-ico",
+      "index-html",
+      "macos-icns",
+      "manifest-json",
+      "maskable-icon",
+      "open-graph-image",
+      "service-worker",
+      "twitter-card-image",
+      "windows-ico",
+      "windows-tile"
     ]
   }
 }
