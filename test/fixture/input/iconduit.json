@@ -42,7 +42,6 @@
     "exclude": [
       "apple-touch-startup",
       "browserconfig-xml",
-      "facebook-app-icon",
       "favicon-ico",
       "index-html",
       "macos-icns",

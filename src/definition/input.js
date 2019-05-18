@@ -9,6 +9,12 @@ module.exports = {
       ],
     },
   },
+  'facebook-app-icon': {
+    strategy: 'degrade',
+    options: {
+      to: 'maskable-icon',
+    },
+  },
   'icon-background': {
     strategy: 'degrade',
     options: {
