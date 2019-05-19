@@ -1,4 +1,6 @@
+exports.IMAGE_EXTENSIONS = ['.svg', '.png', '.gif', '.jpg', '.jpeg']
 exports.INPUT_EXTENSIONS = ['.html', '.svg', '.png', '.gif', '.jpg', '.jpeg', '.json', '.xml']
+exports.TEMPLATE_EXTENSIONS = ['.html', '.svg', '.json', '.xml']
 
 exports.INPUT_TYPE_IMAGE = 'image'
 exports.INPUT_TYPE_RENDERABLE = 'renderable'

@@ -7,6 +7,7 @@ const {buildInputVariables} = require('./template.js')
 const {screenshot} = require('./puppeteer.js')
 
 const {
+  IMAGE_EXTENSIONS,
   IMAGE_TYPE_PNG,
   INPUT_STRATEGY_COMPOSITE,
   INPUT_STRATEGY_DEGRADE,
@@ -14,6 +15,7 @@ const {
   INPUT_TYPE_RENDERABLE,
   INPUT_TYPE_SVG,
   TEMPLATE_COMPOSITE,
+  TEMPLATE_EXTENSIONS,
 } = require('./constant.js')
 
 module.exports = {
@@ -100,7 +102,7 @@ async function buildTemplateInput (services, config, options, request, filePath)
   const {tempPath} = options
   const {name} = request
 
-  const renderedPath = buildCachePath(tempPath, `input.${name}.rendered`, '.html')
+  const renderedPath = buildCachePath(tempPath, `input.${name}.rendered`, extname(filePath))
   const template = await readTemplate(filePath)
   const rendered = template(buildInputVariables(services, config, options, filePath))
 
@@ -235,27 +237,11 @@ async function convertInputToImage (services, options, request, sourcePath) {
 }
 
 function isImagePath (sourcePath) {
-  switch (extname(sourcePath).toLowerCase()) {
-    case '.gif':
-    case '.jpeg':
-    case '.jpg':
-    case '.png':
-    case '.svg':
-      return true
-  }
-
-  return false
+  return IMAGE_EXTENSIONS.includes(extname(sourcePath).toLowerCase())
 }
 
 function isTemplatePath (sourcePath) {
-  switch (extname(sourcePath).toLowerCase()) {
-    case '.html':
-    case '.json':
-    case '.xml':
-      return true
-  }
-
-  return false
+  return TEMPLATE_EXTENSIONS.includes(extname(sourcePath).toLowerCase())
 }
 
 function buildCacheKey (prefix, size) {
