@@ -22,6 +22,14 @@
         "input": "apple-touch-icon-masked",
         "name": "apple-touch-icon-masked-[dimensions].png",
         "sizes": ["apple-touch-icon-retina"]
+      },
+      "apple-touch-startup": {
+        "input": "apple-touch-startup",
+        "name": "apple-touch-startup-[dimensions]r[pixelRatio].png",
+        "sizes": [
+          "device.iphone-5.landscape",
+          "device.iphone-5.portrait"
+        ]
       }
     }
   },
