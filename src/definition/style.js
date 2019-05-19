@@ -1,9 +1,13 @@
 module.exports = {
   'apple-touch-icon-scale': {
     // the difference between the Android large circle keyline diameter (52/108)
-    // and approximate iOS icon grid large circle size (892/1024)
-    // see https://itunes.apple.com/us/book/icon-design/id873778893
+    // and approximate Apple icon grid large circle size (892/1024)
     transform: 'scale(calc(6021 / 3328))',
+  },
+  'macos-icon-scale': {
+    // the difference between the Android circle mask diameter (72/108)
+    // and approximate Apple icon grid large circle size (892/1024)
+    transform: 'scale(calc(669 / 512))',
   },
   'masked-icon-minimal-padding-scale': {
     // arrived at empirically

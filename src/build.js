@@ -7,6 +7,7 @@ const {createInputBuilder} = require('./input.js')
 const {IMAGE_TYPE_JPEG, IMAGE_TYPE_PNG, INPUT_TYPE_RENDERABLE, INPUT_TYPE_SVG} = require('./constant.js')
 const {launchBrowser, screenshot} = require('./puppeteer.js')
 const {resolveSizesForOutputs, selectOutputs} = require('./output.js')
+const {toIcns} = require('./icns.js')
 
 module.exports = {
   build,
@@ -54,6 +55,7 @@ async function buildOutput (services, options, config, outputName, output, sizes
 
 async function buildOutputContent (services, inputName, outputName, outputType, outputSizes) {
   switch (outputType) {
+    case '.icns': return buildOutputIcns(services, inputName, outputName, outputSizes)
     case '.ico': return buildOutputIco(services, inputName, outputName, outputSizes)
 
     case '.jpeg':
@@ -65,6 +67,18 @@ async function buildOutputContent (services, inputName, outputName, outputType, 
   }
 
   throw new Error('Not implemented')
+}
+
+async function buildOutputIcns (services, inputName, outputName, outputSizes, imageType) {
+  const entries = await Promise.all(outputSizes.map(
+    async size => {
+      const content = await buildOutputImage(services, inputName, outputName, [size], IMAGE_TYPE_PNG)
+
+      return {content, size}
+    }
+  ))
+
+  return toIcns(services, entries)
 }
 
 async function buildOutputIco (services, inputName, outputName, outputSizes, imageType) {

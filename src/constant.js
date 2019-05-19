@@ -30,3 +30,15 @@ exports.DEFAULT_LOG_LEVEL = 'info'
 
 exports.FILE_NAME_TOKEN_PATTERN = /\[([^\]]+)]/g
 exports.SIZE_SELECTOR_PATTERN = /^([^@]*)(?:@(\d+)x)?$/
+
+exports.ICNS_512_2X = 'ic10'
+exports.ICNS_512_1X = 'ic09'
+exports.ICNS_256_2X = 'ic14'
+exports.ICNS_256_1X = 'ic08'
+exports.ICNS_128_2X = 'ic13'
+exports.ICNS_128_1X = 'ic07'
+exports.ICNS_64_1X = 'icp6'
+exports.ICNS_32_2X = 'ic12'
+exports.ICNS_32_1X = 'icp5'
+exports.ICNS_16_2X = 'ic11'
+exports.ICNS_16_1X = 'icp4'

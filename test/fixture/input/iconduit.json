@@ -56,7 +56,6 @@
     "exclude": [
       "browserconfig-xml",
       "index-html",
-      "macos-icns",
       "manifest-json",
       "service-worker"
     ]

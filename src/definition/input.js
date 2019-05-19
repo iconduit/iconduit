@@ -72,6 +72,16 @@ module.exports = {
       to: 'icon',
     },
   },
+  'macos-icon': {
+    strategy: 'composite',
+    options: {
+      backgroundColor: 'transparent',
+      mask: null,
+      layers: [
+        {input: 'masked-icon-without-bleed', multiplier: 2, style: 'macos-icon-scale'},
+      ],
+    },
+  },
   'maskable-icon': {
     strategy: 'composite',
     options: {
@@ -90,6 +100,17 @@ module.exports = {
       mask: 'icon-mask',
       layers: [
         {input: 'icon-foreground', multiplier: 1, style: null},
+        {input: 'icon-background', multiplier: 1, style: null},
+      ],
+    },
+  },
+  'masked-icon-without-bleed': {
+    strategy: 'composite',
+    options: {
+      backgroundColor: 'transparent',
+      mask: 'icon-mask',
+      layers: [
+        {input: 'icon', multiplier: 1, style: null},
         {input: 'icon-background', multiplier: 1, style: null},
       ],
     },

@@ -63,7 +63,7 @@ module.exports = {
     sizes: [],
   },
   'macos-icns': {
-    input: 'masked-icon-minimal-padding',
+    input: 'macos-icon',
     name: 'macos.icns',
     sizes: [
       'icns-512@2x',
