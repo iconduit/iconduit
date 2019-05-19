@@ -2,9 +2,9 @@ const NodeCache = require('node-cache')
 const {join} = require('path')
 
 const {build} = require('./build.js')
+const {createBoundTemplateReader, createTemplateReader} = require('./template.js')
 const {createFileSystem} = require('./fs.js')
 const {createLogger} = require('./logging.js')
-const {createTemplateReader} = require('./template.js')
 const {normalize} = require('./config.js')
 
 async function main (services) {
@@ -25,16 +25,20 @@ async function main (services) {
 }
 
 const {env, exit} = process
+
 const logger = createLogger(env)
+const fileSystem = createFileSystem(env, logger)
+
 const cache = new NodeCache()
 cache.on('set', (key, value) => { logger.debug(`Setting cache key ${key} to ${JSON.stringify(value)}`) })
-const fileSystem = createFileSystem(env, logger)
+
 const services = {
   cache,
   defaultInputDir: join(__dirname, '../input'),
   fileSystem,
   logger,
-  readTemplate: createTemplateReader(fileSystem, join(__dirname, '../template')),
+  readInternalTemplate: createBoundTemplateReader(fileSystem, process, join(__dirname, '../template')),
+  readTemplate: createTemplateReader(fileSystem, process),
 }
 
 main(services).catch(({stack}) => {

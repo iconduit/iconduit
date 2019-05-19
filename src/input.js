@@ -3,6 +3,7 @@ const {extname, join} = require('path')
 
 const {applyMultiplier} = require('./size.js')
 const {buildFileName} = require('./size.js')
+const {buildInputVariables} = require('./template.js')
 const {screenshot} = require('./puppeteer.js')
 
 const {
@@ -49,8 +50,18 @@ async function findSource (services, config, options, request) {
 
   if (cachePath) return cachePath
 
+  let path
   const filePath = await findFile(services, config, options, request)
-  const path = filePath || await deriveSource(services, config, options, request)
+
+  if (filePath) {
+    if (isTemplatePath(filePath)) {
+      path = await buildTemplateInput(services, config, options, request, filePath)
+    } else {
+      path = filePath
+    }
+  } else {
+    path = await deriveSource(services, config, options, request)
+  }
 
   set(cacheKey, path)
 
@@ -91,6 +102,20 @@ async function findFileInDir (services, dir, glob, name) {
   throw new Error(`Multiple file inputs found for ${name} at ${join(dir, glob)}`)
 }
 
+async function buildTemplateInput (services, config, options, request, filePath) {
+  const {fileSystem: {writeFile}, readTemplate} = services
+  const {tempPath} = options
+  const {name} = request
+
+  const renderedPath = buildCachePath(tempPath, `input.${name}.rendered`, '.html')
+  const template = await readTemplate(filePath)
+  const rendered = template(buildInputVariables(services, config, options, filePath))
+
+  await writeFile(renderedPath, rendered)
+
+  return renderedPath
+}
+
 async function deriveSource (services, config, options, request) {
   const {name, stack} = request
   const {definitions: {input: {[name]: definition}}} = config
@@ -126,12 +151,12 @@ async function deriveCompositeSource (services, config, options, request, defini
   if (type === INPUT_TYPE_SVG) throw new Error(`SVG inputs cannot be composites:\n${renderStack(stack)}`)
 
   const subStack = [`input.${name}`, ...stack]
-  const {fileSystem: {writeFile}, readTemplate} = services
+  const {fileSystem: {writeFile}, readInternalTemplate} = services
   const {definitions: {style: styleDefinitions}} = config
   const {tempPath} = options
   const {options: {layers, mask}} = definition
 
-  const template = await readTemplate(TEMPLATE_COMPOSITE)
+  const template = await readInternalTemplate(TEMPLATE_COMPOSITE)
 
   const layersVariable = await Promise.all(layers.map(async layer => {
     const {input, multiplier, style} = layer
@@ -223,6 +248,17 @@ function isImagePath (sourcePath) {
     case '.jpg':
     case '.png':
     case '.svg':
+      return true
+  }
+
+  return false
+}
+
+function isTemplatePath (sourcePath) {
+  switch (extname(sourcePath).toLowerCase()) {
+    case '.html':
+    case '.json':
+    case '.xml':
       return true
   }
 
