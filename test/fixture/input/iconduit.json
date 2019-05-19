@@ -58,8 +58,7 @@
       "index-html",
       "macos-icns",
       "manifest-json",
-      "service-worker",
-      "windows-ico"
+      "service-worker"
     ]
   }
 }

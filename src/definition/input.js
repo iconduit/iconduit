@@ -27,13 +27,13 @@ module.exports = {
       to: 'maskable-icon',
     },
   },
-  favicon: {
+  'masked-icon-minimal-padding': {
     strategy: 'composite',
     options: {
       backgroundColor: 'transparent',
       mask: null,
       layers: [
-        {input: 'masked-icon', multiplier: 2, style: 'favicon-scale'},
+        {input: 'masked-icon', multiplier: 2, style: 'masked-icon-minimal-padding-scale'},
       ],
     },
   },

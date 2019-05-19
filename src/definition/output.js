@@ -48,12 +48,12 @@ module.exports = {
     sizes: ['facebook-app-icon'],
   },
   'favicon-ico': {
-    input: 'favicon',
+    input: 'masked-icon-minimal-padding',
     name: 'favicon.ico',
     sizes: ['favicon-large', 'favicon-medium', 'favicon-small'],
   },
   'favicon-png': {
-    input: 'favicon',
+    input: 'masked-icon-minimal-padding',
     name: 'favicon-[dimensions].png',
     sizes: ['favicon-medium', 'favicon-small'],
   },
@@ -63,7 +63,7 @@ module.exports = {
     sizes: [],
   },
   'macos-icns': {
-    input: 'masked-icon',
+    input: 'masked-icon-minimal-padding',
     name: 'macos.icns',
     sizes: [
       'icns-512@2x',
@@ -110,7 +110,7 @@ module.exports = {
     sizes: ['twitter-card-image'],
   },
   'windows-ico': {
-    input: 'masked-icon',
+    input: 'masked-icon-minimal-padding',
     name: 'windows.ico',
     sizes: [
       'windows-ico-256',
