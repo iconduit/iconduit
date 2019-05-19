@@ -86,7 +86,8 @@ module.exports = {
     options: {
       mask: null,
       layers: [
-        {input: 'icon-silhouette', multiplier: 1, style: 'social-share-icon-scale'},
+        {input: 'icon-silhouette', multiplier: 1, style: null},
+        {input: 'background-color', multiplier: 1, style: null},
       ],
     },
   },

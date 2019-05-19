@@ -26,8 +26,8 @@
     }
   },
   "colors": {
-    "background": "iconduitorange",
-    "foreground": "iconduitpink"
+    "background": "iconduitpink",
+    "foreground": "iconduitorange"
   },
   "inputs": {
     "icon": "./icon/icon.png",
@@ -47,9 +47,7 @@
       "macos-icns",
       "manifest-json",
       "maskable-icon",
-      "open-graph-image",
       "service-worker",
-      "twitter-card-image",
       "windows-ico"
     ]
   }
