@@ -3,7 +3,7 @@ const {dirname, extname, join} = require('path')
 
 const {buildFileNameSizeMap} = require('./size.js')
 const {createInputBuilder} = require('./input.js')
-const {IMAGE_TYPE_PNG, INPUT_TYPE_RENDERABLE, INPUT_TYPE_SVG} = require('./constant.js')
+const {IMAGE_TYPE_JPEG, IMAGE_TYPE_PNG, INPUT_TYPE_RENDERABLE, INPUT_TYPE_SVG} = require('./constant.js')
 const {launchBrowser, screenshot} = require('./puppeteer.js')
 const {resolveSizesForOutputs, selectOutputs} = require('./output.js')
 
@@ -53,6 +53,10 @@ async function buildOutput (services, options, config, outputName, output, sizes
 
 async function buildOutputContent (services, inputName, outputName, outputType, outputSizes) {
   switch (outputType) {
+    case '.jpeg':
+    case '.jpg':
+      return buildOutputImage(services, inputName, outputName, outputSizes, IMAGE_TYPE_JPEG)
+
     case '.png': return buildOutputImage(services, inputName, outputName, outputSizes, IMAGE_TYPE_PNG)
     case '.svg': return buildOutputSvg(services, inputName, outputName, outputSizes)
   }
