@@ -15,6 +15,12 @@
             {"input": "icon-background", "multiplier": 2, "style": "apple-touch-icon-scale"}
           ]
         }
+      },
+      "icon-mask": {
+        "strategy": "degrade",
+        "options": {
+          "to": "icon-mask-android-squircle"
+        }
       }
     },
     "output": {

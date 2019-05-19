@@ -5,6 +5,10 @@ module.exports = {
     // see https://itunes.apple.com/us/book/icon-design/id873778893
     transform: 'scale(calc(6021 / 3328))',
   },
+  'favicon-scale': {
+    // arrived at empirically
+    transform: 'scale(1.45)',
+  },
   'opacity-1-third': {opacity: 'calc(1 / 3)'},
   'opacity-10-percent': {opacity: '.1'},
   'opacity-2-thirds': {opacity: 'calc(2 / 3)'},

@@ -27,6 +27,16 @@ module.exports = {
       to: 'maskable-icon',
     },
   },
+  favicon: {
+    strategy: 'composite',
+    options: {
+      backgroundColor: 'transparent',
+      mask: null,
+      layers: [
+        {input: 'masked-icon', multiplier: 2, style: 'favicon-scale'},
+      ],
+    },
+  },
   'icon-background': {
     strategy: 'degrade',
     options: {

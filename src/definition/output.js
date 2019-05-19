@@ -48,12 +48,12 @@ module.exports = {
     sizes: ['facebook-app-icon'],
   },
   'favicon-ico': {
-    input: 'masked-icon',
+    input: 'favicon',
     name: 'favicon.ico',
     sizes: ['favicon-large', 'favicon-medium', 'favicon-small'],
   },
   'favicon-png': {
-    input: 'masked-icon',
+    input: 'favicon',
     name: 'favicon-[dimensions].png',
     sizes: ['favicon-medium', 'favicon-small'],
   },
