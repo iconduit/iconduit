@@ -1,4 +1,5 @@
 const fileUrl = require('file-url')
+const toIco = require('to-ico')
 const {dirname, extname, join} = require('path')
 
 const {buildFileNameSizeMap} = require('./size.js')
@@ -53,6 +54,8 @@ async function buildOutput (services, options, config, outputName, output, sizes
 
 async function buildOutputContent (services, inputName, outputName, outputType, outputSizes) {
   switch (outputType) {
+    case '.ico': return buildOutputIco(services, inputName, outputName, outputSizes)
+
     case '.jpeg':
     case '.jpg':
       return buildOutputImage(services, inputName, outputName, outputSizes, IMAGE_TYPE_JPEG)
@@ -62,6 +65,14 @@ async function buildOutputContent (services, inputName, outputName, outputType, 
   }
 
   throw new Error('Not implemented')
+}
+
+async function buildOutputIco (services, inputName, outputName, outputSizes, imageType) {
+  const pngs = await Promise.all(outputSizes.map(
+    async size => buildOutputImage(services, inputName, outputName, [size], IMAGE_TYPE_PNG)
+  ))
+
+  return toIco(pngs)
 }
 
 async function buildOutputImage (services, inputName, outputName, outputSizes, imageType) {

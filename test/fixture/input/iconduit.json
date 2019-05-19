@@ -49,7 +49,6 @@
     ],
     "exclude": [
       "browserconfig-xml",
-      "favicon-ico",
       "index-html",
       "macos-icns",
       "manifest-json",
