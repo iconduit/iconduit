@@ -76,7 +76,7 @@ async function findFile (services, config, options, request) {
   const {name} = request
   const {inputs: {[name]: userModuleId}} = config
 
-  const resolveUserInput = createInputResolver(userInputDir)
+  const {resolveAsync: resolveUserInput} = createInputResolver(userInputDir)
 
   if (userModuleId) {
     const resolvedPath = await resolveUserInput(userModuleId)
@@ -91,7 +91,7 @@ async function findFile (services, config, options, request) {
 
   if (userPath) return userPath
 
-  const resolveDefaultInput = createInputResolver(defaultInputDir)
+  const {resolveAsync: resolveDefaultInput} = createInputResolver(defaultInputDir)
   const defaultPath = await resolveDefaultInput(defaultModuleId)
 
   return defaultPath || null
