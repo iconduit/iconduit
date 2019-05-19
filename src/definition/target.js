@@ -14,12 +14,14 @@ module.exports = {
       outputs: [
         'browserconfig-xml',
         'windows-tile',
+        'windows-tile-small',
       ],
     },
     ie: {
       outputs: [
         'browserconfig-xml',
         'windows-tile',
+        'windows-tile-small',
       ],
     },
     ios_saf: {

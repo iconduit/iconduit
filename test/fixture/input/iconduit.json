@@ -50,8 +50,7 @@
       "open-graph-image",
       "service-worker",
       "twitter-card-image",
-      "windows-ico",
-      "windows-tile"
+      "windows-ico"
     ]
   }
 }

@@ -111,4 +111,13 @@ module.exports = {
       to: 'icon-silhouette',
     },
   },
+  'windows-tile-small': {
+    strategy: 'composite',
+    options: {
+      mask: null,
+      layers: [
+        {input: 'windows-tile-icon', multiplier: 1, style: 'windows-tile-icon-position-small'},
+      ],
+    },
+  },
 }

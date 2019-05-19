@@ -128,6 +128,11 @@ module.exports = {
   'windows-tile': {
     input: 'windows-tile',
     name: 'windows-tile-[dimensions].png',
-    sizes: ['windows-tile-small', 'windows-tile-medium', 'windows-tile-large', 'windows-tile-wide'],
+    sizes: ['windows-tile-medium', 'windows-tile-large', 'windows-tile-wide'],
+  },
+  'windows-tile-small': {
+    input: 'windows-tile-small',
+    name: 'windows-tile-[dimensions].png',
+    sizes: ['windows-tile-small'],
   },
 }
