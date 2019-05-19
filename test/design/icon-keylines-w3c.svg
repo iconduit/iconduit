@@ -1,0 +1,22 @@
+<svg viewBox="0 0 108 108" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    * {
+      stroke-width: .1;
+      fill: transparent;
+    }
+
+    #outline {
+      stroke: black;
+    }
+
+    .safe-zone {
+      stroke: red;
+    }
+  </style>
+
+  <!-- outline -->
+  <rect id="outline" width="108" height="108" />
+
+  <!-- safe zones -->
+  <circle id="safe-zone-w3c" class="safe-zone" cx="54" cy="54" r="43.2" />
+</svg>

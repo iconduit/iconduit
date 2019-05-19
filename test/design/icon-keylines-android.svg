@@ -1,0 +1,48 @@
+<svg viewBox="0 0 108 108" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    * {
+      stroke-width: .1;
+      fill: transparent;
+    }
+
+    #outline {
+      stroke: black;
+    }
+
+    .safe-zone {
+      stroke: red;
+    }
+
+    .mask {
+      stroke: blue;
+      opacity: .25;
+    }
+    .mask:hover {
+      opacity: 1;
+    }
+
+    .keyline {
+      stroke: black;
+    }
+  </style>
+
+  <!-- outline -->
+  <rect id="outline" width="108" height="108" />
+
+  <!-- safe zones -->
+  <circle id="safe-zone-android" class="safe-zone" cx="54" cy="54" r="33" />
+
+  <!-- masks -->
+  <rect id="mask-android-square" class="mask" x="18" y="18" width="72" height="72" />
+  <rect id="mask-android-square-rounded" class="mask" x="18" y="18" width="72" height="72" rx="8" />
+  <path id="mask-android-teardrop" class="mask" d="M54 18C73.8823 18 90 34.1177 90 54V79.2C90 85.1647 85.1647 90 79.2 90H54C34.1177 90 18 73.8823 18 54C18 34.1177 34.1177 18 54 18Z" />
+  <path id="mask-android-squircle" class="mask" d="M54 18C25.2 18 18 25.2 18 54C18 82.8 25.2 90 54 90C82.8 90 90 82.8 90 54C90 25.2 82.8 18 54 18Z" />
+  <circle id="mask-android-circle" class="mask" cx="54" cy="54" r="36" />
+
+  <!-- keylines -->
+  <circle id="keyline-android-circle-large" class="keyline" cx="54" cy="54" r="26" />
+  <circle id="keyline-android-circle-small" class="keyline" cx="54" cy="54" r="18" />
+  <rect id="keyline-android-square" class="keyline" x="32" y="32" width="44" height="44" rx="4" ry="4" />
+  <rect id="keyline-android-rectangle-horizontal" class="keyline" x="28" y="36" width="52" height="36" rx="4" ry="4" />
+  <rect id="keyline-android-rectangle-vertical" class="keyline" x="36" y="28" width="36" height="52" rx="4" ry="4" />
+</svg>

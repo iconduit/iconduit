@@ -1,0 +1,35 @@
+<svg viewBox="0 0 108 108" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    * {
+      stroke-width: .1;
+      fill: transparent;
+    }
+
+    #outline {
+      stroke: black;
+    }
+
+    .safe-zone {
+      stroke: red;
+    }
+
+    .mask {
+      stroke: blue;
+    }
+
+    .keyline {
+      stroke: black;
+    }
+  </style>
+
+  <!-- outline -->
+  <rect id="outline" width="108" height="108" />
+
+  <!-- masks -->
+  <path id="mask-ios-squircle" class="mask" d="M37.653,0l32.694,0c10.842,0 16.262,0 22.098,1.845c6.372,2.319 11.391,7.338 13.71,13.71c1.845,5.835 1.845,11.257 1.845,22.098l0,32.694c0,10.842 0,16.262 -1.845,22.098c-2.319,6.372 -7.338,11.391 -13.71,13.709c-5.836,1.846 -11.256,1.846 -22.098,1.846l-32.694,0c-10.842,0 -16.263,0 -22.098,-1.846c-6.372,-2.318 -11.391,-7.337 -13.71,-13.709c-1.845,-5.836 -1.845,-11.256 -1.845,-22.098l0,-32.694c0,-10.841 0,-16.263 1.845,-22.098c2.319,-6.372 7.338,-11.391 13.71,-13.71c5.835,-1.845 11.256,-1.845 22.098,-1.845" />
+
+  <!-- keylines -->
+  <circle id="keyline-ios-circle-outer" class="keyline" cx="54" cy="54" r="46.87" />
+  <circle id="keyline-ios-circle-middle" class="keyline" cx="54" cy="54" r="28.95" />
+  <circle id="keyline-ios-circle-inner" class="keyline" cx="54" cy="54" r="20.37" />
+</svg>
