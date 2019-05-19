@@ -1,6 +1,6 @@
 const createTemplate = require('lodash.template')
 const fileUrl = require('file-url')
-const {join, resolve, sep} = require('path')
+const {dirname, join, resolve} = require('path')
 
 module.exports = {
   buildInputVariables,
@@ -9,10 +9,10 @@ module.exports = {
 }
 
 function buildInputVariables (services, config, options, path) {
-  const {defaultInputDir} = services
+  const {createInputResolver} = services
   const {colors: colorTypes, definitions: {color: colorDefinitions}, name} = config
-  const {userInputDir} = options
 
+  const {resolveSync} = createInputResolver(dirname(path), path)
   const colors = {}
 
   for (const colorType in colorTypes) {
@@ -25,10 +25,11 @@ function buildInputVariables (services, config, options, path) {
   return {
     name,
     colors,
-    urls: {
-      defaultInput: fileUrl(defaultInputDir) + sep,
-      self: fileUrl(path),
-      userInput: fileUrl(userInputDir) + sep,
+
+    url (moduleId) {
+      const resolvedPath = resolveSync(moduleId)
+
+      return resolvedPath === null ? null : fileUrl(resolvedPath)
     },
   }
 }
