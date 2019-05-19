@@ -69,37 +69,30 @@ async function findSource (services, config, options, request) {
 }
 
 async function findFile (services, config, options, request) {
-  const {defaultInputDir} = services
+  const {createInputResolver, defaultInputDir} = services
   const {userInputDir} = options
   const {name} = request
-  const {inputs: {[name]: userGlob}} = config
+  const {inputs: {[name]: userModuleId}} = config
 
-  if (userGlob) {
-    const match = await findFileInDir(services, userInputDir, userGlob, name)
+  const resolveUserInput = createInputResolver(userInputDir)
 
-    if (!match) throw new Error(`Unable to find file input for ${name} at ${join(userInputDir, userGlob)}`)
+  if (userModuleId) {
+    const resolvedPath = await resolveUserInput(userModuleId)
 
-    return match
+    if (!resolvedPath) throw new Error(`Unable to resolve input for ${name} at ${userModuleId} from ${userInputDir}`)
+
+    return resolvedPath
   }
 
-  const defaultGlob = `${name}.*`
-  const userMatch = await findFileInDir(services, userInputDir, defaultGlob, name)
+  const defaultModuleId = `./${name}`
+  const userPath = await resolveUserInput(defaultModuleId)
 
-  if (userMatch) return userMatch
+  if (userPath) return userPath
 
-  const builtInMatch = await findFileInDir(services, defaultInputDir, defaultGlob, name)
+  const resolveDefaultInput = createInputResolver(defaultInputDir)
+  const defaultPath = await resolveDefaultInput(defaultModuleId)
 
-  return builtInMatch || null
-}
-
-async function findFileInDir (services, dir, glob, name) {
-  const {fileSystem: {globby}} = services
-  const matches = await globby(glob, {cwd: dir})
-
-  if (matches.length === 1) return join(dir, matches[0])
-  if (matches.length < 1) return null
-
-  throw new Error(`Multiple file inputs found for ${name} at ${join(dir, glob)}`)
+  return defaultPath || null
 }
 
 async function buildTemplateInput (services, config, options, request, filePath) {

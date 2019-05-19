@@ -30,10 +30,10 @@
     "foreground": "iconduitpink"
   },
   "inputs": {
-    "icon": "icon/icon.png",
-    "icon-background": "icon/background.svg",
-    "icon-bleed": "icon/bleed.svg",
-    "icon-silhouette": "icon/silhouette.svg"
+    "icon": "./icon/icon.png",
+    "icon-background": "./icon/background.svg",
+    "icon-bleed": "./icon/bleed.svg",
+    "icon-silhouette": "./icon/silhouette.svg"
   },
   "outputs": {
     "include": [

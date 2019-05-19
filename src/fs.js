@@ -1,5 +1,4 @@
 const fs = require('fs')
-const globby = require('globby')
 const rmfr = require('rmfr')
 const {join} = require('path')
 const {promisify} = require('util')
@@ -18,7 +17,6 @@ function createFileSystem (env, logger) {
 
   return {
     access,
-    globby,
     mkdir,
     mkdtemp,
     readFile,

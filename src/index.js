@@ -4,6 +4,7 @@ const {join} = require('path')
 const {build} = require('./build.js')
 const {createBoundTemplateReader, createTemplateReader} = require('./template.js')
 const {createFileSystem} = require('./fs.js')
+const {createInputResolverFactory} = require('./module.js')
 const {createLogger} = require('./logging.js')
 const {normalize} = require('./config.js')
 
@@ -18,7 +19,7 @@ async function main (services) {
   const config = normalize(JSON.parse(await readFile(configPath)))
 
   await withTempDir(async tempPath => {
-    const options = {outputPath, tempPath, userInputDir}
+    const options = {configPath, outputPath, tempPath, userInputDir}
 
     await build(services, options, config)
   })
@@ -34,6 +35,7 @@ cache.on('set', (key, value) => { logger.debug(`Setting cache key ${key} to ${JS
 
 const services = {
   cache,
+  createInputResolver: createInputResolverFactory(logger),
   defaultInputDir: join(__dirname, '../input'),
   fileSystem,
   logger,
