@@ -4,7 +4,6 @@ const {extname, join} = require('path')
 const {applyMultiplier} = require('./size.js')
 const {buildFileName} = require('./size.js')
 const {buildInputVariables} = require('./template.js')
-const {screenshot} = require('./puppeteer.js')
 
 const {
   IMAGE_EXTENSIONS,
@@ -224,14 +223,15 @@ async function convertInput (services, options, request, sourcePath) {
 async function convertInputToImage (services, options, request, sourcePath) {
   if (isImagePath(sourcePath)) return sourcePath
 
-  const {browser, fileSystem: {writeFile}} = services
+  const {createBrowser, fileSystem: {writeFile}} = services
   const {tempPath} = options
   const {name, size} = request
 
   const imagePath = buildCachePath(tempPath, `input.${name}.image`, '.png', size)
   const url = fileUrl(sourcePath)
 
-  const image = await screenshot(browser, url, size, {type: IMAGE_TYPE_PNG})
+  const {screenshot} = await createBrowser()
+  const image = await screenshot(url, size, {type: IMAGE_TYPE_PNG})
   await writeFile(imagePath, image)
 
   return imagePath

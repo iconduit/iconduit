@@ -5,7 +5,6 @@ const {dirname, extname, join} = require('path')
 const {buildFileNameSizeMap} = require('./size.js')
 const {createInputBuilder} = require('./input.js')
 const {IMAGE_TYPE_JPEG, IMAGE_TYPE_PNG, INPUT_TYPE_RENDERABLE, INPUT_TYPE_SVG} = require('./constant.js')
-const {launchBrowser, screenshot} = require('./puppeteer.js')
 const {resolveSizesForOutputs, selectOutputs} = require('./output.js')
 const {toIcns} = require('./icns.js')
 
@@ -14,13 +13,14 @@ module.exports = {
 }
 
 async function build (services, options, config) {
+  const {createBrowser} = services
+
   const outputs = selectOutputs(config)
   const outputSizes = resolveSizesForOutputs(config, outputs)
 
-  const browser = await launchBrowser()
+  const browser = await createBrowser()
 
   try {
-    services = {...services, browser}
     services = {...services, buildInput: createInputBuilder(services, config, options)}
 
     const threads = []
@@ -90,13 +90,16 @@ async function buildOutputIco (services, inputName, outputName, outputSizes, ima
 }
 
 async function buildOutputImage (services, inputName, outputName, outputSizes, imageType) {
-  const {browser, buildInput} = services
+  const {buildInput, createBrowser} = services
+
   const size = assertFirstSize(outputSizes, outputName)
   const stack = [`output.${outputName}`]
   const inputPath = await buildInput({name: inputName, type: INPUT_TYPE_RENDERABLE, size, stack})
   const inputUrl = fileUrl(inputPath)
 
-  return screenshot(browser, inputUrl, size, {type: imageType})
+  const {screenshot} = await createBrowser()
+
+  return screenshot(inputUrl, size, {type: imageType})
 }
 
 async function buildOutputSvg (services, inputName, outputName, outputSizes) {

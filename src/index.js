@@ -3,6 +3,7 @@ const {join} = require('path')
 
 const {build} = require('./build.js')
 const {createBoundTemplateReader, createTemplateReader} = require('./template.js')
+const {createBrowserFactory} = require('./browser.js')
 const {createFileSystem} = require('./fs.js')
 const {createInputResolverFactory} = require('./module.js')
 const {createLogger} = require('./logging.js')
@@ -35,6 +36,7 @@ cache.on('set', (key, value) => { logger.debug(`Setting cache key ${key} to ${JS
 
 const services = {
   cache,
+  createBrowser: createBrowserFactory(),
   createInputResolver: createInputResolverFactory(logger),
   defaultInputDir: join(__dirname, '../input'),
   fileSystem,

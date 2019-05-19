@@ -4,12 +4,24 @@ const {dipSize} = require('./size.js')
 const {IMAGE_TYPE_PNG} = require('./constant.js')
 
 module.exports = {
-  launchBrowser,
-  screenshot,
+  createBrowserFactory,
 }
 
-async function launchBrowser () {
-  return puppeteer.launch()
+function createBrowserFactory () {
+  let browser
+
+  return async function createBrowser () {
+    if (!browser) browser = puppeteer.launch().then(wrapPuppeteer)
+
+    return browser
+  }
+}
+
+function wrapPuppeteer (puppeteerBrowser) {
+  return {
+    close: puppeteerBrowser.close.bind(puppeteerBrowser),
+    screenshot: screenshot.bind(null, puppeteerBrowser),
+  }
 }
 
 async function screenshot (browser, url, size, options = {}) {
