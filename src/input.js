@@ -149,7 +149,7 @@ async function deriveCompositeSource (services, config, options, request, defini
   const {fileSystem: {writeFile}, readInternalTemplate} = services
   const {definitions: {style: styleDefinitions}} = config
   const {tempPath} = options
-  const {options: {layers, mask}} = definition
+  const {options: {backgroundColor, layers, mask}} = definition
 
   const template = await readInternalTemplate(TEMPLATE_COMPOSITE)
 
@@ -184,6 +184,7 @@ async function deriveCompositeSource (services, config, options, request, defini
   }
 
   const rendered = template({
+    backgroundColor,
     layers: layersVariable,
     maskUrl,
   })

@@ -81,7 +81,7 @@ async function buildOutputSvg (services, inputName, outputName, outputSizes) {
 }
 
 function assertFirstSize (outputSizes, outputName) {
-  if (outputSizes.length > 1) throw new Error(`Output ${outputName} requires size data`)
+  if (outputSizes.length < 1) throw new Error(`Output ${outputName} requires size data`)
 
   return outputSizes[0]
 }

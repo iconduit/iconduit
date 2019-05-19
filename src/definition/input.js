@@ -2,10 +2,22 @@ module.exports = {
   'apple-touch-icon': {
     strategy: 'composite',
     options: {
+      backgroundColor: 'transparent',
       mask: null,
       layers: [
         {input: 'icon', multiplier: 2, style: 'apple-touch-icon-scale'},
         {input: 'icon-background', multiplier: 2, style: 'apple-touch-icon-scale'},
+      ],
+    },
+  },
+  'apple-touch-startup': {
+    strategy: 'composite',
+    options: {
+      backgroundColor: 'white',
+      mask: null,
+      layers: [
+        {input: 'icon-silhouette', multiplier: 1, style: 'opacity-10-percent'},
+        {input: 'background-color', multiplier: 1, style: null},
       ],
     },
   },
@@ -30,6 +42,7 @@ module.exports = {
   'icon-foreground': {
     strategy: 'composite',
     options: {
+      backgroundColor: 'transparent',
       mask: null,
       layers: [
         {input: 'icon', multiplier: 1, style: null},
@@ -52,6 +65,7 @@ module.exports = {
   'maskable-icon': {
     strategy: 'composite',
     options: {
+      backgroundColor: 'transparent',
       mask: null,
       layers: [
         {input: 'icon-foreground', multiplier: 1, style: null},
@@ -62,6 +76,7 @@ module.exports = {
   'masked-icon': {
     strategy: 'composite',
     options: {
+      backgroundColor: 'transparent',
       mask: 'icon-mask',
       layers: [
         {input: 'icon-foreground', multiplier: 1, style: null},
@@ -84,6 +99,7 @@ module.exports = {
   'social-share-image': {
     strategy: 'composite',
     options: {
+      backgroundColor: 'transparent',
       mask: null,
       layers: [
         {input: 'icon-silhouette', multiplier: 1, style: null},
@@ -100,6 +116,7 @@ module.exports = {
   'windows-tile': {
     strategy: 'composite',
     options: {
+      backgroundColor: 'transparent',
       mask: null,
       layers: [
         {input: 'windows-tile-icon', multiplier: 1, style: 'windows-tile-icon-position'},
@@ -115,6 +132,7 @@ module.exports = {
   'windows-tile-small': {
     strategy: 'composite',
     options: {
+      backgroundColor: 'transparent',
       mask: null,
       layers: [
         {input: 'windows-tile-icon', multiplier: 1, style: 'windows-tile-icon-position-small'},

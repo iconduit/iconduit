@@ -156,6 +156,7 @@ function normalizeInputDefinitionOptions (strategy, options, inputSetting) {
 
 function normalizeCompositeInputDefinitionOptions (options, optionsSetting) {
   const {
+    backgroundColor = 'transparent',
     layers,
     mask = null,
   } = options
@@ -163,6 +164,7 @@ function normalizeCompositeInputDefinitionOptions (options, optionsSetting) {
   if (mask !== null) assertNonEmptyString(mask, `${optionsSetting}.mask`)
 
   return {
+    backgroundColor,
     layers: normalizeCompositeInputDefinitionLayers(layers, `${optionsSetting}.layers`),
     mask,
   }

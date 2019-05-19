@@ -40,7 +40,6 @@
       "apple-touch-icon-masked"
     ],
     "exclude": [
-      "apple-touch-startup",
       "browserconfig-xml",
       "favicon-ico",
       "index-html",
