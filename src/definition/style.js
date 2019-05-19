@@ -10,7 +10,8 @@ module.exports = {
     transform: 'scale(calc(669 / 512))',
   },
   'masked-icon-minimal-padding-scale': {
-    // arrived at empirically
+    // the difference between the Android circle mask diameter (72/108)
+    // and an exact 100% size
     transform: 'scale(1.5)',
   },
   'opacity-1-third': {opacity: 'calc(1 / 3)'},
@@ -27,12 +28,14 @@ module.exports = {
   'opacity-80-percent': {opacity: '.8'},
   'opacity-90-percent': {opacity: '.9'},
   'windows-tile-icon-position': {
-    // the difference between the Android square keyline size (44/108) and an exact 50% size
+    // the difference between the Android square keyline size (44/108)
+    // and an exact 50% size
     // see https://docs.microsoft.com/en-us/windows/uwp/design/style/app-icons-and-logos#tile-padding-recommendations
     transform: 'scale(calc(27 / 22))',
   },
   'windows-tile-icon-position-small': {
-    // the difference between the Android square keyline size (44/108) and an exact 66% size
+    // the difference between the Android square keyline size (44/108)
+    // and an exact 66% size
     // see https://docs.microsoft.com/en-us/windows/uwp/design/style/app-icons-and-logos#tile-padding-recommendations
     transform: 'scale(calc(81 / 50))',
   },
