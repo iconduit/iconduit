@@ -46,7 +46,6 @@
       "index-html",
       "macos-icns",
       "manifest-json",
-      "maskable-icon",
       "service-worker",
       "windows-ico"
     ]
