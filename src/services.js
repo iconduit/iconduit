@@ -4,7 +4,7 @@ const {join} = require('path')
 
 const {createBoundTemplateReader, createTemplateReader} = require('./template.js')
 const {createBrowserFactory} = require('./browser.js')
-const {createContextFactory} = require('./context.js')
+const {createBuilder} = require('./build.js')
 const {createFileSystem} = require('./fs.js')
 const {createInputBuilderFactory} = require('./input.js')
 const {createInputResolverFactory} = require('./module.js')
@@ -22,8 +22,8 @@ bottle.factory('cache', ({logger}) => {
   return cache
 })
 
+bottle.serviceFactory('build', createBuilder, 'createBrowser', 'createInputBuilder', 'fileSystem', 'logger')
 bottle.factory('createBrowser', () => createBrowserFactory())
-bottle.factory('createContext', ({logger}) => createContextFactory(logger))
 bottle.factory('createInputBuilder', container => createInputBuilderFactory(container))
 bottle.factory('createInputResolver', ({logger}) => createInputResolverFactory(logger))
 bottle.factory('defaultInputDir', () => join(__dirname, '../input'))

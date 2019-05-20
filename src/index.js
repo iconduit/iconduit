@@ -1,11 +1,10 @@
 const {join} = require('path')
 
-const {build} = require('./build.js')
 const {normalize} = require('./config.js')
 const services = require('./services.js')
 
 async function main (services) {
-  const {fileSystem: {readFile, withTempDir}} = services
+  const {build, fileSystem: {readFile, withTempDir}} = services
 
   const fixturePath = join(__dirname, '../test/fixture')
   const userInputDir = join(fixturePath, 'input')
@@ -17,7 +16,7 @@ async function main (services) {
   await withTempDir(async tempPath => {
     const options = {configPath, outputPath, tempPath, userInputDir}
 
-    await build(services, config, options)
+    await build(config, options)
   })
 }
 
