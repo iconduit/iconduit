@@ -11,7 +11,7 @@ module.exports = {
   createOutputBuilder,
 }
 
-function createOutputBuilder (buildInputUnbound, createBrowser, fileSystem, logger) {
+function createOutputBuilder (createBrowser, createInputBuilder, fileSystem, logger) {
   const {mkdir, readFile, writeFile} = fileSystem
 
   return async function buildOutput (config, options) {
@@ -21,7 +21,7 @@ function createOutputBuilder (buildInputUnbound, createBrowser, fileSystem, logg
     const sizesByOutput = resolveSizesForOutputs(config, outputs)
 
     const {close, screenshot} = await createBrowser()
-    const buildInput = buildInputUnbound.bind(null, config, options)
+    const buildInput = createInputBuilder(config, options)
 
     async function buildOutput (outputName) {
       const {input: inputName, name: fileNameTemplate} = outputs[outputName]

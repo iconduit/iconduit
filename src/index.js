@@ -20,7 +20,7 @@ async function main (services) {
   })
 }
 
-const {logger, process: {exit}} = services
+const {exit, logger} = services
 
 main(services).catch(({stack}) => {
   logger.error(stack)

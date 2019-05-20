@@ -1,9 +1,8 @@
 const fileUrl = require('file-url')
-const {extname, join} = require('path')
+const {dirname, extname, join} = require('path')
 
 const {applyMultiplier} = require('./size.js')
 const {buildFileName} = require('./size.js')
-const {buildInputVariables} = require('./template.js')
 
 const {
   IMAGE_EXTENSIONS,
@@ -18,113 +17,224 @@ const {
 } = require('./constant.js')
 
 module.exports = {
-  createInputBuilder,
+  createInputBuilderFactory,
 }
 
-function createInputBuilder (services) {
-  return buildInput.bind(null, services)
-}
-
-async function buildInput (services, config, options, request) {
-  const {cache: {get, set}} = services
-  const {name, size, type} = request
-
-  const cacheKey = buildCacheKey(`input.${name}.${type}`, size)
-  const cachePath = get(cacheKey)
-
-  if (cachePath) return cachePath
-
-  const sourcePath = await findSource(services, config, options, request)
-  const path = await convertInput(services, options, request, sourcePath)
-
-  set(cacheKey, path)
-
-  return path
-}
-
-async function findSource (services, config, options, request) {
-  const {cache: {get, set}} = services
-  const {name, size} = request
-
-  const cacheKey = buildCacheKey(`input.${name}.source`, size)
-  const cachePath = get(cacheKey)
-
-  if (cachePath) return cachePath
-
-  let path
-  const filePath = await findFile(services, config, options, request)
-
-  if (filePath) {
-    if (isTemplatePath(filePath)) {
-      path = await buildTemplateInput(services, config, options, request, filePath)
-    } else {
-      path = filePath
-    }
-  } else {
-    path = await deriveSource(services, config, options, request)
-  }
-
-  set(cacheKey, path)
-
-  return path
-}
-
-async function findFile (services, config, options, request) {
-  const {createInputResolver, defaultInputDir} = services
-  const {configPath, userInputDir} = options
-  const {name} = request
-  const {inputs: {[name]: userModuleId}} = config
-
-  const {resolveAsync: resolveUserInput} = createInputResolver(userInputDir, configPath)
-
-  if (userModuleId) {
-    const resolvedPath = await resolveUserInput(userModuleId)
-
-    if (!resolvedPath) throw new Error(`Unable to resolve input for ${name} at ${userModuleId} from ${userInputDir}`)
-
-    return resolvedPath
-  }
-
-  const defaultModuleId = `./${name}`
-  const userPath = await resolveUserInput(defaultModuleId)
-
-  if (userPath) return userPath
+function createInputBuilderFactory (
+  cache,
+  createBrowser,
+  createInputResolver,
+  defaultInputDir,
+  fileSystem,
+  readInternalTemplate,
+  readTemplate
+) {
+  const {get, set} = cache
+  const {writeFile} = fileSystem
 
   const {resolveAsync: resolveDefaultInput} = createInputResolver(defaultInputDir, defaultInputDir)
-  const defaultPath = await resolveDefaultInput(defaultModuleId)
 
-  return defaultPath || null
-}
+  return function createInputBuilder (config, options) {
+    const {
+      colors: colorTypes,
+      definitions: {
+        color: colorDefinitions,
+        style: styleDefinitions,
+      },
+      name: appName,
+    } = config
 
-async function buildTemplateInput (services, config, options, request, filePath) {
-  const {fileSystem: {writeFile}, readTemplate} = services
-  const {tempPath} = options
-  const {name} = request
+    const colors = {}
 
-  const renderedPath = buildCachePath(tempPath, `input.${name}.rendered`, extname(filePath))
-  const template = await readTemplate(filePath)
-  const rendered = template(buildInputVariables(services, config, options, filePath))
+    for (const colorType in colorTypes) {
+      const colorName = colorTypes[colorType]
+      const colorDefinition = colorDefinitions[colorName]
 
-  await writeFile(renderedPath, rendered)
+      colors[colorType] = colorDefinition || colorName
+    }
 
-  return renderedPath
-}
+    const {configPath, tempPath, userInputDir} = options
 
-async function deriveSource (services, config, options, request) {
-  const {name, stack} = request
-  const {definitions: {input: {[name]: definition}}} = config
+    return async function buildInput (request) {
+      assertNonRecursive(request)
 
-  if (!definition) throw new Error(`Missing definition for input.${name}:\n${renderStack(stack)}`)
-  assertNonRecursive(request)
+      const {name: inputName, size: inputSize, stack, type: inputType} = request
+      const subStack = [`input.${inputName}`, ...stack]
 
-  const {strategy} = definition
+      const {
+        definitions: {
+          input: {[inputName]: inputDefinition},
+        },
+        inputs: {[inputName]: userModuleId},
+      } = config
 
-  switch (strategy) {
-    case INPUT_STRATEGY_COMPOSITE: return deriveCompositeSource(services, config, options, request, definition)
-    case INPUT_STRATEGY_DEGRADE: return deriveDegradeSource(services, config, options, request, definition)
+      const {screenshot} = await createBrowser()
+      const {resolveAsync: resolveUserInput} = createInputResolver(userInputDir, configPath)
+
+      const cacheKey = buildCacheKey(`input.${inputName}.${inputType}`, inputSize)
+      const cachePath = get(cacheKey)
+
+      if (cachePath) return cachePath
+
+      async function findSource () {
+        const sourceCacheKey = buildCacheKey(`input.${inputName}.source`, inputSize)
+        const sourceCachePath = get(sourceCacheKey)
+
+        if (sourceCachePath) return sourceCachePath
+
+        let sourcePath
+        const filePath = await findFile()
+
+        if (filePath) {
+          if (isTemplatePath(filePath)) {
+            sourcePath = await buildTemplateInput(filePath)
+          } else {
+            sourcePath = filePath
+          }
+        } else {
+          sourcePath = await deriveSource()
+        }
+
+        set(sourceCacheKey, sourcePath)
+
+        return sourcePath
+      }
+
+      async function findFile () {
+        if (userModuleId) {
+          const resolvedPath = await resolveUserInput(userModuleId)
+
+          if (!resolvedPath) {
+            throw new Error(`Unable to resolve input for ${inputName} at ${userModuleId} from ${userInputDir}`)
+          }
+
+          return resolvedPath
+        }
+
+        const defaultModuleId = `./${inputName}`
+
+        return (
+          await resolveUserInput(defaultModuleId) ||
+          await resolveDefaultInput(defaultModuleId) ||
+          null
+        )
+      }
+
+      async function buildTemplateInput (templatePath) {
+        const renderedPath = buildCachePath(tempPath, `input.${inputName}.rendered`, extname(templatePath))
+        const {resolveSync: resolveTemplateInput} = createInputResolver(dirname(templatePath), templatePath)
+
+        function url (moduleId) {
+          const resolvedPath = resolveTemplateInput(moduleId)
+
+          return resolvedPath === null ? null : fileUrl(resolvedPath)
+        }
+
+        const template = await readTemplate(templatePath)
+        const rendered = template({colors, name: appName, url})
+        await writeFile(renderedPath, rendered)
+
+        return renderedPath
+      }
+
+      async function deriveSource () {
+        if (!inputDefinition) throw new Error(`Missing definition for input.${inputName}:\n${renderStack(stack)}`)
+
+        const {strategy} = inputDefinition
+
+        switch (strategy) {
+          case INPUT_STRATEGY_COMPOSITE: return deriveCompositeSource()
+          case INPUT_STRATEGY_DEGRADE: return deriveDegradeSource()
+        }
+
+        throw new Error('Not implemented')
+      }
+
+      async function deriveCompositeSource () {
+        if (inputType === INPUT_TYPE_SVG) throw new Error(`SVG inputs cannot be composites:\n${renderStack(stack)}`)
+
+        const template = await readInternalTemplate(TEMPLATE_COMPOSITE)
+        const {options: {backgroundColor, layers, mask}} = inputDefinition
+
+        const layersVariable = await Promise.all(layers.map(async layer => {
+          const {input, multiplier, style} = layer
+
+          const styleDefinition = style === null ? {} : styleDefinitions[style]
+
+          if (!styleDefinition) throw new Error(`Missing definition for style.${style}:\n${renderStack(stack)}`)
+
+          const url = fileUrl(await buildInput({
+            name: input,
+            type: INPUT_TYPE_IMAGE,
+            size: applyMultiplier(inputSize, multiplier),
+            stack: subStack,
+          }))
+
+          return {...layer, styleDefinition, url}
+        }))
+
+        let maskUrl
+
+        if (mask !== null) {
+          maskUrl = fileUrl(await buildInput({
+            name: mask,
+            type: INPUT_TYPE_SVG,
+            size: inputSize,
+            stack: subStack,
+          }))
+        }
+
+        const rendered = template({
+          backgroundColor,
+          layers: layersVariable,
+          maskUrl,
+        })
+
+        const renderedPath = buildCachePath(tempPath, `input.${inputName}.composite`, '.html', inputSize)
+        await writeFile(renderedPath, rendered)
+
+        return renderedPath
+      }
+
+      async function deriveDegradeSource () {
+        const {options: {to}} = inputDefinition
+
+        return buildInput({
+          name: to,
+          type: inputType,
+          size: inputSize,
+          stack: subStack,
+        })
+      }
+
+      async function convertInput (sourcePath) {
+        switch (inputType) {
+          case INPUT_TYPE_IMAGE: return convertInputToImage(sourcePath)
+
+          case INPUT_TYPE_RENDERABLE:
+          case INPUT_TYPE_SVG:
+            return sourcePath
+        }
+
+        throw new Error(`Invalid input type ${JSON.stringify(inputType)} requested:\n${renderStack(stack)}`)
+      }
+
+      async function convertInputToImage (sourcePath) {
+        if (isImagePath(sourcePath)) return sourcePath
+
+        const imagePath = buildCachePath(tempPath, `input.${inputName}.image`, '.png', inputSize)
+        const image = await screenshot(fileUrl(sourcePath), inputSize, {type: IMAGE_TYPE_PNG})
+        await writeFile(imagePath, image)
+
+        return imagePath
+      }
+
+      const convertedPath = await convertInput(await findSource())
+      set(cacheKey, convertedPath)
+
+      return convertedPath
+    }
   }
-
-  throw new Error('Not implemented')
 }
 
 function assertNonRecursive (request) {
@@ -137,104 +247,6 @@ function assertNonRecursive (request) {
 
     seen.push(frame)
   }
-}
-
-async function deriveCompositeSource (services, config, options, request, definition) {
-  const {name, size, stack, type} = request
-
-  if (type === INPUT_TYPE_SVG) throw new Error(`SVG inputs cannot be composites:\n${renderStack(stack)}`)
-
-  const subStack = [`input.${name}`, ...stack]
-  const {fileSystem: {writeFile}, readInternalTemplate} = services
-  const {definitions: {style: styleDefinitions}} = config
-  const {tempPath} = options
-  const {options: {backgroundColor, layers, mask}} = definition
-
-  const template = await readInternalTemplate(TEMPLATE_COMPOSITE)
-
-  const layersVariable = await Promise.all(layers.map(async layer => {
-    const {input, multiplier, style} = layer
-
-    const styleDefinition = style === null ? {} : styleDefinitions[style]
-
-    if (!styleDefinition) throw new Error(`Missing definition for style.${style}:\n${renderStack(stack)}`)
-
-    const path = await buildInput(services, config, options, {
-      name: input,
-      type: INPUT_TYPE_IMAGE,
-      size: applyMultiplier(size, multiplier),
-      stack: subStack,
-    })
-    const url = fileUrl(path)
-
-    return {...layer, styleDefinition, url}
-  }))
-
-  let maskUrl
-
-  if (mask !== null) {
-    const path = await buildInput(services, config, options, {
-      name: mask,
-      type: INPUT_TYPE_SVG,
-      size,
-      stack: subStack,
-    })
-    maskUrl = fileUrl(path)
-  }
-
-  const rendered = template({
-    backgroundColor,
-    layers: layersVariable,
-    maskUrl,
-  })
-
-  const renderedPath = buildCachePath(tempPath, `input.${name}.composite`, '.html', size)
-  await writeFile(renderedPath, rendered)
-
-  return renderedPath
-}
-
-async function deriveDegradeSource (services, config, options, request, definition) {
-  const {name, size, stack, type} = request
-  const {options: {to}} = definition
-
-  return buildInput(services, config, options, {
-    name: to,
-    type,
-    size,
-    stack: [`input.${name}`, ...stack],
-  })
-}
-
-async function convertInput (services, options, request, sourcePath) {
-  const {stack, type} = request
-
-  switch (type) {
-    case INPUT_TYPE_IMAGE: return convertInputToImage(services, options, request, sourcePath)
-
-    case INPUT_TYPE_RENDERABLE:
-    case INPUT_TYPE_SVG:
-      return sourcePath
-  }
-
-  throw new Error(`Invalid input type ${JSON.stringify(type)} requested:\n${renderStack(stack)}`)
-}
-
-async function convertInputToImage (services, options, request, sourcePath) {
-  if (isImagePath(sourcePath)) return sourcePath
-
-  const {createBrowser, fileSystem: {writeFile}} = services
-  const {tempPath} = options
-  const {name, size} = request
-
-  const imagePath = buildCachePath(tempPath, `input.${name}.image`, '.png', size)
-  const url = fileUrl(sourcePath)
-
-  const {screenshot} = await createBrowser()
-  const image = await screenshot(url, size, {type: IMAGE_TYPE_PNG})
-  await writeFile(imagePath, image)
-
-  return imagePath
 }
 
 function isImagePath (sourcePath) {
