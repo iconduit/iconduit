@@ -21,15 +21,14 @@ module.exports = {
 }
 
 function createInputBuilderFactory (
-  cache,
   createBrowser,
+  createCache,
   createInputResolver,
   defaultInputDir,
   fileSystem,
   readInternalTemplate,
   readTemplate
 ) {
-  const {get, set} = cache
   const {writeFile} = fileSystem
 
   const {resolveAsync: resolveDefaultInput} = createInputResolver(defaultInputDir, defaultInputDir)
@@ -54,6 +53,7 @@ function createInputBuilderFactory (
     }
 
     const {configPath, tempPath, userInputDir} = options
+    const {get, set} = createCache()
 
     return async function buildInput (request) {
       assertNonRecursive(request)

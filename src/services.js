@@ -1,9 +1,9 @@
 const Bottle = require('bottlejs')
-const NodeCache = require('node-cache')
 const {join} = require('path')
 
 const {createBoundTemplateReader, createTemplateReader} = require('./template.js')
 const {createBrowserFactory} = require('./browser.js')
+const {createCacheFactory} = require('./cache.js')
 const {createFileSystem} = require('./fs.js')
 const {createInputBuilderFactory} = require('./input.js')
 const {createInputResolverFactory} = require('./module.js')
@@ -12,23 +12,14 @@ const {createOutputBuilder} = require('./output.js')
 
 const bottle = new Bottle()
 
-bottle.factory('cache', ({logger}) => {
-  const cache = new NodeCache()
-
-  cache.on('set', (key, value) => {
-    logger.debug(`Setting cache key ${key} to ${JSON.stringify(value)}`)
-  })
-
-  return cache
-})
-
 bottle.serviceFactory('buildOutput', createOutputBuilder, 'createBrowser', 'createInputBuilder', 'fileSystem', 'logger')
 bottle.serviceFactory('createBrowser', createBrowserFactory)
+bottle.serviceFactory('createCache', createCacheFactory, 'logger')
 bottle.serviceFactory(
   'createInputBuilder',
   createInputBuilderFactory,
-  'cache',
   'createBrowser',
+  'createCache',
   'createInputResolver',
   'defaultInputDir',
   'fileSystem',
