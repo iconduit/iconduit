@@ -21,25 +21,25 @@ function createFileSystem (env, logger) {
     mkdtemp,
     readFile,
     rmfr,
-    withTempDir: withTempDir.bind(null, env, logger, mkdtemp),
+    withTempDir,
     writeFile,
   }
-}
 
-async function withTempDir (env, logger, mkdtemp, fn) {
-  const {KEEP_TEMP_DIRS = ''} = env
-  const tempPath = await mkdtemp(join(tmpdir(), 'iconduit-'))
-  let result
+  async function withTempDir (fn) {
+    const {KEEP_TEMP_DIRS = ''} = env
+    const tempPath = await mkdtemp(join(tmpdir(), 'iconduit-'))
+    let result
 
-  try {
-    result = await fn(tempPath)
-  } finally {
-    if (KEEP_TEMP_DIRS) {
-      logger.debug(`Keeping temporary directory ${tempPath}`)
-    } else {
-      await rmfr(tempPath)
+    try {
+      result = await fn(tempPath)
+    } finally {
+      if (KEEP_TEMP_DIRS) {
+        logger.debug(`Keeping temporary directory ${tempPath}`)
+      } else {
+        await rmfr(tempPath)
+      }
     }
-  }
 
-  return result
+    return result
+  }
 }
