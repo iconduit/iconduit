@@ -12,52 +12,70 @@ module.exports = {
 }
 
 async function build (services, config, options) {
-  const {createBrowser, createInputBuilder, fileSystem, logger} = services
+  const {createBrowser, createContext, createInputBuilder, fileSystem, logger} = services
 
   const outputs = selectOutputs(config)
   const outputSizes = resolveSizesForOutputs(config, outputs)
 
   const {close, screenshot} = await createBrowser()
   const buildInput = createInputBuilder(config, options)
-  const context = {buildInput, fileSystem, logger, screenshot}
+  const context = createContext('build', {buildInput, fileSystem, logger, options, screenshot})
 
   try {
     const threads = []
 
     for (const name in outputs) {
-      threads.push(buildOutput(context, config, options, name, outputs[name], outputSizes[name]))
+      threads.push(buildOutput(context.concat('buildOutput', {
+        outputName: name,
+        output: outputs[name],
+        sizes: outputSizes[name],
+      })))
     }
 
     await Promise.all(threads)
   } finally {
     await close()
+    context.end()
   }
 }
 
-async function buildOutput (context, config, options, outputName, output, sizes) {
-  const {fileSystem: {mkdir, writeFile}} = context
-  const {outputPath} = options
-  const {input: inputName, name: fileNameTemplate} = output
+async function buildOutput (context) {
+  const [
+    {mkdir, writeFile},
+    {outputPath},
+    {input: inputName, name: fileNameTemplate},
+    outputName,
+    sizes,
+  ] = context.get(
+    'fileSystem',
+    'options',
+    'output',
+    'outputName',
+    'sizes'
+  )
 
   const sizesByFilename = buildFileNameSizeMap(fileNameTemplate, sizes)
 
   for (const filename in sizesByFilename) {
-    const content = await buildOutputContent({
-      ...context,
+    const subContext = context.concat('buildOutputContent', {
       inputName,
       outputName,
       outputSizes: sizesByFilename[filename],
       outputType: extname(filename),
     })
+    const content = await buildOutputContent(subContext)
+    subContext.end()
 
     const fullOutputPath = join(outputPath, filename)
     await mkdir(dirname(fullOutputPath), {recursive: true})
     await writeFile(fullOutputPath, content)
   }
+
+  context.end()
 }
 
 async function buildOutputContent (context) {
-  const {outputType} = context
+  const [outputType] = context.get('outputType')
 
   switch (outputType) {
     case '.icns': return buildOutputIcns(context)
@@ -75,7 +93,7 @@ async function buildOutputContent (context) {
 }
 
 async function buildOutputIcns (context) {
-  const {logger, outputSizes} = context
+  const [logger, outputSizes] = context.get('logger', 'outputSizes')
 
   const entries = await Promise.all(outputSizes.map(
     async size => {
@@ -89,7 +107,7 @@ async function buildOutputIcns (context) {
 }
 
 async function buildOutputIco (context) {
-  const {outputSizes} = context
+  const [outputSizes] = context.get('outputSizes')
 
   const pngs = await Promise.all(outputSizes.map(
     async size => buildImage(context, size, IMAGE_TYPE_PNG)
@@ -99,14 +117,15 @@ async function buildOutputIco (context) {
 }
 
 async function buildOutputImage (context, imageType) {
-  const {outputName, outputSizes} = context
+  const [outputName, outputSizes] = context.get('outputName', 'outputSizes')
   const size = assertFirstSize(outputSizes, outputName)
 
   return buildImage(context, size, imageType)
 }
 
 async function buildImage (context, size, imageType) {
-  const {buildInput, inputName, outputName, screenshot} = context
+  const [buildInput, inputName, outputName, screenshot] =
+    context.get('buildInput', 'inputName', 'outputName', 'screenshot')
   const stack = [`output.${outputName}`]
 
   const inputPath = await buildInput({name: inputName, type: INPUT_TYPE_RENDERABLE, size, stack})
@@ -116,7 +135,8 @@ async function buildImage (context, size, imageType) {
 }
 
 async function buildOutputSvg (context) {
-  const {buildInput, fileSystem: {readFile}, inputName, outputName, outputSizes} = context
+  const [buildInput, {readFile}, inputName, outputName, outputSizes] =
+    context.get('buildInput', 'fileSystem', 'inputName', 'outputName', 'outputSizes')
   assertNoSizes(outputSizes, outputName)
 
   const stack = [`output.${outputName}`]
