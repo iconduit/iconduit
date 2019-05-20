@@ -4,11 +4,11 @@ const {join} = require('path')
 
 const {createBoundTemplateReader, createTemplateReader} = require('./template.js')
 const {createBrowserFactory} = require('./browser.js')
-const {createBuilder} = require('./build.js')
 const {createFileSystem} = require('./fs.js')
-const {createInputBuilderFactory} = require('./input.js')
+const {createInputBuilder} = require('./input.js')
 const {createInputResolverFactory} = require('./module.js')
 const {createLogger} = require('./logging.js')
+const {createOutputBuilder} = require('./build.js')
 
 const bottle = new Bottle()
 
@@ -22,9 +22,9 @@ bottle.factory('cache', ({logger}) => {
   return cache
 })
 
-bottle.serviceFactory('build', createBuilder, 'createBrowser', 'createInputBuilder', 'fileSystem', 'logger')
+bottle.factory('buildInput', container => createInputBuilder(container))
+bottle.serviceFactory('buildOutput', createOutputBuilder, 'buildInput', 'createBrowser', 'fileSystem', 'logger')
 bottle.factory('createBrowser', () => createBrowserFactory())
-bottle.factory('createInputBuilder', container => createInputBuilderFactory(container))
 bottle.factory('createInputResolver', ({logger}) => createInputResolverFactory(logger))
 bottle.factory('defaultInputDir', () => join(__dirname, '../input'))
 bottle.factory('templateDir', () => join(__dirname, '../template'))

@@ -8,20 +8,20 @@ const {resolveSizesForOutputs, selectOutputs} = require('./output.js')
 const {toIcns} = require('./icns.js')
 
 module.exports = {
-  createBuilder,
+  createOutputBuilder,
 }
 
-function createBuilder (createBrowser, createInputBuilder, fileSystem, logger) {
+function createOutputBuilder (buildInputUnbound, createBrowser, fileSystem, logger) {
   const {mkdir, readFile, writeFile} = fileSystem
 
-  return async function build (config, options) {
+  return async function buildOutput (config, options) {
     const {outputPath} = options
 
     const outputs = selectOutputs(config)
     const sizesByOutput = resolveSizesForOutputs(config, outputs)
 
     const {close, screenshot} = await createBrowser()
-    const buildInput = createInputBuilder(config, options)
+    const buildInput = buildInputUnbound.bind(null, config, options)
 
     async function buildOutput (outputName) {
       const {input: inputName, name: fileNameTemplate} = outputs[outputName]
