@@ -19,15 +19,20 @@ async function build (services, config, options) {
 
   const {close, screenshot} = await createBrowser()
   const buildInput = createInputBuilder(config, options)
-  const context = createContext('build', {buildInput, fileSystem, logger, options, screenshot})
 
   try {
     const threads = []
 
     for (const name in outputs) {
-      threads.push(buildOutput(context.concat('buildOutput', {
-        outputName: name,
+      threads.push(buildOutput(createContext('buildOutput', {
+        buildInput,
+        createContext,
+        fileSystem,
+        logger,
+        options,
         output: outputs[name],
+        outputName: name,
+        screenshot,
         sizes: outputSizes[name],
       })))
     }
@@ -35,33 +40,45 @@ async function build (services, config, options) {
     await Promise.all(threads)
   } finally {
     await close()
-    context.end()
   }
 }
 
 async function buildOutput (context) {
   const [
-    {mkdir, writeFile},
+    buildInput,
+    createContext,
+    fileSystem,
+    logger,
     {outputPath},
     {input: inputName, name: fileNameTemplate},
     outputName,
+    screenshot,
     sizes,
   ] = context.get(
+    'buildInput',
+    'createContext',
     'fileSystem',
+    'logger',
     'options',
     'output',
     'outputName',
+    'screenshot',
     'sizes'
   )
+  const {mkdir, writeFile} = fileSystem
 
   const sizesByFilename = buildFileNameSizeMap(fileNameTemplate, sizes)
 
   for (const filename in sizesByFilename) {
-    const subContext = context.concat('buildOutputContent', {
+    const subContext = createContext('buildOutputContent', {
+      buildInput,
+      fileSystem,
+      logger,
       inputName,
       outputName,
       outputSizes: sizesByFilename[filename],
       outputType: extname(filename),
+      screenshot,
     })
     const content = await buildOutputContent(subContext)
     subContext.end()

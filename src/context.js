@@ -3,20 +3,16 @@ module.exports = {
 }
 
 function createContextFactory (logger) {
-  return createContext.bind(null, logger, new Set())
+  return createContext.bind(null, logger, {})
 }
 
 function createContext (logger, usedKeys, name, object) {
   const availableKeys = Object.keys(object)
 
   return {
-    concat (name, additional) {
-      return createContext(logger, usedKeys, name, {...object, ...additional})
-    },
-
     end () {
       for (const key of availableKeys) {
-        if (!usedKeys.has(key)) logger.debug(`Context ${name} had unused key ${key}`)
+        if (!usedKeys[key]) logger.debug(`Context ${name} had unused key ${key}`)
       }
     },
 
@@ -26,13 +22,31 @@ function createContext (logger, usedKeys, name, object) {
       for (const key of keys) {
         const value = object[key]
 
-        if (typeof value === 'undefined') throw new Error(`Context does not contain ${key}`)
+        if (typeof value === 'undefined') throw new Error(`Context ${name} does not contain ${key}`)
 
         result.push(value)
-        usedKeys.add(key)
+        usedKeys[key] = true
       }
 
-      return result
+      return new Proxy(result, createContextGetHandler(name, keys.length))
+    },
+  }
+}
+
+function createContextGetHandler (name, length) {
+  return {
+    get (object, property) {
+      if (property === 'length') return Infinity
+
+      const value = Reflect.get(object, property)
+
+      if (typeof value === 'undefined') {
+        throw new Error(
+          `Only ${length} values requested from context ${name}, but attempted to access index ${property} from result`
+        )
+      }
+
+      return value
     },
   }
 }
