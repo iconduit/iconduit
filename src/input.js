@@ -21,13 +21,13 @@ module.exports = {
 }
 
 function createInputBuilderFactory (
-  createBrowser,
   createCache,
   createInputResolver,
   defaultInputDir,
   fileSystem,
   readInternalTemplate,
-  readTemplate
+  readTemplate,
+  screenshot
 ) {
   const {writeFile} = fileSystem
 
@@ -68,13 +68,17 @@ function createInputBuilderFactory (
         inputs: {[inputName]: userModuleId},
       } = config
 
-      const {screenshot} = await createBrowser()
       const {resolveAsync: resolveUserInput} = createInputResolver(userInputDir, configPath)
 
       const cacheKey = buildCacheKey(`input.${inputName}.${inputType}`, inputSize)
       const cachePath = get(cacheKey)
 
       if (cachePath) return cachePath
+
+      const convertedPath = await convertInput(await findSource())
+      set(cacheKey, convertedPath)
+
+      return convertedPath
 
       async function findSource () {
         const sourceCacheKey = buildCacheKey(`input.${inputName}.source`, inputSize)
@@ -228,11 +232,6 @@ function createInputBuilderFactory (
 
         return imagePath
       }
-
-      const convertedPath = await convertInput(await findSource())
-      set(cacheKey, convertedPath)
-
-      return convertedPath
     }
   }
 }

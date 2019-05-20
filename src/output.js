@@ -11,7 +11,7 @@ module.exports = {
   createOutputBuilder,
 }
 
-function createOutputBuilder (createBrowser, createInputBuilder, fileSystem, logger) {
+function createOutputBuilder (createInputBuilder, fileSystem, logger, screenshot) {
   const {mkdir, readFile, writeFile} = fileSystem
 
   return async function buildOutput (config, options) {
@@ -20,8 +20,9 @@ function createOutputBuilder (createBrowser, createInputBuilder, fileSystem, log
     const outputs = selectOutputs(config)
     const sizesByOutput = resolveSizesForOutputs(config, outputs)
 
-    const {close, screenshot} = await createBrowser()
     const buildInput = createInputBuilder(config, options)
+
+    await Promise.all(Object.keys(outputs).map(buildOutput))
 
     async function buildOutput (outputName) {
       const {input: inputName, name: fileNameTemplate} = outputs[outputName]
@@ -92,12 +93,6 @@ function createOutputBuilder (createBrowser, createInputBuilder, fileSystem, log
       const inputPath = await buildInput({name: inputName, type: INPUT_TYPE_RENDERABLE, size, stack})
 
       return screenshot(fileUrl(inputPath), size, {type: imageType})
-    }
-
-    try {
-      await Promise.all(Object.keys(outputs).map(buildOutput))
-    } finally {
-      await close()
     }
   }
 }
