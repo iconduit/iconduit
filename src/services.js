@@ -8,7 +8,7 @@ const {createFileSystem} = require('./fs.js')
 const {createInputBuilder} = require('./input.js')
 const {createInputResolverFactory} = require('./module.js')
 const {createLogger} = require('./logging.js')
-const {createOutputBuilder} = require('./build.js')
+const {createOutputBuilder} = require('./output.js')
 
 const bottle = new Bottle()
 

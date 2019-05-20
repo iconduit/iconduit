@@ -7,6 +7,7 @@ module.exports = {
   dipSize,
   parseSelector,
   resolveSize,
+  resolveSizesForOutputs,
 }
 
 function applyMultiplier (definition, multiplier) {
@@ -86,4 +87,17 @@ function resolveSize (definitions, selector) {
   if (!definition) throw new Error(`Unable to find definition for size.${name}`)
 
   return multiplier === null ? definition : applyMultiplier(definition, multiplier)
+}
+
+function resolveSizesForOutputs (config, outputs) {
+  const {definitions: {size: definitions}} = config
+  const sizes = {}
+
+  for (const name in outputs) {
+    const {sizes: outputSizes} = outputs[name]
+
+    sizes[name] = outputSizes.map(resolveSize.bind(null, definitions))
+  }
+
+  return sizes
 }
