@@ -3,7 +3,6 @@ const toIco = require('to-ico')
 const {dirname, extname, join} = require('path')
 
 const {buildFileNameSizeMap} = require('./size.js')
-const {createInputBuilder} = require('./input.js')
 const {IMAGE_TYPE_JPEG, IMAGE_TYPE_PNG, INPUT_TYPE_RENDERABLE, INPUT_TYPE_SVG} = require('./constant.js')
 const {resolveSizesForOutputs, selectOutputs} = require('./output.js')
 const {toIcns} = require('./icns.js')
@@ -13,97 +12,111 @@ module.exports = {
 }
 
 async function build (services, options, config) {
-  const {createBrowser} = services
+  const {createBrowser, createInputBuilder, fileSystem, logger} = services
 
   const outputs = selectOutputs(config)
   const outputSizes = resolveSizesForOutputs(config, outputs)
 
-  const browser = await createBrowser()
+  const {close, screenshot} = await createBrowser()
+  const buildInput = createInputBuilder(config, options)
+  const context = {buildInput, fileSystem, logger, screenshot}
 
   try {
-    services = {...services, buildInput: createInputBuilder(services, config, options)}
-
     const threads = []
 
     for (const name in outputs) {
-      threads.push(buildOutput(services, options, config, name, outputs[name], outputSizes[name]))
+      threads.push(buildOutput(context, options, config, name, outputs[name], outputSizes[name]))
     }
 
     await Promise.all(threads)
   } finally {
-    await browser.close()
+    await close()
   }
 }
 
-async function buildOutput (services, options, config, outputName, output, sizes) {
-  const {fileSystem: {mkdir, writeFile}} = services
+async function buildOutput (context, options, config, outputName, output, sizes) {
+  const {fileSystem: {mkdir, writeFile}} = context
   const {outputPath} = options
   const {input: inputName, name: fileNameTemplate} = output
 
   const sizesByFilename = buildFileNameSizeMap(fileNameTemplate, sizes)
 
   for (const filename in sizesByFilename) {
-    const fullOutputPath = join(outputPath, filename)
-    const outputType = extname(filename)
-    const outputSizes = sizesByFilename[filename]
+    const content = await buildOutputContent({
+      ...context,
+      inputName,
+      outputName,
+      outputSizes: sizesByFilename[filename],
+      outputType: extname(filename),
+    })
 
-    const content = await buildOutputContent(services, inputName, outputName, outputType, outputSizes)
+    const fullOutputPath = join(outputPath, filename)
     await mkdir(dirname(fullOutputPath), {recursive: true})
     await writeFile(fullOutputPath, content)
   }
 }
 
-async function buildOutputContent (services, inputName, outputName, outputType, outputSizes) {
+async function buildOutputContent (context) {
+  const {outputType} = context
+
   switch (outputType) {
-    case '.icns': return buildOutputIcns(services, inputName, outputName, outputSizes)
-    case '.ico': return buildOutputIco(services, inputName, outputName, outputSizes)
+    case '.icns': return buildOutputIcns(context)
+    case '.ico': return buildOutputIco(context)
 
     case '.jpeg':
     case '.jpg':
-      return buildOutputImage(services, inputName, outputName, outputSizes, IMAGE_TYPE_JPEG)
+      return buildOutputImage(context, IMAGE_TYPE_JPEG)
 
-    case '.png': return buildOutputImage(services, inputName, outputName, outputSizes, IMAGE_TYPE_PNG)
-    case '.svg': return buildOutputSvg(services, inputName, outputName, outputSizes)
+    case '.png': return buildOutputImage(context, IMAGE_TYPE_PNG)
+    case '.svg': return buildOutputSvg(context)
   }
 
   throw new Error('Not implemented')
 }
 
-async function buildOutputIcns (services, inputName, outputName, outputSizes, imageType) {
+async function buildOutputIcns (context) {
+  const {logger, outputSizes} = context
+
   const entries = await Promise.all(outputSizes.map(
     async size => {
-      const content = await buildOutputImage(services, inputName, outputName, [size], IMAGE_TYPE_PNG)
+      const content = await buildImage(context, size, IMAGE_TYPE_PNG)
 
       return {content, size}
     }
   ))
 
-  return toIcns(services, entries)
+  return toIcns(logger, entries)
 }
 
-async function buildOutputIco (services, inputName, outputName, outputSizes, imageType) {
+async function buildOutputIco (context) {
+  const {outputSizes} = context
+
   const pngs = await Promise.all(outputSizes.map(
-    async size => buildOutputImage(services, inputName, outputName, [size], IMAGE_TYPE_PNG)
+    async size => buildImage(context, size, IMAGE_TYPE_PNG)
   ))
 
   return toIco(pngs)
 }
 
-async function buildOutputImage (services, inputName, outputName, outputSizes, imageType) {
-  const {buildInput, createBrowser} = services
-
+async function buildOutputImage (context, imageType) {
+  const {outputName, outputSizes} = context
   const size = assertFirstSize(outputSizes, outputName)
+
+  return buildImage(context, size, imageType)
+}
+
+async function buildImage (context, size, imageType) {
+  const {buildInput, inputName, outputName, screenshot} = context
   const stack = [`output.${outputName}`]
+
   const inputPath = await buildInput({name: inputName, type: INPUT_TYPE_RENDERABLE, size, stack})
   const inputUrl = fileUrl(inputPath)
-
-  const {screenshot} = await createBrowser()
 
   return screenshot(inputUrl, size, {type: imageType})
 }
 
-async function buildOutputSvg (services, inputName, outputName, outputSizes) {
-  const {buildInput, fileSystem: {readFile}} = services
+async function buildOutputSvg (context) {
+  const {buildInput, fileSystem: {readFile}, inputName, outputName, outputSizes} = context
   assertNoSizes(outputSizes, outputName)
 
   const stack = [`output.${outputName}`]

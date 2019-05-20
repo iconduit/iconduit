@@ -20,8 +20,7 @@ module.exports = {
   toIcns,
 }
 
-async function toIcns (services, entries) {
-  const {logger} = services
+async function toIcns (logger, entries) {
   const entriesBySize = mapEntriesBySize(entries)
   const types = {}
 

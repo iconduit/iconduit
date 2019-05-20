@@ -18,11 +18,21 @@ const {
 } = require('./constant.js')
 
 module.exports = {
-  createInputBuilder,
+  createInputBuilderFactory,
 }
 
-function createInputBuilder (services, config, options) {
-  return buildInput.bind(null, services, config, options)
+function createInputBuilderFactory (services) {
+  const configMapping = new Map()
+
+  return function createInputBuilder (config, options) {
+    const optionsMapping = configMapping.get(config) || new Map()
+    configMapping.set(config, optionsMapping)
+
+    const builder = optionsMapping.get(options) || buildInput.bind(null, services, config, options)
+    optionsMapping.set(options, builder)
+
+    return builder
+  }
 }
 
 async function buildInput (services, config, options, request) {

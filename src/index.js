@@ -5,6 +5,7 @@ const {build} = require('./build.js')
 const {createBoundTemplateReader, createTemplateReader} = require('./template.js')
 const {createBrowserFactory} = require('./browser.js')
 const {createFileSystem} = require('./fs.js')
+const {createInputBuilderFactory} = require('./input.js')
 const {createInputResolverFactory} = require('./module.js')
 const {createLogger} = require('./logging.js')
 const {normalize} = require('./config.js')
@@ -44,6 +45,7 @@ const services = {
   readInternalTemplate: createBoundTemplateReader(fileSystem, process, join(__dirname, '../template')),
   readTemplate: createTemplateReader(fileSystem, process),
 }
+services.createInputBuilder = createInputBuilderFactory(services)
 
 main(services).catch(({stack}) => {
   logger.error(stack)
