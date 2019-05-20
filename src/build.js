@@ -11,7 +11,7 @@ module.exports = {
   build,
 }
 
-async function build (services, options, config) {
+async function build (services, config, options) {
   const {createBrowser, createInputBuilder, fileSystem, logger} = services
 
   const outputs = selectOutputs(config)
@@ -25,7 +25,7 @@ async function build (services, options, config) {
     const threads = []
 
     for (const name in outputs) {
-      threads.push(buildOutput(context, options, config, name, outputs[name], outputSizes[name]))
+      threads.push(buildOutput(context, config, options, name, outputs[name], outputSizes[name]))
     }
 
     await Promise.all(threads)
@@ -34,7 +34,7 @@ async function build (services, options, config) {
   }
 }
 
-async function buildOutput (context, options, config, outputName, output, sizes) {
+async function buildOutput (context, config, options, outputName, output, sizes) {
   const {fileSystem: {mkdir, writeFile}} = context
   const {outputPath} = options
   const {input: inputName, name: fileNameTemplate} = output

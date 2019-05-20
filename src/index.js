@@ -23,7 +23,7 @@ async function main (services) {
   await withTempDir(async tempPath => {
     const options = {configPath, outputPath, tempPath, userInputDir}
 
-    await build(services, options, config)
+    await build(services, config, options)
   })
 }
 
