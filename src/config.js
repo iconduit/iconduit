@@ -20,6 +20,7 @@ const {
 } = require('./constant.js')
 
 const {
+  all: standardAllTargetDefinition,
   browser: standardBrowserTargetDefinitions,
   installer: standardInstallerTargetDefinitions,
   os: standardOsTargetDefinitions,
@@ -283,6 +284,7 @@ function normalizeOutputDefinitions (output) {
     const {
       input,
       name,
+      options = {},
       sizes = [],
     } = definition
 
@@ -293,11 +295,28 @@ function normalizeOutputDefinitions (output) {
     normalized[outputName] = {
       input,
       name,
+      options: normalizeOutputDefinitionOptions(options, outputSetting),
       sizes,
     }
   }
 
   return normalized
+}
+
+function normalizeOutputDefinitionOptions (options, outputSetting) {
+  const optionsSetting = `${outputSetting}.options`
+
+  assertObject(options, optionsSetting)
+
+  const {
+    variables = {},
+  } = options
+
+  assertObject(variables, `${optionsSetting}.variables`)
+
+  return {
+    variables,
+  }
 }
 
 function normalizeSizeDefinitions (device, display, size) {
@@ -369,6 +388,7 @@ function normalizeTargetDefinitions (target) {
   assertObject(target, 'definitions.target')
 
   const {
+    all = standardAllTargetDefinition,
     browser = {},
     installer = {},
     os = {},
@@ -376,6 +396,7 @@ function normalizeTargetDefinitions (target) {
   } = target
 
   return {
+    all: normalizeTargetDefinition(all, 'definitions.target.all'),
     browser: normalizeTargetDefinitionCategory(
       standardBrowserTargetDefinitions,
       browser,
@@ -402,18 +423,27 @@ function normalizeTargetDefinitions (target) {
 function normalizeTargetDefinitionCategory (standardDefinitions, definitions, setting) {
   assertObject(definitions, setting)
 
+  const normalized = {}
+
   for (const name in definitions) {
-    const definitionSetting = `${setting}.${name}`
-    const definition = definitions[name]
-
-    assertObject(definition, definitionSetting)
-
-    const {outputs = []} = definition
-
-    assertArrayOfNonEmptyStrings(outputs, `${definitionSetting}.outputs`)
+    normalized[name] = normalizeTargetDefinition(definitions[name], `${setting}.${name}`)
   }
 
-  return {...standardDefinitions, ...definitions}
+  return {...standardDefinitions, ...normalized}
+}
+
+function normalizeTargetDefinition (definition, setting) {
+  assertObject(definition, setting)
+
+  const {
+    outputs = [],
+  } = definition
+
+  assertArrayOfNonEmptyStrings(outputs, `${setting}.outputs`)
+
+  return {
+    outputs,
+  }
 }
 
 function normalizeInputs (inputs) {

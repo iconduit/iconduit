@@ -8,7 +8,7 @@ async function main (services) {
 
   const fixturePath = join(__dirname, '../test/fixture')
   const userInputDir = join(fixturePath, 'input')
-  const configPath = join(userInputDir, 'iconduit.json')
+  const configPath = join(userInputDir, 'iconduit.config.json')
   const outputPath = join(fixturePath, 'output')
 
   const config = normalize(JSON.parse(await readFile(configPath)))

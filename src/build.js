@@ -31,7 +31,7 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, read
 
     const outputs = selectOutputs(config)
     const sizesByOutput = resolveSizesForOutputs(config, outputs)
-    const templateVariables = buildTemplateVariables(config)
+    const manifest = buildManifest(config)
 
     const buildInput = createInputBuilder(config, options)
 
@@ -121,13 +121,15 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, read
     }
 
     async function buildOutputFile (inputName, outputName, outputSizes) {
+      const {options: {variables: templateVariables}} = outputs[outputName]
+
       assertNoSizes(outputSizes, outputName)
 
       const stack = [`output.${outputName}`]
       const templatePath = await buildInput({name: inputName, type: INPUT_TYPE_TEMPLATE, stack})
       const template = await readTemplate(templatePath)
 
-      return template(templateVariables)
+      return template({manifest, ...templateVariables})
     }
 
     async function buildImage (inputName, outputName, size, imageType) {
@@ -139,7 +141,7 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, read
   }
 }
 
-function buildTemplateVariables (config) {
+function buildManifest (config) {
   const {
     colors,
     definitions,

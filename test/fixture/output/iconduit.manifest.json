@@ -1,0 +1,21 @@
+{
+  "categories": [],
+  "description": null,
+  "displayMode": "standalone",
+  "iarcRatingId": null,
+  "language": null,
+  "name": "Iconduit",
+  "orientation": null,
+  "preferRelatedApplications": null,
+  "scope": null,
+  "shortName": null,
+  "startUrl": null,
+  "textDirection": "auto",
+  "color": {
+    "background": "#D5415C",
+    "foreground": "#D58B41",
+    "mask": "#D58B41",
+    "theme": "#D5415C",
+    "tile": "#D5415C"
+  }
+}

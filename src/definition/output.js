@@ -1,8 +1,11 @@
+const {buildWebAppManifest} = require('../pwa.js')
+
 module.exports = {
   'apple-touch-icon': {
     input: 'apple-touch-icon',
     name: 'apple-touch-icon-[dimensions].png',
     sizes: ['apple-touch-icon-retina'],
+    options: {},
   },
   'apple-touch-startup': {
     input: 'apple-touch-startup',
@@ -31,36 +34,49 @@ module.exports = {
       'display.iphone-828x1792.landscape',
       'display.iphone-828x1792.portrait',
     ],
+    options: {},
   },
   'browserconfig-xml': {
     input: 'browserconfig-xml',
     name: 'browserconfig.xml',
     sizes: [],
+    options: {},
   },
   'dmg-background': {
     input: 'dmg-background',
     name: 'dmg-background[atPixelRatioX].png',
     sizes: ['dmg-background@2x', 'dmg-background'],
+    options: {},
   },
   'facebook-app-icon': {
     input: 'facebook-app-icon',
     name: 'facebook-app-icon.png',
     sizes: ['facebook-app-icon'],
+    options: {},
   },
   'favicon-ico': {
     input: 'masked-icon-minimal-padding',
     name: 'favicon.ico',
     sizes: ['favicon-large', 'favicon-medium', 'favicon-small'],
+    options: {},
   },
   'favicon-png': {
     input: 'masked-icon-minimal-padding',
     name: 'favicon-[dimensions].png',
     sizes: ['favicon-medium', 'favicon-small'],
+    options: {},
+  },
+  'iconduit-manifest': {
+    input: 'iconduit-manifest',
+    name: 'iconduit.manifest.json',
+    sizes: [],
+    options: {},
   },
   'index-html': {
     input: 'index-html',
     name: 'index.html',
     sizes: [],
+    options: {},
   },
   'macos-icns': {
     input: 'macos-icon',
@@ -78,36 +94,45 @@ module.exports = {
       'icns-16@2x',
       'icns-16',
     ],
-  },
-  'manifest-json': {
-    input: 'manifest-json',
-    name: 'manifest.json',
-    sizes: [],
+    options: {},
   },
   'maskable-icon': {
     input: 'maskable-icon',
     name: 'maskable-icon-[dimensions].png',
     sizes: ['maskable-icon-hires', 'maskable-icon-lores'],
+    options: {},
   },
   'open-graph-image': {
     input: 'open-graph-image',
     name: 'open-graph.png',
     sizes: ['open-graph-image'],
+    options: {},
   },
   'safari-mask-icon': {
     input: 'safari-mask-icon',
     name: 'safari-mask-icon.svg',
     sizes: [],
+    options: {},
   },
   'service-worker': {
     input: 'service-worker',
     name: 'service-worker.js',
     sizes: [],
+    options: {},
   },
   'twitter-card-image': {
     input: 'twitter-card-image',
     name: 'twitter-card.png',
     sizes: ['twitter-card-image'],
+    options: {},
+  },
+  'web-app-manifest': {
+    input: 'web-app-manifest',
+    name: 'manifest.json',
+    sizes: [],
+    options: {
+      variables: {buildWebAppManifest},
+    },
   },
   'windows-ico': {
     input: 'masked-icon-minimal-padding',
@@ -124,15 +149,18 @@ module.exports = {
       'windows-ico-22',
       'windows-ico-16',
     ],
+    options: {},
   },
   'windows-tile': {
     input: 'windows-tile',
     name: 'windows-tile-[dimensions].png',
     sizes: ['windows-tile-medium', 'windows-tile-large', 'windows-tile-wide'],
+    options: {},
   },
   'windows-tile-small': {
     input: 'windows-tile-small',
     name: 'windows-tile-[dimensions].png',
     sizes: ['windows-tile-small'],
+    options: {},
   },
 }

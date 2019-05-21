@@ -15,6 +15,7 @@ function selectOutputs (config) {
     definitions: {
       output,
       target: {
+        all: {outputs: baseOutputs},
         browser: browserDefinitions,
         installer: installerDefinitions,
         os: osDefinitions,
@@ -33,7 +34,7 @@ function selectOutputs (config) {
     },
   } = config
 
-  const names = new Set()
+  const names = new Set(baseOutputs)
 
   selectBrowserOutputs(names, browserDefinitions, browser)
   selectOutputsForCategory(names, 'installer', installerDefinitions, installer)

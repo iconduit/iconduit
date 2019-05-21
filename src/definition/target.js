@@ -1,13 +1,18 @@
 module.exports = {
+  all: {
+    outputs: [
+      'iconduit-manifest',
+    ],
+  },
   browser: {
     all: {
       outputs: [
         'favicon-ico',
         'favicon-png',
         'index-html',
-        'manifest-json',
         'maskable-icon',
         'service-worker',
+        'web-app-manifest',
       ],
     },
     edge: {
