@@ -13,7 +13,17 @@ const {systemClock} = require('./clock.js')
 
 const bottle = new Bottle()
 
-bottle.serviceFactory('build', createBuilder, 'clock', 'createInputBuilder', 'cwd', 'fileSystem', 'logger', 'screenshot')
+bottle.serviceFactory(
+  'build',
+  createBuilder,
+  'clock',
+  'createInputBuilder',
+  'cwd',
+  'fileSystem',
+  'logger',
+  'readTemplate',
+  'screenshot'
+)
 bottle.constant('clock', systemClock)
 bottle.serviceFactory('createCache', createCacheFactory, 'logger')
 bottle.serviceFactory(

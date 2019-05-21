@@ -51,13 +51,24 @@
   },
   "outputs": {
     "include": [
-      "apple-touch-icon-masked"
     ],
     "exclude": [
+      "apple-touch-icon",
+      "apple-touch-startup",
       "browserconfig-xml",
+      "dmg-background",
+      "facebook-app-icon",
+      "favicon-ico",
+      "favicon-png",
       "index-html",
-      "manifest-json",
-      "service-worker"
+      "macos-icns",
+      "open-graph-image",
+      "safari-mask-icon",
+      "service-worker",
+      "twitter-card-image",
+      "windows-ico",
+      "windows-tile",
+      "windows-tile-small"
     ]
   }
 }

@@ -1,0 +1,24 @@
+<%
+const icons = []
+const serviceWorker = null
+const relatedApplications = []
+
+const manifest = {
+  dir: textDirection === 'auto' ? undefined : textDirection,
+  lang: language || undefined,
+  name,
+  short_name: shortName || undefined,
+  description: description || undefined,
+  scope: scope || undefined,
+  icons: icons.length > 0 ? icons : undefined,
+  display: displayMode,
+  orientation: orientation || undefined,
+  serviceworker: serviceWorker || undefined,
+  theme_color: color.theme,
+  related_applications: relatedApplications.length > 0 ? relatedApplications : undefined,
+  prefer_related_applications: relatedApplications ? (preferRelatedApplications || undefined) : undefined,
+  background_color: color.background,
+  categories: categories.length > 0 ? categories : undefined,
+  iarc_rating_id: iarcRatingId || undefined,
+}
+%><%= JSON.stringify(manifest, null, 2) %>

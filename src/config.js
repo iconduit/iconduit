@@ -28,30 +28,89 @@ const {
 
 module.exports = {
   normalize,
+  resolveColors,
 }
 
 function normalize (config) {
   assertObject(config, 'config')
 
   const {
+    categories = [],
     colors = {},
     definitions = {},
+    description = null,
+    displayMode = 'standalone',
+    iarcRatingId = null,
     inputs = {},
+    language = null,
     name,
+    orientation = null,
     outputs = {},
+    preferRelatedApplications = null,
+    scope = null,
+    shortName = null,
+    startUrl = null,
     targets = {},
+    textDirection = 'auto',
   } = config
 
+  assertArrayOfNonEmptyStrings(categories, 'categories')
+  assertOptionalNonEmptyString(description, 'description')
+  assertNonEmptyString(displayMode, 'displayMode')
+  assertOptionalNonEmptyString(iarcRatingId, 'iarcRatingId')
+  assertOptionalNonEmptyString(language, 'language')
   assertNonEmptyString(name, 'name')
+  assertOptionalNonEmptyString(orientation, 'orientation')
+  assertOptionalBoolean(preferRelatedApplications, 'preferRelatedApplications')
+  assertOptionalNonEmptyString(scope, 'scope')
+  assertOptionalNonEmptyString(shortName, 'shortName')
+  assertOptionalNonEmptyString(startUrl, 'startUrl')
+  assertNonEmptyString(textDirection, 'textDirection')
 
   return {
+    categories: normalizeCategories(categories),
     colors: normalizeColors(colors),
     definitions: normalizeDefinitions(definitions),
+    description,
+    displayMode,
+    iarcRatingId,
     inputs: normalizeInputs(inputs),
+    language,
     name,
+    orientation,
     outputs: normalizeOutputs(outputs),
+    preferRelatedApplications,
+    scope,
+    shortName,
+    startUrl,
     targets: normalizeTargets(targets),
+    textDirection,
   }
+}
+
+function resolveColors (config) {
+  const {colors, definitions: {color}} = config
+
+  const resolved = {}
+
+  for (const colorType in colors) {
+    const name = colors[colorType]
+    const definition = color[name]
+
+    resolved[colorType] = definition || name
+  }
+
+  return resolved
+}
+
+function normalizeCategories (categories) {
+  return Array
+    .from(
+      new Set(
+        categories.map(category => category.toLowerCase())
+      )
+    )
+    .sort()
 }
 
 function normalizeColors (colors) {
@@ -161,7 +220,7 @@ function normalizeCompositeInputDefinitionOptions (options, optionsSetting) {
     mask = null,
   } = options
 
-  if (mask !== null) assertNonEmptyString(mask, `${optionsSetting}.mask`)
+  assertOptionalNonEmptyString(mask, `${optionsSetting}.mask`)
 
   return {
     backgroundColor,
@@ -186,7 +245,7 @@ function normalizeCompositeInputDefinitionLayers (layers, layersSetting) {
 
     assertNonEmptyString(input, `${layerSetting}.input`)
     assertInteger(multiplier, `${layerSetting}.multiplier`)
-    if (style !== null) assertNonEmptyString(style, `${layerSetting}.style`)
+    assertOptionalNonEmptyString(style, `${layerSetting}.style`)
 
     normalized[index] = {
       input,
@@ -407,9 +466,19 @@ function assertNonEmptyString (value, setting) {
   if (typeof value !== 'string') throw new Error(`Invalid value for ${setting}`)
 }
 
+function assertOptionalNonEmptyString (value, setting) {
+  if (value === null) return
+  if (typeof value !== 'string') throw new Error(`Invalid value for ${setting}`)
+}
+
 function assertInteger (value, setting) {
   assertExists(value, setting)
   if (!Number.isInteger(value)) throw new Error(`Invalid value for ${setting}`)
+}
+
+function assertOptionalBoolean (value, setting) {
+  if (value === null) return
+  if (value !== true && value !== false) throw new Error(`Invalid value for ${setting}`)
 }
 
 function assertArray (value, setting) {

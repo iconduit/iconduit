@@ -3,6 +3,7 @@ const {dirname, extname, join} = require('path')
 
 const {applyMultiplier} = require('./size.js')
 const {buildFileName} = require('./size.js')
+const {resolveColors} = require('./config.js')
 
 const {
   IMAGE_EXTENSIONS,
@@ -10,8 +11,8 @@ const {
   INPUT_STRATEGY_COMPOSITE,
   INPUT_STRATEGY_DEGRADE,
   INPUT_TYPE_IMAGE,
-  INPUT_TYPE_RENDERABLE,
   INPUT_TYPE_SVG,
+  INPUT_TYPE_TEMPLATE,
   TEMPLATE_COMPOSITE,
   TEMPLATE_EXTENSIONS,
 } = require('./constant.js')
@@ -34,26 +35,11 @@ function createInputBuilderFactory (
   const {resolveAsync: resolveDefaultInput} = createInputResolver(defaultInputDir, defaultInputDir)
 
   return function createInputBuilder (config, options) {
-    const {
-      colors: colorTypes,
-      definitions: {
-        color: colorDefinitions,
-        style: styleDefinitions,
-      },
-      name: appName,
-    } = config
-
-    const colors = {}
-
-    for (const colorType in colorTypes) {
-      const colorName = colorTypes[colorType]
-      const colorDefinition = colorDefinitions[colorName]
-
-      colors[colorType] = colorDefinition || colorName
-    }
-
+    const {definitions: {style: styleDefinitions}, name: appName} = config
     const {configPath, tempPath, userInputDir} = options
+
     const {get, set} = createCache()
+    const color = resolveColors(config)
 
     return async function buildInput (request) {
       assertNonRecursive(request)
@@ -75,10 +61,12 @@ function createInputBuilderFactory (
 
       if (cachePath) return cachePath
 
-      const convertedPath = await convertInput(await findSource())
-      set(cacheKey, convertedPath)
+      const sourcePath = await findSource()
+      const finalPath = inputType === INPUT_TYPE_IMAGE ? await convertInputToImage(sourcePath) : sourcePath
 
-      return convertedPath
+      set(cacheKey, finalPath)
+
+      return finalPath
 
       async function findSource () {
         const sourceCacheKey = buildCacheKey(`input.${inputName}.source`, inputSize)
@@ -90,7 +78,7 @@ function createInputBuilderFactory (
         const filePath = await findFile()
 
         if (filePath) {
-          if (isTemplatePath(filePath)) {
+          if (isTemplatePath(filePath) && inputType !== INPUT_TYPE_TEMPLATE) {
             sourcePath = await buildTemplateInput(filePath)
           } else {
             sourcePath = filePath
@@ -135,7 +123,7 @@ function createInputBuilderFactory (
         }
 
         const template = await readTemplate(templatePath)
-        const rendered = template({colors, name: appName, url})
+        const rendered = template({color, name: appName, url})
         await writeFile(renderedPath, rendered)
 
         return renderedPath
@@ -209,18 +197,6 @@ function createInputBuilderFactory (
           size: inputSize,
           stack: subStack,
         })
-      }
-
-      async function convertInput (sourcePath) {
-        switch (inputType) {
-          case INPUT_TYPE_IMAGE: return convertInputToImage(sourcePath)
-
-          case INPUT_TYPE_RENDERABLE:
-          case INPUT_TYPE_SVG:
-            return sourcePath
-        }
-
-        throw new Error(`Invalid input type ${JSON.stringify(inputType)} requested:\n${renderStack(stack)}`)
       }
 
       async function convertInputToImage (sourcePath) {

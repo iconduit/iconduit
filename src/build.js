@@ -3,15 +3,23 @@ const toIco = require('to-ico')
 const {dirname, extname, join, relative} = require('path')
 
 const {buildFileNameSizeMap, resolveSizesForOutputs} = require('./size.js')
-const {IMAGE_TYPE_JPEG, IMAGE_TYPE_PNG, INPUT_TYPE_RENDERABLE, INPUT_TYPE_SVG} = require('./constant.js')
 const {outputNames, selectOutputs, targetNames} = require('./target.js')
+const {resolveColors} = require('./config.js')
 const {toIcns} = require('./icns.js')
+
+const {
+  IMAGE_TYPE_JPEG,
+  IMAGE_TYPE_PNG,
+  INPUT_TYPE_RENDERABLE,
+  INPUT_TYPE_SVG,
+  INPUT_TYPE_TEMPLATE,
+} = require('./constant.js')
 
 module.exports = {
   createBuilder,
 }
 
-function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, screenshot) {
+function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, readTemplate, screenshot) {
   const {now} = clock
   const {mkdir, readFile, writeFile} = fileSystem
 
@@ -23,6 +31,7 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, scre
 
     const outputs = selectOutputs(config)
     const sizesByOutput = resolveSizesForOutputs(config, outputs)
+    const templateVariables = buildTemplateVariables(config)
 
     const buildInput = createInputBuilder(config, options)
 
@@ -53,15 +62,24 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, scre
 
     async function buildOutputContent (outputType, inputName, outputName, outputSizes) {
       switch (outputType) {
-        case '.icns': return buildOutputIcns(inputName, outputName, outputSizes)
-        case '.ico': return buildOutputIco(inputName, outputName, outputSizes)
+        case '.png':
+          return buildOutputImage(inputName, outputName, outputSizes, IMAGE_TYPE_PNG)
 
         case '.jpeg':
         case '.jpg':
           return buildOutputImage(inputName, outputName, outputSizes, IMAGE_TYPE_JPEG)
 
-        case '.png': return buildOutputImage(inputName, outputName, outputSizes, IMAGE_TYPE_PNG)
-        case '.svg': return buildOutputSvg(inputName, outputName, outputSizes)
+        case '.icns':
+          return buildOutputIcns(inputName, outputName, outputSizes)
+
+        case '.ico':
+          return buildOutputIco(inputName, outputName, outputSizes)
+
+        case '.svg':
+          return buildOutputSvg(inputName, outputName, outputSizes)
+
+        case '.json':
+          return buildOutputFile(inputName, outputName, outputSizes)
       }
 
       throw new Error('Not implemented')
@@ -102,12 +120,40 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, scre
       return readFile(inputPath)
     }
 
+    async function buildOutputFile (inputName, outputName, outputSizes) {
+      assertNoSizes(outputSizes, outputName)
+
+      const stack = [`output.${outputName}`]
+      const templatePath = await buildInput({name: inputName, type: INPUT_TYPE_TEMPLATE, stack})
+      const template = await readTemplate(templatePath)
+
+      return template(templateVariables)
+    }
+
     async function buildImage (inputName, outputName, size, imageType) {
       const stack = [`output.${outputName}`]
       const inputPath = await buildInput({name: inputName, type: INPUT_TYPE_RENDERABLE, size, stack})
 
       return screenshot(fileUrl(inputPath), size, {type: imageType})
     }
+  }
+}
+
+function buildTemplateVariables (config) {
+  const {
+    colors,
+    definitions,
+    inputs,
+    outputs,
+    targets,
+
+    ...rest
+  } = config
+
+  return {
+    ...rest,
+
+    color: resolveColors(config),
   }
 }
 
