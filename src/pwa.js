@@ -18,11 +18,6 @@ function buildWebAppManifest (manifest) {
     textDirection,
   } = manifest
 
-  const icons = []
-  const serviceWorker = null
-  const relatedApplications = []
-  const hasRelatedApplications = relatedApplications.length > 0
-
   const webManifest = {}
   const add = (property, value) => { webManifest[property] = value }
   const addNonDefault = (property, value, defaultValue) => { if (value !== defaultValue) webManifest[property] = value }
@@ -35,18 +30,40 @@ function buildWebAppManifest (manifest) {
   addOptional('short_name', shortName)
   addOptional('description', description)
   addOptional('scope', scope)
-  addNonEmpty('icons', icons)
+  addNonEmpty('icons', buildWebAppManifestIcons(manifest))
   add('display', displayMode)
   addOptional('orientation', orientation)
-  addOptional('serviceworker', serviceWorker)
+  addOptional('serviceworker', buildWebAppManifestServiceWorker(manifest))
   add('theme_color', themeColor)
-  if (hasRelatedApplications) {
-    add('related_applications', relatedApplications)
+
+  const applications = buildWebAppManifestRelatedApplications(manifest)
+
+  if (applications.length > 0) {
+    add('related_applications', applications)
     addOptional('prefer_related_applications', preferRelatedApplications)
   }
+
   add('background_color', backgroundColor)
   addNonEmpty('categories', categories)
   addOptional('iarc_rating_id', iarcRatingId)
 
   return webManifest
+}
+
+function buildWebAppManifestIcons (manifest) {
+  const icons = []
+
+  return icons
+}
+
+function buildWebAppManifestServiceWorker (manifest) {
+  const serviceWorker = null
+
+  return serviceWorker
+}
+
+function buildWebAppManifestRelatedApplications (manifest) {
+  const applications = []
+
+  return applications
 }
