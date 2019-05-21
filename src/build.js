@@ -1,32 +1,44 @@
 const fileUrl = require('file-url')
 const toIco = require('to-ico')
-const {dirname, extname, join} = require('path')
+const {dirname, extname, join, relative} = require('path')
 
 const {buildFileNameSizeMap, resolveSizesForOutputs} = require('./size.js')
 const {IMAGE_TYPE_JPEG, IMAGE_TYPE_PNG, INPUT_TYPE_RENDERABLE, INPUT_TYPE_SVG} = require('./constant.js')
-const {selectOutputs} = require('./target.js')
+const {outputNames, selectOutputs, targetNames} = require('./target.js')
 const {toIcns} = require('./icns.js')
 
 module.exports = {
   createBuilder,
 }
 
-function createBuilder (createInputBuilder, fileSystem, logger, screenshot) {
+function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, screenshot) {
+  const {now} = clock
   const {mkdir, readFile, writeFile} = fileSystem
 
+  const listFormatter = new Intl.ListFormat('en', {type: 'conjunction'})
+
   return async function build (config, options) {
-    const {outputPath} = options
+    const startTime = now()
+    const {configPath, outputPath} = options
 
     const outputs = selectOutputs(config)
     const sizesByOutput = resolveSizesForOutputs(config, outputs)
 
     const buildInput = createInputBuilder(config, options)
 
+    logger.info(`Building ${configPath}`)
+    logger.info(`Targets: ${listFormatter.format(targetNames(config))}`)
+    logger.info(`Selected outputs: ${listFormatter.format(outputNames(outputs))}`)
+
     await Promise.all(Object.keys(outputs).map(buildOutput))
+
+    const elapsedTime = now() - startTime
+    logger.info(`Built ${configPath} in ${(elapsedTime / 1000).toFixed(2)}s`)
 
     async function buildOutput (outputName) {
       const {input: inputName, name: fileNameTemplate} = outputs[outputName]
       const sizesByFilename = buildFileNameSizeMap(fileNameTemplate, sizesByOutput[outputName])
+      const cwdPath = cwd()
 
       for (const filename in sizesByFilename) {
         const content = await buildOutputContent(extname(filename), inputName, outputName, sizesByFilename[filename])
@@ -34,6 +46,8 @@ function createBuilder (createInputBuilder, fileSystem, logger, screenshot) {
 
         await mkdir(dirname(fullOutputPath), {recursive: true})
         await writeFile(fullOutputPath, content)
+
+        logger.info(`Produced ${relative(cwdPath, fullOutputPath)} from ${inputName}`)
       }
     }
 

@@ -1,7 +1,13 @@
 const browserslist = require('browserslist')
 
 module.exports = {
+  outputNames,
   selectOutputs,
+  targetNames,
+}
+
+function outputNames (outputs) {
+  return Object.keys(outputs).sort()
 }
 
 function selectOutputs (config) {
@@ -40,6 +46,31 @@ function selectOutputs (config) {
   return mapOutputNamesToDefinitions(names, output)
 }
 
+function targetNames (config) {
+  const {
+    definitions: {
+      target: {
+        browser: definitions,
+      },
+    },
+    targets: {
+      browser,
+      installer,
+      os,
+      web,
+    },
+  } = config
+
+  const names = [
+    ...selectBrowsers(browser, definitions).map(name => `browser.${name}`),
+    ...installer.map(name => `installer.${name}`),
+    ...os.map(name => `os.${name}`),
+    ...web.map(name => `web.${name}`),
+  ]
+
+  return names.sort()
+}
+
 function selectBrowserOutputs (names, definitions, browser) {
   if (browser.length < 1) return
 
@@ -47,16 +78,18 @@ function selectBrowserOutputs (names, definitions, browser) {
 
   selectDefinitionOutputs(names, all)
 
-  const selectedBrowsers = new Set(
+  for (const target of selectBrowsers(browser, definitions)) {
+    selectDefinitionOutputs(names, definitions[target])
+  }
+}
+
+function selectBrowsers (browser, definitions) {
+  const selected = new Set(
     browserslist(browser)
       .map(result => result.substring(0, result.indexOf(' ')))
   )
 
-  for (const target of selectedBrowsers) {
-    const definition = definitions[target]
-
-    if (definition) selectDefinitionOutputs(names, definition)
-  }
+  return Array.from(selected).filter(name => definitions[name])
 }
 
 function selectOutputsForCategory (names, type, definitions, targets) {
