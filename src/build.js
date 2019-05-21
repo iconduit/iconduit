@@ -8,13 +8,13 @@ const {selectOutputs} = require('./target.js')
 const {toIcns} = require('./icns.js')
 
 module.exports = {
-  createOutputBuilder,
+  createBuilder,
 }
 
-function createOutputBuilder (createInputBuilder, fileSystem, logger, screenshot) {
+function createBuilder (createInputBuilder, fileSystem, logger, screenshot) {
   const {mkdir, readFile, writeFile} = fileSystem
 
-  return async function buildOutput (config, options) {
+  return async function build (config, options) {
     const {outputPath} = options
 
     const outputs = selectOutputs(config)

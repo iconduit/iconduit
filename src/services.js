@@ -2,17 +2,17 @@ const Bottle = require('bottlejs')
 const {join} = require('path')
 
 const {createBoundTemplateReader, createTemplateReader} = require('./template.js')
+const {createBuilder} = require('./build.js')
 const {createCacheFactory} = require('./cache.js')
 const {createFileSystem} = require('./fs.js')
 const {createInputBuilderFactory} = require('./input.js')
 const {createInputResolverFactory} = require('./module.js')
 const {createLogger} = require('./logging.js')
-const {createOutputBuilder} = require('./output.js')
 const {createScreenshotManager} = require('./screenshot.js')
 
 const bottle = new Bottle()
 
-bottle.serviceFactory('buildOutput', createOutputBuilder, 'createInputBuilder', 'fileSystem', 'logger', 'screenshot')
+bottle.serviceFactory('build', createBuilder, 'createInputBuilder', 'fileSystem', 'logger', 'screenshot')
 bottle.serviceFactory('createCache', createCacheFactory, 'logger')
 bottle.serviceFactory(
   'createInputBuilder',
