@@ -4,6 +4,7 @@ const standardInputDefinitions = require('./definition/input.js')
 const standardOutputDefinitions = require('./definition/output.js')
 const standardSizeDefinitions = require('./definition/size.js')
 const standardStyleDefinitions = require('./definition/style.js')
+const standardTagDefinitions = require('./definition/tag.js')
 const standardTargetDefinitions = require('./definition/target.js')
 
 const {
@@ -276,6 +277,7 @@ function normalizeDefinitions (definitions) {
     output: userOutputDefinitions = {},
     size: userSizeDefinitions = {},
     style: userStyleDefinitions = {},
+    tag: userTagDefinitions = [],
     target: userTargetDefinitions = {},
   } = definitions
 
@@ -288,6 +290,7 @@ function normalizeDefinitions (definitions) {
   const output = normalizeOutputDefinitions(userOutputDefinitions)
   const size = normalizeSizeDefinitions(device, display, userSizeDefinitions)
   const style = {...standardStyleDefinitions, ...userStyleDefinitions}
+  const tag = normalizeTagDefinitions(userTagDefinitions)
   const target = normalizeTargetDefinitions(userTargetDefinitions)
 
   return {
@@ -298,6 +301,7 @@ function normalizeDefinitions (definitions) {
     output,
     size,
     style,
+    tag,
     target,
   }
 }
@@ -512,6 +516,85 @@ function normalizeSizeDefinitions (device, display, size) {
   return {...displaySizes, ...deviceSizes, ...standardSizeDefinitions, ...userSizes}
 }
 
+function normalizeTagDefinitions (tag) {
+  assertArray(tag, 'definitions.tag')
+
+  const normalized = [...standardTagDefinitions]
+
+  for (let index = 0; index < tag.length; ++index) {
+    normalized.push(normalizeTagDefinition(tag[index], `definitions.tag[${index}]`))
+  }
+
+  return normalized
+}
+
+function normalizeTagDefinition (definition, setting) {
+  assertObject(definition, setting)
+
+  const {
+    name,
+    section,
+  } = definition
+
+  assertNonEmptyString(name, `${setting}.name`)
+  const namedSetting = `${setting}(${name})`
+
+  return {
+    name,
+    section: normalizeTagDefinitionSection(section, `${namedSetting}.section`),
+  }
+}
+
+function normalizeTagDefinitionSection (section, setting) {
+  assertObject(section, setting)
+
+  const normalized = {}
+
+  for (const sectionName in section) {
+    const sectionSetting = `${setting}.${sectionName}`
+
+    assertNonEmptyString(sectionName, sectionSetting)
+
+    normalized[sectionName] = normalizeTags(section[sectionName], sectionSetting)
+  }
+
+  return normalized
+}
+
+function normalizeTags (tags, setting) {
+  assertArray(tags, setting)
+
+  const normalized = []
+
+  for (let index = 0; index < tags.length; ++index) {
+    normalized[index] = normalizeTag(tags[index], `${setting}[${index}]`)
+  }
+
+  return normalized
+}
+
+function normalizeTag (definition, setting) {
+  assertObject(definition, setting)
+
+  const {
+    attributes = {},
+    children = [],
+    isVoid = false,
+    tag,
+  } = definition
+
+  assertObjectOfNonEmptyStrings(attributes, `${setting}.attributes`)
+  assertBoolean(isVoid, `${setting}.isVoid`)
+  assertNonEmptyString(tag, `${setting}.tag`)
+
+  return {
+    attributes,
+    children: normalizeTags(children, `${setting}.children`),
+    isVoid,
+    tag,
+  }
+}
+
 function normalizeTargetDefinitions (target) {
   assertObject(target, 'definitions.target')
 
@@ -637,9 +720,13 @@ function assertInteger (value, setting) {
   if (!Number.isInteger(value)) throw new Error(`Invalid value for ${setting}`)
 }
 
+function assertBoolean (value, setting) {
+  if (value !== true && value !== false) throw new Error(`Invalid value for ${setting}`)
+}
+
 function assertOptionalBoolean (value, setting) {
   if (value === null) return
-  if (value !== true && value !== false) throw new Error(`Invalid value for ${setting}`)
+  assertBoolean(value, setting)
 }
 
 function assertArray (value, setting) {
