@@ -1,4 +1,4 @@
-const {buildWebAppManifest} = require('../pwa.js')
+const {buildWebAppManifest} = require('../web-app.js')
 
 module.exports = {
   'apple-touch-icon': {
