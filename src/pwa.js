@@ -1,3 +1,7 @@
+const {extname} = require('path')
+
+const {buildFileName} = require('./size.js')
+
 module.exports = {
   buildWebAppManifest,
 }
@@ -47,9 +51,48 @@ function buildWebAppManifest (manifest) {
 }
 
 function buildWebAppManifestIcons (manifest) {
+  const {output: {'maskable-icon': output}} = manifest
+
+  if (!output) return []
+
   const icons = []
 
+  for (const selector in output) {
+    const {path, size} = output[selector]
+
+    const icon = {}
+
+    add(icon, 'src', path)
+    add(icon, 'sizes', buildFileName('[dimensions]', size))
+    addOptional(icon, 'type', mimeTypeByPath(path))
+    add(icon, 'purpose', 'any maskable')
+
+    icons.push(icon)
+  }
+
   return icons
+}
+
+function mimeTypeByPath (path) {
+  switch (extname(path)) {
+    case '.gif':
+      return 'image/gif'
+
+    case '.icns':
+      return 'image/icns'
+
+    case '.ico':
+      return 'image/vnd.microsoft.icon'
+
+    case '.jpg':
+    case '.jpeg':
+      return 'image/jpeg'
+
+    case '.png':
+      return 'image/png'
+  }
+
+  return null
 }
 
 function buildWebAppManifestServiceWorker (manifest) {
