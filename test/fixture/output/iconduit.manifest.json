@@ -49,7 +49,7 @@
   "orientation": null,
   "output": {
     "appleTouchIcon": {
-      "appleTouchIconRetina": {
+      "retina": {
         "path": "apple-touch-icon-180x180.png",
         "size": {
           "height": 180,
@@ -60,7 +60,7 @@
       }
     },
     "appleTouchIconMasked": {
-      "appleTouchIconRetina": {
+      "retina": {
         "path": "apple-touch-icon-masked-180x180.png",
         "size": {
           "height": 180,
@@ -71,7 +71,7 @@
       }
     },
     "appleTouchStartup": {
-      "device.iphone5.landscape": {
+      "iphone5.landscape": {
         "path": "apple-touch-startup-1136x640r2.png",
         "size": {
           "height": 640,
@@ -80,7 +80,7 @@
           "width": 1136
         }
       },
-      "device.iphone5.portrait": {
+      "iphone5.portrait": {
         "path": "apple-touch-startup-640x1136r2.png",
         "size": {
           "height": 1136,
@@ -94,7 +94,7 @@
       "path": "browserconfig.xml"
     },
     "dmgBackground": {
-      "dmgBackground": {
+      "primary": {
         "path": "dmg-background.png",
         "size": {
           "height": 288,
@@ -103,7 +103,7 @@
           "width": 512
         }
       },
-      "dmgBackground@2x": {
+      "primary@2x": {
         "path": "dmg-background@2x.png",
         "size": {
           "height": 576,
@@ -114,7 +114,7 @@
       }
     },
     "facebookAppIcon": {
-      "facebookAppIcon": {
+      "primary": {
         "path": "facebook-app-icon.png",
         "size": {
           "height": 1024,
@@ -125,7 +125,7 @@
       }
     },
     "faviconIco": {
-      "faviconLarge": {
+      "large": {
         "path": "favicon.ico",
         "size": {
           "height": 48,
@@ -134,7 +134,7 @@
           "width": 48
         }
       },
-      "faviconMedium": {
+      "medium": {
         "path": "favicon.ico",
         "size": {
           "height": 32,
@@ -143,7 +143,7 @@
           "width": 32
         }
       },
-      "faviconSmall": {
+      "small": {
         "path": "favicon.ico",
         "size": {
           "height": 16,
@@ -154,7 +154,7 @@
       }
     },
     "faviconPng": {
-      "faviconMedium": {
+      "medium": {
         "path": "favicon-32x32.png",
         "size": {
           "height": 32,
@@ -163,7 +163,7 @@
           "width": 32
         }
       },
-      "faviconSmall": {
+      "small": {
         "path": "favicon-16x16.png",
         "size": {
           "height": 16,
@@ -180,7 +180,7 @@
       "path": "index.html"
     },
     "macosIcns": {
-      "icns128": {
+      "128": {
         "path": "macos.icns",
         "size": {
           "height": 128,
@@ -189,7 +189,7 @@
           "width": 128
         }
       },
-      "icns128@2x": {
+      "128@2x": {
         "path": "macos.icns",
         "size": {
           "height": 256,
@@ -198,7 +198,7 @@
           "width": 256
         }
       },
-      "icns16": {
+      "16": {
         "path": "macos.icns",
         "size": {
           "height": 16,
@@ -207,7 +207,7 @@
           "width": 16
         }
       },
-      "icns16@2x": {
+      "16@2x": {
         "path": "macos.icns",
         "size": {
           "height": 32,
@@ -216,7 +216,7 @@
           "width": 32
         }
       },
-      "icns256": {
+      "256": {
         "path": "macos.icns",
         "size": {
           "height": 256,
@@ -225,7 +225,7 @@
           "width": 256
         }
       },
-      "icns256@2x": {
+      "256@2x": {
         "path": "macos.icns",
         "size": {
           "height": 512,
@@ -234,7 +234,7 @@
           "width": 512
         }
       },
-      "icns32": {
+      "32": {
         "path": "macos.icns",
         "size": {
           "height": 32,
@@ -243,7 +243,7 @@
           "width": 32
         }
       },
-      "icns32@2x": {
+      "32@2x": {
         "path": "macos.icns",
         "size": {
           "height": 64,
@@ -252,7 +252,7 @@
           "width": 64
         }
       },
-      "icns512": {
+      "512": {
         "path": "macos.icns",
         "size": {
           "height": 512,
@@ -261,7 +261,7 @@
           "width": 512
         }
       },
-      "icns512@2x": {
+      "512@2x": {
         "path": "macos.icns",
         "size": {
           "height": 1024,
@@ -270,7 +270,7 @@
           "width": 1024
         }
       },
-      "icns64": {
+      "64": {
         "path": "macos.icns",
         "size": {
           "height": 64,
@@ -281,7 +281,7 @@
       }
     },
     "maskableIcon": {
-      "maskableIconHires": {
+      "hires": {
         "path": "maskable-icon-512x512.png",
         "size": {
           "height": 512,
@@ -290,7 +290,7 @@
           "width": 512
         }
       },
-      "maskableIconLores": {
+      "lores": {
         "path": "maskable-icon-192x192.png",
         "size": {
           "height": 192,
@@ -301,7 +301,7 @@
       }
     },
     "openGraphImage": {
-      "openGraphImage": {
+      "primary": {
         "path": "open-graph.png",
         "size": {
           "height": 630,
@@ -318,7 +318,7 @@
       "path": "service-worker.js"
     },
     "twitterCardImage": {
-      "twitterCardImage": {
+      "primary": {
         "path": "twitter-card.png",
         "size": {
           "height": 600,
@@ -332,7 +332,7 @@
       "path": "manifest.json"
     },
     "windowsIco": {
-      "windowsIco128": {
+      "128": {
         "path": "windows.ico",
         "size": {
           "height": 128,
@@ -341,7 +341,7 @@
           "width": 128
         }
       },
-      "windowsIco16": {
+      "16": {
         "path": "windows.ico",
         "size": {
           "height": 16,
@@ -350,7 +350,7 @@
           "width": 16
         }
       },
-      "windowsIco22": {
+      "22": {
         "path": "windows.ico",
         "size": {
           "height": 22,
@@ -359,7 +359,7 @@
           "width": 22
         }
       },
-      "windowsIco24": {
+      "24": {
         "path": "windows.ico",
         "size": {
           "height": 24,
@@ -368,7 +368,7 @@
           "width": 24
         }
       },
-      "windowsIco256": {
+      "256": {
         "path": "windows.ico",
         "size": {
           "height": 256,
@@ -377,7 +377,7 @@
           "width": 256
         }
       },
-      "windowsIco32": {
+      "32": {
         "path": "windows.ico",
         "size": {
           "height": 32,
@@ -386,7 +386,7 @@
           "width": 32
         }
       },
-      "windowsIco40": {
+      "40": {
         "path": "windows.ico",
         "size": {
           "height": 40,
@@ -395,7 +395,7 @@
           "width": 40
         }
       },
-      "windowsIco48": {
+      "48": {
         "path": "windows.ico",
         "size": {
           "height": 48,
@@ -404,7 +404,7 @@
           "width": 48
         }
       },
-      "windowsIco64": {
+      "64": {
         "path": "windows.ico",
         "size": {
           "height": 64,
@@ -413,7 +413,7 @@
           "width": 64
         }
       },
-      "windowsIco96": {
+      "96": {
         "path": "windows.ico",
         "size": {
           "height": 96,
@@ -424,7 +424,7 @@
       }
     },
     "windowsTile": {
-      "windowsTileLarge": {
+      "large": {
         "path": "windows-tile-310x310.png",
         "size": {
           "height": 310,
@@ -433,7 +433,7 @@
           "width": 310
         }
       },
-      "windowsTileMedium": {
+      "medium": {
         "path": "windows-tile-150x150.png",
         "size": {
           "height": 150,
@@ -442,7 +442,7 @@
           "width": 150
         }
       },
-      "windowsTileWide": {
+      "wide": {
         "path": "windows-tile-310x150.png",
         "size": {
           "height": 150,
@@ -453,7 +453,7 @@
       }
     },
     "windowsTileSmall": {
-      "windowsTileSmall": {
+      "small": {
         "path": "windows-tile-70x70.png",
         "size": {
           "height": 70,

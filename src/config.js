@@ -456,11 +456,11 @@ function normalizeSizeDefinitions (device, display, size) {
     const landscapeSize = `display.${displayName}.landscape`
 
     if (orientation === 'portrait') {
-      displaySizes[portraitSize] = orientationSize
-      displaySizes[landscapeSize] = rotatedSize
+      displaySizes[portraitSize] = {key: `${displayName}.portrait`, ...orientationSize}
+      displaySizes[landscapeSize] = {key: `${displayName}.landscape`, ...rotatedSize}
     } else if (orientation === 'landscape') {
-      displaySizes[portraitSize] = rotatedSize
-      displaySizes[landscapeSize] = orientationSize
+      displaySizes[portraitSize] = {key: `${displayName}.portrait`, ...rotatedSize}
+      displaySizes[landscapeSize] = {key: `${displayName}.landscape`, ...orientationSize}
     } else {
       throw new Error(`Invalid value for definitions.display.${displayName}.orientation`)
     }
@@ -473,8 +473,11 @@ function normalizeSizeDefinitions (device, display, size) {
       throw new Error(`Missing definition for display.${displayName} in definitions.device.${displayName}.display`)
     }
 
-    deviceSizes[`device.${deviceName}.portrait`] = displaySizes[`display.${displayName}.portrait`]
-    deviceSizes[`device.${deviceName}.landscape`] = displaySizes[`display.${displayName}.landscape`]
+    const {key: portraitKey, ...portraitSize} = displaySizes[`display.${displayName}.portrait`]
+    const {key: landscapeKey, ...landscapeSize} = displaySizes[`display.${displayName}.landscape`]
+
+    deviceSizes[`device.${deviceName}.portrait`] = {key: `${deviceName}.portrait`, ...portraitSize}
+    deviceSizes[`device.${deviceName}.landscape`] = {key: `${deviceName}.landscape`, ...landscapeSize}
   }
 
   for (const name in size) {
@@ -484,18 +487,21 @@ function normalizeSizeDefinitions (device, display, size) {
     assertObject(userSize, sizeSetting)
 
     const {
+      key,
       width,
       height,
       pixelDensity = 72,
       pixelRatio = 1,
     } = size[name]
 
+    assertNonEmptyString(key, `${sizeSetting}.key`)
     assertInteger(width, `${sizeSetting}.width`)
     assertInteger(height, `${sizeSetting}.height`)
     assertInteger(pixelDensity, `${sizeSetting}.pixelDensity`)
     assertInteger(pixelRatio, `${sizeSetting}.pixelRatio`)
 
     userSizes[name] = {
+      key,
       width,
       height,
       pixelDensity,

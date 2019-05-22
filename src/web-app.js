@@ -57,8 +57,8 @@ function buildWebAppManifestIcons (manifest) {
 
   const icons = []
 
-  for (const selector in output) {
-    const {path, size} = output[selector]
+  for (const key in output) {
+    const {path, size} = output[key]
 
     const icon = {}
 

@@ -172,10 +172,10 @@ function buildManifestOutput (config) {
       output[outputName] = {}
 
       for (const selector of sizes) {
-        const size = resolveSize(sizeDefinitions, selector)
+        const {key, ...size} = resolveSize(sizeDefinitions, selector)
         const path = buildFileName(template, size)
 
-        output[outputName][selector] = {path, size}
+        output[outputName][key] = {path, size}
       }
     } else {
       output[outputName] = {path: template}

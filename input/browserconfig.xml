@@ -4,12 +4,12 @@ const {
   color,
   output: {
     windowsTile: {
-      windowsTileLarge: {path: large} = {},
-      windowsTileMedium: {path: medium} = {},
-      windowsTileWide: {path: wide} = {},
+      large: {path: large} = {},
+      medium: {path: medium} = {},
+      wide: {path: wide} = {},
     } = {},
     windowsTileSmall: {
-      windowsTileSmall: {path: small} = {},
+      small: {path: small} = {},
     } = {},
   },
 } = manifest
