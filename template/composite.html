@@ -41,8 +41,8 @@
       <div class="layer layer-<%- index %>"><img src="<%- layers[index].url %>" /></div>
       <script>
         ready(() => {
-          const style = <%= JSON.stringify(layers[index].styleDefinition) %>
-          const layer = document.querySelector(<%= JSON.stringify(`.layer-${index}`) %>)
+          const style = <%= json(layers[index].styleDefinition, 0) %>
+          const layer = document.querySelector(<%= json(`.layer-${index}`, 0) %>)
           Object.entries(style).forEach(([property, value]) => { layer.style[property] = value })
         })
       </script>

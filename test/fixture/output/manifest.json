@@ -1,10 +1,7 @@
 {
-  "name": "Iconduit",
+  "background_color": "#D5415C",
   "display": "standalone",
-  "serviceworker": {
-    "src": "service-worker.js"
-  },
-  "theme_color": "#D58B41",
+  "name": "Iconduit",
   "related_applications": [
     {
       "id": "915056765",
@@ -22,5 +19,8 @@
       "url": "https://microsoft.com/p/app/9wzdncrdtbvb"
     }
   ],
-  "background_color": "#D5415C"
+  "serviceworker": {
+    "src": "service-worker.js"
+  },
+  "theme_color": "#D58B41"
 }

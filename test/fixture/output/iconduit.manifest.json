@@ -2,21 +2,24 @@
   "applications": {
     "native": [
       {
-        "fingerprints": [],
+        "fingerprints": [
+        ],
         "id": "915056765",
         "minVersion": null,
         "platform": "itunes",
         "url": "https://itunes.apple.com/app/id915056765"
       },
       {
-        "fingerprints": [],
+        "fingerprints": [
+        ],
         "id": "com.google.android.apps.maps",
         "minVersion": null,
         "platform": "play",
         "url": "https://play.google.com/store/apps/details?id=com.google.android.apps.maps"
       },
       {
-        "fingerprints": [],
+        "fingerprints": [
+        ],
         "id": "9wzdncrdtbvb",
         "minVersion": null,
         "platform": "windows",
@@ -30,25 +33,24 @@
       }
     ]
   },
-  "categories": [],
-  "description": null,
-  "displayMode": "standalone",
-  "iarcRatingId": null,
-  "language": null,
-  "name": "Iconduit",
-  "orientation": null,
-  "preferRelatedApplications": null,
-  "scope": null,
-  "shortName": null,
-  "startUrl": null,
-  "textDirection": "auto",
+  "categories": [
+  ],
   "color": {
     "background": "#D5415C",
     "mask": "#D5415C",
     "theme": "#D58B41",
     "tile": "#D5415C"
   },
+  "description": null,
+  "displayMode": "standalone",
+  "iarcRatingId": null,
+  "language": null,
+  "name": "Iconduit",
+  "orientation": null,
   "output": {
+    "browserconfig-xml": {
+      "path": "browserconfig.xml"
+    },
     "iconduit-manifest": {
       "path": "iconduit.manifest.json"
     },
@@ -56,19 +58,19 @@
       "maskable-icon-hires": {
         "path": "maskable-icon-512x512.png",
         "size": {
-          "width": 512,
           "height": 512,
           "pixelDensity": 72,
-          "pixelRatio": 1
+          "pixelRatio": 1,
+          "width": 512
         }
       },
       "maskable-icon-lores": {
         "path": "maskable-icon-192x192.png",
         "size": {
-          "width": 192,
           "height": 192,
           "pixelDensity": 72,
-          "pixelRatio": 1
+          "pixelRatio": 1,
+          "width": 192
         }
       }
     },
@@ -78,35 +80,32 @@
     "web-app-manifest": {
       "path": "manifest.json"
     },
-    "browserconfig-xml": {
-      "path": "browserconfig.xml"
-    },
     "windows-tile": {
-      "windows-tile-medium": {
-        "path": "windows-tile-150x150.png",
-        "size": {
-          "width": 150,
-          "height": 150,
-          "pixelDensity": 72,
-          "pixelRatio": 1
-        }
-      },
       "windows-tile-large": {
         "path": "windows-tile-310x310.png",
         "size": {
-          "width": 310,
           "height": 310,
           "pixelDensity": 72,
-          "pixelRatio": 1
+          "pixelRatio": 1,
+          "width": 310
+        }
+      },
+      "windows-tile-medium": {
+        "path": "windows-tile-150x150.png",
+        "size": {
+          "height": 150,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 150
         }
       },
       "windows-tile-wide": {
         "path": "windows-tile-310x150.png",
         "size": {
-          "width": 310,
           "height": 150,
           "pixelDensity": 72,
-          "pixelRatio": 1
+          "pixelRatio": 1,
+          "width": 310
         }
       }
     },
@@ -114,12 +113,17 @@
       "windows-tile-small": {
         "path": "windows-tile-70x70.png",
         "size": {
-          "width": 70,
           "height": 70,
           "pixelDensity": 72,
-          "pixelRatio": 1
+          "pixelRatio": 1,
+          "width": 70
         }
       }
     }
-  }
+  },
+  "preferRelatedApplications": null,
+  "scope": null,
+  "shortName": null,
+  "startUrl": null,
+  "textDirection": "auto"
 }
