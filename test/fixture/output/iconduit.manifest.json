@@ -48,14 +48,237 @@
   "name": "Iconduit",
   "orientation": null,
   "output": {
+    "appleTouchIcon": {
+      "appleTouchIconRetina": {
+        "path": "apple-touch-icon-180x180.png",
+        "size": {
+          "height": 180,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 180
+        }
+      }
+    },
+    "appleTouchIconMasked": {
+      "appleTouchIconRetina": {
+        "path": "apple-touch-icon-masked-180x180.png",
+        "size": {
+          "height": 180,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 180
+        }
+      }
+    },
+    "appleTouchStartup": {
+      "device.iphone5.landscape": {
+        "path": "apple-touch-startup-1136x640r2.png",
+        "size": {
+          "height": 640,
+          "pixelDensity": 326,
+          "pixelRatio": 2,
+          "width": 1136
+        }
+      },
+      "device.iphone5.portrait": {
+        "path": "apple-touch-startup-640x1136r2.png",
+        "size": {
+          "height": 1136,
+          "pixelDensity": 326,
+          "pixelRatio": 2,
+          "width": 640
+        }
+      }
+    },
     "browserconfigXml": {
       "path": "browserconfig.xml"
+    },
+    "dmgBackground": {
+      "dmgBackground": {
+        "path": "dmg-background.png",
+        "size": {
+          "height": 288,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 512
+        }
+      },
+      "dmgBackground@2x": {
+        "path": "dmg-background@2x.png",
+        "size": {
+          "height": 576,
+          "pixelDensity": 144,
+          "pixelRatio": 2,
+          "width": 1024
+        }
+      }
+    },
+    "facebookAppIcon": {
+      "facebookAppIcon": {
+        "path": "facebook-app-icon.png",
+        "size": {
+          "height": 1024,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 1024
+        }
+      }
+    },
+    "faviconIco": {
+      "faviconLarge": {
+        "path": "favicon.ico",
+        "size": {
+          "height": 48,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 48
+        }
+      },
+      "faviconMedium": {
+        "path": "favicon.ico",
+        "size": {
+          "height": 32,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 32
+        }
+      },
+      "faviconSmall": {
+        "path": "favicon.ico",
+        "size": {
+          "height": 16,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 16
+        }
+      }
+    },
+    "faviconPng": {
+      "faviconMedium": {
+        "path": "favicon-32x32.png",
+        "size": {
+          "height": 32,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 32
+        }
+      },
+      "faviconSmall": {
+        "path": "favicon-16x16.png",
+        "size": {
+          "height": 16,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 16
+        }
+      }
     },
     "iconduitManifest": {
       "path": "iconduit.manifest.json"
     },
     "indexHtml": {
       "path": "index.html"
+    },
+    "macosIcns": {
+      "icns128": {
+        "path": "macos.icns",
+        "size": {
+          "height": 128,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 128
+        }
+      },
+      "icns128@2x": {
+        "path": "macos.icns",
+        "size": {
+          "height": 256,
+          "pixelDensity": 144,
+          "pixelRatio": 2,
+          "width": 256
+        }
+      },
+      "icns16": {
+        "path": "macos.icns",
+        "size": {
+          "height": 16,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 16
+        }
+      },
+      "icns16@2x": {
+        "path": "macos.icns",
+        "size": {
+          "height": 32,
+          "pixelDensity": 144,
+          "pixelRatio": 2,
+          "width": 32
+        }
+      },
+      "icns256": {
+        "path": "macos.icns",
+        "size": {
+          "height": 256,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 256
+        }
+      },
+      "icns256@2x": {
+        "path": "macos.icns",
+        "size": {
+          "height": 512,
+          "pixelDensity": 144,
+          "pixelRatio": 2,
+          "width": 512
+        }
+      },
+      "icns32": {
+        "path": "macos.icns",
+        "size": {
+          "height": 32,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 32
+        }
+      },
+      "icns32@2x": {
+        "path": "macos.icns",
+        "size": {
+          "height": 64,
+          "pixelDensity": 144,
+          "pixelRatio": 2,
+          "width": 64
+        }
+      },
+      "icns512": {
+        "path": "macos.icns",
+        "size": {
+          "height": 512,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 512
+        }
+      },
+      "icns512@2x": {
+        "path": "macos.icns",
+        "size": {
+          "height": 1024,
+          "pixelDensity": 144,
+          "pixelRatio": 2,
+          "width": 1024
+        }
+      },
+      "icns64": {
+        "path": "macos.icns",
+        "size": {
+          "height": 64,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 64
+        }
+      }
     },
     "maskableIcon": {
       "maskableIconHires": {
@@ -77,11 +300,128 @@
         }
       }
     },
+    "openGraphImage": {
+      "openGraphImage": {
+        "path": "open-graph.png",
+        "size": {
+          "height": 630,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 1200
+        }
+      }
+    },
+    "safariMaskIcon": {
+      "path": "safari-mask-icon.svg"
+    },
     "serviceWorker": {
       "path": "service-worker.js"
     },
+    "twitterCardImage": {
+      "twitterCardImage": {
+        "path": "twitter-card.png",
+        "size": {
+          "height": 600,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 1200
+        }
+      }
+    },
     "webAppManifest": {
       "path": "manifest.json"
+    },
+    "windowsIco": {
+      "windowsIco128": {
+        "path": "windows.ico",
+        "size": {
+          "height": 128,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 128
+        }
+      },
+      "windowsIco16": {
+        "path": "windows.ico",
+        "size": {
+          "height": 16,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 16
+        }
+      },
+      "windowsIco22": {
+        "path": "windows.ico",
+        "size": {
+          "height": 22,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 22
+        }
+      },
+      "windowsIco24": {
+        "path": "windows.ico",
+        "size": {
+          "height": 24,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 24
+        }
+      },
+      "windowsIco256": {
+        "path": "windows.ico",
+        "size": {
+          "height": 256,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 256
+        }
+      },
+      "windowsIco32": {
+        "path": "windows.ico",
+        "size": {
+          "height": 32,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 32
+        }
+      },
+      "windowsIco40": {
+        "path": "windows.ico",
+        "size": {
+          "height": 40,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 40
+        }
+      },
+      "windowsIco48": {
+        "path": "windows.ico",
+        "size": {
+          "height": 48,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 48
+        }
+      },
+      "windowsIco64": {
+        "path": "windows.ico",
+        "size": {
+          "height": 64,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 64
+        }
+      },
+      "windowsIco96": {
+        "path": "windows.ico",
+        "size": {
+          "height": 96,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 96
+        }
+      }
     },
     "windowsTile": {
       "windowsTileLarge": {
