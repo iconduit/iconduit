@@ -3,6 +3,7 @@ module.exports = {
     outputs: [
       'iconduit-manifest',
     ],
+    tags: [],
   },
   browser: {
     all: {
@@ -14,6 +15,7 @@ module.exports = {
         'service-worker',
         'web-app-manifest',
       ],
+      tags: [],
     },
     edge: {
       outputs: [
@@ -21,6 +23,7 @@ module.exports = {
         'windows-tile',
         'windows-tile-small',
       ],
+      tags: [],
     },
     ie: {
       outputs: [
@@ -28,15 +31,22 @@ module.exports = {
         'windows-tile',
         'windows-tile-small',
       ],
+      tags: [],
     },
     ios_saf: {
       outputs: [
         'safari-mask-icon',
       ],
+      tags: [
+        'apple-mobile',
+      ],
     },
     safari: {
       outputs: [
         'safari-mask-icon',
+      ],
+      tags: [
+        'apple-mobile',
       ],
     },
   },
@@ -45,6 +55,7 @@ module.exports = {
       outputs: [
         'dmg-background',
       ],
+      tags: [],
     },
   },
   os: {
@@ -53,16 +64,19 @@ module.exports = {
         'apple-touch-icon',
         'apple-touch-startup',
       ],
+      tags: [],
     },
     macos: {
       outputs: [
         'macos-icns',
       ],
+      tags: [],
     },
     windows: {
       outputs: [
         'windows-ico',
       ],
+      tags: [],
     },
   },
   web: {
@@ -71,16 +85,19 @@ module.exports = {
         'facebook-app-icon',
         'open-graph-image',
       ],
+      tags: [],
     },
     reddit: {
       outputs: [
         'open-graph-image',
       ],
+      tags: [],
     },
     twitter: {
       outputs: [
         'twitter-card-image',
       ],
+      tags: [],
     },
   },
 }
