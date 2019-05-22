@@ -277,7 +277,7 @@ function normalizeDefinitions (definitions) {
     output: userOutputDefinitions = {},
     size: userSizeDefinitions = {},
     style: userStyleDefinitions = {},
-    tag: userTagDefinitions = [],
+    tag: userTagDefinitions = {},
     target: userTargetDefinitions = {},
   } = definitions
 
@@ -517,12 +517,12 @@ function normalizeSizeDefinitions (device, display, size) {
 }
 
 function normalizeTagDefinitions (tag) {
-  assertArray(tag, 'definitions.tag')
+  assertObject(tag, 'definitions.tag')
 
-  const normalized = [...standardTagDefinitions]
+  const normalized = {...standardTagDefinitions}
 
-  for (let index = 0; index < tag.length; ++index) {
-    normalized.push(normalizeTagDefinition(tag[index], `definitions.tag[${index}]`))
+  for (const name in tag) {
+    normalized[name] = normalizeTagDefinition(tag[name], `definitions.tag.${name}`)
   }
 
   return normalized
@@ -531,31 +531,14 @@ function normalizeTagDefinitions (tag) {
 function normalizeTagDefinition (definition, setting) {
   assertObject(definition, setting)
 
-  const {
-    name,
-    section,
-  } = definition
-
-  assertNonEmptyString(name, `${setting}.name`)
-  const namedSetting = `${setting}(${name})`
-
-  return {
-    name,
-    section: normalizeTagDefinitionSection(section, `${namedSetting}.section`),
-  }
-}
-
-function normalizeTagDefinitionSection (section, setting) {
-  assertObject(section, setting)
-
   const normalized = {}
 
-  for (const sectionName in section) {
-    const sectionSetting = `${setting}.${sectionName}`
+  for (const section in definition) {
+    const sectionSetting = `${setting}.${section}`
 
-    assertNonEmptyString(sectionName, sectionSetting)
+    assertNonEmptyString(section, sectionSetting)
 
-    normalized[sectionName] = normalizeTags(section[sectionName], sectionSetting)
+    normalized[section] = normalizeTags(definition[section], sectionSetting)
   }
 
   return normalized
@@ -583,16 +566,36 @@ function normalizeTag (definition, setting) {
     tag,
   } = definition
 
-  assertObjectOfNonEmptyStrings(attributes, `${setting}.attributes`)
   assertBoolean(isVoid, `${setting}.isVoid`)
   assertNonEmptyString(tag, `${setting}.tag`)
 
   return {
-    attributes,
+    attributes: normalizeTagAttributes(attributes, `${setting}.attributes`),
     children: normalizeTags(children, `${setting}.children`),
     isVoid,
     tag,
   }
+}
+
+function normalizeTagAttributes (attributes, setting) {
+  assertObject(attributes, setting)
+
+  const normalized = {}
+
+  for (const name in attributes) {
+    const value = attributes[name]
+    const attributeSetting = `${setting}.${name}`
+
+    if (typeof value === 'string') {
+      assertNonEmptyString(value, attributeSetting)
+    } else {
+      assertReference(value, attributeSetting)
+    }
+
+    normalized[name] = value
+  }
+
+  return normalized
 }
 
 function normalizeTargetDefinitions (target) {
@@ -758,4 +761,9 @@ function assertObjectOfNonEmptyStrings (value, setting) {
   for (const key in value) {
     if (typeof value[key] !== 'string') throw new Error(`Invalid value for ${setting}.${key}`)
   }
+}
+
+function assertReference (value, setting) {
+  assertObject(value, setting)
+  assertNonEmptyString(value.$ref, setting)
 }
