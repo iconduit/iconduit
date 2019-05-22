@@ -77,6 +77,49 @@
     },
     "web-app-manifest": {
       "path": "manifest.json"
+    },
+    "browserconfig-xml": {
+      "path": "browserconfig.xml"
+    },
+    "windows-tile": {
+      "windows-tile-medium": {
+        "path": "windows-tile-150x150.png",
+        "size": {
+          "width": 150,
+          "height": 150,
+          "pixelDensity": 72,
+          "pixelRatio": 1
+        }
+      },
+      "windows-tile-large": {
+        "path": "windows-tile-310x310.png",
+        "size": {
+          "width": 310,
+          "height": 310,
+          "pixelDensity": 72,
+          "pixelRatio": 1
+        }
+      },
+      "windows-tile-wide": {
+        "path": "windows-tile-310x150.png",
+        "size": {
+          "width": 310,
+          "height": 150,
+          "pixelDensity": 72,
+          "pixelRatio": 1
+        }
+      }
+    },
+    "windows-tile-small": {
+      "windows-tile-small": {
+        "path": "windows-tile-70x70.png",
+        "size": {
+          "width": 70,
+          "height": 70,
+          "pixelDensity": 72,
+          "pixelRatio": 1
+        }
+      }
     }
   }
 }

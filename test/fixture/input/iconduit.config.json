@@ -55,7 +55,6 @@
     "exclude": [
       "apple-touch-icon",
       "apple-touch-startup",
-      "browserconfig-xml",
       "dmg-background",
       "facebook-app-icon",
       "favicon-ico",
@@ -65,9 +64,7 @@
       "open-graph-image",
       "safari-mask-icon",
       "twitter-card-image",
-      "windows-ico",
-      "windows-tile",
-      "windows-tile-small"
+      "windows-ico"
     ]
   },
   "applications": {

@@ -37,7 +37,7 @@ module.exports = {
     options: {},
   },
   'browserconfig-xml': {
-    input: 'browserconfig-xml',
+    input: 'browserconfig',
     name: 'browserconfig.xml',
     sizes: [],
     options: {},

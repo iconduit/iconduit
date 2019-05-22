@@ -80,6 +80,7 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, read
 
         case '.js':
         case '.json':
+        case '.xml':
           return buildOutputFile(inputName, outputName, outputSizes)
       }
 
