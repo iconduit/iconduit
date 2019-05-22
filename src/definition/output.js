@@ -73,7 +73,7 @@ module.exports = {
     options: {},
   },
   'index-html': {
-    input: 'index-html',
+    input: 'index',
     name: 'index.html',
     sizes: [],
     options: {},

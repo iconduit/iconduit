@@ -78,6 +78,7 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, read
         case '.svg':
           return buildOutputSvg(inputName, outputName, outputSizes)
 
+        case '.html':
         case '.js':
         case '.json':
         case '.xml':

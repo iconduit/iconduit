@@ -54,6 +54,9 @@
     "iconduit-manifest": {
       "path": "iconduit.manifest.json"
     },
+    "index-html": {
+      "path": "index.html"
+    },
     "maskable-icon": {
       "maskable-icon-hires": {
         "path": "maskable-icon-512x512.png",
