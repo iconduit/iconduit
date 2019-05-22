@@ -1,6 +1,9 @@
 {
   "name": "Iconduit",
   "display": "standalone",
+  "serviceworker": {
+    "src": "service-worker.js"
+  },
   "theme_color": "#D58B41",
   "related_applications": [
     {

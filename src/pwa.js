@@ -53,9 +53,15 @@ function buildWebAppManifestIcons (manifest) {
 }
 
 function buildWebAppManifestServiceWorker (manifest) {
-  const serviceWorker = null
+  const {output: {'service-worker': output}} = manifest
 
-  return serviceWorker
+  if (!output) return null
+
+  const {path} = output
+
+  return {
+    src: path,
+  }
 }
 
 function buildWebAppManifestRelatedApplications (manifest) {
