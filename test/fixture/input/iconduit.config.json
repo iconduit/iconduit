@@ -41,7 +41,7 @@
   },
   "colors": {
     "background": "iconduitpink",
-    "foreground": "iconduitorange"
+    "theme": "iconduitorange"
   },
   "inputs": {
     "icon": "./icon/icon.png",
@@ -71,29 +71,26 @@
       "windows-tile-small"
     ]
   },
-  "applications": [
-    {
-      "platform": "facebook",
-      "type": "web",
-      "id": "123456789012345"
-    },
-    {
-      "platform": "itunes",
-      "type": "native",
-      "id": "915056765",
-      "url": "https://itunes.apple.com/app/id915056765"
-    },
-    {
-      "platform": "play",
-      "type": "native",
-      "id": "com.google.android.apps.maps",
-      "url": "https://play.google.com/store/apps/details?id=com.google.android.apps.maps"
-    },
-    {
-      "platform": "windows",
-      "type": "native",
-      "id": "9wzdncrdtbvb",
-      "url": "https://microsoft.com/p/app/9wzdncrdtbvb"
-    }
-  ]
+  "applications": {
+    "native": [
+      {
+        "platform": "itunes",
+        "id": "915056765"
+      },
+      {
+        "platform": "play",
+        "id": "com.google.android.apps.maps"
+      },
+      {
+        "platform": "windows",
+        "id": "9wzdncrdtbvb"
+      }
+    ],
+    "web": [
+      {
+        "platform": "facebook",
+        "id": "123456789012345"
+      }
+    ]
+  }
 }

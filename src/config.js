@@ -36,6 +36,7 @@ function normalize (config) {
   assertObject(config, 'config')
 
   const {
+    applications = {},
     categories = [],
     colors = {},
     definitions = {},
@@ -55,7 +56,6 @@ function normalize (config) {
     textDirection = 'auto',
   } = config
 
-  assertArrayOfNonEmptyStrings(categories, 'categories')
   assertOptionalNonEmptyString(description, 'description')
   assertNonEmptyString(displayMode, 'displayMode')
   assertOptionalNonEmptyString(iarcRatingId, 'iarcRatingId')
@@ -69,6 +69,7 @@ function normalize (config) {
   assertNonEmptyString(textDirection, 'textDirection')
 
   return {
+    applications: normalizeApplications(applications),
     categories: normalizeCategories(categories),
     colors: normalizeColors(colors),
     definitions: normalizeDefinitions(definitions),
@@ -104,7 +105,132 @@ function resolveColors (config) {
   return resolved
 }
 
+function normalizeApplications (applications) {
+  assertObject(applications, 'applications')
+
+  const {
+    native = {},
+    web = {},
+  } = applications
+
+  return {
+    native: normalizeNativeApplications(native),
+    web: normalizeWebApplications(web),
+  }
+}
+
+function normalizeNativeApplications (native) {
+  assertArray(native, 'applications.native')
+
+  const normalized = []
+
+  for (let index = 0; index < native.length; ++index) {
+    const application = native[index]
+    const applicationSetting = `applications.native[${index}]`
+
+    assertObject(application, applicationSetting)
+
+    const {
+      fingerprints = [],
+      id,
+      minVersion = null,
+      platform,
+      url,
+    } = application
+
+    const hasId = typeof id !== 'undefined'
+    const hasUrl = typeof url !== 'undefined'
+
+    if (hasId) assertNonEmptyString(id, `${applicationSetting}.id`)
+    if (hasUrl) assertNonEmptyString(url, `${applicationSetting}.url`)
+    if (!hasId && !hasUrl) throw new Error(`Invalid value for ${applicationSetting}`)
+
+    assertOptionalNonEmptyString(minVersion, `${applicationSetting}.minVersion`)
+    assertNonEmptyString(platform, `${applicationSetting}.platform`)
+
+    normalized[index] = {
+      fingerprints: normalizeNativeApplicationFingerprints(fingerprints, `${applicationSetting}.fingerprints`),
+      id,
+      minVersion,
+      platform,
+      url: buildNativeApplicationUrl(url, platform, id),
+    }
+  }
+
+  return normalized
+}
+
+function normalizeNativeApplicationFingerprints (fingerprints, setting) {
+  assertArray(fingerprints, setting)
+
+  const normalized = []
+
+  for (let index = 0; index < fingerprints.length; ++index) {
+    const fingerprint = fingerprints[index]
+    const fingerprintSetting = `${setting}[${index}]`
+
+    assertObject(fingerprint, fingerprintSetting)
+
+    const {
+      type,
+      value,
+    } = fingerprint
+
+    assertNonEmptyString(type, `${fingerprintSetting}.type`)
+    assertNonEmptyString(value, `${fingerprintSetting}.value`)
+
+    normalized[index] = {
+      type,
+      value,
+    }
+  }
+
+  return normalized
+}
+
+function buildNativeApplicationUrl (url, platform, id) {
+  if (url) return url
+
+  switch (platform) {
+    case 'itunes': return `https://itunes.apple.com/app/id${encodeURIComponent(id)}`
+    case 'play': return `https://play.google.com/store/apps/details?id=${encodeURIComponent(id)}`
+    case 'windows': return `https://microsoft.com/p/app/${encodeURIComponent(id)}`
+  }
+
+  return null
+}
+
+function normalizeWebApplications (web) {
+  assertArray(web, 'applications.web')
+
+  const normalized = []
+
+  for (let index = 0; index < web.length; ++index) {
+    const application = web[index]
+    const applicationSetting = `applications.web[${index}]`
+
+    assertObject(application, applicationSetting)
+
+    const {
+      id,
+      platform,
+    } = application
+
+    assertNonEmptyString(id, `${applicationSetting}.id`)
+    assertNonEmptyString(platform, `${applicationSetting}.platform`)
+
+    normalized[index] = {
+      id,
+      platform,
+    }
+  }
+
+  return normalized
+}
+
 function normalizeCategories (categories) {
+  assertArrayOfNonEmptyStrings(categories, 'categories')
+
   return Array
     .from(
       new Set(
@@ -117,13 +243,12 @@ function normalizeCategories (categories) {
 function normalizeColors (colors) {
   assertObject(colors, 'colors')
 
-  const {background, foreground} = colors
+  const {background} = colors
 
   assertNonEmptyString(background, 'colors.background')
-  assertNonEmptyString(foreground, 'colors.foreground')
 
   const {
-    mask = foreground,
+    mask = background,
     theme = background,
     tile = background,
   } = colors
@@ -134,7 +259,6 @@ function normalizeColors (colors) {
 
   return {
     background,
-    foreground,
     mask,
     theme,
     tile,
@@ -214,29 +338,29 @@ function normalizeInputDefinitionOptions (strategy, options, inputSetting) {
   throw new Error(`Invalid value for ${inputSetting}.strategy`)
 }
 
-function normalizeCompositeInputDefinitionOptions (options, optionsSetting) {
+function normalizeCompositeInputDefinitionOptions (options, setting) {
   const {
     backgroundColor = 'transparent',
     layers,
     mask = null,
   } = options
 
-  assertOptionalNonEmptyString(mask, `${optionsSetting}.mask`)
+  assertOptionalNonEmptyString(mask, `${setting}.mask`)
 
   return {
     backgroundColor,
-    layers: normalizeCompositeInputDefinitionLayers(layers, `${optionsSetting}.layers`),
+    layers: normalizeCompositeInputDefinitionLayers(layers, `${setting}.layers`),
     mask,
   }
 }
 
-function normalizeCompositeInputDefinitionLayers (layers, layersSetting) {
-  assertNonEmptyArray(layers, layersSetting)
+function normalizeCompositeInputDefinitionLayers (layers, setting) {
+  assertNonEmptyArray(layers, setting)
 
   const normalized = []
 
   for (let index = 0; index < layers.length; ++index) {
-    const layerSetting = `${layersSetting}[${index}]`
+    const layerSetting = `${setting}[${index}]`
 
     const {
       input,
@@ -258,12 +382,12 @@ function normalizeCompositeInputDefinitionLayers (layers, layersSetting) {
   return normalized
 }
 
-function normalizeDegradeInputDefinitionOptions (options, optionsSetting) {
+function normalizeDegradeInputDefinitionOptions (options, setting) {
   const {
     to,
   } = options
 
-  assertNonEmptyString(to, `${optionsSetting}.to`)
+  assertNonEmptyString(to, `${setting}.to`)
 
   return {
     to,
@@ -295,7 +419,7 @@ function normalizeOutputDefinitions (output) {
     normalized[outputName] = {
       input,
       name,
-      options: normalizeOutputDefinitionOptions(options, outputSetting),
+      options: normalizeOutputDefinitionOptions(options, `${outputSetting}.options`),
       sizes,
     }
   }
@@ -303,16 +427,14 @@ function normalizeOutputDefinitions (output) {
   return normalized
 }
 
-function normalizeOutputDefinitionOptions (options, outputSetting) {
-  const optionsSetting = `${outputSetting}.options`
-
-  assertObject(options, optionsSetting)
+function normalizeOutputDefinitionOptions (options, setting) {
+  assertObject(options, setting)
 
   const {
     variables = {},
   } = options
 
-  assertObject(variables, `${optionsSetting}.variables`)
+  assertObject(variables, `${setting}.variables`)
 
   return {
     variables,
@@ -457,6 +579,9 @@ function normalizeOutputs (outputs) {
     include = [],
     exclude = [],
   } = outputs
+
+  assertArrayOfNonEmptyStrings(include, 'outputs.include')
+  assertArrayOfNonEmptyStrings(exclude, 'outputs.exclude')
 
   return {
     include,
