@@ -47,5 +47,36 @@
     "mask": "#D5415C",
     "theme": "#D58B41",
     "tile": "#D5415C"
+  },
+  "output": {
+    "iconduit-manifest": {
+      "path": "iconduit.manifest.json"
+    },
+    "maskable-icon": {
+      "maskable-icon-hires": {
+        "path": "maskable-icon-512x512.png",
+        "size": {
+          "width": 512,
+          "height": 512,
+          "pixelDensity": 72,
+          "pixelRatio": 1
+        }
+      },
+      "maskable-icon-lores": {
+        "path": "maskable-icon-192x192.png",
+        "size": {
+          "width": 192,
+          "height": 192,
+          "pixelDensity": 72,
+          "pixelRatio": 1
+        }
+      }
+    },
+    "service-worker": {
+      "path": "service-worker.js"
+    },
+    "web-app-manifest": {
+      "path": "manifest.json"
+    }
   }
 }

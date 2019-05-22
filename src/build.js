@@ -2,7 +2,7 @@ const fileUrl = require('file-url')
 const toIco = require('to-ico')
 const {dirname, extname, join, relative} = require('path')
 
-const {buildFileNameSizeMap, resolveSizesForOutputs} = require('./size.js')
+const {buildFileName, buildFileNameSizeMap, resolveSize, resolveSizesForOutputs} = require('./size.js')
 const {outputNames, selectOutputs, targetNames} = require('./target.js')
 const {resolveColors} = require('./config.js')
 const {toIcns} = require('./icns.js')
@@ -31,7 +31,7 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, read
 
     const outputs = selectOutputs(config)
     const sizesByOutput = resolveSizesForOutputs(config, outputs)
-    const manifest = buildManifest(config)
+    const manifest = buildManifest(config, outputs)
 
     const buildInput = createInputBuilder(config, options)
 
@@ -143,21 +143,44 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, read
 }
 
 function buildManifest (config) {
-  const {
-    colors,
-    definitions,
-    inputs,
-    outputs,
-    targets,
-
-    ...rest
-  } = config
+  const meta = {...config}
+  delete meta.colors
+  delete meta.definitions
+  delete meta.inputs
+  delete meta.outputs
+  delete meta.targets
 
   return {
-    ...rest,
+    ...meta,
 
     color: resolveColors(config),
+    output: buildManifestOutput(config),
   }
+}
+
+function buildManifestOutput (config) {
+  const {definitions: {size: sizeDefinitions}} = config
+  const outputs = selectOutputs(config)
+  const output = {}
+
+  for (const outputName in outputs) {
+    const {name: template, sizes} = outputs[outputName]
+
+    if (sizes.length > 0) {
+      output[outputName] = {}
+
+      for (const selector of sizes) {
+        const size = resolveSize(sizeDefinitions, selector)
+        const path = buildFileName(template, size)
+
+        output[outputName][selector] = {path, size}
+      }
+    } else {
+      output[outputName] = {path: template}
+    }
+  }
+
+  return output
 }
 
 function assertFirstSize (outputSizes, outputName) {
