@@ -19,33 +19,29 @@ function buildWebAppManifest (manifest) {
   } = manifest
 
   const webManifest = {}
-  const add = (property, value) => { webManifest[property] = value }
-  const addNonDefault = (property, value, defaultValue) => { if (value !== defaultValue) webManifest[property] = value }
-  const addNonEmpty = (property, value) => { if (value.length > 0) webManifest[property] = value }
-  const addOptional = (property, value) => { if (value != null) webManifest[property] = value }
 
-  addNonDefault('dir', textDirection, 'auto')
-  addOptional('lang', language)
-  add('name', name)
-  addOptional('short_name', shortName)
-  addOptional('description', description)
-  addOptional('scope', scope)
-  addNonEmpty('icons', buildWebAppManifestIcons(manifest))
-  add('display', displayMode)
-  addOptional('orientation', orientation)
-  addOptional('serviceworker', buildWebAppManifestServiceWorker(manifest))
-  add('theme_color', themeColor)
+  addNonDefault(webManifest, 'dir', textDirection, 'auto')
+  addOptional(webManifest, 'lang', language)
+  add(webManifest, 'name', name)
+  addOptional(webManifest, 'short_name', shortName)
+  addOptional(webManifest, 'description', description)
+  addOptional(webManifest, 'scope', scope)
+  addNonEmpty(webManifest, 'icons', buildWebAppManifestIcons(manifest))
+  add(webManifest, 'display', displayMode)
+  addOptional(webManifest, 'orientation', orientation)
+  addOptional(webManifest, 'serviceworker', buildWebAppManifestServiceWorker(manifest))
+  add(webManifest, 'theme_color', themeColor)
 
   const applications = buildWebAppManifestRelatedApplications(manifest)
 
   if (applications.length > 0) {
-    add('related_applications', applications)
-    addOptional('prefer_related_applications', preferRelatedApplications)
+    add(webManifest, 'related_applications', applications)
+    addOptional(webManifest, 'prefer_related_applications', preferRelatedApplications)
   }
 
-  add('background_color', backgroundColor)
-  addNonEmpty('categories', categories)
-  addOptional('iarc_rating_id', iarcRatingId)
+  add(webManifest, 'background_color', backgroundColor)
+  addNonEmpty(webManifest, 'categories', categories)
+  addOptional(webManifest, 'iarc_rating_id', iarcRatingId)
 
   return webManifest
 }
@@ -63,7 +59,41 @@ function buildWebAppManifestServiceWorker (manifest) {
 }
 
 function buildWebAppManifestRelatedApplications (manifest) {
-  const applications = []
+  const {applications: {native}} = manifest
 
-  return applications
+  return native.map(application => {
+    const {
+      fingerprints,
+      id,
+      minVersion,
+      platform,
+      url,
+    } = application
+
+    const relatedApplication = {}
+
+    addNonEmpty(relatedApplication, 'fingerprints', fingerprints)
+    addOptional(relatedApplication, 'id', id)
+    addOptional(relatedApplication, 'min_version', minVersion)
+    add(relatedApplication, 'platform', platform)
+    addOptional(relatedApplication, 'url', url)
+
+    return relatedApplication
+  })
+}
+
+function add (object, property, value) {
+  object[property] = value
+}
+
+function addNonDefault (object, property, value, defaultValue) {
+  if (value !== defaultValue) object[property] = value
+}
+
+function addNonEmpty (object, property, value) {
+  if (value.length > 0) object[property] = value
+}
+
+function addOptional (object, property, value) {
+  if (value != null) object[property] = value
 }
