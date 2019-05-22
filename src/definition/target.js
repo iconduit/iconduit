@@ -1,59 +1,59 @@
 module.exports = {
   all: {
     outputs: [
-      'iconduit-manifest',
+      'iconduitManifest',
     ],
     tags: [],
   },
   browser: {
     all: {
       outputs: [
-        'favicon-ico',
-        'favicon-png',
-        'index-html',
-        'maskable-icon',
-        'service-worker',
-        'web-app-manifest',
+        'faviconIco',
+        'faviconPng',
+        'indexHtml',
+        'maskableIcon',
+        'serviceWorker',
+        'webAppManifest',
       ],
       tags: [],
     },
     edge: {
       outputs: [
-        'browserconfig-xml',
-        'windows-tile',
-        'windows-tile-small',
+        'browserconfigXml',
+        'windowsTile',
+        'windowsTileSmall',
       ],
       tags: [],
     },
     ie: {
       outputs: [
-        'browserconfig-xml',
-        'windows-tile',
-        'windows-tile-small',
+        'browserconfigXml',
+        'windowsTile',
+        'windowsTileSmall',
       ],
       tags: [],
     },
     ios_saf: {
       outputs: [
-        'safari-mask-icon',
+        'safariMaskIcon',
       ],
       tags: [
-        'apple-mobile',
+        'appleMobile',
       ],
     },
     safari: {
       outputs: [
-        'safari-mask-icon',
+        'safariMaskIcon',
       ],
       tags: [
-        'apple-mobile',
+        'appleMobile',
       ],
     },
   },
   installer: {
     dmg: {
       outputs: [
-        'dmg-background',
+        'dmgBackground',
       ],
       tags: [],
     },
@@ -61,20 +61,20 @@ module.exports = {
   os: {
     ios: {
       outputs: [
-        'apple-touch-icon',
-        'apple-touch-startup',
+        'appleTouchIcon',
+        'appleTouchStartup',
       ],
       tags: [],
     },
     macos: {
       outputs: [
-        'macos-icns',
+        'macosIcns',
       ],
       tags: [],
     },
     windows: {
       outputs: [
-        'windows-ico',
+        'windowsIco',
       ],
       tags: [],
     },
@@ -82,20 +82,20 @@ module.exports = {
   web: {
     facebook: {
       outputs: [
-        'facebook-app-icon',
-        'open-graph-image',
+        'facebookAppIcon',
+        'openGraphImage',
       ],
       tags: [],
     },
     reddit: {
       outputs: [
-        'open-graph-image',
+        'openGraphImage',
       ],
       tags: [],
     },
     twitter: {
       outputs: [
-        'twitter-card-image',
+        'twitterCardImage',
       ],
       tags: [],
     },

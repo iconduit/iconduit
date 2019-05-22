@@ -1,172 +1,172 @@
 module.exports = {
-  'apple-touch-icon': {
+  appleTouchIcon: {
     strategy: 'composite',
     options: {
       backgroundColor: 'transparent',
       mask: null,
       layers: [
-        {input: 'icon', multiplier: 2, style: 'apple-touch-icon-scale'},
-        {input: 'icon-background', multiplier: 2, style: 'apple-touch-icon-scale'},
+        {input: 'icon', multiplier: 2, style: 'appleTouchIconScale'},
+        {input: 'iconBackground', multiplier: 2, style: 'appleTouchIconScale'},
       ],
     },
   },
-  'apple-touch-startup': {
+  appleTouchStartup: {
     strategy: 'composite',
     options: {
       backgroundColor: 'white',
       mask: null,
       layers: [
-        {input: 'icon-silhouette', multiplier: 1, style: 'opacity-10-percent'},
-        {input: 'background-color', multiplier: 1, style: null},
+        {input: 'iconSilhouette', multiplier: 1, style: 'opacity10Percent'},
+        {input: 'backgroundColor', multiplier: 1, style: null},
       ],
     },
   },
-  'facebook-app-icon': {
+  facebookAppIcon: {
     strategy: 'degrade',
     options: {
-      to: 'maskable-icon',
+      to: 'maskableIcon',
     },
   },
-  'masked-icon-minimal-padding': {
+  maskedIconMinimalPadding: {
     strategy: 'composite',
     options: {
       backgroundColor: 'transparent',
       mask: null,
       layers: [
-        {input: 'masked-icon', multiplier: 2, style: 'masked-icon-minimal-padding-scale'},
+        {input: 'maskedIcon', multiplier: 2, style: 'maskedIconMinimalPaddingScale'},
       ],
     },
   },
-  'icon-background': {
+  iconBackground: {
     strategy: 'degrade',
     options: {
-      to: 'background-color',
+      to: 'backgroundColor',
     },
   },
-  'icon-bleed': {
+  iconBleed: {
     strategy: 'degrade',
     options: {
       to: 'transparent',
     },
   },
-  'icon-foreground': {
+  iconForeground: {
     strategy: 'composite',
     options: {
       backgroundColor: 'transparent',
       mask: null,
       layers: [
         {input: 'icon', multiplier: 1, style: null},
-        {input: 'icon-bleed', multiplier: 1, style: null},
+        {input: 'iconBleed', multiplier: 1, style: null},
       ],
     },
   },
-  'icon-mask': {
+  iconMask: {
     strategy: 'degrade',
     options: {
-      to: 'icon-mask-android-circle',
+      to: 'iconMaskAndroidCircle',
     },
   },
-  'icon-silhouette': {
+  iconSilhouette: {
     strategy: 'degrade',
     options: {
       to: 'icon',
     },
   },
-  'macos-icon': {
+  macosIcon: {
     strategy: 'composite',
     options: {
       backgroundColor: 'transparent',
       mask: null,
       layers: [
-        {input: 'masked-icon-without-bleed', multiplier: 2, style: 'macos-icon-scale'},
+        {input: 'maskedIconWithoutBleed', multiplier: 2, style: 'macosIconScale'},
       ],
     },
   },
-  'maskable-icon': {
+  maskableIcon: {
     strategy: 'composite',
     options: {
       backgroundColor: 'transparent',
       mask: null,
       layers: [
-        {input: 'icon-foreground', multiplier: 1, style: null},
-        {input: 'icon-background', multiplier: 1, style: null},
+        {input: 'iconForeground', multiplier: 1, style: null},
+        {input: 'iconBackground', multiplier: 1, style: null},
       ],
     },
   },
-  'masked-icon': {
+  maskedIcon: {
     strategy: 'composite',
     options: {
       backgroundColor: 'transparent',
-      mask: 'icon-mask',
+      mask: 'iconMask',
       layers: [
-        {input: 'icon-foreground', multiplier: 1, style: null},
-        {input: 'icon-background', multiplier: 1, style: null},
+        {input: 'iconForeground', multiplier: 1, style: null},
+        {input: 'iconBackground', multiplier: 1, style: null},
       ],
     },
   },
-  'masked-icon-without-bleed': {
+  maskedIconWithoutBleed: {
     strategy: 'composite',
     options: {
       backgroundColor: 'transparent',
-      mask: 'icon-mask',
+      mask: 'iconMask',
       layers: [
         {input: 'icon', multiplier: 1, style: null},
-        {input: 'icon-background', multiplier: 1, style: null},
+        {input: 'iconBackground', multiplier: 1, style: null},
       ],
     },
   },
-  'open-graph-image': {
+  openGraphImage: {
     strategy: 'degrade',
     options: {
-      to: 'social-share-image',
+      to: 'socialShareImage',
     },
   },
-  'safari-mask-icon': {
+  safariMaskIcon: {
     strategy: 'degrade',
     options: {
-      to: 'icon-silhouette',
+      to: 'iconSilhouette',
     },
   },
-  'social-share-image': {
+  socialShareImage: {
     strategy: 'composite',
     options: {
       backgroundColor: 'transparent',
       mask: null,
       layers: [
-        {input: 'icon-silhouette', multiplier: 1, style: null},
-        {input: 'background-color', multiplier: 1, style: null},
+        {input: 'iconSilhouette', multiplier: 1, style: null},
+        {input: 'backgroundColor', multiplier: 1, style: null},
       ],
     },
   },
-  'twitter-card-image': {
+  twitterCardImage: {
     strategy: 'degrade',
     options: {
-      to: 'social-share-image',
+      to: 'socialShareImage',
     },
   },
-  'windows-tile': {
+  windowsTile: {
     strategy: 'composite',
     options: {
       backgroundColor: 'transparent',
       mask: null,
       layers: [
-        {input: 'windows-tile-icon', multiplier: 1, style: 'windows-tile-icon-position'},
+        {input: 'windowsTileIcon', multiplier: 1, style: 'windowsTileIconPosition'},
       ],
     },
   },
-  'windows-tile-icon': {
+  windowsTileIcon: {
     strategy: 'degrade',
     options: {
-      to: 'icon-silhouette',
+      to: 'iconSilhouette',
     },
   },
-  'windows-tile-small': {
+  windowsTileSmall: {
     strategy: 'composite',
     options: {
       backgroundColor: 'transparent',
       mask: null,
       layers: [
-        {input: 'windows-tile-icon', multiplier: 1, style: 'windows-tile-icon-position-small'},
+        {input: 'windowsTileIcon', multiplier: 1, style: 'windowsTileIconPositionSmall'},
       ],
     },
   },

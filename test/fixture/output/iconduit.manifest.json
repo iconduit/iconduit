@@ -48,17 +48,17 @@
   "name": "Iconduit",
   "orientation": null,
   "output": {
-    "browserconfig-xml": {
+    "browserconfigXml": {
       "path": "browserconfig.xml"
     },
-    "iconduit-manifest": {
+    "iconduitManifest": {
       "path": "iconduit.manifest.json"
     },
-    "index-html": {
+    "indexHtml": {
       "path": "index.html"
     },
-    "maskable-icon": {
-      "maskable-icon-hires": {
+    "maskableIcon": {
+      "maskableIconHires": {
         "path": "maskable-icon-512x512.png",
         "size": {
           "height": 512,
@@ -67,7 +67,7 @@
           "width": 512
         }
       },
-      "maskable-icon-lores": {
+      "maskableIconLores": {
         "path": "maskable-icon-192x192.png",
         "size": {
           "height": 192,
@@ -77,14 +77,14 @@
         }
       }
     },
-    "service-worker": {
+    "serviceWorker": {
       "path": "service-worker.js"
     },
-    "web-app-manifest": {
+    "webAppManifest": {
       "path": "manifest.json"
     },
-    "windows-tile": {
-      "windows-tile-large": {
+    "windowsTile": {
+      "windowsTileLarge": {
         "path": "windows-tile-310x310.png",
         "size": {
           "height": 310,
@@ -93,7 +93,7 @@
           "width": 310
         }
       },
-      "windows-tile-medium": {
+      "windowsTileMedium": {
         "path": "windows-tile-150x150.png",
         "size": {
           "height": 150,
@@ -102,7 +102,7 @@
           "width": 150
         }
       },
-      "windows-tile-wide": {
+      "windowsTileWide": {
         "path": "windows-tile-310x150.png",
         "size": {
           "height": 150,
@@ -112,8 +112,8 @@
         }
       }
     },
-    "windows-tile-small": {
-      "windows-tile-small": {
+    "windowsTileSmall": {
+      "windowsTileSmall": {
         "path": "windows-tile-70x70.png",
         "size": {
           "height": 70,

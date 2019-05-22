@@ -1,6 +1,6 @@
 module.exports = [
   {
-    name: 'apple-mobile',
+    name: 'appleMobile',
     section: {
       head: [
         {
@@ -25,7 +25,7 @@ module.exports = [
     },
   },
   {
-    name: 'apple-touch-icon',
+    name: 'appleTouchIcon',
     section: {
       head: [
         {

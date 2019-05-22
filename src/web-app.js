@@ -51,7 +51,7 @@ function buildWebAppManifest (manifest) {
 }
 
 function buildWebAppManifestIcons (manifest) {
-  const {output: {'maskable-icon': output}} = manifest
+  const {output: {maskableIcon: output}} = manifest
 
   if (!output) return []
 
@@ -96,7 +96,7 @@ function mimeTypeByPath (path) {
 }
 
 function buildWebAppManifestServiceWorker (manifest) {
-  const {output: {'service-worker': output}} = manifest
+  const {output: {serviceWorker: output}} = manifest
 
   if (!output) return null
 

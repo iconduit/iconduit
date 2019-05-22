@@ -6,36 +6,28 @@
       "iconduitpink": "#D5415C"
     },
     "input": {
-      "apple-touch-icon-masked": {
+      "appleTouchIconMasked": {
         "strategy": "composite",
         "options": {
-          "mask": "icon-mask-ios-squircle",
+          "mask": "iconMaskIosSquircle",
           "layers": [
-            {"input": "icon", "multiplier": 2, "style": "apple-touch-icon-scale"},
-            {"input": "icon-background", "multiplier": 2, "style": "apple-touch-icon-scale"}
+            {"input": "icon", "multiplier": 2, "style": "appleTouchIconScale"},
+            {"input": "iconBackground", "multiplier": 2, "style": "appleTouchIconScale"}
           ]
         }
       },
-      "icon-mask": {
+      "iconMask": {
         "strategy": "degrade",
         "options": {
-          "to": "icon-mask-android-squircle"
+          "to": "iconMaskAndroidSquircle"
         }
       }
     },
     "output": {
-      "apple-touch-icon-masked": {
-        "input": "apple-touch-icon-masked",
+      "appleTouchIconMasked": {
+        "input": "appleTouchIconMasked",
         "name": "apple-touch-icon-masked-[dimensions].png",
-        "sizes": ["apple-touch-icon-retina"]
-      },
-      "apple-touch-startup": {
-        "input": "apple-touch-startup",
-        "name": "apple-touch-startup-[dimensions]r[pixelRatio].png",
-        "sizes": [
-          "device.iphone-5.landscape",
-          "device.iphone-5.portrait"
-        ]
+        "sizes": ["appleTouchIconRetina"]
       }
     }
   },
@@ -45,25 +37,15 @@
   },
   "inputs": {
     "icon": "./icon/icon.png",
-    "icon-background": "./icon/background.svg",
-    "icon-bleed": "./icon/bleed.svg",
-    "icon-silhouette": "./icon/silhouette.svg"
+    "iconBackground": "./icon/background.svg",
+    "iconBleed": "./icon/bleed.svg",
+    "iconSilhouette": "./icon/silhouette.svg"
   },
   "outputs": {
     "include": [
+      "appleTouchIconMasked"
     ],
     "exclude": [
-      "apple-touch-icon",
-      "apple-touch-startup",
-      "dmg-background",
-      "facebook-app-icon",
-      "favicon-ico",
-      "favicon-png",
-      "macos-icns",
-      "open-graph-image",
-      "safari-mask-icon",
-      "twitter-card-image",
-      "windows-ico"
     ]
   },
   "applications": {
