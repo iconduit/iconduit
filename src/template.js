@@ -1,5 +1,5 @@
-const createTemplate = require('lodash.template')
 const stringify = require('json-stable-stringify')
+const {compile} = require('ejs')
 const {join, resolve} = require('path')
 
 module.exports = {
@@ -23,10 +23,10 @@ function createTemplateReader (fileSystem, cwd) {
     const fullPath = resolve(cwd(), path)
 
     if (!templates[fullPath]) {
-      templates[fullPath] = createTemplate(
-        await readFile(fullPath),
-        {imports: {json}}
-      )
+      const content = await readFile(fullPath)
+      const template = compile(content.toString())
+
+      templates[fullPath] = variables => template({json, ...variables})
     }
 
     return templates[fullPath]

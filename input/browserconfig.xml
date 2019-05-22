@@ -18,11 +18,11 @@ const {
 <browserconfig>
   <msapplication>
     <tile>
-      <TileColor><%- color.tile %></TileColor><% if (small) { %>
-      <square70x70logo src="<%- small %>" /><% } %><% if (medium) { %>
-      <square150x150logo src="<%- medium %>" /><% } %><% if (large) { %>
-      <square310x310logo src="<%- large %>" /><% } %><% if (wide) { %>
-      <wide310x150logo src="<%- wide %>" /><% } %>
+      <TileColor><%= color.tile %></TileColor><% if (small) { %>
+      <square70x70logo src="<%= small %>" /><% } %><% if (medium) { %>
+      <square150x150logo src="<%= medium %>" /><% } %><% if (large) { %>
+      <square310x310logo src="<%= large %>" /><% } %><% if (wide) { %>
+      <wide310x150logo src="<%= wide %>" /><% } %>
     </tile>
   </msapplication>
 </browserconfig>

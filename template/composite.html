@@ -13,7 +13,7 @@
       display: grid;
       grid-template-areas: "layer";
 
-      <% if (maskUrl) { %>-webkit-mask-image: url(<%= maskUrl %>);<% } %>
+      <% if (maskUrl) { %>-webkit-mask-image: url(<%- maskUrl %>);<% } %>
     }
 
     .layer {
@@ -38,11 +38,11 @@
 <body>
   <div class="viewport">
     <% for (let index = layers.length - 1; index >= 0; --index) { %>
-      <div class="layer layer-<%- index %>"><img src="<%- layers[index].url %>" /></div>
+      <div class="layer layer-<%= index %>"><img src="<%= layers[index].url %>" /></div>
       <script>
         ready(() => {
-          const style = <%= json(layers[index].styleDefinition, 0) %>
-          const layer = document.querySelector(<%= json(`.layer-${index}`, 0) %>)
+          const style = <%- json(layers[index].styleDefinition, 0) %>
+          const layer = document.querySelector(<%- json(`.layer-${index}`, 0) %>)
           Object.entries(style).forEach(([property, value]) => { layer.style[property] = value })
         })
       </script>
