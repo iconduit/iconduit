@@ -50,6 +50,7 @@
   "output": {
     "appleTouchIcon": {
       "retina": {
+        "htmlSizes": "180x180",
         "path": "apple-touch-icon-180x180.png",
         "size": {
           "height": 180,
@@ -61,6 +62,7 @@
     },
     "appleTouchIconMasked": {
       "retina": {
+        "htmlSizes": "180x180",
         "path": "apple-touch-icon-masked-180x180.png",
         "size": {
           "height": 180,
@@ -72,6 +74,7 @@
     },
     "appleTouchStartup": {
       "iphone5.landscape": {
+        "htmlSizes": "1136x640",
         "path": "apple-touch-startup-1136x640r2.png",
         "size": {
           "height": 640,
@@ -81,6 +84,7 @@
         }
       },
       "iphone5.portrait": {
+        "htmlSizes": "640x1136",
         "path": "apple-touch-startup-640x1136r2.png",
         "size": {
           "height": 1136,
@@ -95,6 +99,7 @@
     },
     "dmgBackground": {
       "primary": {
+        "htmlSizes": "512x288",
         "path": "dmg-background.png",
         "size": {
           "height": 288,
@@ -104,6 +109,7 @@
         }
       },
       "primary@2x": {
+        "htmlSizes": "1024x576",
         "path": "dmg-background@2x.png",
         "size": {
           "height": 576,
@@ -115,6 +121,7 @@
     },
     "facebookAppIcon": {
       "primary": {
+        "htmlSizes": "1024x1024",
         "path": "facebook-app-icon.png",
         "size": {
           "height": 1024,
@@ -126,6 +133,7 @@
     },
     "faviconIco": {
       "large": {
+        "htmlSizes": "48x48",
         "path": "favicon.ico",
         "size": {
           "height": 48,
@@ -135,6 +143,7 @@
         }
       },
       "medium": {
+        "htmlSizes": "32x32",
         "path": "favicon.ico",
         "size": {
           "height": 32,
@@ -144,6 +153,7 @@
         }
       },
       "small": {
+        "htmlSizes": "16x16",
         "path": "favicon.ico",
         "size": {
           "height": 16,
@@ -155,6 +165,7 @@
     },
     "faviconPng": {
       "medium": {
+        "htmlSizes": "32x32",
         "path": "favicon-32x32.png",
         "size": {
           "height": 32,
@@ -164,6 +175,7 @@
         }
       },
       "small": {
+        "htmlSizes": "16x16",
         "path": "favicon-16x16.png",
         "size": {
           "height": 16,
@@ -181,6 +193,7 @@
     },
     "macosIcns": {
       "128": {
+        "htmlSizes": "128x128",
         "path": "macos.icns",
         "size": {
           "height": 128,
@@ -190,6 +203,7 @@
         }
       },
       "128@2x": {
+        "htmlSizes": "256x256",
         "path": "macos.icns",
         "size": {
           "height": 256,
@@ -199,6 +213,7 @@
         }
       },
       "16": {
+        "htmlSizes": "16x16",
         "path": "macos.icns",
         "size": {
           "height": 16,
@@ -208,6 +223,7 @@
         }
       },
       "16@2x": {
+        "htmlSizes": "32x32",
         "path": "macos.icns",
         "size": {
           "height": 32,
@@ -217,6 +233,7 @@
         }
       },
       "256": {
+        "htmlSizes": "256x256",
         "path": "macos.icns",
         "size": {
           "height": 256,
@@ -226,6 +243,7 @@
         }
       },
       "256@2x": {
+        "htmlSizes": "512x512",
         "path": "macos.icns",
         "size": {
           "height": 512,
@@ -235,6 +253,7 @@
         }
       },
       "32": {
+        "htmlSizes": "32x32",
         "path": "macos.icns",
         "size": {
           "height": 32,
@@ -244,6 +263,7 @@
         }
       },
       "32@2x": {
+        "htmlSizes": "64x64",
         "path": "macos.icns",
         "size": {
           "height": 64,
@@ -253,6 +273,7 @@
         }
       },
       "512": {
+        "htmlSizes": "512x512",
         "path": "macos.icns",
         "size": {
           "height": 512,
@@ -262,6 +283,7 @@
         }
       },
       "512@2x": {
+        "htmlSizes": "1024x1024",
         "path": "macos.icns",
         "size": {
           "height": 1024,
@@ -271,6 +293,7 @@
         }
       },
       "64": {
+        "htmlSizes": "64x64",
         "path": "macos.icns",
         "size": {
           "height": 64,
@@ -282,6 +305,7 @@
     },
     "maskableIcon": {
       "hires": {
+        "htmlSizes": "512x512",
         "path": "maskable-icon-512x512.png",
         "size": {
           "height": 512,
@@ -291,6 +315,7 @@
         }
       },
       "lores": {
+        "htmlSizes": "192x192",
         "path": "maskable-icon-192x192.png",
         "size": {
           "height": 192,
@@ -302,6 +327,7 @@
     },
     "openGraphImage": {
       "primary": {
+        "htmlSizes": "1200x630",
         "path": "open-graph.png",
         "size": {
           "height": 630,
@@ -319,6 +345,7 @@
     },
     "twitterCardImage": {
       "primary": {
+        "htmlSizes": "1200x600",
         "path": "twitter-card.png",
         "size": {
           "height": 600,
@@ -333,6 +360,7 @@
     },
     "windowsIco": {
       "128": {
+        "htmlSizes": "128x128",
         "path": "windows.ico",
         "size": {
           "height": 128,
@@ -342,6 +370,7 @@
         }
       },
       "16": {
+        "htmlSizes": "16x16",
         "path": "windows.ico",
         "size": {
           "height": 16,
@@ -351,6 +380,7 @@
         }
       },
       "22": {
+        "htmlSizes": "22x22",
         "path": "windows.ico",
         "size": {
           "height": 22,
@@ -360,6 +390,7 @@
         }
       },
       "24": {
+        "htmlSizes": "24x24",
         "path": "windows.ico",
         "size": {
           "height": 24,
@@ -369,6 +400,7 @@
         }
       },
       "256": {
+        "htmlSizes": "256x256",
         "path": "windows.ico",
         "size": {
           "height": 256,
@@ -378,6 +410,7 @@
         }
       },
       "32": {
+        "htmlSizes": "32x32",
         "path": "windows.ico",
         "size": {
           "height": 32,
@@ -387,6 +420,7 @@
         }
       },
       "40": {
+        "htmlSizes": "40x40",
         "path": "windows.ico",
         "size": {
           "height": 40,
@@ -396,6 +430,7 @@
         }
       },
       "48": {
+        "htmlSizes": "48x48",
         "path": "windows.ico",
         "size": {
           "height": 48,
@@ -405,6 +440,7 @@
         }
       },
       "64": {
+        "htmlSizes": "64x64",
         "path": "windows.ico",
         "size": {
           "height": 64,
@@ -414,6 +450,7 @@
         }
       },
       "96": {
+        "htmlSizes": "96x96",
         "path": "windows.ico",
         "size": {
           "height": 96,
@@ -425,6 +462,7 @@
     },
     "windowsTile": {
       "large": {
+        "htmlSizes": "310x310",
         "path": "windows-tile-310x310.png",
         "size": {
           "height": 310,
@@ -434,6 +472,7 @@
         }
       },
       "medium": {
+        "htmlSizes": "150x150",
         "path": "windows-tile-150x150.png",
         "size": {
           "height": 150,
@@ -443,6 +482,7 @@
         }
       },
       "wide": {
+        "htmlSizes": "310x150",
         "path": "windows-tile-310x150.png",
         "size": {
           "height": 150,
@@ -454,6 +494,7 @@
     },
     "windowsTileSmall": {
       "small": {
+        "htmlSizes": "70x70",
         "path": "windows-tile-70x70.png",
         "size": {
           "height": 70,
@@ -468,5 +509,46 @@
   "scope": null,
   "shortName": null,
   "startUrl": null,
+  "tag": {
+    "head": [
+      {
+        "attributes": {
+          "content": "yes",
+          "name": "apple-mobile-web-app-capable"
+        },
+        "children": [
+        ],
+        "html": "<meta name=\"apple-mobile-web-app-capable\" content=\"yes\">",
+        "isSelfClosing": true,
+        "sortWeight": 100,
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "Iconduit",
+          "name": "apple-mobile-web-app-title"
+        },
+        "children": [
+        ],
+        "html": "<meta name=\"apple-mobile-web-app-title\" content=\"Iconduit\">",
+        "isSelfClosing": true,
+        "sortWeight": 100,
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "href": "apple-touch-icon-180x180.png",
+          "rel": "apple-touch-icon",
+          "sizes": "180x180"
+        },
+        "children": [
+        ],
+        "html": "<link rel=\"apple-touch-icon\" href=\"apple-touch-icon-180x180.png\" sizes=\"180x180\">",
+        "isSelfClosing": true,
+        "sortWeight": 200,
+        "tag": "link"
+      }
+    ]
+  },
   "textDirection": "auto"
 }

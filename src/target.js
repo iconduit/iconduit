@@ -14,8 +14,9 @@ function selectOutputs (config) {
   const {
     definitions: {
       output,
+      tag,
       target: {
-        all: {outputs: baseOutputs},
+        all: {outputs: baseOutputs, tags: baseTags},
         browser: browserDefinitions,
         installer: installerDefinitions,
         os: osDefinitions,
@@ -23,8 +24,12 @@ function selectOutputs (config) {
       },
     },
     outputs: {
-      include,
-      exclude,
+      include: includeOutputs,
+      exclude: excludeOutputs,
+    },
+    tags: {
+      include: includeTags,
+      exclude: excludeTags,
     },
     targets: {
       browser,
@@ -34,17 +39,23 @@ function selectOutputs (config) {
     },
   } = config
 
-  const names = new Set(baseOutputs)
+  const outputNames = new Set(baseOutputs)
+  const tagNames = new Set(baseTags)
 
-  selectBrowserOutputs(names, browserDefinitions, browser)
-  selectOutputsForCategory(names, 'installer', installerDefinitions, installer)
-  selectOutputsForCategory(names, 'os', osDefinitions, os)
-  selectOutputsForCategory(names, 'web', webDefinitions, web)
+  selectBrowserOutputs(outputNames, tagNames, browserDefinitions, browser)
+  selectOutputsForCategory(outputNames, tagNames, 'installer', installerDefinitions, installer)
+  selectOutputsForCategory(outputNames, tagNames, 'os', osDefinitions, os)
+  selectOutputsForCategory(outputNames, tagNames, 'web', webDefinitions, web)
 
-  include.forEach(output => names.add(output))
-  exclude.forEach(output => names.delete(output))
+  includeOutputs.forEach(outputName => outputNames.add(outputName))
+  excludeOutputs.forEach(outputName => outputNames.delete(outputName))
+  includeTags.forEach(tagName => tagNames.add(tagName))
+  excludeTags.forEach(tagName => tagNames.delete(tagName))
 
-  return mapOutputNamesToDefinitions(names, output)
+  return {
+    outputs: mapOutputDefinitions('output', outputNames, output, tag),
+    tags: mapDefinitions('tag', tagNames, tag),
+  }
 }
 
 function targetNames (config) {
@@ -72,15 +83,15 @@ function targetNames (config) {
   return names.sort()
 }
 
-function selectBrowserOutputs (names, definitions, browser) {
+function selectBrowserOutputs (outputNames, tagNames, definitions, browser) {
   if (browser.length < 1) return
 
   const {all} = definitions
 
-  selectDefinitionOutputs(names, all)
+  selectDefinitionOutputs(outputNames, tagNames, all)
 
   for (const target of selectBrowsers(browser, definitions)) {
-    selectDefinitionOutputs(names, definitions[target])
+    selectDefinitionOutputs(outputNames, tagNames, definitions[target])
   }
 }
 
@@ -93,29 +104,47 @@ function selectBrowsers (browser, definitions) {
   return Array.from(selected).filter(name => definitions[name])
 }
 
-function selectOutputsForCategory (names, type, definitions, targets) {
+function selectOutputsForCategory (outputNames, tagNames, type, definitions, targets) {
   for (const target of targets) {
     const definition = definitions[target]
 
     if (!definition) throw new Error(`Unable to find definition for target.${type}.${target}`)
 
-    selectDefinitionOutputs(names, definition)
+    selectDefinitionOutputs(outputNames, tagNames, definition)
   }
 }
 
-function selectDefinitionOutputs (names, definition) {
-  const {outputs} = definition
+function selectDefinitionOutputs (outputNames, tagNames, definition) {
+  const {outputs, tags} = definition
 
-  for (const output of outputs) names.add(output)
+  for (const output of outputs) outputNames.add(output)
+  for (const tag of tags) tagNames.add(tag)
 }
 
-function mapOutputNamesToDefinitions (names, definitions) {
+function mapOutputDefinitions (type, names, output, tag) {
+  const mapped = mapDefinitions(type, names, output)
+
+  for (const name in mapped) {
+    const definition = mapped[name]
+    const {tags} = definition
+
+    mapped[name] = {
+      ...definition,
+
+      tags: mapDefinitions('tag', tags, tag),
+    }
+  }
+
+  return mapped
+}
+
+function mapDefinitions (type, names, definitions) {
   const mapped = {}
 
   for (const name of names) {
     const definition = definitions[name]
 
-    if (!definition) throw new Error(`Unable to find definition for output.${name}`)
+    if (!definition) throw new Error(`Unable to find definition for ${type}.${name}`)
 
     mapped[name] = definition
   }

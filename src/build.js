@@ -2,9 +2,9 @@ const fileUrl = require('file-url')
 const toIco = require('to-ico')
 const {dirname, extname, join, relative} = require('path')
 
-const {buildFileName, buildFileNameSizeMap, resolveSize, resolveSizesForOutputs} = require('./size.js')
+const {buildFileNameSizeMap, resolveSizesForOutputs} = require('./size.js')
+const {buildManifest, buildTags} = require('./manifest.js')
 const {outputNames, selectOutputs, targetNames} = require('./target.js')
-const {resolveColors} = require('./config.js')
 const {toIcns} = require('./icns.js')
 
 const {
@@ -29,9 +29,10 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, read
     const startTime = now()
     const {configPath, outputPath} = options
 
-    const outputs = selectOutputs(config)
+    const {outputs, tags} = selectOutputs(config)
     const sizesByOutput = resolveSizesForOutputs(config, outputs)
-    const manifest = buildManifest(config, outputs)
+    const manifest = await buildManifest(config, outputs)
+    const manifestTag = await buildTags(manifest, tags, outputs)
 
     const buildInput = createInputBuilder(config, options)
 
@@ -132,7 +133,7 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, read
       const templatePath = await buildInput({name: inputName, type: INPUT_TYPE_TEMPLATE, stack})
       const template = await readTemplate(templatePath)
 
-      return template({manifest, ...templateVariables})
+      return template({manifest: {...manifest, tag: manifestTag}, ...templateVariables})
     }
 
     async function buildImage (inputName, outputName, size, imageType) {
@@ -142,47 +143,6 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, read
       return screenshot(fileUrl(inputPath), size, {type: imageType})
     }
   }
-}
-
-function buildManifest (config) {
-  const meta = {...config}
-  delete meta.colors
-  delete meta.definitions
-  delete meta.inputs
-  delete meta.outputs
-  delete meta.targets
-
-  return {
-    ...meta,
-
-    color: resolveColors(config),
-    output: buildManifestOutput(config),
-  }
-}
-
-function buildManifestOutput (config) {
-  const {definitions: {size: sizeDefinitions}} = config
-  const outputs = selectOutputs(config)
-  const output = {}
-
-  for (const outputName in outputs) {
-    const {name: template, sizes} = outputs[outputName]
-
-    if (sizes.length > 0) {
-      output[outputName] = {}
-
-      for (const selector of sizes) {
-        const {key, ...size} = resolveSize(sizeDefinitions, selector)
-        const path = buildFileName(template, size)
-
-        output[outputName][key] = {path, size}
-      }
-    } else {
-      output[outputName] = {path: template}
-    }
-  }
-
-  return output
 }
 
 function assertFirstSize (outputSizes, outputName) {

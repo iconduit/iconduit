@@ -1,3 +1,5 @@
+const isSelfClosingFn = require('is-self-closing')
+
 const standardDeviceDefinitions = require('./definition/device.js')
 const standardDisplayDefinitions = require('./definition/display.js')
 const standardInputDefinitions = require('./definition/input.js')
@@ -53,6 +55,7 @@ function normalize (config) {
     scope = null,
     shortName = null,
     startUrl = null,
+    tags = {},
     targets = {},
     textDirection = 'auto',
   } = config
@@ -86,6 +89,7 @@ function normalize (config) {
     scope,
     shortName,
     startUrl,
+    tags: normalizeTags(tags),
     targets: normalizeTargets(targets),
     textDirection,
   }
@@ -414,17 +418,20 @@ function normalizeOutputDefinitions (output) {
       name,
       options = {},
       sizes = [],
+      tags = [],
     } = definition
 
     assertNonEmptyString(input, `${outputSetting}.input`)
     assertNonEmptyString(name, `${outputSetting}.name`)
     assertArrayOfNonEmptyStrings(sizes, `${outputSetting}.sizes`)
+    assertArrayOfNonEmptyStrings(tags, `${outputSetting}.tags`)
 
     normalized[outputName] = {
       input,
       name,
       options: normalizeOutputDefinitionOptions(options, `${outputSetting}.options`),
       sizes,
+      tags,
     }
   }
 
@@ -538,13 +545,13 @@ function normalizeTagDefinition (definition, setting) {
 
     assertNonEmptyString(section, sectionSetting)
 
-    normalized[section] = normalizeTags(definition[section], sectionSetting)
+    normalized[section] = normalizeTagList(definition[section], sectionSetting)
   }
 
   return normalized
 }
 
-function normalizeTags (tags, setting) {
+function normalizeTagList (tags, setting) {
   assertArray(tags, setting)
 
   const normalized = []
@@ -562,18 +569,21 @@ function normalizeTag (definition, setting) {
   const {
     attributes = {},
     children = [],
-    isVoid = false,
+    isSelfClosing = null,
     tag,
   } = definition
 
-  assertBoolean(isVoid, `${setting}.isVoid`)
+  assertOptionalBoolean(isSelfClosing, `${setting}.isSelfClosing`)
   assertNonEmptyString(tag, `${setting}.tag`)
+
+  const tagLowerCase = tag.toLowerCase()
+  const isSelfClosingNormalized = isSelfClosing === null ? isSelfClosingFn(tagLowerCase) : isSelfClosing
 
   return {
     attributes: normalizeTagAttributes(attributes, `${setting}.attributes`),
-    children: normalizeTags(children, `${setting}.children`),
-    isVoid,
-    tag,
+    children: normalizeTagList(children, `${setting}.children`),
+    isSelfClosing: isSelfClosingNormalized,
+    tag: tagLowerCase,
   }
 }
 
@@ -592,7 +602,7 @@ function normalizeTagAttributes (attributes, setting) {
       assertReference(value, attributeSetting)
     }
 
-    normalized[name] = value
+    normalized[name.toLowerCase()] = value
   }
 
   return normalized
@@ -674,6 +684,21 @@ function normalizeOutputs (outputs) {
 
   assertArrayOfNonEmptyStrings(include, 'outputs.include')
   assertArrayOfNonEmptyStrings(exclude, 'outputs.exclude')
+
+  return {
+    include,
+    exclude,
+  }
+}
+
+function normalizeTags (tags) {
+  const {
+    include = [],
+    exclude = [],
+  } = tags
+
+  assertArrayOfNonEmptyStrings(include, 'tags.include')
+  assertArrayOfNonEmptyStrings(exclude, 'tags.exclude')
 
   return {
     include,
