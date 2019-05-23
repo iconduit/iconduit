@@ -1,12 +1,6 @@
-const {
-  TAG_WEIGHT_META,
-  TAG_WEIGHT_FIRST_ICON,
-  TAG_WEIGHT_ICON,
-} = require('../constant.js')
-
 module.exports = {
   appleMobile: {
-    head: [
+    meta: [
       {
         tag: 'meta',
         attributes: {
@@ -15,7 +9,7 @@ module.exports = {
         },
         children: [],
         isSelfClosing: true,
-        sortWeight: TAG_WEIGHT_META,
+        sortWeight: 1000,
       },
       {
         tag: 'meta',
@@ -25,12 +19,12 @@ module.exports = {
         },
         children: [],
         isSelfClosing: true,
-        sortWeight: TAG_WEIGHT_META,
+        sortWeight: 2000,
       },
     ],
   },
   appleTouchIcon: {
-    head: [
+    icon: [
       {
         tag: 'link',
         attributes: {
@@ -40,12 +34,12 @@ module.exports = {
         },
         children: [],
         isSelfClosing: true,
-        sortWeight: TAG_WEIGHT_FIRST_ICON,
+        sortWeight: -1,
       },
     ],
   },
   applicationName: {
-    head: [
+    meta: [
       {
         tag: 'meta',
         attributes: {
@@ -54,12 +48,12 @@ module.exports = {
         },
         children: [],
         isSelfClosing: true,
-        sortWeight: TAG_WEIGHT_META,
+        sortWeight: 2000,
       },
     ],
   },
   icon: {
-    head: [
+    icon: [
       {
         tag: 'link',
         attributes: {
@@ -70,12 +64,12 @@ module.exports = {
         },
         children: [],
         isSelfClosing: true,
-        sortWeight: TAG_WEIGHT_ICON,
+        sortWeight: 0,
       },
     ],
   },
   mobileWebAppCapable: {
-    head: [
+    meta: [
       {
         tag: 'meta',
         attributes: {
@@ -84,12 +78,12 @@ module.exports = {
         },
         children: [],
         isSelfClosing: true,
-        sortWeight: TAG_WEIGHT_META,
+        sortWeight: 1000,
       },
     ],
   },
   msapplicationConfig: {
-    head: [
+    meta: [
       {
         tag: 'meta',
         attributes: {
@@ -98,12 +92,12 @@ module.exports = {
         },
         children: [],
         isSelfClosing: true,
-        sortWeight: TAG_WEIGHT_META,
+        sortWeight: 4000,
       },
     ],
   },
   themeColor: {
-    head: [
+    meta: [
       {
         tag: 'meta',
         attributes: {
@@ -112,7 +106,7 @@ module.exports = {
         },
         children: [],
         isSelfClosing: true,
-        sortWeight: TAG_WEIGHT_META,
+        sortWeight: 3000,
       },
     ],
   },

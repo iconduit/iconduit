@@ -4,7 +4,8 @@ const {
   name,
   tag: {
     body: bodyTags = [],
-    head: headTags = [],
+    icon: iconTags = [],
+    meta: metaTags = [],
   },
 } = manifest
 
@@ -12,13 +13,18 @@ const {
 <head>
   <title><%= name %></title>
 
-  <!-- iconduit-start --><% for (const {html} of headTags) { %><%- `\n  ${html}` %><% } %>
+  <!-- iconduit-start -->
+<% for (const {html} of metaTags) { %><%- `\n  ${html}` %><% } %>
+<% for (const {html} of iconTags) { %><%- `\n  ${html}` %><% } %>
+
   <!-- iconduit-end -->
 </head>
 <body>
   <h1><%= name %></h1>
 
-  <!-- iconduit-start --><% for (const {html} of bodyTags) { %><%- `\n  ${html}` %><% } %>
+  <!-- iconduit-start -->
+<% for (const {html} of bodyTags) { %><%- `\n  ${html}` %><% } %>
+
   <!-- iconduit-end -->
 </body>
 </html>

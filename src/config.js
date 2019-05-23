@@ -17,7 +17,6 @@ const {
   OS_IOS,
   OS_MACOS,
   OS_WINDOWS,
-  TAG_WEIGHT_USER,
   WEB_FACEBOOK,
   WEB_REDDIT,
   WEB_TWITTER,
@@ -571,7 +570,7 @@ function normalizeTag (definition, setting) {
     attributes = {},
     children = [],
     isSelfClosing = null,
-    sortWeight = TAG_WEIGHT_USER,
+    sortWeight = 0,
     tag,
   } = definition
 

@@ -557,31 +557,50 @@
   "shortName": null,
   "startUrl": null,
   "tag": {
-    "head": [
+    "icon": [
       {
         "attributes": {
-          "content": "Iconduit",
-          "name": "application-name"
+          "href": "apple-touch-icon-180x180.png",
+          "rel": "apple-touch-icon",
+          "sizes": "180x180"
         },
         "children": [
         ],
-        "html": "<meta name=\"application-name\" content=\"Iconduit\">",
+        "html": "<link rel=\"apple-touch-icon\" href=\"apple-touch-icon-180x180.png\" sizes=\"180x180\">",
         "isSelfClosing": true,
-        "sortWeight": 1000,
-        "tag": "meta"
+        "sortWeight": -1,
+        "tag": "link"
       },
       {
         "attributes": {
-          "content": "#D58B41",
-          "name": "theme-color"
+          "href": "favicon-32x32.png",
+          "rel": "icon",
+          "sizes": "32x32",
+          "type": "image/png"
         },
         "children": [
         ],
-        "html": "<meta name=\"theme-color\" content=\"#D58B41\">",
+        "html": "<link rel=\"icon\" type=\"image/png\" href=\"favicon-32x32.png\" sizes=\"32x32\">",
         "isSelfClosing": true,
-        "sortWeight": 1000,
-        "tag": "meta"
+        "sortWeight": 0,
+        "tag": "link"
       },
+      {
+        "attributes": {
+          "href": "favicon-16x16.png",
+          "rel": "icon",
+          "sizes": "16x16",
+          "type": "image/png"
+        },
+        "children": [
+        ],
+        "html": "<link rel=\"icon\" type=\"image/png\" href=\"favicon-16x16.png\" sizes=\"16x16\">",
+        "isSelfClosing": true,
+        "sortWeight": 0,
+        "tag": "link"
+      }
+    ],
+    "meta": [
       {
         "attributes": {
           "content": "yes",
@@ -609,13 +628,37 @@
       {
         "attributes": {
           "content": "Iconduit",
+          "name": "application-name"
+        },
+        "children": [
+        ],
+        "html": "<meta name=\"application-name\" content=\"Iconduit\">",
+        "isSelfClosing": true,
+        "sortWeight": 2000,
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "Iconduit",
           "name": "apple-mobile-web-app-title"
         },
         "children": [
         ],
         "html": "<meta name=\"apple-mobile-web-app-title\" content=\"Iconduit\">",
         "isSelfClosing": true,
-        "sortWeight": 1000,
+        "sortWeight": 2000,
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "#D58B41",
+          "name": "theme-color"
+        },
+        "children": [
+        ],
+        "html": "<meta name=\"theme-color\" content=\"#D58B41\">",
+        "isSelfClosing": true,
+        "sortWeight": 3000,
         "tag": "meta"
       },
       {
@@ -627,49 +670,8 @@
         ],
         "html": "<meta name=\"msapplication-config\" content=\"browserconfig.xml\">",
         "isSelfClosing": true,
-        "sortWeight": 1000,
+        "sortWeight": 4000,
         "tag": "meta"
-      },
-      {
-        "attributes": {
-          "href": "apple-touch-icon-180x180.png",
-          "rel": "apple-touch-icon",
-          "sizes": "180x180"
-        },
-        "children": [
-        ],
-        "html": "<link rel=\"apple-touch-icon\" href=\"apple-touch-icon-180x180.png\" sizes=\"180x180\">",
-        "isSelfClosing": true,
-        "sortWeight": 2000,
-        "tag": "link"
-      },
-      {
-        "attributes": {
-          "href": "favicon-32x32.png",
-          "rel": "icon",
-          "sizes": "32x32",
-          "type": "image/png"
-        },
-        "children": [
-        ],
-        "html": "<link rel=\"icon\" type=\"image/png\" href=\"favicon-32x32.png\" sizes=\"32x32\">",
-        "isSelfClosing": true,
-        "sortWeight": 3000,
-        "tag": "link"
-      },
-      {
-        "attributes": {
-          "href": "favicon-16x16.png",
-          "rel": "icon",
-          "sizes": "16x16",
-          "type": "image/png"
-        },
-        "children": [
-        ],
-        "html": "<link rel=\"icon\" type=\"image/png\" href=\"favicon-16x16.png\" sizes=\"16x16\">",
-        "isSelfClosing": true,
-        "sortWeight": 3000,
-        "tag": "link"
       }
     ]
   },
