@@ -3,9 +3,9 @@
 const {
   name,
   tag: {
-    body: bodyTags = [],
     icon: iconTags = [],
     meta: metaTags = [],
+    script: scriptTags = [],
   },
 } = manifest
 
@@ -23,7 +23,7 @@ const {
   <h1><%= name %></h1>
 
   <!-- iconduit-start -->
-<% for (const {html} of bodyTags) { %><%- `\n  ${html}` %><% } %>
+<% for (const {html} of scriptTags) { %><%- `\n  ${html}` %><% } %>
 
   <!-- iconduit-end -->
 </body>
