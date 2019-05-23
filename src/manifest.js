@@ -1,8 +1,9 @@
 const htmlTag = require('html-tag')
 
 const {buildFileName, resolveSize} = require('./size.js')
+const {mimeTypeByPath} = require('./mime.js')
 const {resolveColors} = require('./config.js')
-const {resolveReference} = require('./reference.js')
+const {resolveIfReference} = require('./reference.js')
 
 module.exports = {
   buildManifest,
@@ -69,14 +70,10 @@ function buildTags (manifest, tags, outputs) {
 
   for (const sectionName in tag) {
     tag[sectionName].sort((a, b) => {
-      const {sortWeight: weightA, html: htmlA} = a
-      const {sortWeight: weightB, html: htmlB} = b
+      const {sortWeight: weightA} = a
+      const {sortWeight: weightB} = b
 
-      const weightDelta = weightA - weightB
-
-      if (weightDelta !== 0) return weightDelta
-
-      return htmlA.localeCompare(htmlB)
+      return weightA - weightB
     })
   }
 
@@ -98,10 +95,10 @@ function buildManifestOutput (config, outputs) {
         const htmlSizes = buildFileName('[dimensions]', size)
         const path = buildFileName(template, size)
 
-        output[outputName][key] = {htmlSizes, path, size}
+        output[outputName][key] = {htmlSizes, path, size, type: mimeTypeByPath(path)}
       }
     } else {
-      output[outputName] = {path: template}
+      output[outputName] = {path: template, type: mimeTypeByPath(template)}
     }
   }
 
@@ -109,7 +106,7 @@ function buildManifestOutput (config, outputs) {
 }
 
 function createTagResolver (definitions) {
-  const resolve = resolveReference.bind(null, definitions)
+  const resolve = resolveIfReference.bind(null, definitions)
 
   return function resolveTag (definition) {
     const {
@@ -123,13 +120,7 @@ function createTagResolver (definitions) {
     const resolvedAttributes = {}
 
     for (const name in attributes) {
-      const value = attributes[name]
-
-      if (typeof value === 'string') {
-        resolvedAttributes[name] = value
-      } else {
-        resolvedAttributes[name] = resolve(value)
-      }
+      resolvedAttributes[name] = resolve(attributes[name])
     }
 
     const resolvedChildren = children.map(resolveTag)

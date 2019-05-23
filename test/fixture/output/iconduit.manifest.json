@@ -57,7 +57,8 @@
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 180
-        }
+        },
+        "type": "image/png"
       }
     },
     "appleTouchIconMasked": {
@@ -69,7 +70,8 @@
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 180
-        }
+        },
+        "type": "image/png"
       }
     },
     "appleTouchStartup": {
@@ -81,7 +83,8 @@
           "pixelDensity": 326,
           "pixelRatio": 2,
           "width": 1136
-        }
+        },
+        "type": "image/png"
       },
       "iphone5.portrait": {
         "htmlSizes": "640x1136",
@@ -91,11 +94,13 @@
           "pixelDensity": 326,
           "pixelRatio": 2,
           "width": 640
-        }
+        },
+        "type": "image/png"
       }
     },
     "browserconfigXml": {
-      "path": "browserconfig.xml"
+      "path": "browserconfig.xml",
+      "type": "application/xml"
     },
     "dmgBackground": {
       "primary": {
@@ -106,7 +111,8 @@
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 512
-        }
+        },
+        "type": "image/png"
       },
       "primary@2x": {
         "htmlSizes": "1024x576",
@@ -116,7 +122,8 @@
           "pixelDensity": 144,
           "pixelRatio": 2,
           "width": 1024
-        }
+        },
+        "type": "image/png"
       }
     },
     "facebookAppIcon": {
@@ -128,7 +135,8 @@
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 1024
-        }
+        },
+        "type": "image/png"
       }
     },
     "faviconIco": {
@@ -140,7 +148,8 @@
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 48
-        }
+        },
+        "type": "image/vnd.microsoft.icon"
       },
       "medium": {
         "htmlSizes": "32x32",
@@ -150,7 +159,8 @@
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 32
-        }
+        },
+        "type": "image/vnd.microsoft.icon"
       },
       "small": {
         "htmlSizes": "16x16",
@@ -160,7 +170,8 @@
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 16
-        }
+        },
+        "type": "image/vnd.microsoft.icon"
       }
     },
     "faviconPng": {
@@ -172,7 +183,8 @@
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 32
-        }
+        },
+        "type": "image/png"
       },
       "small": {
         "htmlSizes": "16x16",
@@ -182,14 +194,17 @@
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 16
-        }
+        },
+        "type": "image/png"
       }
     },
     "iconduitManifest": {
-      "path": "iconduit.manifest.json"
+      "path": "iconduit.manifest.json",
+      "type": "application/json"
     },
     "indexHtml": {
-      "path": "index.html"
+      "path": "index.html",
+      "type": "text/html"
     },
     "macosIcns": {
       "128": {
@@ -200,7 +215,8 @@
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 128
-        }
+        },
+        "type": "image/icns"
       },
       "128@2x": {
         "htmlSizes": "256x256",
@@ -210,7 +226,8 @@
           "pixelDensity": 144,
           "pixelRatio": 2,
           "width": 256
-        }
+        },
+        "type": "image/icns"
       },
       "16": {
         "htmlSizes": "16x16",
@@ -220,7 +237,8 @@
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 16
-        }
+        },
+        "type": "image/icns"
       },
       "16@2x": {
         "htmlSizes": "32x32",
@@ -230,7 +248,8 @@
           "pixelDensity": 144,
           "pixelRatio": 2,
           "width": 32
-        }
+        },
+        "type": "image/icns"
       },
       "256": {
         "htmlSizes": "256x256",
@@ -240,7 +259,8 @@
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 256
-        }
+        },
+        "type": "image/icns"
       },
       "256@2x": {
         "htmlSizes": "512x512",
@@ -250,7 +270,8 @@
           "pixelDensity": 144,
           "pixelRatio": 2,
           "width": 512
-        }
+        },
+        "type": "image/icns"
       },
       "32": {
         "htmlSizes": "32x32",
@@ -260,7 +281,8 @@
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 32
-        }
+        },
+        "type": "image/icns"
       },
       "32@2x": {
         "htmlSizes": "64x64",
@@ -270,7 +292,8 @@
           "pixelDensity": 144,
           "pixelRatio": 2,
           "width": 64
-        }
+        },
+        "type": "image/icns"
       },
       "512": {
         "htmlSizes": "512x512",
@@ -280,7 +303,8 @@
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 512
-        }
+        },
+        "type": "image/icns"
       },
       "512@2x": {
         "htmlSizes": "1024x1024",
@@ -290,7 +314,8 @@
           "pixelDensity": 144,
           "pixelRatio": 2,
           "width": 1024
-        }
+        },
+        "type": "image/icns"
       },
       "64": {
         "htmlSizes": "64x64",
@@ -300,7 +325,8 @@
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 64
-        }
+        },
+        "type": "image/icns"
       }
     },
     "maskableIcon": {
@@ -312,7 +338,8 @@
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 512
-        }
+        },
+        "type": "image/png"
       },
       "lores": {
         "htmlSizes": "192x192",
@@ -322,7 +349,8 @@
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 192
-        }
+        },
+        "type": "image/png"
       }
     },
     "openGraphImage": {
@@ -334,14 +362,17 @@
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 1200
-        }
+        },
+        "type": "image/png"
       }
     },
     "safariMaskIcon": {
-      "path": "safari-mask-icon.svg"
+      "path": "safari-mask-icon.svg",
+      "type": "image/svg+xml"
     },
     "serviceWorker": {
-      "path": "service-worker.js"
+      "path": "service-worker.js",
+      "type": "text/javascript"
     },
     "twitterCardImage": {
       "primary": {
@@ -352,11 +383,13 @@
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 1200
-        }
+        },
+        "type": "image/png"
       }
     },
     "webAppManifest": {
-      "path": "manifest.json"
+      "path": "manifest.json",
+      "type": "application/json"
     },
     "windowsIco": {
       "128": {
@@ -367,7 +400,8 @@
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 128
-        }
+        },
+        "type": "image/vnd.microsoft.icon"
       },
       "16": {
         "htmlSizes": "16x16",
@@ -377,7 +411,8 @@
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 16
-        }
+        },
+        "type": "image/vnd.microsoft.icon"
       },
       "22": {
         "htmlSizes": "22x22",
@@ -387,7 +422,8 @@
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 22
-        }
+        },
+        "type": "image/vnd.microsoft.icon"
       },
       "24": {
         "htmlSizes": "24x24",
@@ -397,7 +433,8 @@
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 24
-        }
+        },
+        "type": "image/vnd.microsoft.icon"
       },
       "256": {
         "htmlSizes": "256x256",
@@ -407,7 +444,8 @@
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 256
-        }
+        },
+        "type": "image/vnd.microsoft.icon"
       },
       "32": {
         "htmlSizes": "32x32",
@@ -417,7 +455,8 @@
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 32
-        }
+        },
+        "type": "image/vnd.microsoft.icon"
       },
       "40": {
         "htmlSizes": "40x40",
@@ -427,7 +466,8 @@
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 40
-        }
+        },
+        "type": "image/vnd.microsoft.icon"
       },
       "48": {
         "htmlSizes": "48x48",
@@ -437,7 +477,8 @@
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 48
-        }
+        },
+        "type": "image/vnd.microsoft.icon"
       },
       "64": {
         "htmlSizes": "64x64",
@@ -447,7 +488,8 @@
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 64
-        }
+        },
+        "type": "image/vnd.microsoft.icon"
       },
       "96": {
         "htmlSizes": "96x96",
@@ -457,7 +499,8 @@
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 96
-        }
+        },
+        "type": "image/vnd.microsoft.icon"
       }
     },
     "windowsTile": {
@@ -469,7 +512,8 @@
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 310
-        }
+        },
+        "type": "image/png"
       },
       "medium": {
         "htmlSizes": "150x150",
@@ -479,7 +523,8 @@
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 150
-        }
+        },
+        "type": "image/png"
       },
       "wide": {
         "htmlSizes": "310x150",
@@ -489,7 +534,8 @@
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 310
-        }
+        },
+        "type": "image/png"
       }
     },
     "windowsTileSmall": {
@@ -501,7 +547,8 @@
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 70
-        }
+        },
+        "type": "image/png"
       }
     }
   },
@@ -513,30 +560,6 @@
     "head": [
       {
         "attributes": {
-          "content": "yes",
-          "name": "apple-mobile-web-app-capable"
-        },
-        "children": [
-        ],
-        "html": "<meta name=\"apple-mobile-web-app-capable\" content=\"yes\">",
-        "isSelfClosing": true,
-        "sortWeight": 100,
-        "tag": "meta"
-      },
-      {
-        "attributes": {
-          "content": "Iconduit",
-          "name": "apple-mobile-web-app-title"
-        },
-        "children": [
-        ],
-        "html": "<meta name=\"apple-mobile-web-app-title\" content=\"Iconduit\">",
-        "isSelfClosing": true,
-        "sortWeight": 100,
-        "tag": "meta"
-      },
-      {
-        "attributes": {
           "content": "Iconduit",
           "name": "application-name"
         },
@@ -544,31 +567,7 @@
         ],
         "html": "<meta name=\"application-name\" content=\"Iconduit\">",
         "isSelfClosing": true,
-        "sortWeight": 100,
-        "tag": "meta"
-      },
-      {
-        "attributes": {
-          "content": "yes",
-          "name": "mobile-web-app-capable"
-        },
-        "children": [
-        ],
-        "html": "<meta name=\"mobile-web-app-capable\" content=\"yes\">",
-        "isSelfClosing": true,
-        "sortWeight": 100,
-        "tag": "meta"
-      },
-      {
-        "attributes": {
-          "content": "browserconfig.xml",
-          "name": "msapplication-config"
-        },
-        "children": [
-        ],
-        "html": "<meta name=\"msapplication-config\" content=\"browserconfig.xml\">",
-        "isSelfClosing": true,
-        "sortWeight": 100,
+        "sortWeight": 1000,
         "tag": "meta"
       },
       {
@@ -580,7 +579,55 @@
         ],
         "html": "<meta name=\"theme-color\" content=\"#D58B41\">",
         "isSelfClosing": true,
-        "sortWeight": 100,
+        "sortWeight": 1000,
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "yes",
+          "name": "mobile-web-app-capable"
+        },
+        "children": [
+        ],
+        "html": "<meta name=\"mobile-web-app-capable\" content=\"yes\">",
+        "isSelfClosing": true,
+        "sortWeight": 1000,
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "yes",
+          "name": "apple-mobile-web-app-capable"
+        },
+        "children": [
+        ],
+        "html": "<meta name=\"apple-mobile-web-app-capable\" content=\"yes\">",
+        "isSelfClosing": true,
+        "sortWeight": 1000,
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "Iconduit",
+          "name": "apple-mobile-web-app-title"
+        },
+        "children": [
+        ],
+        "html": "<meta name=\"apple-mobile-web-app-title\" content=\"Iconduit\">",
+        "isSelfClosing": true,
+        "sortWeight": 1000,
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "browserconfig.xml",
+          "name": "msapplication-config"
+        },
+        "children": [
+        ],
+        "html": "<meta name=\"msapplication-config\" content=\"browserconfig.xml\">",
+        "isSelfClosing": true,
+        "sortWeight": 1000,
         "tag": "meta"
       },
       {
@@ -593,7 +640,35 @@
         ],
         "html": "<link rel=\"apple-touch-icon\" href=\"apple-touch-icon-180x180.png\" sizes=\"180x180\">",
         "isSelfClosing": true,
-        "sortWeight": 200,
+        "sortWeight": 2000,
+        "tag": "link"
+      },
+      {
+        "attributes": {
+          "href": "favicon-32x32.png",
+          "rel": "icon",
+          "sizes": "32x32",
+          "type": "image/png"
+        },
+        "children": [
+        ],
+        "html": "<link rel=\"icon\" type=\"image/png\" href=\"favicon-32x32.png\" sizes=\"32x32\">",
+        "isSelfClosing": true,
+        "sortWeight": 3000,
+        "tag": "link"
+      },
+      {
+        "attributes": {
+          "href": "favicon-16x16.png",
+          "rel": "icon",
+          "sizes": "16x16",
+          "type": "image/png"
+        },
+        "children": [
+        ],
+        "html": "<link rel=\"icon\" type=\"image/png\" href=\"favicon-16x16.png\" sizes=\"16x16\">",
+        "isSelfClosing": true,
+        "sortWeight": 3000,
         "tag": "link"
       }
     ]

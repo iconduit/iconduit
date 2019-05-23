@@ -2,13 +2,23 @@
 
 const {
   name,
+  tag: {
+    body: bodyTags = [],
+    head: headTags = [],
+  },
 } = manifest
 
 %><html>
 <head>
   <title><%= name %></title>
+
+  <!-- iconduit-start --><% for (const {html} of headTags) { %><%- `\n  ${html}` %><% } %>
+  <!-- iconduit-end -->
 </head>
 <body>
   <h1><%= name %></h1>
+
+  <!-- iconduit-start --><% for (const {html} of bodyTags) { %><%- `\n  ${html}` %><% } %>
+  <!-- iconduit-end -->
 </body>
 </html>

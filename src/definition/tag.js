@@ -1,3 +1,9 @@
+const {
+  TAG_WEIGHT_META,
+  TAG_WEIGHT_FIRST_ICON,
+  TAG_WEIGHT_ICON,
+} = require('../constant.js')
+
 module.exports = {
   appleMobile: {
     head: [
@@ -9,7 +15,7 @@ module.exports = {
         },
         children: [],
         isSelfClosing: true,
-        sortWeight: 100,
+        sortWeight: TAG_WEIGHT_META,
       },
       {
         tag: 'meta',
@@ -19,7 +25,7 @@ module.exports = {
         },
         children: [],
         isSelfClosing: true,
-        sortWeight: 100,
+        sortWeight: TAG_WEIGHT_META,
       },
     ],
   },
@@ -34,7 +40,7 @@ module.exports = {
         },
         children: [],
         isSelfClosing: true,
-        sortWeight: 200,
+        sortWeight: TAG_WEIGHT_FIRST_ICON,
       },
     ],
   },
@@ -48,7 +54,23 @@ module.exports = {
         },
         children: [],
         isSelfClosing: true,
-        sortWeight: 100,
+        sortWeight: TAG_WEIGHT_META,
+      },
+    ],
+  },
+  icon: {
+    head: [
+      {
+        tag: 'link',
+        attributes: {
+          rel: 'icon',
+          type: {$ref: 'output#/type'},
+          href: {$ref: 'output#/path'},
+          sizes: {$ref: 'output#/htmlSizes'},
+        },
+        children: [],
+        isSelfClosing: true,
+        sortWeight: TAG_WEIGHT_ICON,
       },
     ],
   },
@@ -62,7 +84,7 @@ module.exports = {
         },
         children: [],
         isSelfClosing: true,
-        sortWeight: 100,
+        sortWeight: TAG_WEIGHT_META,
       },
     ],
   },
@@ -76,7 +98,7 @@ module.exports = {
         },
         children: [],
         isSelfClosing: true,
-        sortWeight: 100,
+        sortWeight: TAG_WEIGHT_META,
       },
     ],
   },
@@ -90,7 +112,7 @@ module.exports = {
         },
         children: [],
         isSelfClosing: true,
-        sortWeight: 100,
+        sortWeight: TAG_WEIGHT_META,
       },
     ],
   },

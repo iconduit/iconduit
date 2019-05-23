@@ -1,6 +1,5 @@
-const {extname} = require('path')
-
 const {buildFileName} = require('./size.js')
+const {mimeTypeByPath} = require('./mime.js')
 
 module.exports = {
   buildWebAppManifest,
@@ -71,28 +70,6 @@ function buildWebAppManifestIcons (manifest) {
   }
 
   return icons
-}
-
-function mimeTypeByPath (path) {
-  switch (extname(path)) {
-    case '.gif':
-      return 'image/gif'
-
-    case '.icns':
-      return 'image/icns'
-
-    case '.ico':
-      return 'image/vnd.microsoft.icon'
-
-    case '.jpg':
-    case '.jpeg':
-      return 'image/jpeg'
-
-    case '.png':
-      return 'image/png'
-  }
-
-  return null
 }
 
 function buildWebAppManifestServiceWorker (manifest) {

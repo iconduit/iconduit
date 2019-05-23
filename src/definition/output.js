@@ -74,7 +74,9 @@ module.exports = {
     input: 'maskedIconMinimalPadding',
     name: 'favicon-[dimensions].png',
     sizes: ['faviconMedium', 'faviconSmall'],
-    tags: [],
+    tags: [
+      'icon',
+    ],
     options: {},
   },
   iconduitManifest: {

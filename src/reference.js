@@ -1,7 +1,14 @@
 const {get} = require('jsonpointer')
 
 module.exports = {
+  resolveIfReference,
   resolveReference,
+}
+
+function resolveIfReference (definitions, reference) {
+  if (typeof reference !== 'object' || reference === null) return reference
+
+  return resolveReference(definitions, reference)
 }
 
 function resolveReference (definitions, reference) {

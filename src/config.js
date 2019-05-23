@@ -17,6 +17,7 @@ const {
   OS_IOS,
   OS_MACOS,
   OS_WINDOWS,
+  TAG_WEIGHT_USER,
   WEB_FACEBOOK,
   WEB_REDDIT,
   WEB_TWITTER,
@@ -570,10 +571,13 @@ function normalizeTag (definition, setting) {
     attributes = {},
     children = [],
     isSelfClosing = null,
+    sortWeight = TAG_WEIGHT_USER,
     tag,
   } = definition
 
   assertOptionalBoolean(isSelfClosing, `${setting}.isSelfClosing`)
+  assertInteger(sortWeight, `${setting}.sortWeight`)
+  assertOptionalNonEmptyString(tag, `${setting}.tag`)
   assertNonEmptyString(tag, `${setting}.tag`)
 
   const tagLowerCase = tag.toLowerCase()
@@ -583,6 +587,7 @@ function normalizeTag (definition, setting) {
     attributes: normalizeTagAttributes(attributes, `${setting}.attributes`),
     children: normalizeTagList(children, `${setting}.children`),
     isSelfClosing: isSelfClosingNormalized,
+    sortWeight,
     tag: tagLowerCase,
   }
 }
@@ -594,13 +599,8 @@ function normalizeTagAttributes (attributes, setting) {
 
   for (const name in attributes) {
     const value = attributes[name]
-    const attributeSetting = `${setting}.${name}`
 
-    if (typeof value === 'string') {
-      assertNonEmptyString(value, attributeSetting)
-    } else {
-      assertReference(value, attributeSetting)
-    }
+    assertStringOrReference(value, `${setting}.${name}`)
 
     normalized[name.toLowerCase()] = value
   }
@@ -791,4 +791,12 @@ function assertObjectOfNonEmptyStrings (value, setting) {
 function assertReference (value, setting) {
   assertObject(value, setting)
   assertNonEmptyString(value.$ref, setting)
+}
+
+function assertStringOrReference (value, setting) {
+  if (typeof value === 'string') {
+    assertNonEmptyString(value, setting)
+  } else {
+    assertReference(value, setting)
+  }
 }

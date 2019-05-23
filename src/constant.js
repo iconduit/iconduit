@@ -43,3 +43,8 @@ exports.ICNS_32_2X = 'ic12'
 exports.ICNS_32_1X = 'icp5'
 exports.ICNS_16_2X = 'ic11'
 exports.ICNS_16_1X = 'icp4'
+
+exports.TAG_WEIGHT_META = 1000
+exports.TAG_WEIGHT_FIRST_ICON = 2000
+exports.TAG_WEIGHT_ICON = 3000
+exports.TAG_WEIGHT_USER = 100000
