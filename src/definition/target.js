@@ -108,7 +108,9 @@ module.exports = {
       outputs: [
         'twitterCardImage',
       ],
-      tags: [],
+      tags: [
+        'twitter',
+      ],
     },
   },
 }

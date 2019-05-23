@@ -800,6 +800,58 @@
         "sortWeight": 0,
         "tag": "meta"
       }
+    ],
+    "twitter": [
+      {
+        "attributes": {
+          "content": "summary_large_image",
+          "name": "twitter:card"
+        },
+        "children": [
+        ],
+        "html": "<meta name=\"twitter:card\" content=\"summary_large_image\">",
+        "isSelfClosing": true,
+        "sortWeight": 0,
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "Iconduit",
+          "name": "twitter:title"
+        },
+        "children": [
+        ],
+        "html": "<meta name=\"twitter:title\" content=\"Iconduit\">",
+        "isSelfClosing": true,
+        "sortWeight": 0,
+        "tag": "meta"
+      }
+    ],
+    "twitterImage": [
+      {
+        "attributes": {
+          "content": "twitter-card.png",
+          "name": "twitter:image"
+        },
+        "children": [
+        ],
+        "html": "<meta name=\"twitter:image\" content=\"twitter-card.png\">",
+        "isSelfClosing": true,
+        "sortWeight": 0,
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "Iconduit",
+          "name": "twitter:image:alt"
+        },
+        "children": [
+        ],
+        "html": "<meta name=\"twitter:image:alt\" content=\"Iconduit\">",
+        "isSelfClosing": true,
+        "sortWeight": 0,
+        "tag": "meta"
+      }
     ]
   },
   "textDirection": "auto"

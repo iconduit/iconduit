@@ -6,9 +6,11 @@ const {
     icon: iconTags = [],
     link: linkTags = [],
     meta: metaTags = [],
-    script: scriptTags = [],
     openGraph: openGraphTags = [],
     openGraphImage: openGraphImageTags = [],
+    script: scriptTags = [],
+    twitter: twitterTags = [],
+    twitterImage: twitterImageTags = [],
   },
 } = manifest
 
@@ -22,6 +24,8 @@ const {
 <% for (const {html} of iconTags) { %><%- `\n  ${html}` %><% } %>
 <% for (const {html} of openGraphTags) { %><%- `\n  ${html}` %><% } %>
 <% for (const {html} of openGraphImageTags) { %><%- `\n  ${html}` %><% } %>
+<% for (const {html} of twitterTags) { %><%- `\n  ${html}` %><% } %>
+<% for (const {html} of twitterImageTags) { %><%- `\n  ${html}` %><% } %>
 
   <!-- iconduit-end -->
 </head>

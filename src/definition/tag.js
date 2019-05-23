@@ -271,4 +271,69 @@ module.exports = {
       },
     ],
   },
+  twitter: {
+    twitter: [
+      {
+        tag: 'meta',
+        attributes: {
+          name: 'twitter:card',
+          content: 'summary_large_image',
+        },
+        children: [],
+        isSelfClosing: true,
+        sortWeight: 0,
+        dependencies: [],
+      },
+      {
+        tag: 'meta',
+        attributes: {
+          name: 'twitter:title',
+          content: {$ref: 'manifest#/name'},
+        },
+        children: [],
+        isSelfClosing: true,
+        sortWeight: 0,
+        dependencies: [],
+      },
+      {
+        tag: 'meta',
+        attributes: {
+          name: 'twitter:description',
+          content: {$ref: 'manifest#/description'},
+        },
+        children: [],
+        isSelfClosing: true,
+        sortWeight: 0,
+        dependencies: [
+          {$ref: 'manifest#/description'},
+        ],
+      },
+    ],
+  },
+  twitterImage: {
+    twitterImage: [
+      {
+        tag: 'meta',
+        attributes: {
+          name: 'twitter:image',
+          content: {$ref: 'output#/path'},
+        },
+        children: [],
+        isSelfClosing: true,
+        sortWeight: 0,
+        dependencies: [],
+      },
+      {
+        tag: 'meta',
+        attributes: {
+          name: 'twitter:image:alt',
+          content: {$ref: 'manifest#/name'},
+        },
+        children: [],
+        isSelfClosing: true,
+        sortWeight: 0,
+        dependencies: [],
+      },
+    ],
+  },
 }

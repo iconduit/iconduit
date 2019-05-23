@@ -148,7 +148,9 @@ module.exports = {
     input: 'twitterCardImage',
     name: 'twitter-card.png',
     sizes: ['twitterCardImage'],
-    tags: [],
+    tags: [
+      'twitterImage',
+    ],
     options: {},
   },
   webAppManifest: {
