@@ -4,6 +4,7 @@ const {
   name,
   tag: {
     icon: iconTags = [],
+    link: linkTags = [],
     meta: metaTags = [],
     script: scriptTags = [],
   },
@@ -15,6 +16,7 @@ const {
 
   <!-- iconduit-start -->
 <% for (const {html} of metaTags) { %><%- `\n  ${html}` %><% } %>
+<% for (const {html} of linkTags) { %><%- `\n  ${html}` %><% } %>
 <% for (const {html} of iconTags) { %><%- `\n  ${html}` %><% } %>
 
   <!-- iconduit-end -->

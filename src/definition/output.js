@@ -130,7 +130,9 @@ module.exports = {
     input: 'safariMaskIcon',
     name: 'safari-mask-icon.svg',
     sizes: [],
-    tags: [],
+    tags: [
+      'maskIcon',
+    ],
     options: {},
   },
   serviceWorker: {
@@ -151,7 +153,9 @@ module.exports = {
     input: 'webAppManifest',
     name: 'manifest.json',
     sizes: [],
-    tags: [],
+    tags: [
+      'manifest',
+    ],
     options: {
       variables: {buildWebAppManifest},
     },

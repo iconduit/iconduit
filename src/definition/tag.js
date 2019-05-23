@@ -68,6 +68,35 @@ module.exports = {
       },
     ],
   },
+  manifest: {
+    link: [
+      {
+        tag: 'link',
+        attributes: {
+          rel: 'manifest',
+          href: {$ref: 'output#/path'},
+        },
+        children: [],
+        isSelfClosing: true,
+        sortWeight: 0,
+      },
+    ],
+  },
+  maskIcon: {
+    icon: [
+      {
+        tag: 'link',
+        attributes: {
+          rel: 'mask-icon',
+          href: {$ref: 'output#/path'},
+          color: {$ref: 'manifest#/color/mask'},
+        },
+        children: [],
+        isSelfClosing: true,
+        sortWeight: 0,
+      },
+    ],
+  },
   mobileWebAppCapable: {
     meta: [
       {

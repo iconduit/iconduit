@@ -598,6 +598,33 @@
         "isSelfClosing": true,
         "sortWeight": 0,
         "tag": "link"
+      },
+      {
+        "attributes": {
+          "color": "#D5415C",
+          "href": "safari-mask-icon.svg",
+          "rel": "mask-icon"
+        },
+        "children": [
+        ],
+        "html": "<link rel=\"mask-icon\" href=\"safari-mask-icon.svg\" color=\"#D5415C\">",
+        "isSelfClosing": true,
+        "sortWeight": 0,
+        "tag": "link"
+      }
+    ],
+    "link": [
+      {
+        "attributes": {
+          "href": "manifest.json",
+          "rel": "manifest"
+        },
+        "children": [
+        ],
+        "html": "<link rel=\"manifest\" href=\"manifest.json\">",
+        "isSelfClosing": true,
+        "sortWeight": 0,
+        "tag": "link"
       }
     ],
     "meta": [
