@@ -569,11 +569,13 @@ function normalizeTag (definition, setting) {
   const {
     attributes = {},
     children = [],
+    dependencies = [],
     isSelfClosing = null,
     sortWeight = 0,
     tag,
   } = definition
 
+  assertArrayOfReferences(dependencies, `${setting}.dependencies`)
   assertOptionalBoolean(isSelfClosing, `${setting}.isSelfClosing`)
   assertInteger(sortWeight, `${setting}.sortWeight`)
   assertOptionalNonEmptyString(tag, `${setting}.tag`)
@@ -585,6 +587,7 @@ function normalizeTag (definition, setting) {
   return {
     attributes: normalizeTagAttributes(attributes, `${setting}.attributes`),
     children: normalizeTagList(children, `${setting}.children`),
+    dependencies,
     isSelfClosing: isSelfClosingNormalized,
     sortWeight,
     tag: tagLowerCase,
@@ -770,7 +773,15 @@ function assertArrayOfNonEmptyStrings (value, setting) {
   assertArray(value, setting)
 
   for (let index = 0; index < value.length; ++index) {
-    if (typeof value[index] !== 'string') throw new Error(`Invalid value for ${setting}[${index}]`)
+    assertNonEmptyString(value[index], `Invalid value for ${setting}[${index}]`)
+  }
+}
+
+function assertArrayOfReferences (value, setting) {
+  assertArray(value, setting)
+
+  for (let index = 0; index < value.length; ++index) {
+    assertReference(value[index], `Invalid value for ${setting}[${index}]`)
   }
 }
 

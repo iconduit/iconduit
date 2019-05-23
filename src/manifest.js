@@ -41,8 +41,9 @@ function buildTags (manifest, tags, outputs) {
 
         for (let index = 0; index < tagDefinitions.length; ++index) {
           const definition = tagDefinitions[index]
+          const resolvedTag = resolveTag(definition, `${setting}.${tagName}.${sectionName}[${index}]`)
 
-          sectionTags.push(resolveTag(definition, `${setting}.${tagName}.${sectionName}[${index}]`))
+          if (resolvedTag) sectionTags.push(resolvedTag)
         }
 
         tag[sectionName] = sectionTags
@@ -113,9 +114,20 @@ function createTagResolver (definitions) {
       tag,
       attributes,
       children,
+      dependencies,
       isSelfClosing,
       sortWeight,
     } = definition
+
+    for (const dependency of dependencies) {
+      let resolvedDependency
+
+      try {
+        resolvedDependency = resolve(dependency)
+      } catch (error) {}
+
+      if (typeof resolvedDependency !== 'string') return null
+    }
 
     const resolvedAttributes = {}
 

@@ -700,6 +700,44 @@
         "sortWeight": 4000,
         "tag": "meta"
       }
+    ],
+    "openGraph": [
+      {
+        "attributes": {
+          "content": "website",
+          "property": "og:type"
+        },
+        "children": [
+        ],
+        "html": "<meta property=\"og:type\" content=\"website\">",
+        "isSelfClosing": true,
+        "sortWeight": 0,
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "Iconduit",
+          "property": "og:site_name"
+        },
+        "children": [
+        ],
+        "html": "<meta property=\"og:site_name\" content=\"Iconduit\">",
+        "isSelfClosing": true,
+        "sortWeight": 0,
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "Iconduit",
+          "property": "og:title"
+        },
+        "children": [
+        ],
+        "html": "<meta property=\"og:title\" content=\"Iconduit\">",
+        "isSelfClosing": true,
+        "sortWeight": 0,
+        "tag": "meta"
+      }
     ]
   },
   "textDirection": "auto"

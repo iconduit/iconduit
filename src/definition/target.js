@@ -92,13 +92,17 @@ module.exports = {
         'facebookAppIcon',
         'openGraphImage',
       ],
-      tags: [],
+      tags: [
+        'openGraph',
+      ],
     },
     reddit: {
       outputs: [
         'openGraphImage',
       ],
-      tags: [],
+      tags: [
+        'openGraph',
+      ],
     },
     twitter: {
       outputs: [
