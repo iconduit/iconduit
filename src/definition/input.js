@@ -2,8 +2,6 @@ module.exports = {
   appleTouchIcon: {
     strategy: 'composite',
     options: {
-      backgroundColor: 'transparent',
-      mask: null,
       layers: [
         {input: 'icon', multiplier: 2, style: 'appleTouchIconScale'},
         {input: 'iconBackground', multiplier: 2, style: 'appleTouchIconScale'},
@@ -14,10 +12,9 @@ module.exports = {
     strategy: 'composite',
     options: {
       backgroundColor: 'white',
-      mask: null,
       layers: [
-        {input: 'iconSilhouette', multiplier: 1, style: 'opacity10Percent'},
-        {input: 'backgroundColor', multiplier: 1, style: null},
+        {input: 'iconSilhouette', style: 'opacity10Percent'},
+        {input: 'backgroundColor'},
       ],
     },
   },
@@ -30,8 +27,6 @@ module.exports = {
   maskedIconMinimalPadding: {
     strategy: 'composite',
     options: {
-      backgroundColor: 'transparent',
-      mask: null,
       layers: [
         {input: 'maskedIcon', multiplier: 2, style: 'maskedIconMinimalPaddingScale'},
       ],
@@ -52,11 +47,9 @@ module.exports = {
   iconForeground: {
     strategy: 'composite',
     options: {
-      backgroundColor: 'transparent',
-      mask: null,
       layers: [
-        {input: 'icon', multiplier: 1, style: null},
-        {input: 'iconBleed', multiplier: 1, style: null},
+        {input: 'icon'},
+        {input: 'iconBleed'},
       ],
     },
   },
@@ -75,8 +68,6 @@ module.exports = {
   macosIcon: {
     strategy: 'composite',
     options: {
-      backgroundColor: 'transparent',
-      mask: null,
       layers: [
         {input: 'maskedIconWithoutBleed', multiplier: 2, style: 'macosIconScale'},
       ],
@@ -85,33 +76,29 @@ module.exports = {
   maskableIcon: {
     strategy: 'composite',
     options: {
-      backgroundColor: 'transparent',
-      mask: null,
       layers: [
-        {input: 'iconForeground', multiplier: 1, style: null},
-        {input: 'iconBackground', multiplier: 1, style: null},
+        {input: 'iconForeground'},
+        {input: 'iconBackground'},
       ],
     },
   },
   maskedIcon: {
     strategy: 'composite',
     options: {
-      backgroundColor: 'transparent',
       mask: 'iconMask',
       layers: [
-        {input: 'iconForeground', multiplier: 1, style: null},
-        {input: 'iconBackground', multiplier: 1, style: null},
+        {input: 'iconForeground'},
+        {input: 'iconBackground'},
       ],
     },
   },
   maskedIconWithoutBleed: {
     strategy: 'composite',
     options: {
-      backgroundColor: 'transparent',
       mask: 'iconMask',
       layers: [
-        {input: 'icon', multiplier: 1, style: null},
-        {input: 'iconBackground', multiplier: 1, style: null},
+        {input: 'icon'},
+        {input: 'iconBackground'},
       ],
     },
   },
@@ -130,11 +117,9 @@ module.exports = {
   socialShareImage: {
     strategy: 'composite',
     options: {
-      backgroundColor: 'transparent',
-      mask: null,
       layers: [
-        {input: 'iconSilhouette', multiplier: 1, style: null},
-        {input: 'backgroundColor', multiplier: 1, style: null},
+        {input: 'iconSilhouette'},
+        {input: 'backgroundColor'},
       ],
     },
   },
@@ -147,10 +132,8 @@ module.exports = {
   windowsTile: {
     strategy: 'composite',
     options: {
-      backgroundColor: 'transparent',
-      mask: null,
       layers: [
-        {input: 'windowsTileIcon', multiplier: 1, style: 'windowsTileIconPosition'},
+        {input: 'windowsTileIcon', style: 'windowsTileIconPosition'},
       ],
     },
   },
@@ -163,10 +146,8 @@ module.exports = {
   windowsTileSmall: {
     strategy: 'composite',
     options: {
-      backgroundColor: 'transparent',
-      mask: null,
       layers: [
-        {input: 'windowsTileIcon', multiplier: 1, style: 'windowsTileIconPositionSmall'},
+        {input: 'windowsTileIcon', style: 'windowsTileIconPositionSmall'},
       ],
     },
   },

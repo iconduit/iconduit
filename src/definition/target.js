@@ -3,7 +3,6 @@ module.exports = {
     outputs: [
       'iconduitManifest',
     ],
-    tags: [],
   },
   browser: {
     all: {
@@ -21,7 +20,6 @@ module.exports = {
       ],
     },
     and_chr: {
-      outputs: [],
       tags: [
         'mobileWebAppCapable',
       ],
@@ -32,7 +30,7 @@ module.exports = {
         'windowsTile',
         'windowsTileSmall',
       ],
-      tags: [],
+
     },
     ie: {
       outputs: [
@@ -40,7 +38,7 @@ module.exports = {
         'windowsTile',
         'windowsTileSmall',
       ],
-      tags: [],
+
     },
     ios_saf: {
       outputs: [
@@ -54,7 +52,7 @@ module.exports = {
       outputs: [
         'safariMaskIcon',
       ],
-      tags: [],
+
     },
   },
   installer: {
@@ -62,7 +60,7 @@ module.exports = {
       outputs: [
         'dmgBackground',
       ],
-      tags: [],
+
     },
   },
   os: {
@@ -71,19 +69,19 @@ module.exports = {
         'appleTouchIcon',
         'appleTouchStartup',
       ],
-      tags: [],
+
     },
     macos: {
       outputs: [
         'macosIcns',
       ],
-      tags: [],
+
     },
     windows: {
       outputs: [
         'windowsIco',
       ],
-      tags: [],
+
     },
   },
   web: {

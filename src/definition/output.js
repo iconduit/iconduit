@@ -8,7 +8,6 @@ module.exports = {
     tags: [
       'appleTouchIcon',
     ],
-    options: {},
   },
   appleTouchStartup: {
     input: 'appleTouchStartup',
@@ -37,38 +36,28 @@ module.exports = {
       'display.iphone828x1792.landscape',
       'display.iphone828x1792.portrait',
     ],
-    tags: [],
-    options: {},
   },
   browserconfigXml: {
     input: 'browserconfig',
     name: 'browserconfig.xml',
-    sizes: [],
     tags: [
       'msapplicationConfig',
     ],
-    options: {},
   },
   dmgBackground: {
     input: 'dmgBackground',
     name: 'dmg-background[atPixelRatioX].png',
     sizes: ['dmgBackground@2x', 'dmgBackground'],
-    tags: [],
-    options: {},
   },
   facebookAppIcon: {
     input: 'facebookAppIcon',
     name: 'facebook-app-icon.png',
     sizes: ['facebookAppIcon'],
-    tags: [],
-    options: {},
   },
   faviconIco: {
     input: 'maskedIconMinimalPadding',
     name: 'favicon.ico',
     sizes: ['faviconLarge', 'faviconMedium', 'faviconSmall'],
-    tags: [],
-    options: {},
   },
   faviconPng: {
     input: 'maskedIconMinimalPadding',
@@ -77,21 +66,14 @@ module.exports = {
     tags: [
       'icon',
     ],
-    options: {},
   },
   iconduitManifest: {
     input: 'iconduitManifest',
     name: 'iconduit.manifest.json',
-    sizes: [],
-    tags: [],
-    options: {},
   },
   indexHtml: {
     input: 'index',
     name: 'index.html',
-    sizes: [],
-    tags: [],
-    options: {},
   },
   macosIcns: {
     input: 'macosIcon',
@@ -109,15 +91,11 @@ module.exports = {
       'icns16@2x',
       'icns16',
     ],
-    tags: [],
-    options: {},
   },
   maskableIcon: {
     input: 'maskableIcon',
     name: 'maskable-icon-[dimensions].png',
     sizes: ['maskableIconHires', 'maskableIconLores'],
-    tags: [],
-    options: {},
   },
   openGraphImage: {
     input: 'openGraphImage',
@@ -126,23 +104,17 @@ module.exports = {
     tags: [
       'openGraphImage',
     ],
-    options: {},
   },
   safariMaskIcon: {
     input: 'safariMaskIcon',
     name: 'safari-mask-icon.svg',
-    sizes: [],
     tags: [
       'maskIcon',
     ],
-    options: {},
   },
   serviceWorker: {
     input: 'serviceWorker',
     name: 'service-worker.js',
-    sizes: [],
-    tags: [],
-    options: {},
   },
   twitterCardImage: {
     input: 'twitterCardImage',
@@ -151,12 +123,10 @@ module.exports = {
     tags: [
       'twitterImage',
     ],
-    options: {},
   },
   webAppManifest: {
     input: 'webAppManifest',
     name: 'manifest.json',
-    sizes: [],
     tags: [
       'manifest',
     ],
@@ -179,21 +149,15 @@ module.exports = {
       'windowsIco22',
       'windowsIco16',
     ],
-    tags: [],
-    options: {},
   },
   windowsTile: {
     input: 'windowsTile',
     name: 'windows-tile-[dimensions].png',
     sizes: ['windowsTileMedium', 'windowsTileLarge', 'windowsTileWide'],
-    tags: [],
-    options: {},
   },
   windowsTileSmall: {
     input: 'windowsTileSmall',
     name: 'windows-tile-[dimensions].png',
     sizes: ['windowsTileSmall'],
-    tags: [],
-    options: {},
   },
 }

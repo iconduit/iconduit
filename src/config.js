@@ -290,11 +290,11 @@ function normalizeDefinitions (definitions) {
   const color = userColorDefinitions
   const device = {...standardDeviceDefinitions, ...userDeviceDefinitions}
   const display = {...standardDisplayDefinitions, ...userDisplayDefinitions}
-  const input = normalizeInputDefinitions(userInputDefinitions)
-  const output = normalizeOutputDefinitions(userOutputDefinitions)
-  const size = normalizeSizeDefinitions(device, display, userSizeDefinitions)
+  const input = normalizeInputDefinitions({...standardInputDefinitions, ...userInputDefinitions})
+  const output = normalizeOutputDefinitions({...standardOutputDefinitions, ...userOutputDefinitions})
+  const size = normalizeSizeDefinitions(device, display, {...standardSizeDefinitions, ...userSizeDefinitions})
   const style = {...standardStyleDefinitions, ...userStyleDefinitions}
-  const tag = normalizeTagDefinitions(userTagDefinitions)
+  const tag = normalizeTagDefinitions({...standardTagDefinitions, ...userTagDefinitions})
   const target = normalizeTargetDefinitions(userTargetDefinitions)
 
   return {
@@ -313,7 +313,7 @@ function normalizeDefinitions (definitions) {
 function normalizeInputDefinitions (input) {
   assertObject(input, 'definitions.input')
 
-  const normalized = {...standardInputDefinitions}
+  const normalized = {}
 
   for (const inputName in input) {
     const definition = input[inputName]
@@ -405,7 +405,7 @@ function normalizeDegradeInputDefinitionOptions (options, setting) {
 function normalizeOutputDefinitions (output) {
   assertObject(output, 'definitions.output')
 
-  const normalized = {...standardOutputDefinitions}
+  const normalized = {}
 
   for (const outputName in output) {
     const definition = output[outputName]
@@ -457,7 +457,7 @@ function normalizeSizeDefinitions (device, display, size) {
 
   const displaySizes = {}
   const deviceSizes = {}
-  const userSizes = {}
+  const otherSizes = {}
 
   for (const displayName in display) {
     const {resolution: {horizontal, vertical}, pixelDensity, pixelRatio, orientation} = display[displayName]
@@ -511,7 +511,7 @@ function normalizeSizeDefinitions (device, display, size) {
     assertInteger(pixelDensity, `${sizeSetting}.pixelDensity`)
     assertInteger(pixelRatio, `${sizeSetting}.pixelRatio`)
 
-    userSizes[name] = {
+    otherSizes[name] = {
       key,
       width,
       height,
@@ -520,13 +520,13 @@ function normalizeSizeDefinitions (device, display, size) {
     }
   }
 
-  return {...displaySizes, ...deviceSizes, ...standardSizeDefinitions, ...userSizes}
+  return {...displaySizes, ...deviceSizes, ...otherSizes}
 }
 
 function normalizeTagDefinitions (tag) {
   assertObject(tag, 'definitions.tag')
 
-  const normalized = {...standardTagDefinitions}
+  const normalized = {}
 
   for (const name in tag) {
     normalized[name] = normalizeTagDefinition(tag[name], `definitions.tag.${name}`)
@@ -624,29 +624,25 @@ function normalizeTargetDefinitions (target) {
   return {
     all: normalizeTargetDefinition(all, 'definitions.target.all'),
     browser: normalizeTargetDefinitionCategory(
-      standardBrowserTargetDefinitions,
-      browser,
+      {...standardBrowserTargetDefinitions, ...browser},
       'definitions.target.browser'
     ),
     installer: normalizeTargetDefinitionCategory(
-      standardInstallerTargetDefinitions,
-      installer,
+      {...standardInstallerTargetDefinitions, ...installer},
       'definitions.target.installer'
     ),
     os: normalizeTargetDefinitionCategory(
-      standardOsTargetDefinitions,
-      os,
+      {...standardOsTargetDefinitions, ...os},
       'definitions.target.os'
     ),
     web: normalizeTargetDefinitionCategory(
-      standardWebTargetDefinitions,
-      web,
+      {...standardWebTargetDefinitions, ...web},
       'definitions.target.web'
     ),
   }
 }
 
-function normalizeTargetDefinitionCategory (standardDefinitions, definitions, setting) {
+function normalizeTargetDefinitionCategory (definitions, setting) {
   assertObject(definitions, setting)
 
   const normalized = {}
@@ -655,7 +651,7 @@ function normalizeTargetDefinitionCategory (standardDefinitions, definitions, se
     normalized[name] = normalizeTargetDefinition(definitions[name], `${setting}.${name}`)
   }
 
-  return {...standardDefinitions, ...normalized}
+  return normalized
 }
 
 function normalizeTargetDefinition (definition, setting) {
@@ -663,12 +659,15 @@ function normalizeTargetDefinition (definition, setting) {
 
   const {
     outputs = [],
+    tags = [],
   } = definition
 
   assertArrayOfNonEmptyStrings(outputs, `${setting}.outputs`)
+  assertArrayOfNonEmptyStrings(tags, `${setting}.tags`)
 
   return {
     outputs,
+    tags,
   }
 }
 
