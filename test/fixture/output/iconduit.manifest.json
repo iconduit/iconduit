@@ -41,7 +41,7 @@
     "theme": "#D58B41",
     "tile": "#D5415C"
   },
-  "description": null,
+  "description": "A build system for web application icon and image assets",
   "displayMode": "standalone",
   "iarcRatingId": null,
   "language": null,
@@ -737,6 +737,18 @@
         "isSelfClosing": true,
         "sortWeight": 0,
         "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "A build system for web application icon and image assets",
+          "property": "og:description"
+        },
+        "children": [
+        ],
+        "html": "<meta property=\"og:description\" content=\"A build system for web application icon and image assets\">",
+        "isSelfClosing": true,
+        "sortWeight": 0,
+        "tag": "meta"
       }
     ],
     "openGraphImage": [
@@ -822,6 +834,18 @@
         "children": [
         ],
         "html": "<meta name=\"twitter:title\" content=\"Iconduit\">",
+        "isSelfClosing": true,
+        "sortWeight": 0,
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "A build system for web application icon and image assets",
+          "name": "twitter:description"
+        },
+        "children": [
+        ],
+        "html": "<meta name=\"twitter:description\" content=\"A build system for web application icon and image assets\">",
         "isSelfClosing": true,
         "sortWeight": 0,
         "tag": "meta"

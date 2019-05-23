@@ -1,5 +1,6 @@
 {
   "background_color": "#D5415C",
+  "description": "A build system for web application icon and image assets",
   "display": "standalone",
   "icons": [
     {
