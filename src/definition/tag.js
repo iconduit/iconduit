@@ -197,6 +197,65 @@ module.exports = {
       },
     ],
   },
+  openGraphImage: {
+    openGraphImage: [
+      {
+        tag: 'meta',
+        attributes: {
+          property: 'og:image',
+          content: {$ref: 'output#/path'},
+        },
+        children: [],
+        isSelfClosing: true,
+        sortWeight: 0,
+        dependencies: [],
+      },
+      {
+        tag: 'meta',
+        attributes: {
+          property: 'og:image:type',
+          content: {$ref: 'output#/type'},
+        },
+        children: [],
+        isSelfClosing: true,
+        sortWeight: 0,
+        dependencies: [],
+      },
+      {
+        tag: 'meta',
+        attributes: {
+          property: 'og:image:width',
+          content: {$ref: 'output#/size/width'},
+        },
+        children: [],
+        isSelfClosing: true,
+        sortWeight: 0,
+        dependencies: [],
+      },
+      {
+        tag: 'meta',
+        attributes: {
+          property: 'og:image:height',
+          content: {$ref: 'output#/size/height'},
+        },
+        children: [],
+        isSelfClosing: true,
+        sortWeight: 0,
+        dependencies: [],
+      },
+      {
+        tag: 'meta',
+        attributes: {
+          property: 'og:image:alt',
+          content: {$ref: 'manifest#/name'},
+        },
+        children: [],
+        isSelfClosing: true,
+        sortWeight: 0,
+        dependencies: [],
+      },
+    ],
+  },
   themeColor: {
     meta: [
       {

@@ -8,6 +8,7 @@ const {
     meta: metaTags = [],
     script: scriptTags = [],
     openGraph: openGraphTags = [],
+    openGraphImage: openGraphImageTags = [],
   },
 } = manifest
 
@@ -20,6 +21,7 @@ const {
 <% for (const {html} of linkTags) { %><%- `\n  ${html}` %><% } %>
 <% for (const {html} of iconTags) { %><%- `\n  ${html}` %><% } %>
 <% for (const {html} of openGraphTags) { %><%- `\n  ${html}` %><% } %>
+<% for (const {html} of openGraphImageTags) { %><%- `\n  ${html}` %><% } %>
 
   <!-- iconduit-end -->
 </head>

@@ -132,7 +132,9 @@ function createTagResolver (definitions) {
     const resolvedAttributes = {}
 
     for (const name in attributes) {
-      resolvedAttributes[name] = resolve(attributes[name])
+      const value = resolve(attributes[name])
+
+      resolvedAttributes[name] = typeof value === 'number' ? value.toString() : value
     }
 
     const resolvedChildren = children.map(resolveTag)

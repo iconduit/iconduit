@@ -123,7 +123,9 @@ module.exports = {
     input: 'openGraphImage',
     name: 'open-graph.png',
     sizes: ['openGraphImage'],
-    tags: [],
+    tags: [
+      'openGraphImage',
+    ],
     options: {},
   },
   safariMaskIcon: {
