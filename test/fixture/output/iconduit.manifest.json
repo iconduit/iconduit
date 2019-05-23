@@ -537,6 +537,54 @@
       },
       {
         "attributes": {
+          "content": "Iconduit",
+          "name": "application-name"
+        },
+        "children": [
+        ],
+        "html": "<meta name=\"application-name\" content=\"Iconduit\">",
+        "isSelfClosing": true,
+        "sortWeight": 100,
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "yes",
+          "name": "mobile-web-app-capable"
+        },
+        "children": [
+        ],
+        "html": "<meta name=\"mobile-web-app-capable\" content=\"yes\">",
+        "isSelfClosing": true,
+        "sortWeight": 100,
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "browserconfig.xml",
+          "name": "msapplication-config"
+        },
+        "children": [
+        ],
+        "html": "<meta name=\"msapplication-config\" content=\"browserconfig.xml\">",
+        "isSelfClosing": true,
+        "sortWeight": 100,
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "#D58B41",
+          "name": "theme-color"
+        },
+        "children": [
+        ],
+        "html": "<meta name=\"theme-color\" content=\"#D58B41\">",
+        "isSelfClosing": true,
+        "sortWeight": 100,
+        "tag": "meta"
+      },
+      {
+        "attributes": {
           "href": "apple-touch-icon-180x180.png",
           "rel": "apple-touch-icon",
           "sizes": "180x180"

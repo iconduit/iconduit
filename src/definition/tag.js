@@ -38,4 +38,60 @@ module.exports = {
       },
     ],
   },
+  applicationName: {
+    head: [
+      {
+        tag: 'meta',
+        attributes: {
+          name: 'application-name',
+          content: {$ref: 'manifest#/name'},
+        },
+        children: [],
+        isSelfClosing: true,
+        sortWeight: 100,
+      },
+    ],
+  },
+  mobileWebAppCapable: {
+    head: [
+      {
+        tag: 'meta',
+        attributes: {
+          name: 'mobile-web-app-capable',
+          content: 'yes',
+        },
+        children: [],
+        isSelfClosing: true,
+        sortWeight: 100,
+      },
+    ],
+  },
+  msapplicationConfig: {
+    head: [
+      {
+        tag: 'meta',
+        attributes: {
+          name: 'msapplication-config',
+          content: {$ref: 'output#/path'},
+        },
+        children: [],
+        isSelfClosing: true,
+        sortWeight: 100,
+      },
+    ],
+  },
+  themeColor: {
+    head: [
+      {
+        tag: 'meta',
+        attributes: {
+          name: 'theme-color',
+          content: {$ref: 'manifest#/color/theme'},
+        },
+        children: [],
+        isSelfClosing: true,
+        sortWeight: 100,
+      },
+    ],
+  },
 }

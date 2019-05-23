@@ -52,13 +52,18 @@ function buildTags (manifest, tags, outputs) {
   add(tags, createTagResolver({manifest}), 'definitions.tag')
 
   for (const outputName in outputs) {
-    const {tags} = outputs[outputName]
-    const outputSizes = manifestOutput[outputName]
+    const {sizes, tags} = outputs[outputName]
+    const output = manifestOutput[outputName]
+    const setting = `definitions.output.${outputName}.tags`
 
-    for (const key in outputSizes) {
-      const output = outputSizes[key]
+    if (sizes.length > 0) {
+      for (const key in output) {
+        const outputSize = output[key]
 
-      add(tags, createTagResolver({manifest, output}), `definitions.output.${outputName}.tags`)
+        add(tags, createTagResolver({manifest, output: outputSize}), setting)
+      }
+    } else {
+      add(tags, createTagResolver({manifest, output}), setting)
     }
   }
 

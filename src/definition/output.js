@@ -44,7 +44,9 @@ module.exports = {
     input: 'browserconfig',
     name: 'browserconfig.xml',
     sizes: [],
-    tags: [],
+    tags: [
+      'msapplicationConfig',
+    ],
     options: {},
   },
   dmgBackground: {

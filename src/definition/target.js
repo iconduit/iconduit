@@ -15,7 +15,16 @@ module.exports = {
         'serviceWorker',
         'webAppManifest',
       ],
-      tags: [],
+      tags: [
+        'applicationName',
+        'themeColor',
+      ],
+    },
+    and_chr: {
+      outputs: [],
+      tags: [
+        'mobileWebAppCapable',
+      ],
     },
     edge: {
       outputs: [
@@ -45,9 +54,7 @@ module.exports = {
       outputs: [
         'safariMaskIcon',
       ],
-      tags: [
-        'appleMobile',
-      ],
+      tags: [],
     },
   },
   installer: {
