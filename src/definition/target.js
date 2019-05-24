@@ -91,6 +91,7 @@ module.exports = {
         'openGraphImage',
       ],
       tags: [
+        'facebook',
         'openGraph',
       ],
     },

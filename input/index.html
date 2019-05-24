@@ -1,6 +1,7 @@
 <%
 
 const {
+  language,
   name,
   tag: {
     icon: iconTags = [],
@@ -14,8 +15,11 @@ const {
   },
 } = manifest
 
-%><html>
+%><!DOCTYPE html>
+<html lang="<%= language %>">
 <head>
+  <meta charset="utf-8">
+
   <title><%= name %></title>
 
   <!-- iconduit-start -->

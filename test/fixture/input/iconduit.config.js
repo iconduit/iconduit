@@ -1,6 +1,7 @@
 module.exports = {
   name: 'Iconduit',
   description: 'A build system for web application icon and image assets',
+  url: 'https://iconduit.app/',
   definitions: {
     color: {
       iconduitorange: '#D58B41',
@@ -62,21 +63,27 @@ module.exports = {
       {
         platform: 'itunes',
         id: '915056765',
+        launchUrl: 'iconduit://dashboard',
       },
       {
         platform: 'play',
         id: 'com.google.android.apps.maps',
+        launchUrl: 'https://iconduit.app/dashboard',
       },
       {
         platform: 'windows',
         id: '9wzdncrdtbvb',
       },
     ],
-    web: [
-      {
-        platform: 'facebook',
-        id: '123456789012345',
+    web: {
+      facebook: {
+        appId: '123456789012345',
       },
-    ],
+      twitter: {
+        cardType: 'app',
+        creatorHandle: 'ezzatron',
+        siteHandle: 'iconduitapp',
+      },
+    },
   },
 }

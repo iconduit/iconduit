@@ -127,7 +127,7 @@ function createTagResolver (definitions) {
         resolvedValue = resolve(value)
       } catch (error) {}
 
-      if (resolvedValue == null) return null
+      if (!resolvedValue) return null
     }
 
     const resolvedAttributes = {}

@@ -47,7 +47,7 @@ function normalize (config) {
     displayMode = 'standalone',
     iarcRatingId = null,
     inputs = {},
-    language = null,
+    language = 'en-US',
     name,
     orientation = null,
     outputs = {},
@@ -58,12 +58,13 @@ function normalize (config) {
     tags = {},
     targets = {},
     textDirection = 'auto',
+    url = null,
   } = config
 
   assertOptionalNonEmptyString(description, 'description')
   assertNonEmptyString(displayMode, 'displayMode')
   assertOptionalNonEmptyString(iarcRatingId, 'iarcRatingId')
-  assertOptionalNonEmptyString(language, 'language')
+  assertNonEmptyString(language, 'language')
   assertNonEmptyString(name, 'name')
   assertOptionalNonEmptyString(orientation, 'orientation')
   assertOptionalBoolean(preferRelatedApplications, 'preferRelatedApplications')
@@ -71,6 +72,7 @@ function normalize (config) {
   assertOptionalNonEmptyString(shortName, 'shortName')
   assertOptionalNonEmptyString(startUrl, 'startUrl')
   assertNonEmptyString(textDirection, 'textDirection')
+  assertOptionalNonEmptyString(url, 'url')
 
   return {
     applications: normalizeApplications(applications),
@@ -92,6 +94,7 @@ function normalize (config) {
     tags: normalizeTags(tags),
     targets: normalizeTargets(targets),
     textDirection,
+    url,
   }
 }
 
@@ -136,8 +139,10 @@ function normalizeNativeApplications (native) {
     assertObject(application, applicationSetting)
 
     const {
+      country = 'US',
       fingerprints = [],
       id,
+      launchUrl = null,
       minVersion = null,
       platform,
       url,
@@ -150,12 +155,16 @@ function normalizeNativeApplications (native) {
     if (hasUrl) assertNonEmptyString(url, `${applicationSetting}.url`)
     if (!hasId && !hasUrl) throw new Error(`Invalid value for ${applicationSetting}`)
 
+    assertNonEmptyString(country, `${applicationSetting}.country`)
+    assertOptionalNonEmptyString(launchUrl, `${applicationSetting}.launchUrl`)
     assertOptionalNonEmptyString(minVersion, `${applicationSetting}.minVersion`)
     assertNonEmptyString(platform, `${applicationSetting}.platform`)
 
     normalized[index] = {
+      country,
       fingerprints: normalizeNativeApplicationFingerprints(fingerprints, `${applicationSetting}.fingerprints`),
       id,
+      launchUrl,
       minVersion,
       platform,
       url: buildNativeApplicationUrl(url, platform, id),
@@ -206,31 +215,67 @@ function buildNativeApplicationUrl (url, platform, id) {
 }
 
 function normalizeWebApplications (web) {
-  assertArray(web, 'applications.web')
+  assertObject(web, 'applications.web')
 
-  const normalized = []
+  const {
+    facebook = {},
+    openGraph = {},
+    twitter = {},
+  } = web
 
-  for (let index = 0; index < web.length; ++index) {
-    const application = web[index]
-    const applicationSetting = `applications.web[${index}]`
-
-    assertObject(application, applicationSetting)
-
-    const {
-      id,
-      platform,
-    } = application
-
-    assertNonEmptyString(id, `${applicationSetting}.id`)
-    assertNonEmptyString(platform, `${applicationSetting}.platform`)
-
-    normalized[index] = {
-      id,
-      platform,
-    }
+  return {
+    facebook: normalizeFacebookWebApplication(facebook, 'applications.web.facebook'),
+    openGraph: normalizeOpenGraphWebApplication(openGraph, 'applications.web.openGraph'),
+    twitter: normalizeTwitterWebApplication(twitter, 'applications.web.twitter'),
   }
+}
 
-  return normalized
+function normalizeFacebookWebApplication (application, setting) {
+  assertObject(application, setting)
+
+  const {
+    appId = null,
+  } = application
+
+  assertOptionalNonEmptyString(appId, `${setting}.appId`)
+
+  return {
+    appId,
+  }
+}
+
+function normalizeOpenGraphWebApplication (application, setting) {
+  assertObject(application, setting)
+
+  const {
+    determiner = null,
+  } = application
+
+  assertOptionalNonEmptyString(determiner, `${setting}.determiner`)
+
+  return {
+    determiner,
+  }
+}
+
+function normalizeTwitterWebApplication (application, setting) {
+  assertObject(application, setting)
+
+  const {
+    cardType = 'summary_large_image',
+    creatorHandle = null,
+    siteHandle = null,
+  } = application
+
+  assertNonEmptyString(cardType, `${setting}.cardType`)
+  assertOptionalNonEmptyString(creatorHandle, `${setting}.creatorHandle`)
+  assertOptionalNonEmptyString(siteHandle, `${setting}.siteHandle`)
+
+  return {
+    cardType,
+    creatorHandle,
+    siteHandle,
+  }
 }
 
 function normalizeCategories (categories) {

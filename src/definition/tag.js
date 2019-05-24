@@ -1,14 +1,30 @@
 const {
-  selectManifestDescription,
-  selectManifestLanguage,
-  selectManifestMaskColor,
-  selectManifestName,
-  selectManifestThemeColor,
+  selectDescription,
+  selectFacebookAppId,
+  selectLocale,
+  selectMaskColor,
+  selectName,
+  selectOpenGraphDeterminer,
   selectOutputHeight,
   selectOutputHtmlSizes,
   selectOutputPath,
   selectOutputType,
   selectOutputWidth,
+  selectPrimaryIosApp,
+  selectPrimaryIosAppCountry,
+  selectPrimaryIosAppId,
+  selectPrimaryIosAppLaunchUrl,
+  selectPrimaryPlayApp,
+  selectPrimaryPlayAppId,
+  selectPrimaryPlayAppLaunchUrl,
+  selectThemeColor,
+  selectTwitterCardType,
+  selectTwitterCardTypeIsApp,
+  selectTwitterCardTypeIsSummary,
+  selectTwitterCreatorHandle,
+  selectTwitterDescription,
+  selectTwitterSiteHandle,
+  selectUrl,
 } = require('../selector.js')
 
 module.exports = {
@@ -26,7 +42,7 @@ module.exports = {
         tag: 'meta',
         attributes: {
           name: 'apple-mobile-web-app-title',
-          content: selectManifestName,
+          content: selectName,
         },
         sortWeight: 2000,
       },
@@ -51,9 +67,23 @@ module.exports = {
         tag: 'meta',
         attributes: {
           name: 'application-name',
-          content: selectManifestName,
+          content: selectName,
         },
         sortWeight: 2000,
+      },
+    ],
+  },
+  facebook: {
+    openGraph: [
+      {
+        tag: 'meta',
+        attributes: {
+          property: 'fb:app_id',
+          content: selectFacebookAppId,
+        },
+        predicate: [
+          selectFacebookAppId,
+        ],
       },
     ],
   },
@@ -88,7 +118,7 @@ module.exports = {
         attributes: {
           rel: 'mask-icon',
           href: selectOutputPath,
-          color: selectManifestMaskColor,
+          color: selectMaskColor,
         },
       },
     ],
@@ -130,34 +160,57 @@ module.exports = {
         tag: 'meta',
         attributes: {
           property: 'og:locale',
-          content: selectManifestLanguage,
+          content: selectLocale,
         },
         predicate: [
-          selectManifestLanguage,
+          selectLocale,
+        ],
+      },
+      {
+        tag: 'meta',
+        attributes: {
+          property: 'og:url',
+          content: selectUrl,
+        },
+        predicate: [
+          selectUrl,
         ],
       },
       {
         tag: 'meta',
         attributes: {
           property: 'og:site_name',
-          content: selectManifestName,
+          content: selectName,
         },
+      },
+      {
+        tag: 'meta',
+        attributes: {
+          property: 'og:determiner',
+          content: selectOpenGraphDeterminer,
+        },
+        predicate: [
+          selectOpenGraphDeterminer,
+        ],
       },
       {
         tag: 'meta',
         attributes: {
           property: 'og:title',
-          content: selectManifestName,
+          content: selectName,
         },
+        predicate: [
+          selectName,
+        ],
       },
       {
         tag: 'meta',
         attributes: {
           property: 'og:description',
-          content: selectManifestDescription,
+          content: selectDescription,
         },
         predicate: [
-          selectManifestDescription,
+          selectDescription,
         ],
       },
     ],
@@ -196,7 +249,7 @@ module.exports = {
         tag: 'meta',
         attributes: {
           property: 'og:image:alt',
-          content: selectManifestName,
+          content: selectName,
         },
       },
     ],
@@ -207,7 +260,7 @@ module.exports = {
         tag: 'meta',
         attributes: {
           name: 'theme-color',
-          content: selectManifestThemeColor,
+          content: selectThemeColor,
         },
         sortWeight: 3000,
       },
@@ -219,24 +272,155 @@ module.exports = {
         tag: 'meta',
         attributes: {
           name: 'twitter:card',
-          content: 'summary_large_image',
+          content: selectTwitterCardType,
         },
+      },
+      {
+        tag: 'meta',
+        attributes: {
+          name: 'twitter:site',
+          content: selectTwitterSiteHandle,
+        },
+      },
+      {
+        tag: 'meta',
+        attributes: {
+          name: 'twitter:creator',
+          content: selectTwitterCreatorHandle,
+        },
+        predicate: [
+          selectTwitterCardTypeIsSummary,
+          selectTwitterCreatorHandle,
+        ],
       },
       {
         tag: 'meta',
         attributes: {
           name: 'twitter:title',
-          content: selectManifestName,
+          content: selectName,
         },
+        predicate: [
+          selectTwitterCardTypeIsSummary,
+        ],
       },
       {
         tag: 'meta',
         attributes: {
           name: 'twitter:description',
-          content: selectManifestDescription,
+          content: selectTwitterDescription,
         },
         predicate: [
-          selectManifestDescription,
+          selectTwitterDescription,
+        ],
+      },
+      {
+        tag: 'meta',
+        attributes: {
+          name: 'twitter:app:country',
+          content: selectPrimaryIosAppCountry,
+        },
+        predicate: [
+          selectTwitterCardTypeIsApp,
+          selectPrimaryIosAppCountry,
+        ],
+      },
+      {
+        tag: 'meta',
+        attributes: {
+          name: 'twitter:app:name:iphone',
+          content: selectName,
+        },
+        predicate: [
+          selectTwitterCardTypeIsApp,
+          selectPrimaryIosApp,
+        ],
+      },
+      {
+        tag: 'meta',
+        attributes: {
+          name: 'twitter:app:id:iphone',
+          content: selectPrimaryIosAppId,
+        },
+        predicate: [
+          selectTwitterCardTypeIsApp,
+          selectPrimaryIosAppId,
+        ],
+      },
+      {
+        tag: 'meta',
+        attributes: {
+          name: 'twitter:app:url:iphone',
+          content: selectPrimaryIosAppLaunchUrl,
+        },
+        predicate: [
+          selectTwitterCardTypeIsApp,
+          selectPrimaryIosAppLaunchUrl,
+        ],
+      },
+      {
+        tag: 'meta',
+        attributes: {
+          name: 'twitter:app:name:ipad',
+          content: selectName,
+        },
+        predicate: [
+          selectTwitterCardTypeIsApp,
+          selectPrimaryIosApp,
+        ],
+      },
+      {
+        tag: 'meta',
+        attributes: {
+          name: 'twitter:app:id:ipad',
+          content: selectPrimaryIosAppId,
+        },
+        predicate: [
+          selectTwitterCardTypeIsApp,
+          selectPrimaryIosAppId,
+        ],
+      },
+      {
+        tag: 'meta',
+        attributes: {
+          name: 'twitter:app:url:ipad',
+          content: selectPrimaryIosAppLaunchUrl,
+        },
+        predicate: [
+          selectTwitterCardTypeIsApp,
+          selectPrimaryIosAppLaunchUrl,
+        ],
+      },
+      {
+        tag: 'meta',
+        attributes: {
+          name: 'twitter:app:name:googleplay',
+          content: selectName,
+        },
+        predicate: [
+          selectTwitterCardTypeIsApp,
+          selectPrimaryPlayApp,
+        ],
+      },
+      {
+        tag: 'meta',
+        attributes: {
+          name: 'twitter:app:id:googleplay',
+          content: selectPrimaryPlayAppId,
+        },
+        predicate: [
+          selectTwitterCardTypeIsApp,
+          selectPrimaryPlayAppId,
+        ],
+      },
+      {
+        tag: 'meta',
+        attributes: {
+          name: 'twitter:app:url:googleplay',
+          content: selectPrimaryPlayAppLaunchUrl,
+        },
+        predicate: [
+          selectTwitterCardTypeIsApp,
+          selectPrimaryPlayAppLaunchUrl,
         ],
       },
     ],
@@ -254,7 +438,7 @@ module.exports = {
         tag: 'meta',
         attributes: {
           name: 'twitter:image:alt',
-          content: selectManifestName,
+          content: selectName,
         },
       },
     ],

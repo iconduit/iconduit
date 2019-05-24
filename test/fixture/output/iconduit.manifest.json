@@ -2,36 +2,49 @@
   "applications": {
     "native": [
       {
+        "country": "US",
         "fingerprints": [
         ],
         "id": "915056765",
+        "launchUrl": "iconduit://dashboard",
         "minVersion": null,
         "platform": "itunes",
         "url": "https://itunes.apple.com/app/id915056765"
       },
       {
+        "country": "US",
         "fingerprints": [
         ],
         "id": "com.google.android.apps.maps",
+        "launchUrl": "https://iconduit.app/dashboard",
         "minVersion": null,
         "platform": "play",
         "url": "https://play.google.com/store/apps/details?id=com.google.android.apps.maps"
       },
       {
+        "country": "US",
         "fingerprints": [
         ],
         "id": "9wzdncrdtbvb",
+        "launchUrl": null,
         "minVersion": null,
         "platform": "windows",
         "url": "https://microsoft.com/p/app/9wzdncrdtbvb"
       }
     ],
-    "web": [
-      {
-        "id": "123456789012345",
-        "platform": "facebook"
+    "web": {
+      "facebook": {
+        "appId": "123456789012345"
+      },
+      "openGraph": {
+        "determiner": null
+      },
+      "twitter": {
+        "cardType": "app",
+        "creatorHandle": "ezzatron",
+        "siteHandle": "iconduitapp"
       }
-    ]
+    }
   },
   "categories": [
   ],
@@ -44,7 +57,7 @@
   "description": "A build system for web application icon and image assets",
   "displayMode": "standalone",
   "iarcRatingId": null,
-  "language": null,
+  "language": "en-US",
   "name": "Iconduit",
   "orientation": null,
   "output": {
@@ -704,12 +717,48 @@
     "openGraph": [
       {
         "attributes": {
+          "content": "123456789012345",
+          "property": "fb:app_id"
+        },
+        "children": [
+        ],
+        "html": "<meta property=\"fb:app_id\" content=\"123456789012345\">",
+        "isSelfClosing": true,
+        "sortWeight": 0,
+        "tag": "meta"
+      },
+      {
+        "attributes": {
           "content": "website",
           "property": "og:type"
         },
         "children": [
         ],
         "html": "<meta property=\"og:type\" content=\"website\">",
+        "isSelfClosing": true,
+        "sortWeight": 0,
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "en_US",
+          "property": "og:locale"
+        },
+        "children": [
+        ],
+        "html": "<meta property=\"og:locale\" content=\"en_US\">",
+        "isSelfClosing": true,
+        "sortWeight": 0,
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "https://iconduit.app/",
+          "property": "og:url"
+        },
+        "children": [
+        ],
+        "html": "<meta property=\"og:url\" content=\"https://iconduit.app/\">",
         "isSelfClosing": true,
         "sortWeight": 0,
         "tag": "meta"
@@ -816,24 +865,24 @@
     "twitter": [
       {
         "attributes": {
-          "content": "summary_large_image",
+          "content": "app",
           "name": "twitter:card"
         },
         "children": [
         ],
-        "html": "<meta name=\"twitter:card\" content=\"summary_large_image\">",
+        "html": "<meta name=\"twitter:card\" content=\"app\">",
         "isSelfClosing": true,
         "sortWeight": 0,
         "tag": "meta"
       },
       {
         "attributes": {
-          "content": "Iconduit",
-          "name": "twitter:title"
+          "content": "@iconduitapp",
+          "name": "twitter:site"
         },
         "children": [
         ],
-        "html": "<meta name=\"twitter:title\" content=\"Iconduit\">",
+        "html": "<meta name=\"twitter:site\" content=\"@iconduitapp\">",
         "isSelfClosing": true,
         "sortWeight": 0,
         "tag": "meta"
@@ -846,6 +895,126 @@
         "children": [
         ],
         "html": "<meta name=\"twitter:description\" content=\"A build system for web application icon and image assets\">",
+        "isSelfClosing": true,
+        "sortWeight": 0,
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "US",
+          "name": "twitter:app:country"
+        },
+        "children": [
+        ],
+        "html": "<meta name=\"twitter:app:country\" content=\"US\">",
+        "isSelfClosing": true,
+        "sortWeight": 0,
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "Iconduit",
+          "name": "twitter:app:name:iphone"
+        },
+        "children": [
+        ],
+        "html": "<meta name=\"twitter:app:name:iphone\" content=\"Iconduit\">",
+        "isSelfClosing": true,
+        "sortWeight": 0,
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "915056765",
+          "name": "twitter:app:id:iphone"
+        },
+        "children": [
+        ],
+        "html": "<meta name=\"twitter:app:id:iphone\" content=\"915056765\">",
+        "isSelfClosing": true,
+        "sortWeight": 0,
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "iconduit://dashboard",
+          "name": "twitter:app:url:iphone"
+        },
+        "children": [
+        ],
+        "html": "<meta name=\"twitter:app:url:iphone\" content=\"iconduit://dashboard\">",
+        "isSelfClosing": true,
+        "sortWeight": 0,
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "Iconduit",
+          "name": "twitter:app:name:ipad"
+        },
+        "children": [
+        ],
+        "html": "<meta name=\"twitter:app:name:ipad\" content=\"Iconduit\">",
+        "isSelfClosing": true,
+        "sortWeight": 0,
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "915056765",
+          "name": "twitter:app:id:ipad"
+        },
+        "children": [
+        ],
+        "html": "<meta name=\"twitter:app:id:ipad\" content=\"915056765\">",
+        "isSelfClosing": true,
+        "sortWeight": 0,
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "iconduit://dashboard",
+          "name": "twitter:app:url:ipad"
+        },
+        "children": [
+        ],
+        "html": "<meta name=\"twitter:app:url:ipad\" content=\"iconduit://dashboard\">",
+        "isSelfClosing": true,
+        "sortWeight": 0,
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "Iconduit",
+          "name": "twitter:app:name:googleplay"
+        },
+        "children": [
+        ],
+        "html": "<meta name=\"twitter:app:name:googleplay\" content=\"Iconduit\">",
+        "isSelfClosing": true,
+        "sortWeight": 0,
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "com.google.android.apps.maps",
+          "name": "twitter:app:id:googleplay"
+        },
+        "children": [
+        ],
+        "html": "<meta name=\"twitter:app:id:googleplay\" content=\"com.google.android.apps.maps\">",
+        "isSelfClosing": true,
+        "sortWeight": 0,
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "https://iconduit.app/dashboard",
+          "name": "twitter:app:url:googleplay"
+        },
+        "children": [
+        ],
+        "html": "<meta name=\"twitter:app:url:googleplay\" content=\"https://iconduit.app/dashboard\">",
         "isSelfClosing": true,
         "sortWeight": 0,
         "tag": "meta"
@@ -878,5 +1047,6 @@
       }
     ]
   },
-  "textDirection": "auto"
+  "textDirection": "auto",
+  "url": "https://iconduit.app/"
 }
