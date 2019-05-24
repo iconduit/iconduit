@@ -111,22 +111,22 @@ function createTagResolver (definitions) {
 
   return function resolveTag (definition) {
     const {
-      tag,
       attributes,
       children,
-      dependencies,
       isSelfClosing,
+      predicate,
       sortWeight,
+      tag,
     } = definition
 
-    for (const dependency of dependencies) {
-      let resolvedDependency
+    for (const value of predicate) {
+      let resolvedValue
 
       try {
-        resolvedDependency = resolve(dependency)
+        resolvedValue = resolve(value)
       } catch (error) {}
 
-      if (typeof resolvedDependency !== 'string') return null
+      if (typeof resolvedValue !== 'string') return null
     }
 
     const resolvedAttributes = {}

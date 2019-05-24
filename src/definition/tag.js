@@ -119,7 +119,7 @@ module.exports = {
           property: 'og:locale',
           content: {$ref: 'manifest#/language'},
         },
-        dependencies: [
+        predicate: [
           {$ref: 'manifest#/language'},
         ],
       },
@@ -143,7 +143,7 @@ module.exports = {
           property: 'og:description',
           content: {$ref: 'manifest#/description'},
         },
-        dependencies: [
+        predicate: [
           {$ref: 'manifest#/description'},
         ],
       },
@@ -222,7 +222,7 @@ module.exports = {
           name: 'twitter:description',
           content: {$ref: 'manifest#/description'},
         },
-        dependencies: [
+        predicate: [
           {$ref: 'manifest#/description'},
         ],
       },

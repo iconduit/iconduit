@@ -569,14 +569,14 @@ function normalizeTag (definition, setting) {
   const {
     attributes = {},
     children = [],
-    dependencies = [],
     isSelfClosing = null,
+    predicate = [],
     sortWeight = 0,
     tag,
   } = definition
 
-  assertArrayOfReferences(dependencies, `${setting}.dependencies`)
   assertOptionalBoolean(isSelfClosing, `${setting}.isSelfClosing`)
+  assertArrayOfReferences(predicate, `${setting}.predicate`)
   assertInteger(sortWeight, `${setting}.sortWeight`)
   assertOptionalNonEmptyString(tag, `${setting}.tag`)
   assertNonEmptyString(tag, `${setting}.tag`)
@@ -587,8 +587,8 @@ function normalizeTag (definition, setting) {
   return {
     attributes: normalizeTagAttributes(attributes, `${setting}.attributes`),
     children: normalizeTagList(children, `${setting}.children`),
-    dependencies,
     isSelfClosing: isSelfClosingNormalized,
+    predicate,
     sortWeight,
     tag: tagLowerCase,
   }
