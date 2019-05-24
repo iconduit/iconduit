@@ -26,6 +26,7 @@ module.exports = {
   selectTwitterDescription,
   selectTwitterSiteHandle,
   selectUrl,
+  selectViewport,
 }
 
 function selectDescription ({manifest}) {
@@ -152,4 +153,8 @@ function selectTwitterSiteHandle ({manifest}) {
 
 function selectUrl ({manifest}) {
   return manifest.url
+}
+
+function selectViewport ({manifest}) {
+  return manifest.viewport
 }

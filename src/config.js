@@ -59,6 +59,7 @@ function normalize (config) {
     targets = {},
     textDirection = 'auto',
     url = null,
+    viewport = 'width=device-width, initial-scale=1',
   } = config
 
   assertOptionalNonEmptyString(description, 'description')
@@ -73,6 +74,7 @@ function normalize (config) {
   assertOptionalNonEmptyString(startUrl, 'startUrl')
   assertNonEmptyString(textDirection, 'textDirection')
   assertOptionalNonEmptyString(url, 'url')
+  assertNonEmptyString(viewport, 'viewport')
 
   return {
     applications: normalizeApplications(applications),
@@ -90,11 +92,12 @@ function normalize (config) {
     preferRelatedApplications,
     scope,
     shortName,
-    startUrl,
+    startUrl: startUrl || url,
     tags: normalizeTags(tags),
     targets: normalizeTargets(targets),
     textDirection,
     url,
+    viewport,
   }
 }
 

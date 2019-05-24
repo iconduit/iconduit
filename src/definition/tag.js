@@ -25,6 +25,7 @@ const {
   selectTwitterDescription,
   selectTwitterSiteHandle,
   selectUrl,
+  selectViewport,
 } = require('../selector.js')
 
 module.exports = {
@@ -143,7 +144,7 @@ module.exports = {
           name: 'msapplication-config',
           content: selectOutputPath,
         },
-        sortWeight: 4000,
+        sortWeight: 5000,
       },
     ],
   },
@@ -262,7 +263,7 @@ module.exports = {
           name: 'theme-color',
           content: selectThemeColor,
         },
-        sortWeight: 3000,
+        sortWeight: 4000,
       },
     ],
   },
@@ -440,6 +441,18 @@ module.exports = {
           name: 'twitter:image:alt',
           content: selectName,
         },
+      },
+    ],
+  },
+  viewport: {
+    meta: [
+      {
+        tag: 'meta',
+        attributes: {
+          name: 'viewport',
+          content: selectViewport,
+        },
+        sortWeight: 3000,
       },
     ],
   },

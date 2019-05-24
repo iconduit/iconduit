@@ -38,5 +38,6 @@
   "serviceworker": {
     "src": "service-worker.js"
   },
+  "start_url": "https://iconduit.app/",
   "theme_color": "#D58B41"
 }

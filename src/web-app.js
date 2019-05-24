@@ -18,6 +18,7 @@ function buildWebAppManifest (manifest) {
     preferRelatedApplications,
     scope,
     shortName,
+    startUrl,
     textDirection,
   } = manifest
 
@@ -32,6 +33,7 @@ function buildWebAppManifest (manifest) {
   addNonEmpty(webManifest, 'icons', buildWebAppManifestIcons(manifest))
   add(webManifest, 'display', displayMode)
   addOptional(webManifest, 'orientation', orientation)
+  addOptional(webManifest, 'start_url', startUrl)
   addOptional(webManifest, 'serviceworker', buildWebAppManifestServiceWorker(manifest))
   add(webManifest, 'theme_color', themeColor)
 

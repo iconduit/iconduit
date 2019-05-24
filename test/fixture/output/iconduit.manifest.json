@@ -568,7 +568,7 @@
   "preferRelatedApplications": null,
   "scope": null,
   "shortName": null,
-  "startUrl": null,
+  "startUrl": "https://iconduit.app/",
   "tag": {
     "icon": [
       {
@@ -691,6 +691,18 @@
       },
       {
         "attributes": {
+          "content": "width=device-width, initial-scale=1",
+          "name": "viewport"
+        },
+        "children": [
+        ],
+        "html": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+        "isSelfClosing": true,
+        "sortWeight": 3000,
+        "tag": "meta"
+      },
+      {
+        "attributes": {
           "content": "#D58B41",
           "name": "theme-color"
         },
@@ -698,7 +710,7 @@
         ],
         "html": "<meta name=\"theme-color\" content=\"#D58B41\">",
         "isSelfClosing": true,
-        "sortWeight": 3000,
+        "sortWeight": 4000,
         "tag": "meta"
       },
       {
@@ -710,7 +722,7 @@
         ],
         "html": "<meta name=\"msapplication-config\" content=\"browserconfig.xml\">",
         "isSelfClosing": true,
-        "sortWeight": 4000,
+        "sortWeight": 5000,
         "tag": "meta"
       }
     ],
@@ -1048,5 +1060,6 @@
     ]
   },
   "textDirection": "auto",
-  "url": "https://iconduit.app/"
+  "url": "https://iconduit.app/",
+  "viewport": "width=device-width, initial-scale=1"
 }
