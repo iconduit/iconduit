@@ -1,4 +1,7 @@
+const {buildFileName} = require('./size.js')
+
 module.exports = {
+  selectAppleTouchStartupMedia,
   selectDescription,
   selectFacebookAppId,
   selectLanguage,
@@ -27,6 +30,16 @@ module.exports = {
   selectTwitterSiteHandle,
   selectUrl,
   selectViewport,
+}
+
+function selectAppleTouchStartupMedia ({output}) {
+  return buildFileName(
+    '(device-width: [deviceWidth]px) and ' +
+    '(device-height: [deviceHeight]px) and ' +
+    '(-webkit-device-pixel-ratio: [pixelRatio]) and ' +
+    '(orientation: [orientation])',
+    output.size
+  )
 }
 
 function selectDescription ({manifest}) {

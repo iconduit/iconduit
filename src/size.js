@@ -11,7 +11,7 @@ module.exports = {
 }
 
 function applyMultiplier (definition, multiplier) {
-  const {key, width, height, pixelDensity, pixelRatio} = definition
+  const {key, width, height, deviceWidth, deviceHeight, orientation, pixelDensity, pixelRatio} = definition
 
   const [keyName] = parseSelector(key)
   const keyAtMultiplierX = multiplier === 1 ? '' : `@${multiplier}x`
@@ -20,23 +20,29 @@ function applyMultiplier (definition, multiplier) {
     key: `${keyName}${keyAtMultiplierX}`,
     width: width / pixelRatio * multiplier,
     height: height / pixelRatio * multiplier,
+    deviceWidth,
+    deviceHeight,
+    orientation,
     pixelDensity: pixelDensity / pixelRatio * multiplier,
     pixelRatio: multiplier,
   }
 }
 
 function buildFileName (template, size) {
-  const {key, width, height, pixelDensity, pixelRatio} = size
+  const {key, width, height, deviceWidth, deviceHeight, orientation, pixelDensity, pixelRatio} = size
   const {width: dipWidth, height: dipHeight} = dipSize(size)
 
   const replacements = {
     atPixelRatioX: pixelRatio === 1 ? '' : `@${pixelRatio}x`,
+    deviceHeight,
+    deviceWidth,
     dimensions: `${width}x${height}`,
     dipDimensions: `${dipWidth}x${dipHeight}`,
     dipHeight: dipHeight.toString(),
     dipWidth: dipWidth.toString(),
     height: height.toString(),
     key,
+    orientation,
     pixelDensity: pixelDensity.toString(),
     pixelRatio: pixelRatio.toString(),
     width: width.toString(),

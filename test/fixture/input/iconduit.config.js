@@ -31,14 +31,6 @@ module.exports = {
         name: 'apple-touch-icon-masked-[dimensions].png',
         sizes: ['appleTouchIconRetina'],
       },
-      appleTouchStartup: {
-        input: 'appleTouchStartup',
-        name: 'apple-touch-startup-[dimensions]r[pixelRatio].png',
-        sizes: [
-          'device.iphone5.landscape',
-          'device.iphone5.portrait',
-        ],
-      },
     },
   },
   colors: {

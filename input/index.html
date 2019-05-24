@@ -4,6 +4,7 @@ const {
   language,
   name,
   tag: {
+    appleTouchStartup: appleTouchStartupTags = [],
     facebook: facebookTags = [],
     icon: iconTags = [],
     link: linkTags = [],
@@ -27,6 +28,7 @@ const {
 <% for (const {html} of metaTags) { %><%- `\n  ${html}` %><% } %>
 <% for (const {html} of linkTags) { %><%- `\n  ${html}` %><% } %>
 <% for (const {html} of iconTags) { %><%- `\n  ${html}` %><% } %>
+<% for (const {html} of appleTouchStartupTags) { %><%- `\n  ${html}` %><% } %>
 <% for (const {html} of openGraphTags) { %><%- `\n  ${html}` %><% } %>
 <% for (const {html} of openGraphImageTags) { %><%- `\n  ${html}` %><% } %>
 <% for (const {html} of facebookTags) { %><%- `\n  ${html}` %><% } %>

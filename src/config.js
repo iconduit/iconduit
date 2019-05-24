@@ -509,17 +509,36 @@ function normalizeSizeDefinitions (device, display, size) {
 
   for (const displayName in display) {
     const {resolution: {horizontal, vertical}, pixelDensity, pixelRatio, orientation} = display[displayName]
-    const orientationSize = {width: horizontal, height: vertical, pixelDensity, pixelRatio}
-    const rotatedSize = {width: vertical, height: horizontal, pixelDensity, pixelRatio}
+    const deviceWidth = horizontal / pixelRatio
+    const deviceHeight = vertical / pixelRatio
+
+    const orientationSize = {
+      width: horizontal,
+      height: vertical,
+      deviceWidth,
+      deviceHeight,
+      pixelDensity,
+      pixelRatio,
+    }
+
+    const rotatedSize = {
+      width: vertical,
+      height: horizontal,
+      deviceWidth,
+      deviceHeight,
+      pixelDensity,
+      pixelRatio,
+    }
+
     const portraitSize = `display.${displayName}.portrait`
     const landscapeSize = `display.${displayName}.landscape`
 
     if (orientation === 'portrait') {
-      displaySizes[portraitSize] = {key: `${displayName}.portrait`, ...orientationSize}
-      displaySizes[landscapeSize] = {key: `${displayName}.landscape`, ...rotatedSize}
+      displaySizes[portraitSize] = {key: `${displayName}.portrait`, ...orientationSize, orientation: 'portrait'}
+      displaySizes[landscapeSize] = {key: `${displayName}.landscape`, ...rotatedSize, orientation: 'landscape'}
     } else if (orientation === 'landscape') {
-      displaySizes[portraitSize] = {key: `${displayName}.portrait`, ...rotatedSize}
-      displaySizes[landscapeSize] = {key: `${displayName}.landscape`, ...orientationSize}
+      displaySizes[portraitSize] = {key: `${displayName}.portrait`, ...rotatedSize, orientation: 'portrait'}
+      displaySizes[landscapeSize] = {key: `${displayName}.landscape`, ...orientationSize, orientation: 'landscape'}
     } else {
       throw new Error(`Invalid value for definitions.display.${displayName}.orientation`)
     }
@@ -549,6 +568,9 @@ function normalizeSizeDefinitions (device, display, size) {
       key,
       width,
       height,
+      deviceWidth = null,
+      deviceHeight = null,
+      orientation = null,
       pixelDensity = 72,
       pixelRatio = 1,
     } = size[name]
@@ -556,6 +578,9 @@ function normalizeSizeDefinitions (device, display, size) {
     assertNonEmptyString(key, `${sizeSetting}.key`)
     assertInteger(width, `${sizeSetting}.width`)
     assertInteger(height, `${sizeSetting}.height`)
+    assertOptionalInteger(deviceWidth, `${sizeSetting}.deviceWidth`)
+    assertOptionalInteger(deviceHeight, `${sizeSetting}.deviceHeight`)
+    assertOptionalNonEmptyString(orientation, `${sizeSetting}.orientation`)
     assertInteger(pixelDensity, `${sizeSetting}.pixelDensity`)
     assertInteger(pixelRatio, `${sizeSetting}.pixelRatio`)
 
@@ -563,6 +588,9 @@ function normalizeSizeDefinitions (device, display, size) {
       key,
       width,
       height,
+      deviceWidth,
+      deviceHeight,
+      orientation,
       pixelDensity,
       pixelRatio,
     }
@@ -795,6 +823,11 @@ function assertOptionalNonEmptyString (value, setting) {
 function assertInteger (value, setting) {
   assertExists(value, setting)
   if (!Number.isInteger(value)) throw new Error(`Invalid value for ${setting}`)
+}
+
+function assertOptionalInteger (value, setting) {
+  if (value === null) return
+  assertInteger(value, setting)
 }
 
 function assertBoolean (value, setting) {

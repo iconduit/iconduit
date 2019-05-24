@@ -36,6 +36,9 @@ module.exports = {
       'display.iphone828x1792.landscape',
       'display.iphone828x1792.portrait',
     ],
+    tags: [
+      'appleTouchStartup',
+    ],
   },
   browserconfigXml: {
     input: 'browserconfig',

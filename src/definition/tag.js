@@ -1,4 +1,5 @@
 const {
+  selectAppleTouchStartupMedia,
   selectDescription,
   selectFacebookAppId,
   selectLocale,
@@ -59,6 +60,19 @@ module.exports = {
           sizes: selectOutputHtmlSizes,
         },
         sortWeight: -1,
+      },
+    ],
+  },
+  appleTouchStartup: {
+    appleTouchStartup: [
+      {
+        tag: 'link',
+        attributes: {
+          rel: 'apple-touch-startup-image',
+          href: selectOutputPath,
+          media: selectAppleTouchStartupMedia,
+        },
+        sortWeight: 0,
       },
     ],
   },
