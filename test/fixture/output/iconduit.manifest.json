@@ -122,34 +122,6 @@
         },
         "type": "image/png"
       },
-      "ipad1536x2048d326.landscape": {
-        "htmlSizes": "2048x1536",
-        "path": "apple-touch-startup-2048x1536r2.png",
-        "size": {
-          "deviceHeight": 1024,
-          "deviceWidth": 768,
-          "height": 1536,
-          "orientation": "landscape",
-          "pixelDensity": 326,
-          "pixelRatio": 2,
-          "width": 2048
-        },
-        "type": "image/png"
-      },
-      "ipad1536x2048d326.portrait": {
-        "htmlSizes": "1536x2048",
-        "path": "apple-touch-startup-1536x2048r2.png",
-        "size": {
-          "deviceHeight": 1024,
-          "deviceWidth": 768,
-          "height": 2048,
-          "orientation": "portrait",
-          "pixelDensity": 326,
-          "pixelRatio": 2,
-          "width": 1536
-        },
-        "type": "image/png"
-      },
       "ipad1668x2224d264.landscape": {
         "htmlSizes": "2224x1668",
         "path": "apple-touch-startup-2224x1668r2.png",
@@ -974,32 +946,6 @@
   "startUrl": "https://iconduit.app/",
   "tag": {
     "appleTouchStartup": [
-      {
-        "attributes": {
-          "href": "apple-touch-startup-2048x1536r2.png",
-          "media": "(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)",
-          "rel": "apple-touch-startup-image"
-        },
-        "children": [
-        ],
-        "html": "<link rel=\"apple-touch-startup-image\" href=\"apple-touch-startup-2048x1536r2.png\" media=\"(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)\">",
-        "isSelfClosing": true,
-        "sortWeight": 0,
-        "tag": "link"
-      },
-      {
-        "attributes": {
-          "href": "apple-touch-startup-1536x2048r2.png",
-          "media": "(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)",
-          "rel": "apple-touch-startup-image"
-        },
-        "children": [
-        ],
-        "html": "<link rel=\"apple-touch-startup-image\" href=\"apple-touch-startup-1536x2048r2.png\" media=\"(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)\">",
-        "isSelfClosing": true,
-        "sortWeight": 0,
-        "tag": "link"
-      },
       {
         "attributes": {
           "href": "apple-touch-startup-2048x1536r2.png",

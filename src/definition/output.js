@@ -15,8 +15,6 @@ module.exports = {
     sizes: [
       'display.ipad1536x2048d264.landscape',
       'display.ipad1536x2048d264.portrait',
-      'display.ipad1536x2048d326.landscape',
-      'display.ipad1536x2048d326.portrait',
       'display.ipad1668x2224d264.landscape',
       'display.ipad1668x2224d264.portrait',
       'display.ipad1668x2388d264.landscape',
