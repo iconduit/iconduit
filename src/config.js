@@ -576,7 +576,7 @@ function normalizeTag (definition, setting) {
   } = definition
 
   assertOptionalBoolean(isSelfClosing, `${setting}.isSelfClosing`)
-  assertArrayOfReferences(predicate, `${setting}.predicate`)
+  assertArrayOfFunctions(predicate, `${setting}.predicate`)
   assertInteger(sortWeight, `${setting}.sortWeight`)
   assertOptionalNonEmptyString(tag, `${setting}.tag`)
   assertNonEmptyString(tag, `${setting}.tag`)
@@ -602,7 +602,7 @@ function normalizeTagAttributes (attributes, setting) {
   for (const name in attributes) {
     const value = attributes[name]
 
-    assertStringOrReference(value, `${setting}.${name}`)
+    assertStringOrFunction(value, `${setting}.${name}`)
 
     normalized[name.toLowerCase()] = value
   }
@@ -776,11 +776,11 @@ function assertArrayOfNonEmptyStrings (value, setting) {
   }
 }
 
-function assertArrayOfReferences (value, setting) {
+function assertArrayOfFunctions (value, setting) {
   assertArray(value, setting)
 
   for (let index = 0; index < value.length; ++index) {
-    assertReference(value[index], `Invalid value for ${setting}[${index}]`)
+    assertFunction(value[index], `Invalid value for ${setting}[${index}]`)
   }
 }
 
@@ -797,16 +797,14 @@ function assertObjectOfNonEmptyStrings (value, setting) {
   }
 }
 
-function assertReference (value, setting) {
-  if (typeof value === 'function') return
-  assertObject(value, setting)
-  assertNonEmptyString(value.$ref, setting)
+function assertFunction (value, setting) {
+  if (typeof value !== 'function') throw new Error(`Invalid value for ${setting}`)
 }
 
-function assertStringOrReference (value, setting) {
+function assertStringOrFunction (value, setting) {
   if (typeof value === 'string') {
     assertNonEmptyString(value, setting)
   } else {
-    assertReference(value, setting)
+    assertFunction(value, setting)
   }
 }
