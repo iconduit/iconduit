@@ -570,6 +570,20 @@
   "shortName": null,
   "startUrl": "https://iconduit.app/",
   "tag": {
+    "facebook": [
+      {
+        "attributes": {
+          "content": "123456789012345",
+          "property": "fb:app_id"
+        },
+        "children": [
+        ],
+        "html": "<meta property=\"fb:app_id\" content=\"123456789012345\">",
+        "isSelfClosing": true,
+        "sortWeight": 0,
+        "tag": "meta"
+      }
+    ],
     "icon": [
       {
         "attributes": {
@@ -727,18 +741,6 @@
       }
     ],
     "openGraph": [
-      {
-        "attributes": {
-          "content": "123456789012345",
-          "property": "fb:app_id"
-        },
-        "children": [
-        ],
-        "html": "<meta property=\"fb:app_id\" content=\"123456789012345\">",
-        "isSelfClosing": true,
-        "sortWeight": 0,
-        "tag": "meta"
-      },
       {
         "attributes": {
           "content": "website",

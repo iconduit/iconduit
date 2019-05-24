@@ -4,6 +4,7 @@ const {
   language,
   name,
   tag: {
+    facebook: facebookTags = [],
     icon: iconTags = [],
     link: linkTags = [],
     meta: metaTags = [],
@@ -28,6 +29,7 @@ const {
 <% for (const {html} of iconTags) { %><%- `\n  ${html}` %><% } %>
 <% for (const {html} of openGraphTags) { %><%- `\n  ${html}` %><% } %>
 <% for (const {html} of openGraphImageTags) { %><%- `\n  ${html}` %><% } %>
+<% for (const {html} of facebookTags) { %><%- `\n  ${html}` %><% } %>
 <% for (const {html} of twitterTags) { %><%- `\n  ${html}` %><% } %>
 <% for (const {html} of twitterImageTags) { %><%- `\n  ${html}` %><% } %>
 

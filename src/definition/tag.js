@@ -75,7 +75,7 @@ module.exports = {
     ],
   },
   facebook: {
-    openGraph: [
+    facebook: [
       {
         tag: 'meta',
         attributes: {
