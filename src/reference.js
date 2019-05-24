@@ -5,13 +5,20 @@ module.exports = {
   resolveReference,
 }
 
-function resolveIfReference (definitions, reference) {
-  if (typeof reference !== 'object' || reference === null) return reference
+function resolveIfReference (definitions, value) {
+  if (typeof value === 'function') return value(definitions)
+  if (isJsonReference(value)) return resolveJsonReference(definitions, value)
 
-  return resolveReference(definitions, reference)
+  return value
 }
 
 function resolveReference (definitions, reference) {
+  if (typeof reference === 'function') return reference(definitions)
+
+  return resolveJsonReference(definitions, reference)
+}
+
+function resolveJsonReference (definitions, reference) {
   const {$ref} = reference
   const [url, pointer] = $ref.split('#')
 
@@ -23,4 +30,8 @@ function resolveReference (definitions, reference) {
   if (typeof value === 'undefined') throw new Error(`Unable to resolve value for ${JSON.stringify($ref)}`)
 
   return value
+}
+
+function isJsonReference (value) {
+  return value != null && typeof value === 'object' && typeof value.hasOwnProperty('$ref')
 }

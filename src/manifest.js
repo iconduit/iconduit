@@ -3,7 +3,7 @@ const htmlTag = require('html-tag')
 const {buildFileName, resolveSize} = require('./size.js')
 const {mimeTypeByPath} = require('./mime.js')
 const {resolveColors} = require('./config.js')
-const {resolveIfReference} = require('./reference.js')
+const {resolveIfReference, resolveReference} = require('./reference.js')
 
 module.exports = {
   buildManifest,
@@ -107,7 +107,8 @@ function buildManifestOutput (config, outputs) {
 }
 
 function createTagResolver (definitions) {
-  const resolve = resolveIfReference.bind(null, definitions)
+  const resolve = resolveReference.bind(null, definitions)
+  const resolveIf = resolveIfReference.bind(null, definitions)
 
   return function resolveTag (definition) {
     const {
@@ -126,13 +127,13 @@ function createTagResolver (definitions) {
         resolvedValue = resolve(value)
       } catch (error) {}
 
-      if (typeof resolvedValue !== 'string') return null
+      if (resolvedValue == null) return null
     }
 
     const resolvedAttributes = {}
 
     for (const name in attributes) {
-      const value = resolve(attributes[name])
+      const value = resolveIf(attributes[name])
 
       resolvedAttributes[name] = typeof value === 'number' ? value.toString() : value
     }

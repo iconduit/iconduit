@@ -798,6 +798,7 @@ function assertObjectOfNonEmptyStrings (value, setting) {
 }
 
 function assertReference (value, setting) {
+  if (typeof value === 'function') return
   assertObject(value, setting)
   assertNonEmptyString(value.$ref, setting)
 }

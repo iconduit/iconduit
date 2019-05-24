@@ -1,3 +1,16 @@
+const {
+  selectManifestDescription,
+  selectManifestLanguage,
+  selectManifestMaskColor,
+  selectManifestName,
+  selectManifestThemeColor,
+  selectOutputHeight,
+  selectOutputHtmlSizes,
+  selectOutputPath,
+  selectOutputType,
+  selectOutputWidth,
+} = require('../selector.js')
+
 module.exports = {
   appleMobile: {
     meta: [
@@ -13,7 +26,7 @@ module.exports = {
         tag: 'meta',
         attributes: {
           name: 'apple-mobile-web-app-title',
-          content: {$ref: 'manifest#/name'},
+          content: selectManifestName,
         },
         sortWeight: 2000,
       },
@@ -25,8 +38,8 @@ module.exports = {
         tag: 'link',
         attributes: {
           rel: 'apple-touch-icon',
-          href: {$ref: 'output#/path'},
-          sizes: {$ref: 'output#/htmlSizes'},
+          href: selectOutputPath,
+          sizes: selectOutputHtmlSizes,
         },
         sortWeight: -1,
       },
@@ -38,7 +51,7 @@ module.exports = {
         tag: 'meta',
         attributes: {
           name: 'application-name',
-          content: {$ref: 'manifest#/name'},
+          content: selectManifestName,
         },
         sortWeight: 2000,
       },
@@ -50,9 +63,9 @@ module.exports = {
         tag: 'link',
         attributes: {
           rel: 'icon',
-          type: {$ref: 'output#/type'},
-          href: {$ref: 'output#/path'},
-          sizes: {$ref: 'output#/htmlSizes'},
+          type: selectOutputType,
+          href: selectOutputPath,
+          sizes: selectOutputHtmlSizes,
         },
       },
     ],
@@ -63,7 +76,7 @@ module.exports = {
         tag: 'link',
         attributes: {
           rel: 'manifest',
-          href: {$ref: 'output#/path'},
+          href: selectOutputPath,
         },
       },
     ],
@@ -74,8 +87,8 @@ module.exports = {
         tag: 'link',
         attributes: {
           rel: 'mask-icon',
-          href: {$ref: 'output#/path'},
-          color: {$ref: 'manifest#/color/mask'},
+          href: selectOutputPath,
+          color: selectManifestMaskColor,
         },
       },
     ],
@@ -98,7 +111,7 @@ module.exports = {
         tag: 'meta',
         attributes: {
           name: 'msapplication-config',
-          content: {$ref: 'output#/path'},
+          content: selectOutputPath,
         },
         sortWeight: 4000,
       },
@@ -117,34 +130,34 @@ module.exports = {
         tag: 'meta',
         attributes: {
           property: 'og:locale',
-          content: {$ref: 'manifest#/language'},
+          content: selectManifestLanguage,
         },
         predicate: [
-          {$ref: 'manifest#/language'},
+          selectManifestLanguage,
         ],
       },
       {
         tag: 'meta',
         attributes: {
           property: 'og:site_name',
-          content: {$ref: 'manifest#/name'},
+          content: selectManifestName,
         },
       },
       {
         tag: 'meta',
         attributes: {
           property: 'og:title',
-          content: {$ref: 'manifest#/name'},
+          content: selectManifestName,
         },
       },
       {
         tag: 'meta',
         attributes: {
           property: 'og:description',
-          content: {$ref: 'manifest#/description'},
+          content: selectManifestDescription,
         },
         predicate: [
-          {$ref: 'manifest#/description'},
+          selectManifestDescription,
         ],
       },
     ],
@@ -155,35 +168,35 @@ module.exports = {
         tag: 'meta',
         attributes: {
           property: 'og:image',
-          content: {$ref: 'output#/path'},
+          content: selectOutputPath,
         },
       },
       {
         tag: 'meta',
         attributes: {
           property: 'og:image:type',
-          content: {$ref: 'output#/type'},
+          content: selectOutputType,
         },
       },
       {
         tag: 'meta',
         attributes: {
           property: 'og:image:width',
-          content: {$ref: 'output#/size/width'},
+          content: selectOutputWidth,
         },
       },
       {
         tag: 'meta',
         attributes: {
           property: 'og:image:height',
-          content: {$ref: 'output#/size/height'},
+          content: selectOutputHeight,
         },
       },
       {
         tag: 'meta',
         attributes: {
           property: 'og:image:alt',
-          content: {$ref: 'manifest#/name'},
+          content: selectManifestName,
         },
       },
     ],
@@ -194,7 +207,7 @@ module.exports = {
         tag: 'meta',
         attributes: {
           name: 'theme-color',
-          content: {$ref: 'manifest#/color/theme'},
+          content: selectManifestThemeColor,
         },
         sortWeight: 3000,
       },
@@ -213,17 +226,17 @@ module.exports = {
         tag: 'meta',
         attributes: {
           name: 'twitter:title',
-          content: {$ref: 'manifest#/name'},
+          content: selectManifestName,
         },
       },
       {
         tag: 'meta',
         attributes: {
           name: 'twitter:description',
-          content: {$ref: 'manifest#/description'},
+          content: selectManifestDescription,
         },
         predicate: [
-          {$ref: 'manifest#/description'},
+          selectManifestDescription,
         ],
       },
     ],
@@ -234,14 +247,14 @@ module.exports = {
         tag: 'meta',
         attributes: {
           name: 'twitter:image',
-          content: {$ref: 'output#/path'},
+          content: selectOutputPath,
         },
       },
       {
         tag: 'meta',
         attributes: {
           name: 'twitter:image:alt',
-          content: {$ref: 'manifest#/name'},
+          content: selectManifestName,
         },
       },
     ],
