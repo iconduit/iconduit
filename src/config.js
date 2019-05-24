@@ -120,7 +120,7 @@ function normalizeApplications (applications) {
   assertObject(applications, 'applications')
 
   const {
-    native = {},
+    native = [],
     web = {},
   } = applications
 

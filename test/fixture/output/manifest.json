@@ -18,26 +18,8 @@
   ],
   "lang": "en-US",
   "name": "Iconduit",
-  "related_applications": [
-    {
-      "id": "915056765",
-      "platform": "itunes",
-      "url": "https://itunes.apple.com/app/id915056765"
-    },
-    {
-      "id": "com.google.android.apps.maps",
-      "platform": "play",
-      "url": "https://play.google.com/store/apps/details?id=com.google.android.apps.maps"
-    },
-    {
-      "id": "9wzdncrdtbvb",
-      "platform": "windows",
-      "url": "https://microsoft.com/p/app/9wzdncrdtbvb"
-    }
-  ],
   "serviceworker": {
     "src": "service-worker.js"
   },
-  "start_url": "https://iconduit.app/",
   "theme_color": "#D58B41"
 }
