@@ -1,8 +1,8 @@
 {
-  "name": "@eloquent/iconduit",
+  "name": "@iconduit/iconduit",
   "version": "0.0.0",
   "description": "Produce icons and other web app assets from a small number of inputs",
-  "repository": "eloquent/iconduit",
+  "repository": "iconduit/iconduit",
   "author": "Erin Millard <ezzatron@gmail.com>",
   "license": "MIT",
   "main": "src/index.js",
