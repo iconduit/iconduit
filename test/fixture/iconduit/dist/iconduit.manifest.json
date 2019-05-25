@@ -357,7 +357,7 @@
           "deviceWidth": null,
           "height": 576,
           "orientation": null,
-          "pixelDensity": 144,
+          "pixelDensity": 72,
           "pixelRatio": 2,
           "width": 1024
         },
@@ -485,7 +485,7 @@
           "deviceWidth": null,
           "height": 256,
           "orientation": null,
-          "pixelDensity": 144,
+          "pixelDensity": 72,
           "pixelRatio": 2,
           "width": 256
         },
@@ -513,7 +513,7 @@
           "deviceWidth": null,
           "height": 32,
           "orientation": null,
-          "pixelDensity": 144,
+          "pixelDensity": 72,
           "pixelRatio": 2,
           "width": 32
         },
@@ -541,7 +541,7 @@
           "deviceWidth": null,
           "height": 512,
           "orientation": null,
-          "pixelDensity": 144,
+          "pixelDensity": 72,
           "pixelRatio": 2,
           "width": 512
         },
@@ -569,7 +569,7 @@
           "deviceWidth": null,
           "height": 64,
           "orientation": null,
-          "pixelDensity": 144,
+          "pixelDensity": 72,
           "pixelRatio": 2,
           "width": 64
         },
@@ -597,7 +597,7 @@
           "deviceWidth": null,
           "height": 1024,
           "orientation": null,
-          "pixelDensity": 144,
+          "pixelDensity": 72,
           "pixelRatio": 2,
           "width": 1024
         },

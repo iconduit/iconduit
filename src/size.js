@@ -18,13 +18,13 @@ function applyMultiplier (definition, multiplier) {
 
   return {
     key: `${keyName}${keyAtMultiplierX}`,
-    width: width / pixelRatio * multiplier,
-    height: height / pixelRatio * multiplier,
+    width: width * multiplier,
+    height: height * multiplier,
     deviceWidth,
     deviceHeight,
     orientation,
-    pixelDensity: pixelDensity / pixelRatio * multiplier,
-    pixelRatio: multiplier,
+    pixelDensity,
+    pixelRatio: pixelRatio * multiplier,
   }
 }
 
