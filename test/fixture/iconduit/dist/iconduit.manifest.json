@@ -22,7 +22,7 @@
     "background": "#D5415C",
     "brand": "#D5415C",
     "mask": "#D5415C",
-    "theme": "#D58B41",
+    "theme": "#D5415C",
     "tile": "#D5415C"
   },
   "description": "A build system for web application icon and image assets",
@@ -1328,12 +1328,12 @@
       },
       {
         "attributes": {
-          "content": "#D58B41",
+          "content": "#D5415C",
           "name": "theme-color"
         },
         "children": [
         ],
-        "html": "<meta name=\"theme-color\" content=\"#D58B41\">",
+        "html": "<meta name=\"theme-color\" content=\"#D5415C\">",
         "isSelfClosing": true,
         "sortWeight": 4000,
         "tag": "meta"
