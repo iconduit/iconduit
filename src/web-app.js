@@ -59,6 +59,18 @@ function buildWebAppManifestIcons (manifest) {
 
   const icons = []
 
+  for (const key in masked) {
+    const {path, size} = masked[key]
+
+    const icon = {}
+
+    add(icon, 'src', path)
+    add(icon, 'sizes', buildFileName('[dimensions]', size))
+    add(icon, 'type', mimeTypeByPath(path))
+
+    icons.push(icon)
+  }
+
   for (const key in maskable) {
     const {path, size} = maskable[key]
 
@@ -68,19 +80,6 @@ function buildWebAppManifestIcons (manifest) {
     add(icon, 'sizes', buildFileName('[dimensions]', size))
     add(icon, 'type', mimeTypeByPath(path))
     add(icon, 'purpose', 'maskable')
-
-    icons.push(icon)
-  }
-
-  for (const key in masked) {
-    const {path, size} = masked[key]
-
-    const icon = {}
-
-    add(icon, 'src', path)
-    add(icon, 'sizes', buildFileName('[dimensions]', size))
-    add(icon, 'type', mimeTypeByPath(path))
-    add(icon, 'purpose', 'any')
 
     icons.push(icon)
   }

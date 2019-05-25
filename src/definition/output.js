@@ -133,12 +133,12 @@ module.exports = {
   webAppMaskableIcon: {
     input: 'webAppMaskableIcon',
     name: 'maskable-icon-[dimensions].png',
-    sizes: ['webAppIconHires', 'webAppIconLores'],
+    sizes: ['webAppIconLarge', 'webAppIconMedium', 'webAppIconSmall'],
   },
   webAppMaskedIcon: {
     input: 'webAppMaskedIcon',
     name: 'masked-icon-[dimensions].png',
-    sizes: ['webAppIconHires', 'webAppIconLores'],
+    sizes: ['webAppIconLarge', 'webAppIconMedium', 'webAppIconSmall'],
   },
   windowsIco: {
     input: 'maskedIconMinimalPadding',

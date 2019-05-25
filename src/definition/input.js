@@ -133,7 +133,7 @@ module.exports = {
     strategy: 'composite',
     options: {
       layers: [
-        {input: 'maskableIcon', multiplier: 2, style: 'webAppIconScale'},
+        {input: 'maskableIcon', multiplier: 2, style: 'webAppMaskableIconScale'},
       ],
     },
   },
@@ -141,7 +141,7 @@ module.exports = {
     strategy: 'composite',
     options: {
       layers: [
-        {input: 'maskedIcon', multiplier: 2, style: 'webAppIconScale'},
+        {input: 'maskedIcon', multiplier: 2, style: 'webAppMaskedIconScale'},
       ],
     },
   },

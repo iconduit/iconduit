@@ -27,11 +27,15 @@ module.exports = {
   opacity75Percent: {opacity: '.75'},
   opacity80Percent: {opacity: '.8'},
   opacity90Percent: {opacity: '.9'},
-  webAppIconScale: {
+  webAppMaskableIconScale: {
     // the difference between the Android safe zone diameter (66/108)
     // and the W3C web app manifest safe zone diameter (4/5)
     // see https://w3c.github.io/manifest/#icon-masks
     transform: 'scale(calc(72 / 55))',
+  },
+  webAppMaskedIconScale: {
+    // found empirically by comparing against native icons on Android and macOS when installed as a PWA via Chrome
+    transform: 'scale(1.345)',
   },
   windowsTileIconScale: {
     // the difference between the Android square keyline size (44/108)

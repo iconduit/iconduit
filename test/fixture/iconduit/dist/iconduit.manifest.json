@@ -663,7 +663,21 @@
       "type": "application/json"
     },
     "webAppMaskableIcon": {
-      "hires": {
+      "large": {
+        "htmlSizes": "1024x1024",
+        "path": "maskable-icon-1024x1024.png",
+        "size": {
+          "deviceHeight": null,
+          "deviceWidth": null,
+          "height": 1024,
+          "orientation": null,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 1024
+        },
+        "type": "image/png"
+      },
+      "medium": {
         "htmlSizes": "512x512",
         "path": "maskable-icon-512x512.png",
         "size": {
@@ -677,7 +691,7 @@
         },
         "type": "image/png"
       },
-      "lores": {
+      "small": {
         "htmlSizes": "192x192",
         "path": "maskable-icon-192x192.png",
         "size": {
@@ -693,7 +707,21 @@
       }
     },
     "webAppMaskedIcon": {
-      "hires": {
+      "large": {
+        "htmlSizes": "1024x1024",
+        "path": "masked-icon-1024x1024.png",
+        "size": {
+          "deviceHeight": null,
+          "deviceWidth": null,
+          "height": 1024,
+          "orientation": null,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 1024
+        },
+        "type": "image/png"
+      },
+      "medium": {
         "htmlSizes": "512x512",
         "path": "masked-icon-512x512.png",
         "size": {
@@ -707,7 +735,7 @@
         },
         "type": "image/png"
       },
-      "lores": {
+      "small": {
         "htmlSizes": "192x192",
         "path": "masked-icon-192x192.png",
         "size": {

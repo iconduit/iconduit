@@ -4,6 +4,27 @@
   "display": "standalone",
   "icons": [
     {
+      "sizes": "1024x1024",
+      "src": "masked-icon-1024x1024.png",
+      "type": "image/png"
+    },
+    {
+      "sizes": "512x512",
+      "src": "masked-icon-512x512.png",
+      "type": "image/png"
+    },
+    {
+      "sizes": "192x192",
+      "src": "masked-icon-192x192.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "maskable",
+      "sizes": "1024x1024",
+      "src": "maskable-icon-1024x1024.png",
+      "type": "image/png"
+    },
+    {
       "purpose": "maskable",
       "sizes": "512x512",
       "src": "maskable-icon-512x512.png",
@@ -13,18 +34,6 @@
       "purpose": "maskable",
       "sizes": "192x192",
       "src": "maskable-icon-192x192.png",
-      "type": "image/png"
-    },
-    {
-      "purpose": "any",
-      "sizes": "512x512",
-      "src": "masked-icon-512x512.png",
-      "type": "image/png"
-    },
-    {
-      "purpose": "any",
-      "sizes": "192x192",
-      "src": "masked-icon-192x192.png",
       "type": "image/png"
     }
   ],
