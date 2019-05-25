@@ -93,16 +93,6 @@ module.exports = {
       'icns16',
     ],
   },
-  maskableIcon: {
-    input: 'maskableIcon',
-    name: 'maskable-icon-[dimensions].png',
-    sizes: ['webAppIconHires', 'webAppIconLores'],
-  },
-  maskedIcon: {
-    input: 'maskedIcon',
-    name: 'masked-icon-[dimensions].png',
-    sizes: ['webAppIconHires', 'webAppIconLores'],
-  },
   openGraphImage: {
     input: 'openGraphImage',
     name: 'open-graph.png',
@@ -139,6 +129,16 @@ module.exports = {
     options: {
       variables: {buildWebAppManifest},
     },
+  },
+  webAppMaskableIcon: {
+    input: 'webAppMaskableIcon',
+    name: 'maskable-icon-[dimensions].png',
+    sizes: ['webAppIconHires', 'webAppIconLores'],
+  },
+  webAppMaskedIcon: {
+    input: 'webAppMaskedIcon',
+    name: 'masked-icon-[dimensions].png',
+    sizes: ['webAppIconHires', 'webAppIconLores'],
   },
   windowsIco: {
     input: 'maskedIconMinimalPadding',

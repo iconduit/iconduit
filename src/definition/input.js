@@ -129,11 +129,27 @@ module.exports = {
       to: 'socialShareImage',
     },
   },
+  webAppMaskableIcon: {
+    strategy: 'composite',
+    options: {
+      layers: [
+        {input: 'maskableIcon', multiplier: 2, style: 'webAppIconScale'},
+      ],
+    },
+  },
+  webAppMaskedIcon: {
+    strategy: 'composite',
+    options: {
+      layers: [
+        {input: 'maskedIcon', multiplier: 2, style: 'webAppIconScale'},
+      ],
+    },
+  },
   windowsTile: {
     strategy: 'composite',
     options: {
       layers: [
-        {input: 'windowsTileIcon', style: 'windowsTileIconPosition'},
+        {input: 'windowsTileIcon', multiplier: 2, style: 'windowsTileIconScale'},
       ],
     },
   },
@@ -147,7 +163,7 @@ module.exports = {
     strategy: 'composite',
     options: {
       layers: [
-        {input: 'windowsTileIcon', style: 'windowsTileIconPositionSmall'},
+        {input: 'windowsTileIcon', multiplier: 2, style: 'windowsTileIconScaleSmall'},
       ],
     },
   },

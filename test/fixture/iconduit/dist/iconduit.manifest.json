@@ -618,66 +618,6 @@
         "type": "image/icns"
       }
     },
-    "maskableIcon": {
-      "hires": {
-        "htmlSizes": "512x512",
-        "path": "maskable-icon-512x512.png",
-        "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
-          "height": 512,
-          "orientation": null,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 512
-        },
-        "type": "image/png"
-      },
-      "lores": {
-        "htmlSizes": "192x192",
-        "path": "maskable-icon-192x192.png",
-        "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
-          "height": 192,
-          "orientation": null,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 192
-        },
-        "type": "image/png"
-      }
-    },
-    "maskedIcon": {
-      "hires": {
-        "htmlSizes": "512x512",
-        "path": "masked-icon-512x512.png",
-        "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
-          "height": 512,
-          "orientation": null,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 512
-        },
-        "type": "image/png"
-      },
-      "lores": {
-        "htmlSizes": "192x192",
-        "path": "masked-icon-192x192.png",
-        "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
-          "height": 192,
-          "orientation": null,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 192
-        },
-        "type": "image/png"
-      }
-    },
     "openGraphImage": {
       "primary": {
         "htmlSizes": "1200x630",
@@ -721,6 +661,66 @@
     "webAppManifest": {
       "path": "manifest.json",
       "type": "application/json"
+    },
+    "webAppMaskableIcon": {
+      "hires": {
+        "htmlSizes": "512x512",
+        "path": "maskable-icon-512x512.png",
+        "size": {
+          "deviceHeight": null,
+          "deviceWidth": null,
+          "height": 512,
+          "orientation": null,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 512
+        },
+        "type": "image/png"
+      },
+      "lores": {
+        "htmlSizes": "192x192",
+        "path": "maskable-icon-192x192.png",
+        "size": {
+          "deviceHeight": null,
+          "deviceWidth": null,
+          "height": 192,
+          "orientation": null,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 192
+        },
+        "type": "image/png"
+      }
+    },
+    "webAppMaskedIcon": {
+      "hires": {
+        "htmlSizes": "512x512",
+        "path": "masked-icon-512x512.png",
+        "size": {
+          "deviceHeight": null,
+          "deviceWidth": null,
+          "height": 512,
+          "orientation": null,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 512
+        },
+        "type": "image/png"
+      },
+      "lores": {
+        "htmlSizes": "192x192",
+        "path": "masked-icon-192x192.png",
+        "size": {
+          "deviceHeight": null,
+          "deviceWidth": null,
+          "height": 192,
+          "orientation": null,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 192
+        },
+        "type": "image/png"
+      }
     },
     "windowsIco": {
       "128": {

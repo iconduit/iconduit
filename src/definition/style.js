@@ -27,13 +27,19 @@ module.exports = {
   opacity75Percent: {opacity: '.75'},
   opacity80Percent: {opacity: '.8'},
   opacity90Percent: {opacity: '.9'},
-  windowsTileIconPosition: {
+  webAppIconScale: {
+    // the difference between the Android safe zone diameter (66/108)
+    // and the W3C web app manifest safe zone diameter (4/5)
+    // see https://w3c.github.io/manifest/#icon-masks
+    transform: 'scale(calc(72 / 55))',
+  },
+  windowsTileIconScale: {
     // the difference between the Android square keyline size (44/108)
     // and an exact 50% size
     // see https://docs.microsoft.com/en-us/windows/uwp/design/style/app-icons-and-logos#tile-padding-recommendations
     transform: 'scale(calc(27 / 22))',
   },
-  windowsTileIconPositionSmall: {
+  windowsTileIconScaleSmall: {
     // the difference between the Android square keyline size (44/108)
     // and an exact 66% size
     // see https://docs.microsoft.com/en-us/windows/uwp/design/style/app-icons-and-logos#tile-padding-recommendations

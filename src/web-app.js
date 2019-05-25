@@ -53,8 +53,8 @@ function buildWebAppManifest (manifest) {
 
 function buildWebAppManifestIcons (manifest) {
   const {output: {
-    maskableIcon: maskable = {},
-    maskedIcon: masked = {},
+    webAppMaskableIcon: maskable = {},
+    webAppMaskedIcon: masked = {},
   }} = manifest
 
   const icons = []

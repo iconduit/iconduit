@@ -10,10 +10,10 @@ module.exports = {
         'faviconIco',
         'faviconPng',
         'indexHtml',
-        'maskableIcon',
-        'maskedIcon',
         'serviceWorker',
         'webAppManifest',
+        'webAppMaskableIcon',
+        'webAppMaskedIcon',
       ],
       tags: [
         'applicationName',
