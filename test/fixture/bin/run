@@ -1,12 +1,14 @@
+#!/usr/bin/env node
+
 const {join} = require('path')
 
-const {normalize} = require('./config.js')
-const services = require('./services.js')
+const {normalize} = require('../../../src/config.js')
+const services = require('../../../src/services.js')
 
 async function main (services) {
   const {build, fileSystem: {readFile, withTempDir}, screenshotManager: {run}} = services
 
-  const fixturePath = join(__dirname, '../test/fixture')
+  const fixturePath = join(__dirname, '..')
   const userInputDir = join(fixturePath, 'input')
   const configPath = join(userInputDir, 'iconduit.config.json')
   const outputPath = join(fixturePath, 'output')
