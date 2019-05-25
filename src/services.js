@@ -2,7 +2,7 @@ const Bottle = require('bottlejs')
 const {join} = require('path')
 
 const {createBoundTemplateReader, createTemplateReader} = require('./template.js')
-const {createBuilder} = require('./build.js')
+const {createBuilder, createConfigBuilder} = require('./build.js')
 const {createCacheFactory} = require('./cache.js')
 const {createConfigReader} = require('./config-reader.js')
 const {createFileSystem} = require('./fs.js')
@@ -25,6 +25,7 @@ bottle.serviceFactory(
   'readTemplate',
   'screenshot'
 )
+bottle.serviceFactory('buildConfigs', createConfigBuilder, 'build', 'fileSystem', 'readConfig', 'screenshotManager')
 bottle.constant('clock', systemClock)
 bottle.serviceFactory('createCache', createCacheFactory, 'logger')
 bottle.serviceFactory(
@@ -42,7 +43,6 @@ bottle.serviceFactory('createInputResolver', createInputResolverFactory, 'logger
 bottle.constant('cwd', process.cwd.bind(process))
 bottle.constant('defaultInputDir', join(__dirname, '../input'))
 bottle.constant('env', process.env)
-bottle.constant('exit', process.exit.bind(process))
 bottle.serviceFactory('fileSystem', createFileSystem, 'env', 'logger')
 bottle.serviceFactory('logger', createLogger, 'env')
 bottle.serviceFactory('readConfig', createConfigReader, 'cwd', 'fileSystem')

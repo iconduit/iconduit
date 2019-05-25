@@ -52,6 +52,7 @@ function normalize (configOrFn) {
     language = 'en-US',
     name,
     orientation = null,
+    outputPath = 'dist',
     outputs = {},
     preferRelatedApplications = null,
     scope = null,
@@ -70,6 +71,7 @@ function normalize (configOrFn) {
   assertNonEmptyString(language, 'language')
   assertNonEmptyString(name, 'name')
   assertOptionalNonEmptyString(orientation, 'orientation')
+  assertNonEmptyString(outputPath, 'outputPath')
   assertOptionalBoolean(preferRelatedApplications, 'preferRelatedApplications')
   assertOptionalNonEmptyString(scope, 'scope')
   assertOptionalNonEmptyString(shortName, 'shortName')
@@ -90,6 +92,7 @@ function normalize (configOrFn) {
     language,
     name,
     orientation,
+    outputPath,
     outputs: normalizeOutputs(outputs),
     preferRelatedApplications,
     scope,

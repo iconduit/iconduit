@@ -894,6 +894,7 @@
       }
     }
   },
+  "outputPath": "dist",
   "preferRelatedApplications": null,
   "scope": null,
   "shortName": null,

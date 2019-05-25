@@ -4,6 +4,7 @@ const {dirname, extname, join, relative} = require('path')
 
 const {buildFileNameSizeMap, resolveSizesForOutputs} = require('./size.js')
 const {buildManifest, buildTags} = require('./manifest.js')
+const {normalize} = require('./config.js')
 const {outputNames, selectOutputs, targetNames} = require('./target.js')
 const {toIcns} = require('./icns.js')
 
@@ -17,6 +18,7 @@ const {
 
 module.exports = {
   createBuilder,
+  createConfigBuilder,
 }
 
 function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, readTemplate, screenshot) {
@@ -141,6 +143,27 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, read
       const inputPath = await buildInput({name: inputName, type: INPUT_TYPE_RENDERABLE, size, stack})
 
       return screenshot(fileUrl(inputPath), size, {type: imageType})
+    }
+  }
+}
+
+function createConfigBuilder (build, fileSystem, readConfig, screenshotManager) {
+  const {withTempDir} = fileSystem
+  const {run} = screenshotManager
+
+  return async function buildConfigs (...configPaths) {
+    await run(async () => Promise.all(configPaths.map(buildConfig)))
+
+    async function buildConfig (configPath) {
+      const config = normalize(await readConfig(configPath))
+      const userInputDir = dirname(configPath)
+      const outputPath = join(userInputDir, config.outputPath)
+
+      await withTempDir(async tempPath => {
+        const options = {configPath, outputPath, tempPath, userInputDir}
+
+        await build(config, options)
+      })
     }
   }
 }
