@@ -35,7 +35,9 @@ module.exports = {
   resolveColors,
 }
 
-function normalize (config) {
+function normalize (configOrFn) {
+  const config = typeof configOrFn === 'function' ? configOrFn() : configOrFn
+
   assertObject(config, 'config')
 
   const {
