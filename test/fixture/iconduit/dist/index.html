@@ -65,13 +65,201 @@
   <meta name="twitter:image:alt" content="Iconduit">
 
   <!-- iconduit-end -->
+
+  <style>
+    body {
+      margin: 2em;
+      font-family: Helvetica, sans-serif;
+
+      background-color: #222;
+      color: #EEE;
+    }
+
+    #service-worker-supported:before {
+      content: 'NO';
+      color: red;
+    }
+    body.service-worker #service-worker-supported:before {
+      content: 'YES';
+      color: green;
+    }
+
+    #install-prompt-supported:before {
+      content: 'NO';
+      color: red;
+    }
+    body.install-prompt #install-prompt-supported:before {
+      content: 'YES';
+      color: green;
+    }
+
+    #installation-status {
+      font-style: italic;
+    }
+
+    #is-installable,
+    #is-installing,
+    #is-installed,
+    #is-app {
+      display: none;
+    }
+
+    body.is-installable #not-installable,
+    body.is-installable #is-installing,
+    body.is-installable #is-installed,
+    body.is-installable #is-app {
+      display: none;
+    }
+    body.is-installable #is-installable {
+      display: inherit;
+    }
+
+    body.is-installing #not-installable,
+    body.is-installing #is-installable,
+    body.is-installing #is-installed,
+    body.is-installing #is-app {
+      display: none;
+    }
+    body.is-installing #is-installing {
+      display: inherit;
+    }
+
+    body.is-installed #not-installable,
+    body.is-installed #is-installable,
+    body.is-installed #is-installing,
+    body.is-installed #is-app {
+      display: none;
+    }
+    body.is-installed #is-installed {
+      display: inherit;
+    }
+
+    body.is-app #not-installable,
+    body.is-app #is-installable,
+    body.is-app #is-installing,
+    body.is-app #is-installed {
+      display: none;
+    }
+    body.is-app #is-app {
+      display: inherit;
+    }
+
+    @media all and (display-mode: standalone) {
+      #not-installable,
+      #is-installable,
+      #is-installing,
+      #is-installed {
+        display: none;
+      }
+      #is-app {
+        display: inherit;
+      }
+    }
+  </style>
 </head>
 <body>
   <h1>Iconduit</h1>
 
-  <!-- iconduit-start -->
 
+  <span id="installation-status">
+    <p id="not-installable">Not installable</p>
+    <p id="is-installing">Installing</p>
+    <p id="is-installed">Installed</p>
+    <p id="is-app">Running as an app</p>
+  </span>
 
-  <!-- iconduit-end -->
+  <span id="is-installable">
+    <button id="install-button">Install</button>
+  </span>
+
+  <ul>
+    <li>Service worker support: <span id="service-worker-supported"></span></li>
+    <li>Install prompt support: <span id="install-prompt-supported"></span></li>
+  </ul>
+
+  <script>
+    const serviceWorkerUrl = "service-worker.js"
+
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register(serviceWorkerUrl).catch(error => {
+          console.error('Unable to register service worker:', error)
+        })
+      })
+    }
+  </script>
+
+  <script>
+    function ready (fn) {
+      if (document.attachEvent ? document.readyState === 'complete' : document.readyState !== 'loading') {
+        fn()
+      } else {
+        document.addEventListener('DOMContentLoaded', fn)
+      }
+    }
+
+    let deferredPrompt = null
+
+    window.addEventListener('beforeinstallprompt', event => {
+      event.preventDefault()
+
+      deferredPrompt = event
+
+      event.userChoice
+        .catch(error => {
+          console.error('Install user choice error:', error)
+        })
+        .then(() => {
+          deferredPrompt = null
+        })
+    })
+
+    ready(() => {
+      const bodyClassList = document.body.classList
+      const installButton = document.querySelector('#install-button')
+
+      installButton.addEventListener('click', () => {
+        if (!deferredPrompt) return
+
+        deferredPrompt.userChoice
+          .catch(() => 'error')
+          .then(outcome => {
+            if (outcome === 'accepted') bodyClassList.add('is-installed')
+
+            bodyClassList.remove('is-installing')
+            installButton.disabled = false
+          })
+
+        bodyClassList.add('is-installing')
+        installButton.disabled = true
+
+        deferredPrompt.prompt()
+          .catch(error => {
+            console.error('Install prompt error:', error)
+          })
+      })
+
+      window.addEventListener('appinstalled', () => {
+        bodyClassList.add('is-installed')
+      })
+
+      if (deferredPrompt) {
+        bodyClassList.add('is-installable')
+      } else {
+        window.addEventListener(
+          'beforeinstallprompt',
+          () => {
+            bodyClassList.add('is-installable')
+          },
+          {once: true}
+        )
+      }
+
+      if (navigator.standalone === true) bodyClassList.add('is-app')
+      if ('serviceWorker' in navigator) bodyClassList.add('service-worker')
+      if ('onbeforeinstallprompt' in window || 'onappinstalled' in window) bodyClassList.add('install-prompt')
+    })
+  </script>
+
 </body>
 </html>

@@ -24,14 +24,6 @@ module.exports = {
       to: 'maskableIcon',
     },
   },
-  maskedIconMinimalPadding: {
-    strategy: 'composite',
-    options: {
-      layers: [
-        {input: 'maskedIcon', multiplier: 2, style: 'maskedIconMinimalPaddingScale'},
-      ],
-    },
-  },
   iconBackground: {
     strategy: 'degrade',
     options: {
@@ -89,6 +81,14 @@ module.exports = {
       layers: [
         {input: 'iconForeground'},
         {input: 'iconBackground'},
+      ],
+    },
+  },
+  maskedIconMinimalPadding: {
+    strategy: 'composite',
+    options: {
+      layers: [
+        {input: 'maskedIcon', multiplier: 2, style: 'maskedIconMinimalPaddingScale'},
       ],
     },
   },

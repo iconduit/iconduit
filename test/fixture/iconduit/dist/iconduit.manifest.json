@@ -20,6 +20,7 @@
   ],
   "color": {
     "background": "#D5415C",
+    "brand": "#D5415C",
     "mask": "#D5415C",
     "theme": "#D58B41",
     "tile": "#D5415C"
@@ -647,6 +648,36 @@
         "type": "image/png"
       }
     },
+    "maskedIcon": {
+      "hires": {
+        "htmlSizes": "512x512",
+        "path": "masked-icon-512x512.png",
+        "size": {
+          "deviceHeight": null,
+          "deviceWidth": null,
+          "height": 512,
+          "orientation": null,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 512
+        },
+        "type": "image/png"
+      },
+      "lores": {
+        "htmlSizes": "192x192",
+        "path": "masked-icon-192x192.png",
+        "size": {
+          "deviceHeight": null,
+          "deviceWidth": null,
+          "height": 192,
+          "orientation": null,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 192
+        },
+        "type": "image/png"
+      }
+    },
     "openGraphImage": {
       "primary": {
         "htmlSizes": "1200x630",
@@ -897,8 +928,8 @@
   "outputPath": "dist",
   "preferRelatedApplications": null,
   "scope": null,
-  "shortName": null,
-  "startUrl": null,
+  "shortName": "Iconduit",
+  "startUrl": ".",
   "tag": {
     "appleTouchStartup": [
       {

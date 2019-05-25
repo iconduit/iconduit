@@ -52,21 +52,35 @@ function buildWebAppManifest (manifest) {
 }
 
 function buildWebAppManifestIcons (manifest) {
-  const {output: {maskableIcon: output}} = manifest
-
-  if (!output) return []
+  const {output: {
+    maskableIcon: maskable = {},
+    maskedIcon: masked = {},
+  }} = manifest
 
   const icons = []
 
-  for (const key in output) {
-    const {path, size} = output[key]
+  for (const key in maskable) {
+    const {path, size} = maskable[key]
 
     const icon = {}
 
     add(icon, 'src', path)
     add(icon, 'sizes', buildFileName('[dimensions]', size))
-    addOptional(icon, 'type', mimeTypeByPath(path))
-    add(icon, 'purpose', 'any maskable')
+    add(icon, 'type', mimeTypeByPath(path))
+    add(icon, 'purpose', 'maskable')
+
+    icons.push(icon)
+  }
+
+  for (const key in masked) {
+    const {path, size} = masked[key]
+
+    const icon = {}
+
+    add(icon, 'src', path)
+    add(icon, 'sizes', buildFileName('[dimensions]', size))
+    add(icon, 'type', mimeTypeByPath(path))
+    add(icon, 'purpose', 'any')
 
     icons.push(icon)
   }

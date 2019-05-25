@@ -9,7 +9,7 @@ module.exports = () => {
       },
     },
     colors: {
-      background: 'iconduitpink',
+      brand: 'iconduitpink',
       theme: 'iconduitorange',
     },
   }

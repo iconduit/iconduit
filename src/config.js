@@ -41,6 +41,12 @@ function normalize (configOrFn) {
   assertObject(config, 'config')
 
   const {
+    name,
+  } = config
+
+  assertNonEmptyString(name, 'name')
+
+  const {
     applications = {},
     categories = [],
     colors = {},
@@ -50,14 +56,13 @@ function normalize (configOrFn) {
     iarcRatingId = null,
     inputs = {},
     language = 'en-US',
-    name,
     orientation = null,
     outputPath = 'dist',
     outputs = {},
     preferRelatedApplications = null,
     scope = null,
-    shortName = null,
-    startUrl = null,
+    shortName = name,
+    startUrl = '.',
     tags = {},
     targets = {},
     textDirection = 'auto',
@@ -69,13 +74,12 @@ function normalize (configOrFn) {
   assertNonEmptyString(displayMode, 'displayMode')
   assertOptionalNonEmptyString(iarcRatingId, 'iarcRatingId')
   assertNonEmptyString(language, 'language')
-  assertNonEmptyString(name, 'name')
   assertOptionalNonEmptyString(orientation, 'orientation')
   assertNonEmptyString(outputPath, 'outputPath')
   assertOptionalBoolean(preferRelatedApplications, 'preferRelatedApplications')
   assertOptionalNonEmptyString(scope, 'scope')
-  assertOptionalNonEmptyString(shortName, 'shortName')
-  assertOptionalNonEmptyString(startUrl, 'startUrl')
+  assertNonEmptyString(shortName, 'shortName')
+  assertNonEmptyString(startUrl, 'startUrl')
   assertNonEmptyString(textDirection, 'textDirection')
   assertOptionalNonEmptyString(url, 'url')
   assertNonEmptyString(viewport, 'viewport')
@@ -301,22 +305,25 @@ function normalizeCategories (categories) {
 function normalizeColors (colors) {
   assertObject(colors, 'colors')
 
-  const {background} = colors
+  const {brand} = colors
 
-  assertNonEmptyString(background, 'colors.background')
+  assertNonEmptyString(brand, 'colors.brand')
 
   const {
-    mask = background,
-    theme = background,
-    tile = background,
+    background = brand,
+    mask = brand,
+    theme = brand,
+    tile = brand,
   } = colors
 
+  assertNonEmptyString(background, 'colors.background')
   assertNonEmptyString(mask, 'colors.mask')
   assertNonEmptyString(theme, 'colors.theme')
   assertNonEmptyString(tile, 'colors.tile')
 
   return {
     background,
+    brand,
     mask,
     theme,
     tile,

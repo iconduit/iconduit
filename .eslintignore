@@ -1,3 +1,4 @@
 /artifacts/
 /input
 /node_modules/
+/test/fixture/

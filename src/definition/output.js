@@ -96,7 +96,12 @@ module.exports = {
   maskableIcon: {
     input: 'maskableIcon',
     name: 'maskable-icon-[dimensions].png',
-    sizes: ['maskableIconHires', 'maskableIconLores'],
+    sizes: ['webAppIconHires', 'webAppIconLores'],
+  },
+  maskedIcon: {
+    input: 'maskedIcon',
+    name: 'masked-icon-[dimensions].png',
+    sizes: ['webAppIconHires', 'webAppIconLores'],
   },
   openGraphImage: {
     input: 'openGraphImage',
