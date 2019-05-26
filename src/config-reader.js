@@ -22,13 +22,13 @@ function createConfigReader (cwd, fileSystem) {
     let firstError
 
     try {
-      return readJsConfig(join(configPath, 'iconduit.config.js'))
+      return await readJsConfig(join(configPath, 'iconduit.config.js'))
     } catch (error) {
       firstError = error
     }
 
     try {
-      return readJsonConfig(join(configPath, 'iconduit.config.json'))
+      return await readJsonConfig(join(configPath, 'iconduit.config.json'))
     } catch (error) {
       throw firstError
     }
