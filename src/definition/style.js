@@ -2,18 +2,18 @@ const fraction = require('fraction.js')
 
 module.exports = {
   appleTouchIconScale: {
-    // the difference between the Android large circle keyline diameter (52/108)
+    // the difference between the Android large circle (52/108)
     // and approximate Apple icon grid large circle size (892/1024)
     transform: cssScaleFraction(fraction(892, 1024).div(52, 108)),
   },
   macosIconScale: {
-    // the difference between the Android circle mask diameter (72/108)
+    // the difference between the Android mask size (72/108)
     // and approximate Apple icon grid large circle size (892/1024)
     transform: cssScaleFraction(fraction(892, 1024).div(72, 108)),
   },
   maskedIconMinimalPaddingScale: {
-    // the difference between the Android circle mask diameter (72/108)
-    // and an exact 100% size
+    // the difference between the Android mask size (72/108)
+    // and an exact 1/1 size
     transform: cssScaleFraction(fraction(1).div(72, 108)),
   },
   opacity1Third: {opacity: 'calc(1 / 3)'},
@@ -30,8 +30,8 @@ module.exports = {
   opacity80Percent: {opacity: '.8'},
   opacity90Percent: {opacity: '.9'},
   webAppMaskableIconScale: {
-    // the difference between the Android safe zone diameter (66/108)
-    // and the W3C web app manifest safe zone diameter (4/5)
+    // the difference between the Android safe zone (66/108)
+    // and the W3C web app manifest safe zone (4/5)
     // see https://w3c.github.io/manifest/#icon-masks
     transform: cssScaleFraction(fraction(4, 5).div(66, 108)),
   },
@@ -40,16 +40,16 @@ module.exports = {
     transform: cssScaleFraction(fraction(7, 5)),
   },
   windowsTileIconScale: {
-    // the difference between the Android square keyline size (44/108)
-    // and an exact 50% size
+    // the difference between the Android safe zone (66/108)
+    // and an exact 1/2 size
     // see https://docs.microsoft.com/en-us/windows/uwp/design/style/app-icons-and-logos#tile-padding-recommendations
-    transform: cssScaleFraction(fraction(1, 2).div(44, 108)),
+    transform: cssScaleFraction(fraction(1, 2).div(66, 108)),
   },
   windowsTileIconScaleSmall: {
-    // the difference between the Android square keyline size (44/108)
-    // and an exact 66% size
+    // the difference between the Android safe zone (66/108)
+    // and an exact 2/3 size
     // see https://docs.microsoft.com/en-us/windows/uwp/design/style/app-icons-and-logos#tile-padding-recommendations
-    transform: cssScaleFraction(fraction(66, 100).div(44, 108)),
+    transform: cssScaleFraction(fraction(2, 3).div(66, 108)),
   },
 }
 
