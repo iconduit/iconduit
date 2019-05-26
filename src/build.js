@@ -10,6 +10,7 @@ const {toIcns} = require('./icns.js')
 const {
   IMAGE_TYPE_JPEG,
   IMAGE_TYPE_PNG,
+  IMAGE_TYPE_SVG,
   INPUT_TYPE_RENDERABLE,
   INPUT_TYPE_SVG,
   INPUT_TYPE_TEMPLATE,
@@ -20,7 +21,7 @@ module.exports = {
   createConfigBuilder,
 }
 
-function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, readTemplate, screenshot) {
+function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, minifyImage, readTemplate, screenshot) {
   const {now} = clock
   const {mkdir, readFile, writeFile} = fileSystem
 
@@ -116,7 +117,7 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, read
       const stack = [`output.${outputName}`]
       const inputPath = await buildInput({name: inputName, type: INPUT_TYPE_SVG, stack})
 
-      return readFile(inputPath)
+      return minifyImage(IMAGE_TYPE_SVG, await readFile(inputPath))
     }
 
     async function buildOutputFile (inputName, outputName, outputSizes) {
@@ -135,7 +136,7 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, read
       const stack = [`output.${outputName}`]
       const inputPath = await buildInput({name: inputName, type: INPUT_TYPE_RENDERABLE, size, stack})
 
-      return screenshot(fileUrl(inputPath), size, {type: imageType})
+      return minifyImage(imageType, await screenshot(fileUrl(inputPath), size, {type: imageType}))
     }
   }
 }

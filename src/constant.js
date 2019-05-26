@@ -12,6 +12,7 @@ exports.INPUT_STRATEGY_DEGRADE = 'degrade'
 
 exports.IMAGE_TYPE_JPEG = 'jpeg'
 exports.IMAGE_TYPE_PNG = 'png'
+exports.IMAGE_TYPE_SVG = 'svg'
 
 exports.TEMPLATE_COMPOSITE = 'composite.html'
 

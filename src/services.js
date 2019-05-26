@@ -9,6 +9,7 @@ const {createFileSystem} = require('./fs.js')
 const {createInputBuilderFactory} = require('./input.js')
 const {createInputResolverFactory} = require('./module.js')
 const {createLogger} = require('./logging.js')
+const {createImageMinifier} = require('./image.js')
 const {createScreenshotManager} = require('./screenshot.js')
 const {systemClock} = require('./clock.js')
 
@@ -22,6 +23,7 @@ bottle.serviceFactory(
   'cwd',
   'fileSystem',
   'logger',
+  'minifyImage',
   'readTemplate',
   'screenshot'
 )
@@ -45,6 +47,7 @@ bottle.constant('defaultInputDir', join(__dirname, '../input'))
 bottle.constant('env', process.env)
 bottle.serviceFactory('fileSystem', createFileSystem, 'env', 'logger')
 bottle.serviceFactory('logger', createLogger, 'env')
+bottle.serviceFactory('minifyImage', createImageMinifier)
 bottle.serviceFactory('readConfig', createConfigReader, 'cwd', 'fileSystem')
 bottle.serviceFactory('readInternalTemplate', createBoundTemplateReader, 'fileSystem', 'cwd', 'templateDir')
 bottle.serviceFactory('readTemplate', createTemplateReader, 'fileSystem', 'cwd')
