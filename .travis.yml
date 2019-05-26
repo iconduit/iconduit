@@ -1,4 +1,14 @@
 dist: xenial
 language: node_js
 node_js: [node]
+cache: yarn
 script: [yarn test, yarn ci-lint]
+before_deploy: yarn version --no-git-tag-version --new-version "$TRAVIS_TAG"
+deploy:
+  provider: npm
+  skip_cleanup: true
+  email: ezzatron+iconduit@gmail.com
+  api_key:
+    secure: "JOpXbwkgEZvoWNwO3wkmWDv5x01dnAZPrWru35NhNzUegcYM4UxJxaeD0gHbq8T8iVJsTeTE119+pWH5Z+tlXR16CZZKstm7fgOt0QuzK8AsfoEIbL0Xvm1ZXcnJ8S1fqHmGQJEZR4E9dHtY3fFHWsvduUDAM6Rg7pUIDLBL6QI/qcUTw+hB7MkZPBAsj3uIAukRdtugMof9zceYQTevzK0PVjcIL5xyUC2OpU1pIq/Z66iMcadQ196eHyy+14fSr6JAalxnRYwEnmCwxdILSXepaljFrH3V9TeZzz7LxOdaRuYUD0cTMsbpkVP+NwcIELz2Yc0NEVVhFm/5Y8R6VraQBtdQWRnrtO6wM+KX9QvhcxrgqJJIsCDK7u6dSibYL5dmKtT0vik1SbZiVG/R8GWoXwOYUdZVh2bOOCyDsy7dxM2iQfvcIzND1XEwgtn+4I+8Nk7X0pYYj2KNQ9Jokgr+cq/XzGGXlKgmeiTLRLPWOTr+NbqLqBKKuHEHMX7pGYo5yXiwMQtOsdlJwouXtBGMsynXeRz62BC6lgsCtGnfDTnSn/iYDnl92bM3/Fg05Yp7M1V6dao8GkIzuZuycg4LvQgch/Hhkhs+dE/XSLB9qnItMEW7MhWGVxmyIceo4ulArczK+0SyO3txYfebCD8Ew5NWNEO4unMBcUGptzQ="
+  on:
+    tags: true

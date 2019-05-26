@@ -7,6 +7,9 @@
   "license": "MIT",
   "main": "src/index.js",
   "bin": "bin/iconduit",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "bottlejs": "^1.7.2",
     "browserslist": "^4.5.6",
