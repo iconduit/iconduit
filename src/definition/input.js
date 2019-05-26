@@ -21,7 +21,7 @@ module.exports = {
   facebookAppIcon: {
     strategy: 'degrade',
     options: {
-      to: 'maskableIcon',
+      to: 'maskableIconWithoutBleed',
     },
   },
   iconBackground: {
@@ -89,6 +89,15 @@ module.exports = {
     options: {
       layers: [
         {input: 'maskedIcon', multiplier: 2, style: 'maskedIconMinimalPaddingScale'},
+      ],
+    },
+  },
+  maskableIconWithoutBleed: {
+    strategy: 'composite',
+    options: {
+      layers: [
+        {input: 'icon'},
+        {input: 'iconBackground'},
       ],
     },
   },
