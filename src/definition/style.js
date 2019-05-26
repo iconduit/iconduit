@@ -35,7 +35,7 @@ module.exports = {
   },
   webAppMaskedIconScale: {
     // found empirically by comparing against native icons on Android and macOS when installed as a PWA via Chrome
-    transform: 'scale(1.345)',
+    transform: 'scale(1.4)',
   },
   windowsTileIconScale: {
     // the difference between the Android square keyline size (44/108)
