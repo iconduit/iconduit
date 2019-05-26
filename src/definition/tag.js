@@ -57,7 +57,6 @@ module.exports = {
         attributes: {
           rel: 'apple-touch-icon',
           href: selectOutputPath,
-          sizes: selectOutputHtmlSizes,
         },
         sortWeight: -1,
       },

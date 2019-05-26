@@ -79,15 +79,9 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, read
 
         case '.svg':
           return buildOutputSvg(inputName, outputName, outputSizes)
-
-        case '.html':
-        case '.js':
-        case '.json':
-        case '.xml':
-          return buildOutputFile(inputName, outputName, outputSizes)
       }
 
-      throw new Error('Not implemented')
+      return buildOutputFile(inputName, outputName, outputSizes)
     }
 
     async function buildOutputIcns (inputName, outputName, outputSizes) {

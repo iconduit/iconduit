@@ -36,6 +36,9 @@ function mimeTypeByPath (path) {
     case '.svg':
       return 'image/svg+xml'
 
+    case '.webmanifest':
+      return 'application/manifest+json'
+
     case '.xml':
       return 'application/xml'
   }

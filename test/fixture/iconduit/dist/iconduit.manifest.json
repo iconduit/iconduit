@@ -659,8 +659,8 @@
       }
     },
     "webAppManifest": {
-      "path": "manifest.json",
-      "type": "application/json"
+      "path": "site.webmanifest",
+      "type": "application/manifest+json"
     },
     "webAppMaskableIcon": {
       "large": {
@@ -1227,12 +1227,11 @@
       {
         "attributes": {
           "href": "apple-touch-icon-180x180.png",
-          "rel": "apple-touch-icon",
-          "sizes": "180x180"
+          "rel": "apple-touch-icon"
         },
         "children": [
         ],
-        "html": "<link rel=\"apple-touch-icon\" href=\"apple-touch-icon-180x180.png\" sizes=\"180x180\">",
+        "html": "<link rel=\"apple-touch-icon\" href=\"apple-touch-icon-180x180.png\">",
         "isSelfClosing": true,
         "sortWeight": -1,
         "tag": "link"
@@ -1282,12 +1281,12 @@
     "link": [
       {
         "attributes": {
-          "href": "manifest.json",
+          "href": "site.webmanifest",
           "rel": "manifest"
         },
         "children": [
         ],
-        "html": "<link rel=\"manifest\" href=\"manifest.json\">",
+        "html": "<link rel=\"manifest\" href=\"site.webmanifest\">",
         "isSelfClosing": true,
         "sortWeight": 0,
         "tag": "link"

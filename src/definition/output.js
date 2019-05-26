@@ -122,7 +122,7 @@ module.exports = {
   },
   webAppManifest: {
     input: 'webAppManifest',
-    name: 'manifest.json',
+    name: 'site.webmanifest',
     tags: [
       'manifest',
     ],
