@@ -1,6 +1,6 @@
 {
   "name": "@iconduit/iconduit",
-  "version": "0.0.0",
+  "version": "0.1.3",
   "description": "Produce icons and other web app assets from a small number of inputs",
   "repository": "iconduit/iconduit",
   "author": "Erin Millard <ezzatron@gmail.com>",
