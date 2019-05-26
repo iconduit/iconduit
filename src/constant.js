@@ -10,6 +10,8 @@ exports.INPUT_TYPE_TEMPLATE = 'template'
 exports.INPUT_STRATEGY_COMPOSITE = 'composite'
 exports.INPUT_STRATEGY_DEGRADE = 'degrade'
 
+exports.IMAGE_TYPE_GIF = 'gif'
+exports.IMAGE_TYPE_ICO_PNG = 'ico-png'
 exports.IMAGE_TYPE_JPEG = 'jpeg'
 exports.IMAGE_TYPE_PNG = 'png'
 exports.IMAGE_TYPE_SVG = 'svg'

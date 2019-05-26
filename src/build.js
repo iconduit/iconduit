@@ -8,6 +8,7 @@ const {outputNames, selectOutputs, targetNames} = require('./target.js')
 const {toIcns} = require('./icns.js')
 
 const {
+  IMAGE_TYPE_ICO_PNG,
   IMAGE_TYPE_JPEG,
   IMAGE_TYPE_PNG,
   IMAGE_TYPE_SVG,
@@ -88,7 +89,8 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, mini
     async function buildOutputIcns (inputName, outputName, outputSizes) {
       const entries = await Promise.all(outputSizes.map(
         async size => {
-          const content = await buildImage(inputName, outputName, size, IMAGE_TYPE_PNG)
+          const content =
+            await minifyImage(IMAGE_TYPE_PNG, await buildImage(inputName, outputName, size, IMAGE_TYPE_PNG))
 
           return {content, size}
         }
@@ -99,7 +101,7 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, mini
 
     async function buildOutputIco (inputName, outputName, outputSizes) {
       const pngs = await Promise.all(outputSizes.map(
-        async size => buildImage(inputName, outputName, size, IMAGE_TYPE_PNG)
+        async size => minifyImage(IMAGE_TYPE_ICO_PNG, await buildImage(inputName, outputName, size, IMAGE_TYPE_PNG))
       ))
 
       return toIco(pngs)
@@ -108,7 +110,7 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, mini
     async function buildOutputImage (inputName, outputName, outputSizes, imageType) {
       const size = assertFirstSize(outputSizes, outputName)
 
-      return buildImage(inputName, outputName, size, imageType)
+      return minifyImage(imageType, await buildImage(inputName, outputName, size, imageType))
     }
 
     async function buildOutputSvg (inputName, outputName, outputSizes) {
@@ -136,7 +138,7 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, mini
       const stack = [`output.${outputName}`]
       const inputPath = await buildInput({name: inputName, type: INPUT_TYPE_RENDERABLE, size, stack})
 
-      return minifyImage(imageType, await screenshot(fileUrl(inputPath), size, {type: imageType}))
+      return screenshot(fileUrl(inputPath), size, {type: imageType})
     }
   }
 }
