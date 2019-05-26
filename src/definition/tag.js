@@ -2,6 +2,7 @@ const {
   selectAppleTouchStartupMedia,
   selectDescription,
   selectFacebookAppId,
+  selectIosStatusBarStyle,
   selectLocale,
   selectMaskColor,
   selectName,
@@ -47,6 +48,17 @@ module.exports = {
           content: selectName,
         },
         sortWeight: 2000,
+      },
+      {
+        tag: 'meta',
+        attributes: {
+          name: 'apple-mobile-web-app-status-bar-style',
+          content: selectIosStatusBarStyle,
+        },
+        sortWeight: 4000,
+        predicate: [
+          selectIosStatusBarStyle,
+        ],
       },
     ],
   },

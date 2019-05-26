@@ -57,6 +57,7 @@ function normalize (configOrFn) {
     inputs = {},
     language = 'en-US',
     orientation = null,
+    os = {},
     outputPath = 'dist',
     outputs = {},
     preferRelatedApplications = null,
@@ -96,6 +97,7 @@ function normalize (configOrFn) {
     language,
     name,
     orientation,
+    os: normalizeOs(os),
     outputPath,
     outputs: normalizeOutputs(outputs),
     preferRelatedApplications,
@@ -763,6 +765,32 @@ function normalizeInputs (inputs) {
   assertObjectOfNonEmptyStrings(inputs, 'inputs')
 
   return inputs
+}
+
+function normalizeOs (os) {
+  assertObject(os, 'os')
+
+  const {
+    ios = {},
+  } = os
+
+  return {
+    ios: normalizeOsIos(ios),
+  }
+}
+
+function normalizeOsIos (ios) {
+  assertObject(ios, 'os.ios')
+
+  const {
+    statusBarStyle = null,
+  } = ios
+
+  assertOptionalNonEmptyString(statusBarStyle, 'os.ios.statusBarStyle')
+
+  return {
+    statusBarStyle,
+  }
 }
 
 function normalizeOutputs (outputs) {

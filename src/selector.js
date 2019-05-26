@@ -4,6 +4,7 @@ module.exports = {
   selectAppleTouchStartupMedia,
   selectDescription,
   selectFacebookAppId,
+  selectIosStatusBarStyle,
   selectLanguage,
   selectLocale,
   selectMaskColor,
@@ -48,6 +49,10 @@ function selectDescription ({manifest}) {
 
 function selectFacebookAppId ({manifest}) {
   return manifest.applications.web.facebook.appId
+}
+
+function selectIosStatusBarStyle ({manifest}) {
+  return manifest.os.ios.statusBarStyle
 }
 
 function selectLanguage ({manifest}) {
