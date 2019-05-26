@@ -5,11 +5,17 @@
   "repository": "iconduit/iconduit",
   "author": "Erin Millard <ezzatron@gmail.com>",
   "license": "MIT",
-  "main": "src/index.js",
-  "bin": "bin/iconduit",
   "publishConfig": {
     "access": "public"
   },
+  "main": "src/index.js",
+  "bin": "bin/iconduit",
+  "files": [
+    "/bin/",
+    "/input/",
+    "/src/",
+    "/template/"
+  ],
   "dependencies": {
     "bottlejs": "^1.7.2",
     "browserslist": "^4.5.6",
