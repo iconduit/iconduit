@@ -2,7 +2,6 @@ const {buildWebAppManifest} = require('../web-app.js')
 
 module.exports = {
   appleTouchIcon: {
-    input: 'appleTouchIcon',
     name: 'apple-touch-icon-[dimensions].png',
     sizes: ['appleTouchIconRetina'],
     tags: [
@@ -10,7 +9,6 @@ module.exports = {
     ],
   },
   appleTouchStartup: {
-    input: 'appleTouchStartup',
     name: 'apple-touch-startup-[dimensions]r[pixelRatio].png',
     sizes: [
       'display.ipad1536x2048d264.landscape',
@@ -39,29 +37,24 @@ module.exports = {
     ],
   },
   browserconfigXml: {
-    input: 'browserconfig',
     name: 'browserconfig.xml',
     tags: [
       'msapplicationConfig',
     ],
   },
   dmgBackground: {
-    input: 'dmgBackground',
     name: 'dmg-background[atPixelRatioX].png',
     sizes: ['dmgBackground@2x', 'dmgBackground'],
   },
   facebookAppIcon: {
-    input: 'facebookAppIcon',
     name: 'facebook-app-icon.png',
     sizes: ['facebookAppIcon'],
   },
   faviconIco: {
-    input: 'maskedIconMinimalPadding',
     name: 'favicon.ico',
     sizes: ['faviconLarge', 'faviconMedium', 'faviconSmall'],
   },
   faviconPng: {
-    input: 'maskedIconMinimalPadding',
     name: 'favicon-[dimensions].png',
     sizes: ['faviconMedium', 'faviconSmall'],
     tags: [
@@ -69,15 +62,12 @@ module.exports = {
     ],
   },
   iconduitManifest: {
-    input: 'iconduitManifest',
     name: 'iconduit.manifest.json',
   },
   indexHtml: {
-    input: 'index',
     name: 'index.html',
   },
   macosIcns: {
-    input: 'macosIcon',
     name: 'macos.icns',
     sizes: [
       'icns512@2x',
@@ -94,7 +84,6 @@ module.exports = {
     ],
   },
   openGraphImage: {
-    input: 'openGraphImage',
     name: 'open-graph.png',
     sizes: ['openGraphImage'],
     tags: [
@@ -102,18 +91,15 @@ module.exports = {
     ],
   },
   safariMaskIcon: {
-    input: 'safariMaskIcon',
     name: 'safari-mask-icon.svg',
     tags: [
       'maskIcon',
     ],
   },
   serviceWorker: {
-    input: 'serviceWorker',
     name: 'service-worker.js',
   },
   twitterCardImage: {
-    input: 'twitterCardImage',
     name: 'twitter-card.png',
     sizes: ['twitterCardImage'],
     tags: [
@@ -121,7 +107,6 @@ module.exports = {
     ],
   },
   webAppManifest: {
-    input: 'webAppManifest',
     name: 'site.webmanifest',
     tags: [
       'manifest',
@@ -131,17 +116,14 @@ module.exports = {
     },
   },
   webAppMaskableIcon: {
-    input: 'webAppMaskableIcon',
     name: 'maskable-icon-[dimensions].png',
     sizes: ['webAppIconLarge', 'webAppIconMedium', 'webAppIconSmall'],
   },
   webAppMaskedIcon: {
-    input: 'webAppMaskedIcon',
     name: 'masked-icon-[dimensions].png',
     sizes: ['webAppIconLarge', 'webAppIconMedium', 'webAppIconSmall'],
   },
   windowsIco: {
-    input: 'maskedIconMinimalPadding',
     name: 'windows.ico',
     sizes: [
       'windowsIco256',
@@ -157,12 +139,10 @@ module.exports = {
     ],
   },
   windowsTile: {
-    input: 'windowsTile',
     name: 'windows-tile-[dimensions].png',
     sizes: ['windowsTileMedium', 'windowsTileLarge', 'windowsTileWide'],
   },
   windowsTileSmall: {
-    input: 'windowsTileSmall',
     name: 'windows-tile-[dimensions].png',
     sizes: ['windowsTileSmall'],
   },

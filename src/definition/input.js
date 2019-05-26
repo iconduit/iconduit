@@ -24,6 +24,24 @@ module.exports = {
       to: 'maskableIconWithoutBleed',
     },
   },
+  favicon: {
+    strategy: 'degrade',
+    options: {
+      to: 'maskedIconMinimalPadding',
+    },
+  },
+  faviconIco: {
+    strategy: 'degrade',
+    options: {
+      to: 'favicon',
+    },
+  },
+  faviconPng: {
+    strategy: 'degrade',
+    options: {
+      to: 'favicon',
+    },
+  },
   iconBackground: {
     strategy: 'degrade',
     options: {
@@ -57,7 +75,7 @@ module.exports = {
       to: 'icon',
     },
   },
-  macosIcon: {
+  macosIcns: {
     strategy: 'composite',
     options: {
       layers: [
@@ -152,6 +170,12 @@ module.exports = {
       layers: [
         {input: 'maskedIcon', multiplier: 2, style: 'webAppMaskedIconScale'},
       ],
+    },
+  },
+  windowsIco: {
+    strategy: 'degrade',
+    options: {
+      to: 'maskedIconMinimalPadding',
     },
   },
   windowsTile: {

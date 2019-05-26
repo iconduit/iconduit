@@ -476,7 +476,7 @@ function normalizeOutputDefinitions (output) {
     assertObject(definition, outputSetting)
 
     const {
-      input,
+      input = outputName,
       name,
       options = {},
       sizes = [],
