@@ -33,7 +33,7 @@ function createScreenshotManager () {
 
     try {
       await page.setViewport(sizeViewport)
-      await page.goto(url)
+      await page.goto(url, {timeout: 0})
 
       image = await page.screenshot({
         encoding: 'binary',
