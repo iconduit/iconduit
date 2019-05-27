@@ -2,9 +2,9 @@ const fraction = require('fraction.js')
 
 module.exports = {
   appleTouchIconScale: {
-    // the difference between the Android large circle (52/108)
-    // and approximate Apple icon grid large circle size (892/1024)
-    transform: cssScaleFraction(fraction(892, 1024).div(52, 108)),
+    // the difference between the Android mask size (72/108)
+    // and an exact 1/1 size
+    transform: cssScaleFraction(fraction(1).div(72, 108)),
   },
   macosIconScale: {
     // the difference between the Android mask size (72/108)

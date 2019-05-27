@@ -53,6 +53,22 @@
         "type": "image/png"
       }
     },
+    "appleTouchIconMasked": {
+      "retina": {
+        "htmlSizes": "180x180",
+        "path": "apple-touch-icon-masked-180x180.png",
+        "size": {
+          "deviceHeight": null,
+          "deviceWidth": null,
+          "height": 180,
+          "orientation": null,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 180
+        },
+        "type": "image/png"
+      }
+    },
     "appleTouchStartup": {
       "ipad1536x2048d264.landscape": {
         "htmlSizes": "2048x1536",
