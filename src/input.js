@@ -36,7 +36,7 @@ function createInputBuilderFactory (
 
   return function createInputBuilder (config, options) {
     const {definitions: {style: styleDefinitions}, name: appName} = config
-    const {configPath, tempPath, userInputDir} = options
+    const {configPath, puppeteer: {timeout}, tempPath, userInputDir} = options
 
     const {get, set} = createCache()
     const color = resolveColors(config)
@@ -203,7 +203,7 @@ function createInputBuilderFactory (
         if (isImagePath(sourcePath)) return sourcePath
 
         const imagePath = buildCachePath(tempPath, `input.${inputName}.image`, '.png', inputSize)
-        const image = await screenshot(fileUrl(sourcePath), inputSize, {type: IMAGE_TYPE_PNG})
+        const image = await screenshot(fileUrl(sourcePath), inputSize, {timeout, type: IMAGE_TYPE_PNG})
         await writeFile(imagePath, image)
 
         return imagePath

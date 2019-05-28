@@ -30,7 +30,7 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, mini
 
   return async function build (config, options) {
     const startTime = now()
-    const {configPath, outputPath} = options
+    const {configPath, outputPath, puppeteer: {timeout}} = options
 
     const {outputs, tags} = selectOutputs(config)
     const sizesByOutput = resolveSizesForOutputs(config, outputs)
@@ -138,7 +138,7 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, mini
       const stack = [`output.${outputName}`]
       const inputPath = await buildInput({name: inputName, type: INPUT_TYPE_RENDERABLE, size, stack})
 
-      return screenshot(fileUrl(inputPath), size, {type: imageType})
+      return screenshot(fileUrl(inputPath), size, {timeout, type: imageType})
     }
   }
 }
@@ -147,16 +147,14 @@ function createConfigBuilder (build, fileSystem, readConfig, screenshotManager) 
   const {withTempDir} = fileSystem
   const {run} = screenshotManager
 
-  return async function buildConfigs (...inputPaths) {
+  return async function buildConfigs (options, ...inputPaths) {
     await run(async () => Promise.all(inputPaths.map(buildConfig)))
 
     async function buildConfig (inputPath) {
       const {config, configPath, outputPath, userInputDir} = await readConfig(inputPath)
 
       await withTempDir(async tempPath => {
-        const options = {configPath, outputPath, tempPath, userInputDir}
-
-        await build(config, options)
+        await build(config, {...options, configPath, outputPath, tempPath, userInputDir})
       })
     }
   }

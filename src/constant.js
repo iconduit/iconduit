@@ -46,3 +46,5 @@ exports.ICNS_32_2X = 'ic12'
 exports.ICNS_32_1X = 'icp5'
 exports.ICNS_16_2X = 'ic11'
 exports.ICNS_16_1X = 'icp4'
+
+exports.DEFAULT_PUPPETEER_TIMEOUT = 30000

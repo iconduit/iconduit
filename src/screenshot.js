@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer')
 
+const {DEFAULT_PUPPETEER_TIMEOUT, IMAGE_TYPE_PNG} = require('./constant.js')
 const {dipSize} = require('./size.js')
-const {IMAGE_TYPE_PNG} = require('./constant.js')
 
 module.exports = {
   createScreenshotManager,
@@ -27,8 +27,12 @@ function createScreenshotManager () {
   }
 
   async function screenshot (url, size, options = {}) {
+    const {timeout = DEFAULT_PUPPETEER_TIMEOUT, type = IMAGE_TYPE_PNG} = options
     const sizeViewport = viewport(size)
+
     const page = await browser.newPage()
+    page.setDefaultTimeout(timeout)
+
     let image
 
     try {
@@ -39,9 +43,7 @@ function createScreenshotManager () {
         encoding: 'binary',
         fullPage: false,
         omitBackground: true,
-        type: IMAGE_TYPE_PNG,
-
-        ...options,
+        type,
       })
     } finally {
       await page.close()
