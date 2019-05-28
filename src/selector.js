@@ -14,6 +14,7 @@ module.exports = {
   selectOutputHtmlSizes,
   selectOutputPath,
   selectOutputType,
+  selectOutputUrl,
   selectOutputWidth,
   selectPrimaryIosApp,
   selectPrimaryIosAppCountry,
@@ -89,6 +90,14 @@ function selectOutputPath ({output}) {
 
 function selectOutputType ({output}) {
   return output.type
+}
+
+function selectOutputUrl ({manifest, output}) {
+  const {url} = manifest
+
+  if (!url) return null
+
+  return new URL(output.path, url).toString()
 }
 
 function selectOutputWidth ({output}) {

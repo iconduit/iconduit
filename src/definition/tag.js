@@ -11,6 +11,7 @@ const {
   selectOutputHtmlSizes,
   selectOutputPath,
   selectOutputType,
+  selectOutputUrl,
   selectOutputWidth,
   selectPrimaryIosApp,
   selectPrimaryIosAppCountry,
@@ -247,8 +248,11 @@ module.exports = {
         tag: 'meta',
         attributes: {
           property: 'og:image',
-          content: selectOutputPath,
+          content: selectOutputUrl,
         },
+        predicate: [
+          selectOutputUrl,
+        ],
       },
       {
         tag: 'meta',
@@ -256,6 +260,9 @@ module.exports = {
           property: 'og:image:type',
           content: selectOutputType,
         },
+        predicate: [
+          selectOutputUrl,
+        ],
       },
       {
         tag: 'meta',
@@ -263,6 +270,9 @@ module.exports = {
           property: 'og:image:width',
           content: selectOutputWidth,
         },
+        predicate: [
+          selectOutputUrl,
+        ],
       },
       {
         tag: 'meta',
@@ -270,6 +280,9 @@ module.exports = {
           property: 'og:image:height',
           content: selectOutputHeight,
         },
+        predicate: [
+          selectOutputUrl,
+        ],
       },
       {
         tag: 'meta',
@@ -277,6 +290,9 @@ module.exports = {
           property: 'og:image:alt',
           content: selectName,
         },
+        predicate: [
+          selectOutputUrl,
+        ],
       },
     ],
   },
@@ -457,8 +473,11 @@ module.exports = {
         tag: 'meta',
         attributes: {
           name: 'twitter:image',
-          content: selectOutputPath,
+          content: selectOutputUrl,
         },
+        predicate: [
+          selectOutputUrl,
+        ],
       },
       {
         tag: 'meta',
@@ -466,6 +485,9 @@ module.exports = {
           name: 'twitter:image:alt',
           content: selectName,
         },
+        predicate: [
+          selectOutputUrl,
+        ],
       },
     ],
   },

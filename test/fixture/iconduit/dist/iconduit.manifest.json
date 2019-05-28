@@ -1426,6 +1426,18 @@
       },
       {
         "attributes": {
+          "content": "https://iconduit.github.io/",
+          "property": "og:url"
+        },
+        "children": [
+        ],
+        "html": "<meta property=\"og:url\" content=\"https://iconduit.github.io/\">",
+        "isSelfClosing": true,
+        "sortWeight": 0,
+        "tag": "meta"
+      },
+      {
+        "attributes": {
           "content": "Iconduit",
           "property": "og:site_name"
         },
@@ -1464,12 +1476,12 @@
     "openGraphImage": [
       {
         "attributes": {
-          "content": "open-graph.png",
+          "content": "https://iconduit.github.io/open-graph.png",
           "property": "og:image"
         },
         "children": [
         ],
-        "html": "<meta property=\"og:image\" content=\"open-graph.png\">",
+        "html": "<meta property=\"og:image\" content=\"https://iconduit.github.io/open-graph.png\">",
         "isSelfClosing": true,
         "sortWeight": 0,
         "tag": "meta"
@@ -1576,12 +1588,12 @@
     "twitterImage": [
       {
         "attributes": {
-          "content": "twitter-card.png",
+          "content": "https://iconduit.github.io/twitter-card.png",
           "name": "twitter:image"
         },
         "children": [
         ],
-        "html": "<meta name=\"twitter:image\" content=\"twitter-card.png\">",
+        "html": "<meta name=\"twitter:image\" content=\"https://iconduit.github.io/twitter-card.png\">",
         "isSelfClosing": true,
         "sortWeight": 0,
         "tag": "meta"
@@ -1601,6 +1613,6 @@
     ]
   },
   "textDirection": "auto",
-  "url": null,
+  "url": "https://iconduit.github.io/",
   "viewport": "width=device-width, initial-scale=1"
 }
