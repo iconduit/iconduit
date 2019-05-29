@@ -27,6 +27,7 @@ exports.OS_MACOS = 'macos'
 exports.OS_WINDOWS = 'windows'
 
 exports.WEB_FACEBOOK = 'facebook'
+exports.WEB_GITHUB = 'github'
 exports.WEB_REDDIT = 'reddit'
 exports.WEB_TWITTER = 'twitter'
 

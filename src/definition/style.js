@@ -11,7 +11,7 @@ module.exports = {
     // and approximate Apple icon grid large circle size (892/1024)
     transform: cssScaleFraction(fraction(892, 1024).div(72, 108)),
   },
-  minimalPaddingIconScale: {
+  noPaddingIconScale: {
     // the difference between the Android mask size (72/108)
     // and an exact 1/1 size
     transform: cssScaleFraction(fraction(1).div(72, 108)),

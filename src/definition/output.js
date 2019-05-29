@@ -50,6 +50,10 @@ module.exports = {
     name: 'facebook-app-icon.png',
     sizes: ['facebookAppIcon'],
   },
+  githubAccountIcon: {
+    name: 'github-account-icon.png',
+    sizes: ['githubAccountIcon'],
+  },
   faviconIco: {
     name: 'favicon.ico',
     sizes: ['faviconLarge', 'faviconMedium', 'faviconSmall'],

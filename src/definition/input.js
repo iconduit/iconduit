@@ -20,13 +20,13 @@ module.exports = {
   facebookAppIcon: {
     strategy: 'degrade',
     options: {
-      to: 'iconMaskableMinimalPadding',
+      to: 'iconMaskableNoPadding',
     },
   },
   favicon: {
     strategy: 'degrade',
     options: {
-      to: 'iconMaskedMinimalPadding',
+      to: 'iconMaskedNoPadding',
     },
   },
   faviconIco: {
@@ -39,6 +39,12 @@ module.exports = {
     strategy: 'degrade',
     options: {
       to: 'favicon',
+    },
+  },
+  githubAccountIcon: {
+    strategy: 'degrade',
+    options: {
+      to: 'iconMaskedNoPadding',
     },
   },
   iconBackground: {
@@ -123,11 +129,11 @@ module.exports = {
       ],
     },
   },
-  iconMaskableMinimalPadding: {
+  iconMaskableNoPadding: {
     strategy: 'composite',
     options: {
       layers: [
-        {input: 'iconMaskable', multiplier: 2, style: 'minimalPaddingIconScale'},
+        {input: 'iconMaskable', multiplier: 2, style: 'noPaddingIconScale'},
       ],
     },
   },
@@ -141,11 +147,11 @@ module.exports = {
       ],
     },
   },
-  iconMaskedMinimalPadding: {
+  iconMaskedNoPadding: {
     strategy: 'composite',
     options: {
       layers: [
-        {input: 'iconMasked', multiplier: 2, style: 'minimalPaddingIconScale'},
+        {input: 'iconMasked', multiplier: 2, style: 'noPaddingIconScale'},
       ],
     },
   },
@@ -209,7 +215,7 @@ module.exports = {
   windowsIco: {
     strategy: 'degrade',
     options: {
-      to: 'iconMaskedMinimalPadding',
+      to: 'iconMaskedNoPadding',
     },
   },
   windowsTile: {

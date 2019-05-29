@@ -475,6 +475,22 @@
         "type": "image/png"
       }
     },
+    "githubAccountIcon": {
+      "primary": {
+        "htmlSizes": "1024x1024",
+        "path": "github-account-icon.png",
+        "size": {
+          "deviceHeight": null,
+          "deviceWidth": null,
+          "height": 1024,
+          "orientation": null,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 1024
+        },
+        "type": "image/png"
+      }
+    },
     "iconduitManifest": {
       "path": "iconduit.manifest.json",
       "type": "application/json"

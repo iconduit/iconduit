@@ -97,6 +97,11 @@ module.exports = {
         'openGraph',
       ],
     },
+    github: {
+      outputs: [
+        'githubAccountIcon',
+      ],
+    },
     reddit: {
       outputs: [
         'openGraphImage',
