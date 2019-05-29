@@ -106,6 +106,14 @@ module.exports = {
       'twitterImage',
     ],
   },
+  webAppIconMaskable: {
+    name: 'web-app-icon-maskable-[dimensions].png',
+    sizes: ['webAppIconLarge', 'webAppIconMedium', 'webAppIconSmall'],
+  },
+  webAppIconMasked: {
+    name: 'web-app-icon-masked-[dimensions].png',
+    sizes: ['webAppIconLarge', 'webAppIconMedium', 'webAppIconSmall'],
+  },
   webAppManifest: {
     name: 'site.webmanifest',
     tags: [
@@ -114,14 +122,6 @@ module.exports = {
     options: {
       variables: {buildWebAppManifest},
     },
-  },
-  webAppMaskableIcon: {
-    name: 'maskable-icon-[dimensions].png',
-    sizes: ['webAppIconLarge', 'webAppIconMedium', 'webAppIconSmall'],
-  },
-  webAppMaskedIcon: {
-    name: 'masked-icon-[dimensions].png',
-    sizes: ['webAppIconLarge', 'webAppIconMedium', 'webAppIconSmall'],
   },
   windowsIco: {
     name: 'windows.ico',

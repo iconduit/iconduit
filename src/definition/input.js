@@ -3,8 +3,7 @@ module.exports = {
     strategy: 'composite',
     options: {
       layers: [
-        {input: 'icon', multiplier: 2, style: 'appleTouchIconScale'},
-        {input: 'iconBackground', multiplier: 2, style: 'appleTouchIconScale'},
+        {input: 'iconFlatMaskable', multiplier: 2, style: 'appleTouchIconScale'},
       ],
     },
   },
@@ -21,13 +20,13 @@ module.exports = {
   facebookAppIcon: {
     strategy: 'degrade',
     options: {
-      to: 'maskableIconWithoutBleed',
+      to: 'iconMaskable',
     },
   },
   favicon: {
     strategy: 'degrade',
     options: {
-      to: 'maskedIconMinimalPadding',
+      to: 'iconMaskedMinimalPadding',
     },
   },
   faviconIco: {
@@ -54,6 +53,52 @@ module.exports = {
       to: 'transparent',
     },
   },
+  iconFlat: {
+    strategy: 'degrade',
+    options: {
+      to: 'icon',
+    },
+  },
+  iconFlatBackground: {
+    strategy: 'degrade',
+    options: {
+      to: 'iconBackground',
+    },
+  },
+  iconFlatBleed: {
+    strategy: 'degrade',
+    options: {
+      to: 'iconBleed',
+    },
+  },
+  iconFlatForeground: {
+    strategy: 'composite',
+    options: {
+      layers: [
+        {input: 'iconFlat'},
+        {input: 'iconFlatBleed'},
+      ],
+    },
+  },
+  iconFlatMaskable: {
+    strategy: 'composite',
+    options: {
+      layers: [
+        {input: 'iconFlatForeground'},
+        {input: 'iconFlatBackground'},
+      ],
+    },
+  },
+  iconFlatMasked: {
+    strategy: 'composite',
+    options: {
+      mask: 'iconMask',
+      layers: [
+        {input: 'iconFlatForeground'},
+        {input: 'iconFlatBackground'},
+      ],
+    },
+  },
   iconForeground: {
     strategy: 'composite',
     options: {
@@ -69,63 +114,44 @@ module.exports = {
       to: 'iconMaskAndroidCircle',
     },
   },
+  iconMaskable: {
+    strategy: 'composite',
+    options: {
+      layers: [
+        {input: 'iconForeground'},
+        {input: 'iconBackground'},
+      ],
+    },
+  },
+  iconMasked: {
+    strategy: 'composite',
+    options: {
+      mask: 'iconMask',
+      layers: [
+        {input: 'iconForeground'},
+        {input: 'iconBackground'},
+      ],
+    },
+  },
+  iconMaskedMinimalPadding: {
+    strategy: 'composite',
+    options: {
+      layers: [
+        {input: 'iconMasked', multiplier: 2, style: 'minimalPaddingIconScale'},
+      ],
+    },
+  },
   iconSilhouette: {
     strategy: 'degrade',
     options: {
-      to: 'icon',
+      to: 'iconFlat',
     },
   },
   macosIcns: {
     strategy: 'composite',
     options: {
       layers: [
-        {input: 'maskedIconWithoutBleed', multiplier: 2, style: 'macosIconScale'},
-      ],
-    },
-  },
-  maskableIcon: {
-    strategy: 'composite',
-    options: {
-      layers: [
-        {input: 'iconForeground'},
-        {input: 'iconBackground'},
-      ],
-    },
-  },
-  maskedIcon: {
-    strategy: 'composite',
-    options: {
-      mask: 'iconMask',
-      layers: [
-        {input: 'iconForeground'},
-        {input: 'iconBackground'},
-      ],
-    },
-  },
-  maskedIconMinimalPadding: {
-    strategy: 'composite',
-    options: {
-      layers: [
-        {input: 'maskedIcon', multiplier: 2, style: 'maskedIconMinimalPaddingScale'},
-      ],
-    },
-  },
-  maskableIconWithoutBleed: {
-    strategy: 'composite',
-    options: {
-      layers: [
-        {input: 'icon'},
-        {input: 'iconBackground'},
-      ],
-    },
-  },
-  maskedIconWithoutBleed: {
-    strategy: 'composite',
-    options: {
-      mask: 'iconMask',
-      layers: [
-        {input: 'icon'},
-        {input: 'iconBackground'},
+        {input: 'iconFlatMasked', multiplier: 2, style: 'macosIconScale'},
       ],
     },
   },
@@ -156,26 +182,26 @@ module.exports = {
       to: 'socialShareImage',
     },
   },
-  webAppMaskableIcon: {
+  webAppIconMaskable: {
     strategy: 'composite',
     options: {
       layers: [
-        {input: 'maskableIcon', multiplier: 2, style: 'webAppMaskableIconScale'},
+        {input: 'iconMaskable', multiplier: 2, style: 'webAppIconMaskableScale'},
       ],
     },
   },
-  webAppMaskedIcon: {
+  webAppIconMasked: {
     strategy: 'composite',
     options: {
       layers: [
-        {input: 'maskedIcon', multiplier: 2, style: 'webAppMaskedIconScale'},
+        {input: 'iconMasked', multiplier: 2, style: 'webAppIconMaskedScale'},
       ],
     },
   },
   windowsIco: {
     strategy: 'degrade',
     options: {
-      to: 'maskedIconMinimalPadding',
+      to: 'iconMaskedMinimalPadding',
     },
   },
   windowsTile: {

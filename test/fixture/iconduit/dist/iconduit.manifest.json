@@ -679,97 +679,97 @@
         "type": "image/png"
       }
     },
+    "webAppIconMaskable": {
+      "large": {
+        "htmlSizes": "1024x1024",
+        "path": "web-app-icon-maskable-1024x1024.png",
+        "size": {
+          "deviceHeight": null,
+          "deviceWidth": null,
+          "height": 1024,
+          "orientation": null,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 1024
+        },
+        "type": "image/png"
+      },
+      "medium": {
+        "htmlSizes": "512x512",
+        "path": "web-app-icon-maskable-512x512.png",
+        "size": {
+          "deviceHeight": null,
+          "deviceWidth": null,
+          "height": 512,
+          "orientation": null,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 512
+        },
+        "type": "image/png"
+      },
+      "small": {
+        "htmlSizes": "192x192",
+        "path": "web-app-icon-maskable-192x192.png",
+        "size": {
+          "deviceHeight": null,
+          "deviceWidth": null,
+          "height": 192,
+          "orientation": null,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 192
+        },
+        "type": "image/png"
+      }
+    },
+    "webAppIconMasked": {
+      "large": {
+        "htmlSizes": "1024x1024",
+        "path": "web-app-icon-masked-1024x1024.png",
+        "size": {
+          "deviceHeight": null,
+          "deviceWidth": null,
+          "height": 1024,
+          "orientation": null,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 1024
+        },
+        "type": "image/png"
+      },
+      "medium": {
+        "htmlSizes": "512x512",
+        "path": "web-app-icon-masked-512x512.png",
+        "size": {
+          "deviceHeight": null,
+          "deviceWidth": null,
+          "height": 512,
+          "orientation": null,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 512
+        },
+        "type": "image/png"
+      },
+      "small": {
+        "htmlSizes": "192x192",
+        "path": "web-app-icon-masked-192x192.png",
+        "size": {
+          "deviceHeight": null,
+          "deviceWidth": null,
+          "height": 192,
+          "orientation": null,
+          "pixelDensity": 72,
+          "pixelRatio": 1,
+          "width": 192
+        },
+        "type": "image/png"
+      }
+    },
     "webAppManifest": {
       "path": "site.webmanifest",
       "type": "application/manifest+json"
-    },
-    "webAppMaskableIcon": {
-      "large": {
-        "htmlSizes": "1024x1024",
-        "path": "maskable-icon-1024x1024.png",
-        "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
-          "height": 1024,
-          "orientation": null,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 1024
-        },
-        "type": "image/png"
-      },
-      "medium": {
-        "htmlSizes": "512x512",
-        "path": "maskable-icon-512x512.png",
-        "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
-          "height": 512,
-          "orientation": null,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 512
-        },
-        "type": "image/png"
-      },
-      "small": {
-        "htmlSizes": "192x192",
-        "path": "maskable-icon-192x192.png",
-        "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
-          "height": 192,
-          "orientation": null,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 192
-        },
-        "type": "image/png"
-      }
-    },
-    "webAppMaskedIcon": {
-      "large": {
-        "htmlSizes": "1024x1024",
-        "path": "masked-icon-1024x1024.png",
-        "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
-          "height": 1024,
-          "orientation": null,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 1024
-        },
-        "type": "image/png"
-      },
-      "medium": {
-        "htmlSizes": "512x512",
-        "path": "masked-icon-512x512.png",
-        "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
-          "height": 512,
-          "orientation": null,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 512
-        },
-        "type": "image/png"
-      },
-      "small": {
-        "htmlSizes": "192x192",
-        "path": "masked-icon-192x192.png",
-        "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
-          "height": 192,
-          "orientation": null,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 192
-        },
-        "type": "image/png"
-      }
     },
     "windowsIco": {
       "128": {

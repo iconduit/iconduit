@@ -11,9 +11,9 @@ module.exports = {
         'faviconPng',
         'indexHtml',
         'serviceWorker',
+        'webAppIconMaskable',
+        'webAppIconMasked',
         'webAppManifest',
-        'webAppMaskableIcon',
-        'webAppMaskedIcon',
       ],
       tags: [
         'applicationName',

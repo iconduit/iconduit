@@ -11,7 +11,7 @@ module.exports = {
     // and approximate Apple icon grid large circle size (892/1024)
     transform: cssScaleFraction(fraction(892, 1024).div(72, 108)),
   },
-  maskedIconMinimalPaddingScale: {
+  minimalPaddingIconScale: {
     // the difference between the Android mask size (72/108)
     // and an exact 1/1 size
     transform: cssScaleFraction(fraction(1).div(72, 108)),
@@ -29,13 +29,13 @@ module.exports = {
   opacity75Percent: {opacity: '.75'},
   opacity80Percent: {opacity: '.8'},
   opacity90Percent: {opacity: '.9'},
-  webAppMaskableIconScale: {
+  webAppIconMaskableScale: {
     // the difference between the Android safe zone (66/108)
     // and the W3C web app manifest safe zone (4/5)
     // see https://w3c.github.io/manifest/#icon-masks
     transform: cssScaleFraction(fraction(4, 5).div(66, 108)),
   },
-  webAppMaskedIconScale: {
+  webAppIconMaskedScale: {
     // found empirically by comparing against native icons on Android and macOS when installed as a PWA via Chrome
     transform: cssScaleFraction(fraction(7, 5)),
   },
