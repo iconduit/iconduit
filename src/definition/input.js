@@ -20,7 +20,7 @@ module.exports = {
   facebookAppIcon: {
     strategy: 'degrade',
     options: {
-      to: 'iconMaskable',
+      to: 'iconMaskableMinimalPadding',
     },
   },
   favicon: {
@@ -120,6 +120,14 @@ module.exports = {
       layers: [
         {input: 'iconForeground'},
         {input: 'iconBackground'},
+      ],
+    },
+  },
+  iconMaskableMinimalPadding: {
+    strategy: 'composite',
+    options: {
+      layers: [
+        {input: 'iconMaskable', multiplier: 2, style: 'minimalPaddingIconScale'},
       ],
     },
   },
