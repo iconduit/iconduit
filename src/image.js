@@ -16,14 +16,14 @@ module.exports = {
 }
 
 function createImageMinifier () {
-  const losslessPngOptions = {plugins: [imageminOptipng()]}
+  const icoPngOptions = {plugins: [imageminOptipng({colorTypeReduction: false})]}
   const lossyJpegOptions = {plugins: [imageminMozjpeg()]}
   const lossyPngOptions = {plugins: [imageminPngquant()]}
   const lossySvgOptions = {plugins: [imageminSvgo()]}
 
   return async function minifyImage (type, image) {
     switch (type) {
-      case IMAGE_TYPE_ICO_PNG: return buffer(image, losslessPngOptions)
+      case IMAGE_TYPE_ICO_PNG: return buffer(image, icoPngOptions)
       case IMAGE_TYPE_JPEG: return buffer(image, lossyJpegOptions)
       case IMAGE_TYPE_PNG: return buffer(image, lossyPngOptions)
       case IMAGE_TYPE_SVG: return buffer(image, lossySvgOptions)
