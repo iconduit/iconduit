@@ -45,7 +45,6 @@
     "eslint": "^5.16.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.16.0",
-    "eslint-plugin-json": "^1.4.0",
     "eslint-plugin-mocha": "^5.3.0",
     "eslint-plugin-node": "^9.0.1",
     "eslint-plugin-promise": "^4.1.1",
@@ -56,10 +55,10 @@
     "sinon-chai": "^3.3.0"
   },
   "scripts": {
-    "ci-lint": "eslint --ext .js --ext .json .",
+    "ci-lint": "eslint .",
     "coverage": "nyc mocha test/suite/**/*.spec.js",
     "coverage-open": "open artifacts/tests/coverage/html/index.html",
-    "lint": "eslint --fix --ext .js --ext .json .",
+    "lint": "eslint --fix .",
     "pre-commit": "yarn test && yarn ci-lint",
     "test": "mocha test/suite/**/*.spec.js"
   }
