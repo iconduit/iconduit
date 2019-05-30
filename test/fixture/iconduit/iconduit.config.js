@@ -13,8 +13,7 @@ module.exports = () => {
           options: {
             mask: 'iconMaskIosSquircle',
             layers: [
-              {input: 'icon', multiplier: 2, style: 'appleTouchIconScale'},
-              {input: 'iconBackground', multiplier: 2, style: 'appleTouchIconScale'},
+              {input: 'iconFlatMaskable', multiplier: 2, style: 'appleTouchIconScale'},
             ],
           },
         },
