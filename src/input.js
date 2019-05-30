@@ -1,8 +1,6 @@
 const fileUrl = require('file-url')
 const {dirname, extname, join} = require('path')
 
-const {applyMultiplier} = require('./size.js')
-const {buildFileName} = require('./size.js')
 const {resolveColors} = require('./config.js')
 
 const {
@@ -43,7 +41,7 @@ function createInputBuilderFactory (
     return async function buildInput (request) {
       assertNonRecursive(request)
 
-      const {name: inputName, size: inputSize, stack, type: inputType} = request
+      const {name: inputName, stack, type: inputType} = request
       const subStack = [`input.${inputName}`, ...stack]
 
       const {
@@ -55,7 +53,7 @@ function createInputBuilderFactory (
 
       const {resolveAsync: resolveUserInput} = createInputResolver(userInputDir, configPath)
 
-      const cacheKey = buildCacheKey(`input.${inputName}.${inputType}`, inputSize)
+      const cacheKey = `input.${inputName}.${inputType}`
       const cachePath = get(cacheKey)
 
       if (cachePath) return cachePath
@@ -66,7 +64,7 @@ function createInputBuilderFactory (
       return sourcePath
 
       async function findSource () {
-        const sourceCacheKey = buildCacheKey(`input.${inputName}.source`, inputSize)
+        const sourceCacheKey = `input.${inputName}.source`
         const sourceCachePath = get(sourceCacheKey)
 
         if (sourceCachePath) return sourceCachePath
@@ -110,7 +108,7 @@ function createInputBuilderFactory (
       }
 
       async function buildTemplateInput (templatePath) {
-        const renderedPath = buildCachePath(tempPath, `input.${inputName}.rendered`, extname(templatePath))
+        const renderedPath = join(tempPath, `input.${inputName}.rendered${extname(templatePath)}`)
         const {resolveSync: resolveTemplateInput} = createInputResolver(dirname(templatePath), templatePath)
 
         function url (moduleId) {
@@ -146,7 +144,7 @@ function createInputBuilderFactory (
         const {options: {backgroundColor, layers, mask}} = inputDefinition
 
         const layersVariable = await Promise.all(layers.map(async layer => {
-          const {input, multiplier, style} = layer
+          const {input, style} = layer
 
           const styleDefinition = style === null ? {} : styleDefinitions[style]
 
@@ -155,7 +153,6 @@ function createInputBuilderFactory (
           const inputPath = await buildInput({
             name: input,
             type: INPUT_TYPE_RENDERABLE,
-            size: applyMultiplier(inputSize, multiplier),
             stack: subStack,
           })
           const isImage = isImagePath(inputPath)
@@ -170,7 +167,6 @@ function createInputBuilderFactory (
           maskUrl = fileUrl(await buildInput({
             name: mask,
             type: INPUT_TYPE_SVG,
-            size: inputSize,
             stack: subStack,
           }))
         }
@@ -181,7 +177,7 @@ function createInputBuilderFactory (
           maskUrl,
         })
 
-        const renderedPath = buildCachePath(tempPath, `input.${inputName}.composite`, '.html', inputSize)
+        const renderedPath = join(tempPath, `input.${inputName}.composite.html`)
         await writeFile(renderedPath, rendered)
 
         return renderedPath
@@ -193,7 +189,6 @@ function createInputBuilderFactory (
         return buildInput({
           name: to,
           type: inputType,
-          size: inputSize,
           stack: subStack,
         })
       }
@@ -219,14 +214,6 @@ function isImagePath (sourcePath) {
 
 function isTemplatePath (sourcePath) {
   return TEMPLATE_EXTENSIONS.includes(extname(sourcePath).toLowerCase())
-}
-
-function buildCacheKey (prefix, size) {
-  return size ? buildFileName(`${prefix}.[dimensions]r[pixelRatio]`, size) : prefix
-}
-
-function buildCachePath (tempPath, prefix, extension, size) {
-  return join(tempPath, `${buildCacheKey(prefix, size)}${extension}`)
 }
 
 function renderStack (stack) {

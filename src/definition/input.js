@@ -3,7 +3,7 @@ module.exports = {
     strategy: 'composite',
     options: {
       layers: [
-        {input: 'iconFlatMaskable', multiplier: 2, style: 'appleTouchIconScale'},
+        {input: 'iconFlatMaskable', style: 'appleTouchIconScale'},
       ],
     },
   },
@@ -133,7 +133,7 @@ module.exports = {
     strategy: 'composite',
     options: {
       layers: [
-        {input: 'iconMaskable', multiplier: 2, style: 'noPaddingIconScale'},
+        {input: 'iconMaskable', style: 'noPaddingIconScale'},
       ],
     },
   },
@@ -151,7 +151,7 @@ module.exports = {
     strategy: 'composite',
     options: {
       layers: [
-        {input: 'iconMasked', multiplier: 2, style: 'noPaddingIconScale'},
+        {input: 'iconMasked', style: 'noPaddingIconScale'},
       ],
     },
   },
@@ -165,7 +165,7 @@ module.exports = {
     strategy: 'composite',
     options: {
       layers: [
-        {input: 'iconFlatMasked', multiplier: 2, style: 'macosIconScale'},
+        {input: 'iconFlatMasked', style: 'macosIconScale'},
       ],
     },
   },
@@ -200,7 +200,7 @@ module.exports = {
     strategy: 'composite',
     options: {
       layers: [
-        {input: 'iconMaskable', multiplier: 2, style: 'webAppIconMaskableScale'},
+        {input: 'iconMaskable', style: 'webAppIconMaskableScale'},
       ],
     },
   },
@@ -208,7 +208,7 @@ module.exports = {
     strategy: 'composite',
     options: {
       layers: [
-        {input: 'iconMasked', multiplier: 2, style: 'webAppIconMaskedScale'},
+        {input: 'iconMasked', style: 'webAppIconMaskedScale'},
       ],
     },
   },
@@ -222,7 +222,7 @@ module.exports = {
     strategy: 'composite',
     options: {
       layers: [
-        {input: 'windowsTileIcon', multiplier: 2, style: 'windowsTileIconScale'},
+        {input: 'windowsTileIcon', style: 'windowsTileIconScale'},
       ],
     },
   },
@@ -236,7 +236,7 @@ module.exports = {
     strategy: 'composite',
     options: {
       layers: [
-        {input: 'windowsTileIcon', multiplier: 2, style: 'windowsTileIconScaleSmall'},
+        {input: 'windowsTileIcon', style: 'windowsTileIconScaleSmall'},
       ],
     },
   },
