@@ -24,9 +24,10 @@
       overflow: hidden;
     }
 
-    .layer img {
+    .layer > * {
       width: 100vw;
       height: 100vh;
+      border: none;
     }
   </style>
 
@@ -38,7 +39,14 @@
 <body>
   <div class="viewport">
     <% for (let index = layers.length - 1; index >= 0; --index) { %>
-      <div class="layer layer-<%= index %>"><img src="<%= layers[index].url %>" /></div>
+      <div class="layer layer-<%= index %>">
+        <% if (layers[index].isImage) { %>
+          <img src="<%= layers[index].url %>" />
+        <% } else { %>
+          <iframe src="<%= layers[index].url %>"></iframe>
+        <% } %>
+      </div>
+
       <script>
         ready(() => {
           const style = <%- json(layers[index].styleDefinition, 0) %>

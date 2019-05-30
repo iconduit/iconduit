@@ -7,10 +7,9 @@ const {resolveColors} = require('./config.js')
 
 const {
   IMAGE_EXTENSIONS,
-  IMAGE_TYPE_PNG,
   INPUT_STRATEGY_COMPOSITE,
   INPUT_STRATEGY_DEGRADE,
-  INPUT_TYPE_IMAGE,
+  INPUT_TYPE_RENDERABLE,
   INPUT_TYPE_SVG,
   INPUT_TYPE_TEMPLATE,
   TEMPLATE_COMPOSITE,
@@ -36,7 +35,7 @@ function createInputBuilderFactory (
 
   return function createInputBuilder (config, options) {
     const {definitions: {style: styleDefinitions}, name: appName} = config
-    const {configPath, puppeteer: {timeout}, tempPath, userInputDir} = options
+    const {configPath, tempPath, userInputDir} = options
 
     const {get, set} = createCache()
     const color = resolveColors(config)
@@ -62,11 +61,9 @@ function createInputBuilderFactory (
       if (cachePath) return cachePath
 
       const sourcePath = await findSource()
-      const finalPath = inputType === INPUT_TYPE_IMAGE ? await convertInputToImage(sourcePath) : sourcePath
+      set(cacheKey, sourcePath)
 
-      set(cacheKey, finalPath)
-
-      return finalPath
+      return sourcePath
 
       async function findSource () {
         const sourceCacheKey = buildCacheKey(`input.${inputName}.source`, inputSize)
@@ -155,14 +152,16 @@ function createInputBuilderFactory (
 
           if (!styleDefinition) throw new Error(`Missing definition for style.${style}:\n${renderStack(stack)}`)
 
-          const url = fileUrl(await buildInput({
+          const inputPath = await buildInput({
             name: input,
-            type: INPUT_TYPE_IMAGE,
+            type: INPUT_TYPE_RENDERABLE,
             size: applyMultiplier(inputSize, multiplier),
             stack: subStack,
-          }))
+          })
+          const isImage = isImagePath(inputPath)
+          const url = fileUrl(inputPath)
 
-          return {...layer, styleDefinition, url}
+          return {...layer, isImage, styleDefinition, url}
         }))
 
         let maskUrl
@@ -197,16 +196,6 @@ function createInputBuilderFactory (
           size: inputSize,
           stack: subStack,
         })
-      }
-
-      async function convertInputToImage (sourcePath) {
-        if (isImagePath(sourcePath)) return sourcePath
-
-        const imagePath = buildCachePath(tempPath, `input.${inputName}.image`, '.png', inputSize)
-        const image = await screenshot(fileUrl(sourcePath), inputSize, {timeout, type: IMAGE_TYPE_PNG})
-        await writeFile(imagePath, image)
-
-        return imagePath
       }
     }
   }
