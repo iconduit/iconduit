@@ -135,9 +135,11 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, mini
     }
 
     async function buildImage (inputName, outputName, size, imageType) {
+      const {options: {isTransparent}} = outputs[outputName]
+
       const stack = [`output.${outputName}`]
       const inputPath = await buildInput({
-        isTransparent: true,
+        isTransparent,
         mask: null,
         name: inputName,
         stack,

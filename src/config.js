@@ -499,12 +499,15 @@ function normalizeOutputDefinitionOptions (options, setting) {
   assertObject(options, setting)
 
   const {
+    isTransparent = true,
     variables = {},
   } = options
 
+  assertBoolean(isTransparent, `${setting}.isTransparent`)
   assertObject(variables, `${setting}.variables`)
 
   return {
+    isTransparent,
     variables,
   }
 }

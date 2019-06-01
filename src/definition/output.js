@@ -3,6 +3,9 @@ const {buildWebAppManifest} = require('../web-app.js')
 module.exports = {
   appleTouchIcon: {
     name: 'apple-touch-icon-[dimensions].png',
+    options: {
+      isTransparent: false,
+    },
     sizes: ['appleTouchIconRetina'],
     tags: [
       'appleTouchIcon',
@@ -10,6 +13,9 @@ module.exports = {
   },
   appleTouchStartup: {
     name: 'apple-touch-startup-[dimensions]r[pixelRatio].png',
+    options: {
+      isTransparent: false,
+    },
     sizes: [
       'display.ipad1536x2048d264.landscape',
       'display.ipad1536x2048d264.portrait',
@@ -44,10 +50,16 @@ module.exports = {
   },
   dmgBackground: {
     name: 'dmg-background[atPixelRatioX].png',
+    options: {
+      isTransparent: false,
+    },
     sizes: ['dmgBackground@2x', 'dmgBackground'],
   },
   facebookAppIcon: {
     name: 'facebook-app-icon.png',
+    options: {
+      isTransparent: false,
+    },
     sizes: ['facebookAppIcon'],
   },
   githubAccountIcon: {
@@ -89,6 +101,9 @@ module.exports = {
   },
   openGraphImage: {
     name: 'open-graph.png',
+    options: {
+      isTransparent: false,
+    },
     sizes: ['openGraphImage'],
     tags: [
       'openGraphImage',
@@ -105,6 +120,9 @@ module.exports = {
   },
   twitterCardImage: {
     name: 'twitter-card.png',
+    options: {
+      isTransparent: false,
+    },
     sizes: ['twitterCardImage'],
     tags: [
       'twitterImage',
@@ -120,12 +138,12 @@ module.exports = {
   },
   webAppManifest: {
     name: 'site.webmanifest',
-    tags: [
-      'manifest',
-    ],
     options: {
       variables: {buildWebAppManifest},
     },
+    tags: [
+      'manifest',
+    ],
   },
   windowsIco: {
     name: 'windows.ico',
