@@ -1,16 +1,11 @@
-<%
-const {layers} = group
-%>
-<div data-style="<%= json(style, 0) %>">
-  <% for (let index = 0; index < layers.length; ++index) {
-    const {group: subGroup, style, type, url} = layers[index]
-
-    if (subGroup) { %><%-
-      include('composite-group.html', {group: subGroup, style})
-    %><% } else if (type === 'image') { %>
-      <img src="<%= url %>" />
-    <% } else if (type === 'document') { %>
-      <iframe src="<%= url %>"></iframe>
-    <% }
-  } %>
-</div>
+<div data-style="<%= json(style, 0) %>"> <!-- start depth <%= depth %> -->
+<% for (const {group: subGroup, style, type, url} of group.layers) {
+if (subGroup) { %>
+<%- include('composite-group.html', {depth: depth + 1, group: subGroup, style}) %>
+<% } else if (type === 'image') { %>
+<img src="<%= url %>" />
+<% } else if (type === 'document') { %>
+<iframe src="<%= url %>"></iframe>
+<% }
+} %>
+</div> <!-- end depth <%= depth %> -->

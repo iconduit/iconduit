@@ -147,12 +147,15 @@ function createInputBuilderFactory (
 
           if (!styleDefinition) throw new Error(`Missing definition for style.${style}:\n${renderStack(stack)}`)
 
+          const hasStyle = Object.keys(styleDefinition).length > 0
           const group = await buildInputGroup({name: input, stack: subStack})
 
-          return {style: styleDefinition, group}
+          if (hasStyle) return {style: styleDefinition, group}
+
+          return group.layers
         }))
 
-        return {layers}
+        return {layers: layers.flat()}
       }
 
       async function buildDegradeInputGroup () {

@@ -1,52 +1,56 @@
 <html>
 <head>
-  <style>
-    body {
-      margin: 0;
-      background-color: <%- isTransparent ? 'transparent' : 'black' %>;
-    }
 
-    #viewport {
-      overflow: hidden;
-      <% if (maskUrl) { %>-webkit-mask-image: url(<%- maskUrl %>);<% } %>
-    }
+<style>
+  body {
+    margin: 0;
+    background-color: <%- isTransparent ? 'transparent' : 'black' %>;
+  }
 
-    #viewport div {
-      width: 100%;
-      height: 100%;
-      display: grid;
-      grid-template-areas: "viewport";
-    }
+  #viewport {
+    overflow: hidden;
+    <% if (maskUrl) { %>-webkit-mask-image: url(<%- maskUrl %>);<% } %>
+  }
 
-    #viewport div > * {
-      grid-area: viewport;
-      width: 100%;
-      height: 100%;
-      border: none;
-      isolation: isolate;
-    }
-  </style>
+  #viewport div {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-areas: "viewport";
+  }
 
-  <script>
-    window.ready =
-      fn => { document.readyState !== 'loading' ? fn() : document.addEventListener('DOMContentLoaded', fn) }
-  </script>
+  #viewport div > * {
+    grid-area: viewport;
+    width: 100%;
+    height: 100%;
+    border: none;
+    isolation: isolate;
+  }
+</style>
+
+<script>
+  window.ready =
+    fn => { document.readyState !== 'loading' ? fn() : document.addEventListener('DOMContentLoaded', fn) }
+</script>
+
 </head>
 <body>
-  <div id="viewport">
-    <%- include('composite-group.html', {group, style: {}}) %>
-  </div>
 
-  <script>
-    ready(() => {
-      document.querySelectorAll('[data-style]').forEach(element => {
-        const style = JSON.parse(element.dataset.style)
+<div id="viewport">
+<%- include('composite-group.html', {depth: 0, group, style: {}}) %>
+</div>
 
-        Object.entries(style).forEach(([property, value]) => {
-          element.style[property] = value
-        })
+<script>
+  ready(() => {
+    document.querySelectorAll('[data-style]').forEach(element => {
+      const style = JSON.parse(element.dataset.style)
+
+      Object.entries(style).forEach(([property, value]) => {
+        element.style[property] = value
       })
     })
-  </script>
+  })
+</script>
+
 </body>
 </html>
