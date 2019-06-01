@@ -6,12 +6,27 @@ module.exports = {
 
 function createCacheFactory (logger) {
   return function createCache () {
-    const cache = new NodeCache()
+    const {get, set} = new NodeCache()
 
-    cache.on('set', (key, value) => {
-      logger.debug(`Setting cache key ${key} to ${JSON.stringify(value)}`)
-    })
+    return async function produceCached (key, fn) {
+      const cached = get(key)
 
-    return cache
+      if (cached) {
+        logger.debug(`Cache hit ${key}`)
+
+        return cached
+      }
+
+      logger.debug(`Cache miss ${key}`)
+
+      const promise = (async () => fn())()
+      set(key, promise)
+
+      const result = await promise
+
+      logger.debug(`Caching ${key} as ${JSON.stringify(result)}`)
+
+      return promise
+    }
   }
 }

@@ -42,7 +42,7 @@ function createInputBuilderFactory (
 
     const {configPath, tempPath, userInputDir} = options
 
-    const {get, set} = createCache()
+    const produceCached = createCache()
     const {resolveAsync: resolveUserInput} = createInputResolver(userInputDir, configPath)
     const color = resolveColors(config)
 
@@ -54,26 +54,10 @@ function createInputBuilderFactory (
 
       const {[inputName]: inputDefinition} = inputDefinitions
 
-      const cacheKey = `input.${inputName}.${inputType}`
-      const cachePath = get(cacheKey)
-
-      if (cachePath) return cachePath
-
-      const sourcePath = await findSource()
-      set(cacheKey, sourcePath)
-
-      return sourcePath
+      return produceCached(`input.${inputName}.${inputType}`, findSource)
 
       async function findSource () {
-        const sourceCacheKey = `input.${inputName}.source`
-        const sourceCachePath = get(sourceCacheKey)
-
-        if (sourceCachePath) return sourceCachePath
-
-        const sourcePath = await findFileSource(inputName, inputType) || await deriveSource()
-        set(sourceCacheKey, sourcePath)
-
-        return sourcePath
+        return await findFileSource(inputName, inputType) || deriveSource()
       }
 
       async function deriveSource () {
@@ -121,26 +105,22 @@ function createInputBuilderFactory (
 
       const {id, name: inputName, stack} = request
 
-      const cacheKey = `input.${inputName}.group`
-      const cachedGroup = get(cacheKey)
+      return produceCached(`input.${inputName}.group`, async () => {
+        const filePath = await findFileSource(inputName, INPUT_TYPE_RENDERABLE)
 
-      if (cachedGroup) return cachedGroup
-
-      const filePath = await findFileSource(inputName, INPUT_TYPE_RENDERABLE)
-      let group
-
-      if (filePath) {
-        group = {
-          id,
-          layers: [
-            {
-              style: {},
-              type: isImagePath(filePath) ? 'image' : 'document',
-              url: fileUrl(filePath),
-            },
-          ],
+        if (filePath) {
+          return {
+            id,
+            layers: [
+              {
+                style: {},
+                type: isImagePath(filePath) ? 'image' : 'document',
+                url: fileUrl(filePath),
+              },
+            ],
+          }
         }
-      } else {
+
         const subStack = [`input.${inputName}`, ...stack]
 
         const {[inputName]: inputDefinition} = inputDefinitions
@@ -162,57 +142,35 @@ function createInputBuilderFactory (
               return {style: styleDefinition, group}
             }))
 
-            group = {id, layers}
-
-            break
+            return {id, layers}
           }
 
           case INPUT_STRATEGY_DEGRADE: {
             const {options: {to}} = inputDefinition
-            group = await buildInputGroup({id, name: to, stack: subStack})
 
-            break
+            return buildInputGroup({id, name: to, stack: subStack})
           }
-
-          default: throw new Error('Not implemented')
         }
-      }
 
-      set(cacheKey, group)
-
-      return group
+        throw new Error('Not implemented')
+      })
     }
 
     async function findFileSource (inputName, inputType) {
-      const sourceCacheKey = `input.${inputName}.file-source`
-      const sourceCachePath = get(sourceCacheKey)
+      return produceCached(`input.${inputName}.file`, async () => {
+        const filePath = await findFile(inputName)
 
-      if (sourceCachePath) return sourceCachePath
+        if (!filePath) return null
 
-      let sourcePath
-      const filePath = await findFile(inputName)
-
-      if (filePath) {
         if (isTemplatePath(filePath) && inputType !== INPUT_TYPE_TEMPLATE) {
-          sourcePath = await buildTemplateInput(inputName, filePath)
-        } else {
-          sourcePath = filePath
+          return buildTemplateInput(inputName, filePath)
         }
-      } else {
-        sourcePath = null
-      }
 
-      set(sourceCacheKey, sourcePath)
-
-      return sourcePath
+        return filePath
+      })
     }
 
     async function findFile (inputName) {
-      const cacheKey = `input.${inputName}.file`
-      const cachePath = get(cacheKey)
-
-      if (cachePath) return cachePath
-
       const {[inputName]: userModuleId} = userModuleIds
 
       if (userModuleId) {
@@ -227,7 +185,6 @@ function createInputBuilderFactory (
 
       const defaultModuleId = `./${inputName}`
       const inputPath = await resolveUserInput(defaultModuleId) || await resolveDefaultInput(defaultModuleId) || null
-      set(cacheKey, inputPath)
 
       return inputPath
     }
