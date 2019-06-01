@@ -81,7 +81,7 @@ function createInputBuilderFactory (
         const renderedPath = join(tempPath, `input.${inputName}.composite.html`)
         const template = await readInternalTemplate(TEMPLATE_COMPOSITE)
 
-        const group = await buildInputGroup({id: 'g', name: inputName, stack})
+        const group = await buildInputGroup({name: inputName, stack})
         const rendered = template({group, isTransparent, maskUrl})
 
         await writeFile(renderedPath, rendered)
@@ -103,7 +103,7 @@ function createInputBuilderFactory (
     async function buildInputGroup (request) {
       assertNonRecursive(request)
 
-      const {id, name: inputName, stack} = request
+      const {name: inputName, stack} = request
       const subStack = [`input.${inputName}`, ...stack]
 
       const {[inputName]: inputDefinition} = inputDefinitions
@@ -116,7 +116,6 @@ function createInputBuilderFactory (
 
       function buildFileInputGroup (filePath) {
         return {
-          id,
           layers: [
             {
               style: {},
@@ -148,18 +147,18 @@ function createInputBuilderFactory (
 
           if (!styleDefinition) throw new Error(`Missing definition for style.${style}:\n${renderStack(stack)}`)
 
-          const group = await buildInputGroup({id: `${id}-${index}`, name: input, stack: subStack})
+          const group = await buildInputGroup({name: input, stack: subStack})
 
           return {style: styleDefinition, group}
         }))
 
-        return {id, layers}
+        return {layers}
       }
 
       async function buildDegradeInputGroup () {
         const {options: {to}} = inputDefinition
 
-        return buildInputGroup({id, name: to, stack: subStack})
+        return buildInputGroup({name: to, stack: subStack})
       }
     }
 

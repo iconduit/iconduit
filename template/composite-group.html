@@ -1,7 +1,7 @@
 <%
-const {id, layers} = group
+const {layers} = group
 %>
-<div id="<%= id %>" data-style="<%= json(style, 0) %>">
+<div data-style="<%= json(style, 0) %>">
   <% for (let index = 0; index < layers.length; ++index) {
     const {group: subGroup, style, type, url} = layers[index]
 
