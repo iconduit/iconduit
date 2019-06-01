@@ -70,39 +70,10 @@ function createInputBuilderFactory (
 
         if (sourceCachePath) return sourceCachePath
 
-        let sourcePath
-        const filePath = await findFile(inputName)
-
-        if (filePath) {
-          if (isTemplatePath(filePath) && inputType !== INPUT_TYPE_TEMPLATE) {
-            sourcePath = await buildTemplateInput(filePath)
-          } else {
-            sourcePath = filePath
-          }
-        } else {
-          sourcePath = await deriveSource()
-        }
-
+        const sourcePath = await findFileSource(inputName, inputType) || await deriveSource()
         set(sourceCacheKey, sourcePath)
 
         return sourcePath
-      }
-
-      async function buildTemplateInput (templatePath) {
-        const renderedPath = join(tempPath, `input.${inputName}.rendered${extname(templatePath)}`)
-        const {resolveSync: resolveTemplateInput} = createInputResolver(dirname(templatePath), templatePath)
-
-        function url (moduleId) {
-          const resolvedPath = resolveTemplateInput(moduleId)
-
-          return resolvedPath === null ? null : fileUrl(resolvedPath)
-        }
-
-        const template = await readTemplate(templatePath)
-        const rendered = template({color, name: appName, url})
-        await writeFile(renderedPath, rendered)
-
-        return renderedPath
       }
 
       async function deriveSource () {
@@ -121,33 +92,14 @@ function createInputBuilderFactory (
       async function deriveCompositeSource () {
         if (inputType === INPUT_TYPE_SVG) throw new Error(`SVG inputs cannot be composites:\n${renderStack(stack)}`)
 
-        const template = await readInternalTemplate(TEMPLATE_COMPOSITE)
-        const {options: {layers}} = inputDefinition
-
-        const layersVariable = await Promise.all(layers.map(async layer => {
-          const {input, style} = layer
-
-          const styleDefinition = style === null ? {} : styleDefinitions[style]
-
-          if (!styleDefinition) throw new Error(`Missing definition for style.${style}:\n${renderStack(stack)}`)
-
-          const inputPath = await buildInput({
-            isTransparent: true,
-            mask: null,
-            name: input,
-            type: INPUT_TYPE_RENDERABLE,
-            stack: subStack,
-          })
-          const layerType = isImagePath(inputPath) ? 'image' : 'document'
-          const url = fileUrl(inputPath)
-
-          return {style: styleDefinition, type: layerType, url}
-        }))
-
         const maskUrl = mask && fileUrl(await buildInput({name: mask, type: INPUT_TYPE_SVG, stack: subStack}))
 
         const renderedPath = join(tempPath, `input.${inputName}.composite.html`)
-        const rendered = template({group: {id: 'main', layers: layersVariable}, isTransparent, maskUrl})
+        const template = await readInternalTemplate(TEMPLATE_COMPOSITE)
+
+        const group = await buildInputGroup({id: 'g', name: inputName, stack})
+        const rendered = template({group, isTransparent, maskUrl})
+
         await writeFile(renderedPath, rendered)
 
         return renderedPath
@@ -162,6 +114,97 @@ function createInputBuilderFactory (
           stack: subStack,
         })
       }
+    }
+
+    async function buildInputGroup (request) {
+      assertNonRecursive(request)
+
+      const {id, name: inputName, stack} = request
+
+      const cacheKey = `input.${inputName}.group`
+      const cachedGroup = get(cacheKey)
+
+      if (cachedGroup) return cachedGroup
+
+      const filePath = await findFileSource(inputName, INPUT_TYPE_RENDERABLE)
+      let group
+
+      if (filePath) {
+        group = {
+          id,
+          layers: [
+            {
+              style: {},
+              type: isImagePath(filePath) ? 'image' : 'document',
+              url: fileUrl(filePath),
+            },
+          ],
+        }
+      } else {
+        const subStack = [`input.${inputName}`, ...stack]
+
+        const {[inputName]: inputDefinition} = inputDefinitions
+        const {strategy} = inputDefinition
+
+        switch (strategy) {
+          case INPUT_STRATEGY_COMPOSITE: {
+            const {options: {layers: layerDefinitions}} = inputDefinition
+
+            const layers = await Promise.all(layerDefinitions.map(async (layerDefinition, index) => {
+              const {input, style} = layerDefinition
+
+              const styleDefinition = style === null ? {} : styleDefinitions[style]
+
+              if (!styleDefinition) throw new Error(`Missing definition for style.${style}:\n${renderStack(stack)}`)
+
+              const group = await buildInputGroup({id: `${id}-${index}`, name: input, stack: subStack})
+
+              return {style: styleDefinition, group}
+            }))
+
+            group = {id, layers}
+
+            break
+          }
+
+          case INPUT_STRATEGY_DEGRADE: {
+            const {options: {to}} = inputDefinition
+            group = await buildInputGroup({id, name: to, stack: subStack})
+
+            break
+          }
+
+          default: throw new Error('Not implemented')
+        }
+      }
+
+      set(cacheKey, group)
+
+      return group
+    }
+
+    async function findFileSource (inputName, inputType) {
+      const sourceCacheKey = `input.${inputName}.file-source`
+      const sourceCachePath = get(sourceCacheKey)
+
+      if (sourceCachePath) return sourceCachePath
+
+      let sourcePath
+      const filePath = await findFile(inputName)
+
+      if (filePath) {
+        if (isTemplatePath(filePath) && inputType !== INPUT_TYPE_TEMPLATE) {
+          sourcePath = await buildTemplateInput(inputName, filePath)
+        } else {
+          sourcePath = filePath
+        }
+      } else {
+        sourcePath = null
+      }
+
+      set(sourceCacheKey, sourcePath)
+
+      return sourcePath
     }
 
     async function findFile (inputName) {
@@ -187,6 +230,23 @@ function createInputBuilderFactory (
       set(cacheKey, inputPath)
 
       return inputPath
+    }
+
+    async function buildTemplateInput (inputName, templatePath) {
+      const renderedPath = join(tempPath, `input.${inputName}.rendered${extname(templatePath)}`)
+      const {resolveSync: resolveTemplateInput} = createInputResolver(dirname(templatePath), templatePath)
+
+      function url (moduleId) {
+        const resolvedPath = resolveTemplateInput(moduleId)
+
+        return resolvedPath === null ? null : fileUrl(resolvedPath)
+      }
+
+      const template = await readTemplate(templatePath)
+      const rendered = template({color, name: appName, url})
+      await writeFile(renderedPath, rendered)
+
+      return renderedPath
     }
   }
 }

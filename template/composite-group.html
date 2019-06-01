@@ -11,19 +11,3 @@
     <% }
   } %>
 </div>
-
-<script>
-  ready(() => {
-    <% for (let index = 0; index < layers.length; ++index) {
-      const {style} = layers[index]
-
-      if (Object.keys(style).length < 1) continue
-    %>
-      (style => {
-        <% for (const property in style) { %>
-          style[<%- json(property) %>] = <%- json(style[property]) %>
-        <% } %>
-      })(document.querySelector(<%- json(`#${id} > *:nth-child(${index + 1})`) %>).style)
-    <% } %>
-  })
-</script>

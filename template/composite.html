@@ -36,5 +36,11 @@
   <div id="viewport">
     <%- include('composite-group.html', group) %>
   </div>
+
+  <script>
+    ready(() => {
+      <%- include('composite-group-style.html', group) %>
+    })
+  </script>
 </body>
 </html>
