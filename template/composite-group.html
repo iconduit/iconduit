@@ -1,9 +1,12 @@
-<div id="<%= id %>">
+<%
+const {id, layers} = group
+%>
+<div id="<%= id %>" data-style="<%= json(style, 0) %>">
   <% for (let index = 0; index < layers.length; ++index) {
-    const {group, type, url} = layers[index]
+    const {group: subGroup, style, type, url} = layers[index]
 
-    if (group) { %><%-
-      include('composite-group.html', group)
+    if (subGroup) { %><%-
+      include('composite-group.html', {group: subGroup, style})
     %><% } else if (type === 'image') { %>
       <img src="<%= url %>" />
     <% } else if (type === 'document') { %>

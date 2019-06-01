@@ -34,34 +34,18 @@
 </head>
 <body>
   <div id="viewport">
-    <%- include('composite-group.html', group) %>
+    <%- include('composite-group.html', {group, style: {}}) %>
   </div>
 
-  <script><%
-    const styles = {}
-    const groups = [group]
-
-    while (groups.length > 0) {
-      const {id, layers} = groups.shift()
-
-      for (let index = 0; index < layers.length; ++index) {
-        const {group: subGroup, style} = layers[index]
-
-        if (subGroup) groups.push(subGroup)
-        if (Object.keys(style).length > 0) styles[`#${id} > *:nth-child(${index + 1})`] = style
-      }
-    }
-  %>
+  <script>
     ready(() => {
-      <% for (const selector in styles) {
-        const style = styles[selector]
-      %>
-        (style => {
-          <% for (const property in style) { %>
-            style[<%- json(property) %>] = <%- json(style[property]) %>
-          <% } %>
-        })(document.querySelector(<%- json(selector) %>).style)
-      <% } %>
+      document.querySelectorAll('[data-style]').forEach(element => {
+        const style = JSON.parse(element.dataset.style)
+
+        Object.entries(style).forEach(([property, value]) => {
+          element.style[property] = value
+        })
+      })
     })
   </script>
 </body>
