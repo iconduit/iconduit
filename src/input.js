@@ -25,7 +25,8 @@ function createInputBuilderFactory (
   fileSystem,
   readInternalTemplate,
   readTemplate,
-  screenshot
+  screenshot,
+  templateDir
 ) {
   const {writeFile} = fileSystem
 
@@ -141,7 +142,7 @@ function createInputBuilderFactory (
         if (inputType === INPUT_TYPE_SVG) throw new Error(`SVG inputs cannot be composites:\n${renderStack(stack)}`)
 
         const template = await readInternalTemplate(TEMPLATE_COMPOSITE)
-        const {options: {backgroundColor, layers, mask}} = inputDefinition
+        const {options: {backgroundColor, layers}} = inputDefinition
 
         const layersVariable = await Promise.all(layers.map(async layer => {
           const {input, style} = layer
@@ -155,29 +156,14 @@ function createInputBuilderFactory (
             type: INPUT_TYPE_RENDERABLE,
             stack: subStack,
           })
-          const isImage = isImagePath(inputPath)
+          const layerType = isImagePath(inputPath) ? 'image' : 'document'
           const url = fileUrl(inputPath)
 
-          return {...layer, isImage, styleDefinition, url}
+          return {style: styleDefinition, type: layerType, url}
         }))
 
-        let maskUrl
-
-        if (mask !== null) {
-          maskUrl = fileUrl(await buildInput({
-            name: mask,
-            type: INPUT_TYPE_SVG,
-            stack: subStack,
-          }))
-        }
-
-        const rendered = template({
-          backgroundColor,
-          layers: layersVariable,
-          maskUrl,
-        })
-
         const renderedPath = join(tempPath, `input.${inputName}.composite.html`)
+        const rendered = template({backgroundColor, group: {id: 'main', layers: layersVariable}, maskUrl: null})
         await writeFile(renderedPath, rendered)
 
         return renderedPath

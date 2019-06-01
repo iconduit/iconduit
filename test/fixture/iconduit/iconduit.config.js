@@ -7,19 +7,9 @@ module.exports = () => {
       brand: '#D5415C'
     },
     definitions: {
-      input: {
-        appleTouchIconMasked: {
-          strategy: 'composite',
-          options: {
-            mask: 'iconMaskIosSquircle',
-            layers: [
-              {input: 'iconFlatMaskable', multiplier: 2, style: 'appleTouchIconScale'},
-            ],
-          },
-        },
-      },
       output: {
         appleTouchIconMasked: {
+          input: 'appleTouchIcon',
           name: 'apple-touch-icon-masked-[dimensions].png',
           sizes: ['appleTouchIconRetina'],
         },

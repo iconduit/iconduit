@@ -12,8 +12,8 @@ module.exports = {
     options: {
       backgroundColor: 'white',
       layers: [
-        {input: 'iconSilhouette', style: 'opacity10Percent'},
         {input: 'backgroundColor'},
+        {input: 'iconSilhouette', style: 'opacity10Percent'},
       ],
     },
   },
@@ -81,8 +81,8 @@ module.exports = {
     strategy: 'composite',
     options: {
       layers: [
-        {input: 'iconFlat'},
         {input: 'iconFlatBleed'},
+        {input: 'iconFlat'},
       ],
     },
   },
@@ -90,18 +90,17 @@ module.exports = {
     strategy: 'composite',
     options: {
       layers: [
-        {input: 'iconFlatForeground'},
         {input: 'iconFlatBackground'},
+        {input: 'iconFlatForeground'},
       ],
     },
   },
   iconFlatMasked: {
     strategy: 'composite',
     options: {
-      mask: 'iconMask',
       layers: [
-        {input: 'iconFlatForeground'},
         {input: 'iconFlatBackground'},
+        {input: 'iconFlatForeground'},
       ],
     },
   },
@@ -109,8 +108,8 @@ module.exports = {
     strategy: 'composite',
     options: {
       layers: [
-        {input: 'icon'},
         {input: 'iconBleed'},
+        {input: 'icon'},
       ],
     },
   },
@@ -124,8 +123,8 @@ module.exports = {
     strategy: 'composite',
     options: {
       layers: [
-        {input: 'iconForeground'},
         {input: 'iconBackground'},
+        {input: 'iconForeground'},
       ],
     },
   },
@@ -140,10 +139,9 @@ module.exports = {
   iconMasked: {
     strategy: 'composite',
     options: {
-      mask: 'iconMask',
       layers: [
-        {input: 'iconForeground'},
         {input: 'iconBackground'},
+        {input: 'iconForeground'},
       ],
     },
   },
@@ -185,8 +183,8 @@ module.exports = {
     strategy: 'composite',
     options: {
       layers: [
-        {input: 'iconSilhouette'},
         {input: 'backgroundColor'},
+        {input: 'iconSilhouette'},
       ],
     },
   },

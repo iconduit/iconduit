@@ -3,31 +3,27 @@
   <style>
     body {
       margin: 0;
-
       background-color: <%- backgroundColor %>;
     }
 
-    .viewport {
-      width: 100vw;
-      height: 100vh;
-      display: grid;
-      grid-template-areas: "layer";
-
+    #viewport {
+      overflow: hidden;
       <% if (maskUrl) { %>-webkit-mask-image: url(<%- maskUrl %>);<% } %>
     }
 
-    .layer {
-      grid-area: layer;
-      position: relative;
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
+    #viewport div {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-areas: "viewport";
     }
 
-    .layer > * {
-      width: 100vw;
-      height: 100vh;
+    #viewport div > * {
+      grid-area: viewport;
+      width: 100%;
+      height: 100%;
       border: none;
+      isolation: isolate;
     }
   </style>
 
@@ -37,24 +33,8 @@
   </script>
 </head>
 <body>
-  <div class="viewport">
-    <% for (let index = layers.length - 1; index >= 0; --index) { %>
-      <div class="layer layer-<%= index %>">
-        <% if (layers[index].isImage) { %>
-          <img src="<%= layers[index].url %>" />
-        <% } else { %>
-          <iframe src="<%= layers[index].url %>"></iframe>
-        <% } %>
-      </div>
-
-      <script>
-        ready(() => {
-          const style = <%- json(layers[index].styleDefinition, 0) %>
-          const layer = document.querySelector(<%- json(`.layer-${index}`, 0) %>)
-          Object.entries(style).forEach(([property, value]) => { layer.style[property] = value })
-        })
-      </script>
-    <% } %>
+  <div id="viewport">
+    <%- include('composite-group.html', group) %>
   </div>
 </body>
 </html>

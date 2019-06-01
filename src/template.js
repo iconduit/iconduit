@@ -24,7 +24,7 @@ function createTemplateReader (fileSystem, cwd) {
 
     if (!templates[fullPath]) {
       const content = await readFile(fullPath)
-      const template = compile(content.toString())
+      const template = compile(content.toString(), {filename: fullPath})
 
       templates[fullPath] = variables => template({json, ...variables})
     }
