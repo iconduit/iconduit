@@ -31,10 +31,19 @@ function createInputBuilderFactory (
   const {resolveAsync: resolveDefaultInput} = createInputResolver(defaultInputDir, defaultInputDir)
 
   return function createInputBuilder (config, options) {
-    const {definitions: {style: styleDefinitions}, name: appName} = config
+    const {
+      definitions: {
+        input: inputDefinitions,
+        style: styleDefinitions,
+      },
+      inputs: userModuleIds,
+      name: appName,
+    } = config
+
     const {configPath, tempPath, userInputDir} = options
 
     const {get, set} = createCache()
+    const {resolveAsync: resolveUserInput} = createInputResolver(userInputDir, configPath)
     const color = resolveColors(config)
 
     return async function buildInput (request) {
@@ -43,14 +52,7 @@ function createInputBuilderFactory (
       const {isTransparent, mask, name: inputName, stack, type: inputType} = request
       const subStack = [`input.${inputName}`, ...stack]
 
-      const {
-        definitions: {
-          input: {[inputName]: inputDefinition},
-        },
-        inputs: {[inputName]: userModuleId},
-      } = config
-
-      const {resolveAsync: resolveUserInput} = createInputResolver(userInputDir, configPath)
+      const {[inputName]: inputDefinition} = inputDefinitions
 
       const cacheKey = `input.${inputName}.${inputType}`
       const cachePath = get(cacheKey)
@@ -69,7 +71,7 @@ function createInputBuilderFactory (
         if (sourceCachePath) return sourceCachePath
 
         let sourcePath
-        const filePath = await findFile()
+        const filePath = await findFile(inputName)
 
         if (filePath) {
           if (isTemplatePath(filePath) && inputType !== INPUT_TYPE_TEMPLATE) {
@@ -84,26 +86,6 @@ function createInputBuilderFactory (
         set(sourceCacheKey, sourcePath)
 
         return sourcePath
-      }
-
-      async function findFile () {
-        if (userModuleId) {
-          const resolvedPath = await resolveUserInput(userModuleId)
-
-          if (!resolvedPath) {
-            throw new Error(`Unable to resolve input for ${inputName} at ${userModuleId} from ${userInputDir}`)
-          }
-
-          return resolvedPath
-        }
-
-        const defaultModuleId = `./${inputName}`
-
-        return (
-          await resolveUserInput(defaultModuleId) ||
-          await resolveDefaultInput(defaultModuleId) ||
-          null
-        )
       }
 
       async function buildTemplateInput (templatePath) {
@@ -180,6 +162,31 @@ function createInputBuilderFactory (
           stack: subStack,
         })
       }
+    }
+
+    async function findFile (inputName) {
+      const cacheKey = `input.${inputName}.file`
+      const cachePath = get(cacheKey)
+
+      if (cachePath) return cachePath
+
+      const {[inputName]: userModuleId} = userModuleIds
+
+      if (userModuleId) {
+        const resolvedPath = await resolveUserInput(userModuleId)
+
+        if (!resolvedPath) {
+          throw new Error(`Unable to resolve input for ${inputName} at ${userModuleId} from ${userInputDir}`)
+        }
+
+        return resolvedPath
+      }
+
+      const defaultModuleId = `./${inputName}`
+      const inputPath = await resolveUserInput(defaultModuleId) || await resolveDefaultInput(defaultModuleId) || null
+      set(cacheKey, inputPath)
+
+      return inputPath
     }
   }
 }
