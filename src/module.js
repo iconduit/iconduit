@@ -1,7 +1,7 @@
 const resolveCps = require('resolve')
 const {promisify} = require('util')
 
-const {INPUT_EXTENSIONS} = require('./constant.js')
+const {EXTENSIONS_INPUT} = require('./constant.js')
 
 module.exports = {
   createInputResolverFactory,
@@ -19,7 +19,7 @@ function createInputResolverFactory (logger) {
 
     const options = {
       basedir: basePath,
-      extensions: INPUT_EXTENSIONS,
+      extensions: EXTENSIONS_INPUT,
     }
     const resolutions = {}
     const results = {}

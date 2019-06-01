@@ -1,6 +1,6 @@
-exports.IMAGE_EXTENSIONS = ['.svg', '.png', '.gif', '.jpg', '.jpeg']
-exports.INPUT_EXTENSIONS = ['.ejs', '.html', '.svg', '.png', '.gif', '.jpg', '.jpeg', '.json', '.xml']
-exports.TEMPLATE_EXTENSIONS = ['.ejs', '.html', '.svg', '.json', '.xml']
+exports.EXTENSIONS_IMAGE = ['.svg', '.png', '.gif', '.jpg', '.jpeg']
+exports.EXTENSIONS_INPUT = ['.ejs', '.html', '.svg', '.png', '.gif', '.jpg', '.jpeg', '.json', '.xml']
+exports.EXTENSIONS_TEMPLATE = ['.ejs', '.html', '.svg', '.json', '.xml']
 
 exports.INPUT_TYPE_IMAGE = 'image'
 exports.INPUT_TYPE_RENDERABLE = 'renderable'

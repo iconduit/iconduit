@@ -38,9 +38,7 @@ bottle.serviceFactory(
   'defaultInputDir',
   'fileSystem',
   'readInternalTemplate',
-  'readTemplate',
-  'screenshot',
-  'templateDir'
+  'readTemplate'
 )
 bottle.serviceFactory('createInputResolver', createInputResolverFactory, 'logger')
 bottle.constant('cwd', process.cwd.bind(process))

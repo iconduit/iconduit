@@ -136,7 +136,13 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, mini
 
     async function buildImage (inputName, outputName, size, imageType) {
       const stack = [`output.${outputName}`]
-      const inputPath = await buildInput({name: inputName, type: INPUT_TYPE_RENDERABLE, size, stack})
+      const inputPath = await buildInput({
+        backgroundColor: 'transparent',
+        mask: null,
+        name: inputName,
+        type: INPUT_TYPE_RENDERABLE,
+        stack,
+      })
 
       return screenshot(fileUrl(inputPath), size, {timeout, type: imageType})
     }

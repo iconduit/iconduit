@@ -4,14 +4,14 @@ const {dirname, extname, join} = require('path')
 const {resolveColors} = require('./config.js')
 
 const {
-  IMAGE_EXTENSIONS,
+  EXTENSIONS_IMAGE,
+  EXTENSIONS_TEMPLATE,
   INPUT_STRATEGY_COMPOSITE,
   INPUT_STRATEGY_DEGRADE,
   INPUT_TYPE_RENDERABLE,
   INPUT_TYPE_SVG,
   INPUT_TYPE_TEMPLATE,
   TEMPLATE_COMPOSITE,
-  TEMPLATE_EXTENSIONS,
 } = require('./constant.js')
 
 module.exports = {
@@ -24,9 +24,7 @@ function createInputBuilderFactory (
   defaultInputDir,
   fileSystem,
   readInternalTemplate,
-  readTemplate,
-  screenshot,
-  templateDir
+  readTemplate
 ) {
   const {writeFile} = fileSystem
 
@@ -42,7 +40,7 @@ function createInputBuilderFactory (
     return async function buildInput (request) {
       assertNonRecursive(request)
 
-      const {name: inputName, stack, type: inputType} = request
+      const {backgroundColor, mask, name: inputName, stack, type: inputType} = request
       const subStack = [`input.${inputName}`, ...stack]
 
       const {
@@ -142,7 +140,7 @@ function createInputBuilderFactory (
         if (inputType === INPUT_TYPE_SVG) throw new Error(`SVG inputs cannot be composites:\n${renderStack(stack)}`)
 
         const template = await readInternalTemplate(TEMPLATE_COMPOSITE)
-        const {options: {backgroundColor, layers}} = inputDefinition
+        const {options: {layers}} = inputDefinition
 
         const layersVariable = await Promise.all(layers.map(async layer => {
           const {input, style} = layer
@@ -162,8 +160,10 @@ function createInputBuilderFactory (
           return {style: styleDefinition, type: layerType, url}
         }))
 
+        const maskUrl = mask && fileUrl(await buildInput({name: mask, type: INPUT_TYPE_SVG, stack: subStack}))
+
         const renderedPath = join(tempPath, `input.${inputName}.composite.html`)
-        const rendered = template({backgroundColor, group: {id: 'main', layers: layersVariable}, maskUrl: null})
+        const rendered = template({backgroundColor, group: {id: 'main', layers: layersVariable}, maskUrl})
         await writeFile(renderedPath, rendered)
 
         return renderedPath
@@ -195,11 +195,11 @@ function assertNonRecursive (request) {
 }
 
 function isImagePath (sourcePath) {
-  return IMAGE_EXTENSIONS.includes(extname(sourcePath).toLowerCase())
+  return EXTENSIONS_IMAGE.includes(extname(sourcePath).toLowerCase())
 }
 
 function isTemplatePath (sourcePath) {
-  return TEMPLATE_EXTENSIONS.includes(extname(sourcePath).toLowerCase())
+  return EXTENSIONS_TEMPLATE.includes(extname(sourcePath).toLowerCase())
 }
 
 function renderStack (stack) {

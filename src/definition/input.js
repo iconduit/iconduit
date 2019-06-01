@@ -10,7 +10,6 @@ module.exports = {
   appleTouchStartup: {
     strategy: 'composite',
     options: {
-      backgroundColor: 'white',
       layers: [
         {input: 'backgroundColor'},
         {input: 'iconSilhouette', style: 'opacity10Percent'},
@@ -111,12 +110,6 @@ module.exports = {
         {input: 'iconBleed'},
         {input: 'icon'},
       ],
-    },
-  },
-  iconMask: {
-    strategy: 'degrade',
-    options: {
-      to: 'iconMaskAndroidCircle',
     },
   },
   iconMaskable: {

@@ -411,12 +411,10 @@ function normalizeInputDefinitionOptions (strategy, options, inputSetting) {
 
 function normalizeCompositeInputDefinitionOptions (options, setting) {
   const {
-    backgroundColor = 'transparent',
     layers,
   } = options
 
   return {
-    backgroundColor,
     layers: normalizeCompositeInputDefinitionLayers(layers, `${setting}.layers`),
   }
 }
