@@ -29,6 +29,12 @@
   "displayMode": "standalone",
   "iarcRatingId": null,
   "language": "en-US",
+  "masks": {
+    "output": {
+      "webAppIconMasked": "iconMaskAndroidCircle"
+    },
+    "primary": "iconMaskAndroidSquircle"
+  },
   "name": "Iconduit",
   "orientation": null,
   "os": {

@@ -76,7 +76,7 @@ function createInputBuilderFactory (
       async function deriveCompositeSource () {
         if (inputType === INPUT_TYPE_SVG) throw new Error(`SVG inputs cannot be composites:\n${renderStack(stack)}`)
 
-        const maskUrl = mask && fileUrl(await buildInput({name: mask, type: INPUT_TYPE_SVG, stack: subStack}))
+        const maskUrl = fileUrl(await buildInput({name: mask, type: INPUT_TYPE_SVG, stack: subStack}))
 
         const renderedPath = join(tempPath, `input.${inputName}.composite.html`)
         const template = await readInternalTemplate(TEMPLATE_COMPOSITE)
@@ -92,11 +92,7 @@ function createInputBuilderFactory (
       async function deriveDegradeSource () {
         const {options: {to}} = inputDefinition
 
-        return buildInput({
-          name: to,
-          type: inputType,
-          stack: subStack,
-        })
+        return buildInput({...request, name: to, stack: subStack})
       }
     }
 
@@ -138,7 +134,7 @@ function createInputBuilderFactory (
       }
 
       async function buildCompositeInputGroup () {
-        const {options: {layers: layerDefinitions}} = inputDefinition
+        const {options: {isMasked, layers: layerDefinitions}} = inputDefinition
 
         const layers = await Promise.all(layerDefinitions.map(async (layerDefinition, index) => {
           const {input, style} = layerDefinition
@@ -155,7 +151,7 @@ function createInputBuilderFactory (
           return group.layers
         }))
 
-        return {layers: layers.flat()}
+        return {isMasked, layers: layers.flat()}
       }
 
       async function buildDegradeInputGroup () {

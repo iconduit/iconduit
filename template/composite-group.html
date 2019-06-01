@@ -1,7 +1,7 @@
-<div data-style="<%= json(style, 0) %>"> <!-- start depth <%= depth %> -->
-<% for (const {group: subGroup, style, type, url} of group.layers) {
+<div class="<%= group.isMasked ? 'masked' : '' %>" data-style="<%= json(style, 0) %>"> <!-- start depth <%= depth %> -->
+<% for (const {group: subGroup, style: subStyle, type, url} of group.layers) {
 if (subGroup) { %>
-<%- include('composite-group.html', {depth: depth + 1, group: subGroup, style}) %>
+<%- include('composite-group.html', {depth: depth + 1, group: subGroup, style: subStyle}) %>
 <% } else if (type === 'image') { %>
 <img src="<%= url %>" />
 <% } else if (type === 'document') { %>

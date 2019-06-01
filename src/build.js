@@ -135,12 +135,13 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, mini
     }
 
     async function buildImage (inputName, outputName, size, imageType) {
+      const {masks: {primary: primaryMask, output: outputMasks}} = config
       const {options: {isTransparent}} = outputs[outputName]
 
       const stack = [`output.${outputName}`]
       const inputPath = await buildInput({
         isTransparent,
-        mask: null,
+        mask: outputMasks[outputName] || primaryMask,
         name: inputName,
         stack,
         type: INPUT_TYPE_RENDERABLE,

@@ -11,6 +11,7 @@ const standardTargetDefinitions = require('./definition/target.js')
 
 const {
   BROWSER_TARGET_DEFAULTS,
+  DEFAULT_MASK,
   INPUT_STRATEGY_COMPOSITE,
   INPUT_STRATEGY_DEGRADE,
   INSTALLER_DMG,
@@ -57,6 +58,7 @@ function normalize (configOrFn) {
     iarcRatingId = null,
     inputs = {},
     language = 'en-US',
+    masks = {},
     orientation = null,
     os = {},
     outputPath = 'dist',
@@ -96,6 +98,7 @@ function normalize (configOrFn) {
     iarcRatingId,
     inputs: normalizeInputs(inputs),
     language,
+    masks: normalizeMasks(masks),
     name,
     orientation,
     os: normalizeOs(os),
@@ -411,10 +414,14 @@ function normalizeInputDefinitionOptions (strategy, options, inputSetting) {
 
 function normalizeCompositeInputDefinitionOptions (options, setting) {
   const {
+    isMasked = false,
     layers,
   } = options
 
+  assertBoolean(isMasked, `${setting}.isMasked`)
+
   return {
+    isMasked,
     layers: normalizeCompositeInputDefinitionLayers(layers, `${setting}.layers`),
   }
 }
@@ -763,6 +770,23 @@ function normalizeInputs (inputs) {
   assertObjectOfNonEmptyStrings(inputs, 'inputs')
 
   return inputs
+}
+
+function normalizeMasks (masks) {
+  assertObject(masks, 'masks')
+
+  const {
+    primary = DEFAULT_MASK,
+    output = {},
+  } = masks
+
+  assertNonEmptyString(primary, 'masks.primary')
+  assertObjectOfNonEmptyStrings(output, 'masks.output')
+
+  return {
+    primary,
+    output,
+  }
 }
 
 function normalizeOs (os) {

@@ -18,6 +18,8 @@ exports.IMAGE_TYPE_SVG = 'svg'
 
 exports.TEMPLATE_COMPOSITE = 'composite.html'
 
+exports.DEFAULT_MASK = 'iconMask'
+
 exports.BROWSER_TARGET_DEFAULTS = 'defaults'
 
 exports.INSTALLER_DMG = 'dmg'

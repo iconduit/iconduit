@@ -9,7 +9,6 @@
 
   #viewport {
     overflow: hidden;
-    <% if (maskUrl) { %>-webkit-mask-image: url(<%- maskUrl %>);<% } %>
   }
 
   #viewport div {
@@ -25,6 +24,10 @@
     height: 100%;
     border: none;
     isolation: isolate;
+  }
+
+  .masked {
+    -webkit-mask-image: url(<%- maskUrl %>);
   }
 </style>
 

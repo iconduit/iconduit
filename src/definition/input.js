@@ -97,6 +97,7 @@ module.exports = {
   iconFlatMasked: {
     strategy: 'composite',
     options: {
+      isMasked: true,
       layers: [
         {input: 'iconFlatBackground'},
         {input: 'iconFlatForeground'},
@@ -110,6 +111,12 @@ module.exports = {
         {input: 'iconBleed'},
         {input: 'icon'},
       ],
+    },
+  },
+  iconMask: {
+    strategy: 'degrade',
+    options: {
+      to: 'iconMaskAndroidCircle',
     },
   },
   iconMaskable: {
@@ -132,6 +139,7 @@ module.exports = {
   iconMasked: {
     strategy: 'composite',
     options: {
+      isMasked: true,
       layers: [
         {input: 'iconBackground'},
         {input: 'iconForeground'},
