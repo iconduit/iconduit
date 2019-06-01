@@ -40,7 +40,7 @@ function createInputBuilderFactory (
     return async function buildInput (request) {
       assertNonRecursive(request)
 
-      const {backgroundColor, mask, name: inputName, stack, type: inputType} = request
+      const {isTransparent, mask, name: inputName, stack, type: inputType} = request
       const subStack = [`input.${inputName}`, ...stack]
 
       const {
@@ -150,6 +150,8 @@ function createInputBuilderFactory (
           if (!styleDefinition) throw new Error(`Missing definition for style.${style}:\n${renderStack(stack)}`)
 
           const inputPath = await buildInput({
+            isTransparent: true,
+            mask: null,
             name: input,
             type: INPUT_TYPE_RENDERABLE,
             stack: subStack,
@@ -163,7 +165,7 @@ function createInputBuilderFactory (
         const maskUrl = mask && fileUrl(await buildInput({name: mask, type: INPUT_TYPE_SVG, stack: subStack}))
 
         const renderedPath = join(tempPath, `input.${inputName}.composite.html`)
-        const rendered = template({backgroundColor, group: {id: 'main', layers: layersVariable}, maskUrl})
+        const rendered = template({group: {id: 'main', layers: layersVariable}, isTransparent, maskUrl})
         await writeFile(renderedPath, rendered)
 
         return renderedPath
