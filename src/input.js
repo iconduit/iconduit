@@ -104,56 +104,63 @@ function createInputBuilderFactory (
       assertNonRecursive(request)
 
       const {id, name: inputName, stack} = request
+      const subStack = [`input.${inputName}`, ...stack]
+
+      const {[inputName]: inputDefinition} = inputDefinitions
 
       return produceCached(`input.${inputName}.group`, async () => {
         const filePath = await findFileSource(inputName, INPUT_TYPE_RENDERABLE)
 
-        if (filePath) {
-          return {
-            id,
-            layers: [
-              {
-                style: {},
-                type: isImagePath(filePath) ? 'image' : 'document',
-                url: fileUrl(filePath),
-              },
-            ],
-          }
+        return filePath ? buildFileInputGroup(filePath) : buildDerivedInputGroup()
+      })
+
+      function buildFileInputGroup (filePath) {
+        return {
+          id,
+          layers: [
+            {
+              style: {},
+              type: isImagePath(filePath) ? 'image' : 'document',
+              url: fileUrl(filePath),
+            },
+          ],
         }
+      }
 
-        const subStack = [`input.${inputName}`, ...stack]
-
-        const {[inputName]: inputDefinition} = inputDefinitions
+      async function buildDerivedInputGroup () {
         const {strategy} = inputDefinition
 
         switch (strategy) {
-          case INPUT_STRATEGY_COMPOSITE: {
-            const {options: {layers: layerDefinitions}} = inputDefinition
-
-            const layers = await Promise.all(layerDefinitions.map(async (layerDefinition, index) => {
-              const {input, style} = layerDefinition
-
-              const styleDefinition = style === null ? {} : styleDefinitions[style]
-
-              if (!styleDefinition) throw new Error(`Missing definition for style.${style}:\n${renderStack(stack)}`)
-
-              const group = await buildInputGroup({id: `${id}-${index}`, name: input, stack: subStack})
-
-              return {style: styleDefinition, group}
-            }))
-
-            return {id, layers}
-          }
-
-          case INPUT_STRATEGY_DEGRADE: {
-            const {options: {to}} = inputDefinition
-
-            return buildInputGroup({id, name: to, stack: subStack})
-          }
+          case INPUT_STRATEGY_COMPOSITE: return buildCompositeInputGroup()
+          case INPUT_STRATEGY_DEGRADE: return buildDegradeInputGroup()
         }
 
         throw new Error('Not implemented')
-      })
+      }
+
+      async function buildCompositeInputGroup () {
+        const {options: {layers: layerDefinitions}} = inputDefinition
+
+        const layers = await Promise.all(layerDefinitions.map(async (layerDefinition, index) => {
+          const {input, style} = layerDefinition
+
+          const styleDefinition = style === null ? {} : styleDefinitions[style]
+
+          if (!styleDefinition) throw new Error(`Missing definition for style.${style}:\n${renderStack(stack)}`)
+
+          const group = await buildInputGroup({id: `${id}-${index}`, name: input, stack: subStack})
+
+          return {style: styleDefinition, group}
+        }))
+
+        return {id, layers}
+      }
+
+      async function buildDegradeInputGroup () {
+        const {options: {to}} = inputDefinition
+
+        return buildInputGroup({id, name: to, stack: subStack})
+      }
     }
 
     async function findFileSource (inputName, inputType) {
