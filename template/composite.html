@@ -37,9 +37,31 @@
     <%- include('composite-group.html', group) %>
   </div>
 
-  <script>
+  <script><%
+    const styles = {}
+    const groups = [group]
+
+    while (groups.length > 0) {
+      const {id, layers} = groups.shift()
+
+      for (let index = 0; index < layers.length; ++index) {
+        const {group: subGroup, style} = layers[index]
+
+        if (subGroup) groups.push(subGroup)
+        if (Object.keys(style).length > 0) styles[`#${id} > *:nth-child(${index + 1})`] = style
+      }
+    }
+  %>
     ready(() => {
-      <%- include('composite-group-style.html', group) %>
+      <% for (const selector in styles) {
+        const style = styles[selector]
+      %>
+        (style => {
+          <% for (const property in style) { %>
+            style[<%- json(property) %>] = <%- json(style[property]) %>
+          <% } %>
+        })(document.querySelector(<%- json(selector) %>).style)
+      <% } %>
     })
   </script>
 </body>
