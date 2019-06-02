@@ -1,15 +1,13 @@
-const NodeCache = require('node-cache')
-
 module.exports = {
   createCacheFactory,
 }
 
 function createCacheFactory (logger) {
   return function createCache () {
-    const {get, set} = new NodeCache()
+    const map = {}
 
     return async function produceCached (key, fn) {
-      const cached = get(key)
+      const cached = map[key]
 
       if (cached) {
         logger.debug(`Cache hit ${key}`)
@@ -19,8 +17,8 @@ function createCacheFactory (logger) {
 
       logger.debug(`Cache miss ${key}`)
 
-      const promise = (async () => fn())()
-      set(key, promise)
+      const promise = Promise.resolve(fn())
+      map[key] = promise
 
       const result = await promise
 

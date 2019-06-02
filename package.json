@@ -31,7 +31,6 @@
     "imagemin-pngquant": "^7.0.0",
     "is-self-closing": "^1.0.1",
     "json-stable-stringify": "^1.0.1",
-    "node-cache": "^4.2.0",
     "puppeteer": "^1.15.0",
     "resolve": "^1.11.0",
     "rmfr": "^2.0.0",
