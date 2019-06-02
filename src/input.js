@@ -4,13 +4,13 @@ const {dirname, extname, join} = require('path')
 const {resolveColors} = require('./config.js')
 
 const {
+  EXTENSIONS_DOCUMENT,
   EXTENSIONS_IMAGE,
-  EXTENSIONS_TEMPLATE,
   INPUT_STRATEGY_COMPOSITE,
   INPUT_STRATEGY_DEGRADE,
+  INPUT_TYPE_DOCUMENT,
   INPUT_TYPE_RENDERABLE,
   INPUT_TYPE_SVG,
-  INPUT_TYPE_TEMPLATE,
   TEMPLATE_COMPOSITE,
 } = require('./constant.js')
 
@@ -179,8 +179,8 @@ function createInputBuilderFactory (
 
         if (!filePath) return null
 
-        if (isTemplatePath(filePath) && inputType !== INPUT_TYPE_TEMPLATE) {
-          return buildTemplateInput(inputName, filePath)
+        if (isDocumentPath(filePath) && inputType !== INPUT_TYPE_DOCUMENT) {
+          return buildDocumentInput(inputName, filePath)
         }
 
         return filePath
@@ -206,9 +206,9 @@ function createInputBuilderFactory (
       return inputPath
     }
 
-    async function buildTemplateInput (inputName, templatePath) {
-      const renderedPath = join(tempPath, `input.${inputName}.rendered${extname(templatePath)}`)
-      const {resolveSync: resolveTemplateInput} = createInputResolver(dirname(templatePath), templatePath)
+    async function buildDocumentInput (inputName, documentPath) {
+      const renderedPath = join(tempPath, `input.${inputName}.rendered${extname(documentPath)}`)
+      const {resolveSync: resolveTemplateInput} = createInputResolver(dirname(documentPath), documentPath)
 
       function url (moduleId) {
         const resolvedPath = resolveTemplateInput(moduleId)
@@ -216,7 +216,7 @@ function createInputBuilderFactory (
         return resolvedPath === null ? null : fileUrl(resolvedPath)
       }
 
-      const template = await readTemplate(templatePath)
+      const template = await readTemplate(documentPath)
       const rendered = template({color, name: appName, url})
       await writeFile(renderedPath, rendered)
 
@@ -241,8 +241,8 @@ function isImagePath (sourcePath) {
   return EXTENSIONS_IMAGE.includes(extname(sourcePath).toLowerCase())
 }
 
-function isTemplatePath (sourcePath) {
-  return EXTENSIONS_TEMPLATE.includes(extname(sourcePath).toLowerCase())
+function isDocumentPath (sourcePath) {
+  return EXTENSIONS_DOCUMENT.includes(extname(sourcePath).toLowerCase())
 }
 
 function renderStack (stack) {

@@ -1,11 +1,11 @@
+exports.EXTENSIONS_DOCUMENT = ['.ejs', '.html', '.svg', '.json', '.xml']
 exports.EXTENSIONS_IMAGE = ['.svg', '.png', '.gif', '.jpg', '.jpeg']
 exports.EXTENSIONS_INPUT = ['.ejs', '.html', '.svg', '.png', '.gif', '.jpg', '.jpeg', '.json', '.xml']
-exports.EXTENSIONS_TEMPLATE = ['.ejs', '.html', '.svg', '.json', '.xml']
 
+exports.INPUT_TYPE_DOCUMENT = 'document'
 exports.INPUT_TYPE_IMAGE = 'image'
 exports.INPUT_TYPE_RENDERABLE = 'renderable'
 exports.INPUT_TYPE_SVG = 'svg'
-exports.INPUT_TYPE_TEMPLATE = 'template'
 
 exports.INPUT_STRATEGY_COMPOSITE = 'composite'
 exports.INPUT_STRATEGY_DEGRADE = 'degrade'

@@ -12,9 +12,9 @@ const {
   IMAGE_TYPE_JPEG,
   IMAGE_TYPE_PNG,
   IMAGE_TYPE_SVG,
+  INPUT_TYPE_DOCUMENT,
   INPUT_TYPE_RENDERABLE,
   INPUT_TYPE_SVG,
-  INPUT_TYPE_TEMPLATE,
 } = require('./constant.js')
 
 module.exports = {
@@ -83,7 +83,7 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, mini
           return buildOutputSvg(inputName, outputName, outputSizes)
       }
 
-      return buildOutputFile(inputName, outputName, outputSizes)
+      return buildOutputDocument(inputName, outputName, outputSizes)
     }
 
     async function buildOutputIcns (inputName, outputName, outputSizes) {
@@ -122,14 +122,14 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, mini
       return minifyImage(IMAGE_TYPE_SVG, await readFile(inputPath))
     }
 
-    async function buildOutputFile (inputName, outputName, outputSizes) {
+    async function buildOutputDocument (inputName, outputName, outputSizes) {
       const {options: {variables: templateVariables}} = outputs[outputName]
 
       assertNoSizes(outputSizes, outputName)
 
       const stack = [`output.${outputName}`]
-      const templatePath = await buildInput({name: inputName, type: INPUT_TYPE_TEMPLATE, stack})
-      const template = await readTemplate(templatePath)
+      const documentPath = await buildInput({name: inputName, type: INPUT_TYPE_DOCUMENT, stack})
+      const template = await readTemplate(documentPath)
 
       return template({manifest: {...manifest, tag: manifestTag}, ...templateVariables})
     }
