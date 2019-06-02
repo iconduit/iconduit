@@ -9,6 +9,7 @@ module.exports = () => {
     masks: {
       primary: 'iconMaskAndroidSquircle',
       output: {
+        appleTouchIconMasked: 'iconMaskIosSquircle',
         webAppIconMasked: 'iconMaskAndroidCircle',
       },
     },
@@ -17,6 +18,9 @@ module.exports = () => {
         appleTouchIconMasked: {
           input: 'appleTouchIcon',
           name: 'apple-touch-icon-masked-[dimensions].png',
+          options: {
+            isMasked: true,
+          },
           sizes: ['appleTouchIconRetina'],
         },
       },

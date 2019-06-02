@@ -39,7 +39,7 @@
 </head>
 <body>
 
-<div id="viewport">
+<div id="viewport" class="<%= isMasked ? 'masked' : '' %>">
 <%- include('composite-group.html', {depth: 0, group, style: {}}) %>
 </div>
 

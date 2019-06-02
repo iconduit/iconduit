@@ -31,6 +31,7 @@
   "language": "en-US",
   "masks": {
     "output": {
+      "appleTouchIconMasked": "iconMaskIosSquircle",
       "webAppIconMasked": "iconMaskAndroidCircle"
     },
     "primary": "iconMaskAndroidSquircle"

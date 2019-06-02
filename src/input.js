@@ -49,12 +49,23 @@ function createInputBuilderFactory (
     return async function buildInput (request) {
       assertNonRecursive(request)
 
-      const {isTransparent, mask, name: inputName, stack, type: inputType} = request
+      const {
+        isMasked,
+        isTransparent,
+        mask: maskName,
+        name: inputName,
+        stack,
+        type: inputType,
+      } = request
+
       const subStack = [`input.${inputName}`, ...stack]
+      const maskedStatus = isMasked ? 'masked' : 'unmasked'
+      const transparentStatus = isTransparent ? 'transparent' : 'opaque'
+      const cacheKey = `input.${inputName}.${inputType}.${maskName}.${maskedStatus}.${transparentStatus}`
 
       const {[inputName]: inputDefinition} = inputDefinitions
 
-      return produceCached(`input.${inputName}.${inputType}`, findSource)
+      return produceCached(cacheKey, findSource)
 
       async function findSource () {
         return await findFileSource(inputName, inputType) || deriveSource()
@@ -76,13 +87,13 @@ function createInputBuilderFactory (
       async function deriveCompositeSource () {
         if (inputType === INPUT_TYPE_SVG) throw new Error(`SVG inputs cannot be composites:\n${renderStack(stack)}`)
 
-        const maskUrl = fileUrl(await buildInput({name: mask, type: INPUT_TYPE_SVG, stack: subStack}))
+        const maskUrl = fileUrl(await buildInput({name: maskName, type: INPUT_TYPE_SVG, stack: subStack}))
 
-        const renderedPath = join(tempPath, `input.${inputName}.composite.html`)
+        const renderedPath = join(tempPath, `${cacheKey}.composite.html`)
         const template = await readInternalTemplate(TEMPLATE_COMPOSITE)
 
-        const group = await buildInputGroup({name: inputName, stack})
-        const rendered = template({group, isTransparent, maskUrl})
+        const group = await buildInputGroup(request)
+        const rendered = template({group, isMasked, isTransparent, maskUrl})
 
         await writeFile(renderedPath, rendered)
 
@@ -112,6 +123,7 @@ function createInputBuilderFactory (
 
       function buildFileInputGroup (filePath) {
         return {
+          isMasked: false,
           layers: [
             {
               style: {},
@@ -134,7 +146,7 @@ function createInputBuilderFactory (
       }
 
       async function buildCompositeInputGroup () {
-        const {options: {isMasked, layers: layerDefinitions}} = inputDefinition
+        const {options: {isMasked: isGroupMasked, layers: layerDefinitions}} = inputDefinition
 
         const layers = await Promise.all(layerDefinitions.map(async (layerDefinition, index) => {
           const {input, style} = layerDefinition
@@ -151,7 +163,7 @@ function createInputBuilderFactory (
           return group.layers
         }))
 
-        return {isMasked, layers: layers.flat()}
+        return {isMasked: isGroupMasked, layers: layers.flat()}
       }
 
       async function buildDegradeInputGroup () {
@@ -162,7 +174,7 @@ function createInputBuilderFactory (
     }
 
     async function findFileSource (inputName, inputType) {
-      return produceCached(`input.${inputName}.file`, async () => {
+      return produceCached(`input.${inputName}.${inputType}.file`, async () => {
         const filePath = await findFile(inputName)
 
         if (!filePath) return null
