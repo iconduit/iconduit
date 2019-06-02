@@ -185,6 +185,7 @@ module.exports = {
     options: {
       input: 'iconSilhouette',
       style: 'safariMaskIconScale',
+      maskColor: 'brand',
     },
   },
   socialShareImage: {

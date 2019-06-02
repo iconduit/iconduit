@@ -472,14 +472,17 @@ function normalizeSvgTransformInputDefinitionOptions (options, setting) {
 
   const {
     input,
+    maskColor = null,
     style = null,
   } = options
 
   assertNonEmptyString(input, `${setting}.input`)
+  assertOptionalNonEmptyString(maskColor, `${setting}.maskColor`)
   assertOptionalNonEmptyString(style, `${setting}.style`)
 
   return {
     input,
+    maskColor,
     style,
   }
 }

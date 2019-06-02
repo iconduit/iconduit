@@ -110,14 +110,18 @@ function createInputBuilderFactory (
       }
 
       async function deriveSvgTransformSource () {
-        const {options: {input: transformInputName, style}} = inputDefinition
+        const {options: {input: transformInputName, maskColor, style}} = inputDefinition
         const styleDefinition = style === null ? {} : styleDefinitions[style]
 
         if (!styleDefinition) throw new Error(`Missing definition for style.${style}:\n${renderStack(stack)}`)
 
         const originalUrl = fileUrl(await buildInput({name: transformInputName, type: INPUT_TYPE_SVG, stack: subStack}))
         const transformedPath = join(tempPath, `${cacheKey}.transformed.svg`)
-        const transformed = await transformSvg(originalUrl, styleDefinition)
+
+        const transformed = await transformSvg(originalUrl, {
+          maskColor: color[maskColor] || maskColor,
+          style: styleDefinition,
+        })
 
         await writeFile(transformedPath, transformed)
 
