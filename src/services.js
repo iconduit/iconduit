@@ -17,7 +17,7 @@ const {systemClock} = require('./clock.js')
 
 const bottle = new Bottle()
 
-bottle.serviceFactory('browserManager', createBrowserManager)
+bottle.serviceFactory('browserManager', createBrowserManager, 'env')
 bottle.serviceFactory(
   'build',
   createBuilder,

@@ -1,25 +1,13 @@
 #!/usr/bin/env node
 
 const {buildConfigs, logger} = require('../src/services.js')
-const {DEFAULT_PUPPETEER_TIMEOUT} = require('../src/constant.js')
 
 async function main () {
   const [,, ...configPaths] = process.argv
-  const {PUPPETEER_TIMEOUT = ''} = process.env
 
   if (configPaths.length < 1) return die('Usage: iconduit <config-path>...')
 
-  const timeout = PUPPETEER_TIMEOUT ? parseInt(PUPPETEER_TIMEOUT) : DEFAULT_PUPPETEER_TIMEOUT
-
-  if (isNaN(timeout)) return die('Invalid value for PUPPETEER_TIMEOUT')
-
-  const options = {
-    puppeteer: {
-      timeout,
-    },
-  }
-
-  await buildConfigs(options, ...configPaths)
+  await buildConfigs(...configPaths)
 }
 
 main().catch(({stack}) => { die(stack) })

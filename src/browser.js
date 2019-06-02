@@ -1,12 +1,14 @@
 const puppeteer = require('puppeteer')
 
-const {DEFAULT_PUPPETEER_TIMEOUT} = require('./constant.js')
+const {DEFAULT_BROWSER_TIMEOUT} = require('./constant.js')
 
 module.exports = {
   createBrowserManager,
 }
 
-function createBrowserManager () {
+function createBrowserManager (env) {
+  const {BROWSER_TIMEOUT: envTimeout} = env
+
   let browser, options
   const manager = {run, withPage}
 
@@ -14,11 +16,11 @@ function createBrowserManager () {
 
   async function run (fn, opt = {}) {
     const {
-      timeout = DEFAULT_PUPPETEER_TIMEOUT,
+      timeout,
     } = opt
 
     options = {
-      timeout,
+      timeout: chooseTimeout(timeout, envTimeout),
     }
 
     await initialize()
@@ -47,6 +49,17 @@ function createBrowserManager () {
     }
 
     return result
+  }
+
+  function chooseTimeout (...timeouts) {
+    for (const timeout of timeouts) {
+      const type = typeof timeout
+
+      if (type === 'number') return timeout
+      if (type === 'string' && timeout) return parseInt(timeout)
+    }
+
+    return DEFAULT_BROWSER_TIMEOUT
   }
 
   async function initialize () {

@@ -157,16 +157,14 @@ function createConfigBuilder (browserManager, build, fileSystem, readConfig) {
   const {withTempDir} = fileSystem
   const {run} = browserManager
 
-  return async function buildConfigs (options, ...inputPaths) {
-    const {puppeteer: puppeteerOptions} = options
-
-    await run(async () => Promise.all(inputPaths.map(buildConfig)), puppeteerOptions)
+  return async function buildConfigs (...inputPaths) {
+    await run(async () => Promise.all(inputPaths.map(buildConfig)))
 
     async function buildConfig (inputPath) {
       const {config, configPath, outputPath, userInputDir} = await readConfig(inputPath)
 
       await withTempDir(async tempPath => {
-        await build(config, {...options, configPath, outputPath, tempPath, userInputDir})
+        await build(config, {configPath, outputPath, tempPath, userInputDir})
       })
     }
   }
