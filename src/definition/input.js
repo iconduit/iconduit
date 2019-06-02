@@ -235,7 +235,7 @@ module.exports = {
     strategy: 'composite',
     options: {
       layers: [
-        {input: 'windowsTileIcon', style: 'windowsTileIconScaleSmall'},
+        {input: 'windowsTileIcon', style: 'windowsTileIconSmallScale'},
       ],
     },
   },

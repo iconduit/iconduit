@@ -45,7 +45,7 @@ module.exports = {
     // see https://docs.microsoft.com/en-us/windows/uwp/design/style/app-icons-and-logos#tile-padding-recommendations
     transform: cssScaleFraction(fraction(1, 2).div(66, 108)),
   },
-  windowsTileIconScaleSmall: {
+  windowsTileIconSmallScale: {
     // the difference between the Android safe zone (66/108)
     // and an exact 2/3 size
     // see https://docs.microsoft.com/en-us/windows/uwp/design/style/app-icons-and-logos#tile-padding-recommendations
