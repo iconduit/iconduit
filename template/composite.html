@@ -43,17 +43,5 @@
 <%- include('composite-group.html', {depth: 0, group, style: {}}) %>
 </div>
 
-<script>
-  ready(() => {
-    document.querySelectorAll('[data-style]').forEach(element => {
-      const style = JSON.parse(element.dataset.style)
-
-      Object.entries(style).forEach(([property, value]) => {
-        element.style[property] = value
-      })
-    })
-  })
-</script>
-
 </body>
 </html>

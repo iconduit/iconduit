@@ -1,5 +1,6 @@
 const stringify = require('json-stable-stringify')
 const {compile} = require('ejs')
+const {cssifyObject: css} = require('css-in-js-utils')
 const {join, resolve} = require('path')
 
 module.exports = {
@@ -26,7 +27,7 @@ function createTemplateReader (fileSystem, cwd) {
       const content = await readFile(fullPath)
       const template = compile(content.toString(), {filename: fullPath})
 
-      templates[fullPath] = variables => template({json, ...variables})
+      templates[fullPath] = variables => template({css, json, ...variables})
     }
 
     return templates[fullPath]

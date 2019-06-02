@@ -1,4 +1,4 @@
-<div class="<%= group.isMasked ? 'masked' : '' %>" data-style="<%= json(style, 0) %>"> <!-- start depth <%= depth %> -->
+<div class="<%= group.isMasked ? 'masked' : '' %>" style="<%= css(style) %>"> <!-- start depth <%= depth %> -->
 <% for (const {group: subGroup, style: subStyle, type, url} of group.layers) {
 if (subGroup) { %>
 <%- include('composite-group.html', {depth: depth + 1, group: subGroup, style: subStyle}) %>
