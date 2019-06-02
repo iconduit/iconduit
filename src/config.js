@@ -14,6 +14,7 @@ const {
   DEFAULT_MASK,
   INPUT_STRATEGY_COMPOSITE,
   INPUT_STRATEGY_DEGRADE,
+  INPUT_STRATEGY_SVG_TRANSFORM,
   INSTALLER_DMG,
   OS_IOS,
   OS_MACOS,
@@ -407,6 +408,7 @@ function normalizeInputDefinitionOptions (strategy, options, inputSetting) {
   switch (strategy) {
     case INPUT_STRATEGY_COMPOSITE: return normalizeCompositeInputDefinitionOptions(options, optionsSetting)
     case INPUT_STRATEGY_DEGRADE: return normalizeDegradeInputDefinitionOptions(options, optionsSetting)
+    case INPUT_STRATEGY_SVG_TRANSFORM: return normalizeSvgTransformInputDefinitionOptions(options, optionsSetting)
   }
 
   throw new Error(`Invalid value for ${inputSetting}.strategy`)
@@ -436,17 +438,14 @@ function normalizeCompositeInputDefinitionLayers (layers, setting) {
 
     const {
       input,
-      multiplier = 1,
       style = null,
     } = layers[index]
 
     assertNonEmptyString(input, `${layerSetting}.input`)
-    assertInteger(multiplier, `${layerSetting}.multiplier`)
     assertOptionalNonEmptyString(style, `${layerSetting}.style`)
 
     normalized[index] = {
       input,
-      multiplier,
       style,
     }
   }
@@ -455,6 +454,8 @@ function normalizeCompositeInputDefinitionLayers (layers, setting) {
 }
 
 function normalizeDegradeInputDefinitionOptions (options, setting) {
+  assertObject(options, setting)
+
   const {
     to,
   } = options
@@ -463,6 +464,23 @@ function normalizeDegradeInputDefinitionOptions (options, setting) {
 
   return {
     to,
+  }
+}
+
+function normalizeSvgTransformInputDefinitionOptions (options, setting) {
+  assertObject(options, setting)
+
+  const {
+    input,
+    style = null,
+  } = options
+
+  assertNonEmptyString(input, `${setting}.input`)
+  assertOptionalNonEmptyString(style, `${setting}.style`)
+
+  return {
+    input,
+    style,
   }
 }
 

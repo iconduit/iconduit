@@ -16,9 +16,9 @@ module.exports = {
     // and an exact 1/1 size
     transform: cssScaleFraction(fraction(1).div(72, 108)),
   },
-  opacity1Third: {opacity: 'calc(1 / 3)'},
+  opacity1Third: {opacity: cssFraction(fraction(1, 3))},
   opacity10Percent: {opacity: '.1'},
-  opacity2Thirds: {opacity: 'calc(2 / 3)'},
+  opacity2Thirds: {opacity: cssFraction(fraction(2, 3))},
   opacity20Percent: {opacity: '.2'},
   opacity25Percent: {opacity: '.25'},
   opacity30Percent: {opacity: '.3'},
@@ -29,6 +29,10 @@ module.exports = {
   opacity75Percent: {opacity: '.75'},
   opacity80Percent: {opacity: '.8'},
   opacity90Percent: {opacity: '.9'},
+  safariMaskIconScale: {
+    // found empirically by testing under Safari on a touch bar MacBook Pro
+    transform: cssScaleFraction(fraction(19, 10)),
+  },
   webAppIconMaskableScale: {
     // the difference between the Android safe zone (66/108)
     // and the W3C web app manifest safe zone (4/5)
@@ -54,5 +58,9 @@ module.exports = {
 }
 
 function cssScaleFraction (value) {
-  return `scale(calc(${value.toFraction()}))`
+  return `scale(${cssFraction(value)})`
+}
+
+function cssFraction (value) {
+  return `calc(${value.toFraction()})`
 }

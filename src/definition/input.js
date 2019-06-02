@@ -1,6 +1,12 @@
+const {
+  INPUT_STRATEGY_COMPOSITE,
+  INPUT_STRATEGY_DEGRADE,
+  INPUT_STRATEGY_SVG_TRANSFORM,
+} = require('../constant.js')
+
 module.exports = {
   appleTouchIcon: {
-    strategy: 'composite',
+    strategy: INPUT_STRATEGY_COMPOSITE,
     options: {
       layers: [
         {input: 'iconFlatMaskable', style: 'appleTouchIconScale'},
@@ -8,7 +14,7 @@ module.exports = {
     },
   },
   appleTouchStartup: {
-    strategy: 'composite',
+    strategy: INPUT_STRATEGY_COMPOSITE,
     options: {
       layers: [
         {input: 'backgroundColor'},
@@ -17,67 +23,67 @@ module.exports = {
     },
   },
   facebookAppIcon: {
-    strategy: 'degrade',
+    strategy: INPUT_STRATEGY_DEGRADE,
     options: {
       to: 'iconMaskableNoPadding',
     },
   },
   favicon: {
-    strategy: 'degrade',
+    strategy: INPUT_STRATEGY_DEGRADE,
     options: {
       to: 'iconMaskedNoPadding',
     },
   },
   faviconIco: {
-    strategy: 'degrade',
+    strategy: INPUT_STRATEGY_DEGRADE,
     options: {
       to: 'favicon',
     },
   },
   faviconPng: {
-    strategy: 'degrade',
+    strategy: INPUT_STRATEGY_DEGRADE,
     options: {
       to: 'favicon',
     },
   },
   githubAccountIcon: {
-    strategy: 'degrade',
+    strategy: INPUT_STRATEGY_DEGRADE,
     options: {
       to: 'iconMaskedNoPadding',
     },
   },
   iconBackground: {
-    strategy: 'degrade',
+    strategy: INPUT_STRATEGY_DEGRADE,
     options: {
       to: 'backgroundColor',
     },
   },
   iconBleed: {
-    strategy: 'degrade',
+    strategy: INPUT_STRATEGY_DEGRADE,
     options: {
       to: 'transparent',
     },
   },
   iconFlat: {
-    strategy: 'degrade',
+    strategy: INPUT_STRATEGY_DEGRADE,
     options: {
       to: 'icon',
     },
   },
   iconFlatBackground: {
-    strategy: 'degrade',
+    strategy: INPUT_STRATEGY_DEGRADE,
     options: {
       to: 'iconBackground',
     },
   },
   iconFlatBleed: {
-    strategy: 'degrade',
+    strategy: INPUT_STRATEGY_DEGRADE,
     options: {
       to: 'iconBleed',
     },
   },
   iconFlatForeground: {
-    strategy: 'composite',
+    strategy: INPUT_STRATEGY_COMPOSITE,
     options: {
       layers: [
         {input: 'iconFlatBleed'},
@@ -86,7 +92,7 @@ module.exports = {
     },
   },
   iconFlatMaskable: {
-    strategy: 'composite',
+    strategy: INPUT_STRATEGY_COMPOSITE,
     options: {
       layers: [
         {input: 'iconFlatBackground'},
@@ -95,7 +101,7 @@ module.exports = {
     },
   },
   iconFlatMasked: {
-    strategy: 'composite',
+    strategy: INPUT_STRATEGY_COMPOSITE,
     options: {
       isMasked: true,
       layers: [
@@ -105,7 +111,7 @@ module.exports = {
     },
   },
   iconForeground: {
-    strategy: 'composite',
+    strategy: INPUT_STRATEGY_COMPOSITE,
     options: {
       layers: [
         {input: 'iconBleed'},
@@ -114,13 +120,13 @@ module.exports = {
     },
   },
   iconMask: {
-    strategy: 'degrade',
+    strategy: INPUT_STRATEGY_DEGRADE,
     options: {
       to: 'iconMaskAndroidCircle',
     },
   },
   iconMaskable: {
-    strategy: 'composite',
+    strategy: INPUT_STRATEGY_COMPOSITE,
     options: {
       layers: [
         {input: 'iconBackground'},
@@ -129,7 +135,7 @@ module.exports = {
     },
   },
   iconMaskableNoPadding: {
-    strategy: 'composite',
+    strategy: INPUT_STRATEGY_COMPOSITE,
     options: {
       layers: [
         {input: 'iconMaskable', style: 'noPaddingIconScale'},
@@ -137,7 +143,7 @@ module.exports = {
     },
   },
   iconMasked: {
-    strategy: 'composite',
+    strategy: INPUT_STRATEGY_COMPOSITE,
     options: {
       isMasked: true,
       layers: [
@@ -147,7 +153,7 @@ module.exports = {
     },
   },
   iconMaskedNoPadding: {
-    strategy: 'composite',
+    strategy: INPUT_STRATEGY_COMPOSITE,
     options: {
       layers: [
         {input: 'iconMasked', style: 'noPaddingIconScale'},
@@ -155,13 +161,13 @@ module.exports = {
     },
   },
   iconSilhouette: {
-    strategy: 'degrade',
+    strategy: INPUT_STRATEGY_DEGRADE,
     options: {
       to: 'iconFlat',
     },
   },
   macosIcns: {
-    strategy: 'composite',
+    strategy: INPUT_STRATEGY_COMPOSITE,
     options: {
       layers: [
         {input: 'iconFlatMasked', style: 'macosIconScale'},
@@ -169,19 +175,20 @@ module.exports = {
     },
   },
   openGraphImage: {
-    strategy: 'degrade',
+    strategy: INPUT_STRATEGY_DEGRADE,
     options: {
       to: 'socialShareImage',
     },
   },
   safariMaskIcon: {
-    strategy: 'degrade',
+    strategy: INPUT_STRATEGY_SVG_TRANSFORM,
     options: {
-      to: 'iconSilhouette',
+      input: 'iconSilhouette',
+      style: 'safariMaskIconScale',
     },
   },
   socialShareImage: {
-    strategy: 'composite',
+    strategy: INPUT_STRATEGY_COMPOSITE,
     options: {
       layers: [
         {input: 'backgroundColor'},
@@ -190,13 +197,13 @@ module.exports = {
     },
   },
   twitterCardImage: {
-    strategy: 'degrade',
+    strategy: INPUT_STRATEGY_DEGRADE,
     options: {
       to: 'socialShareImage',
     },
   },
   webAppIconMaskable: {
-    strategy: 'composite',
+    strategy: INPUT_STRATEGY_COMPOSITE,
     options: {
       layers: [
         {input: 'iconMaskable', style: 'webAppIconMaskableScale'},
@@ -204,7 +211,7 @@ module.exports = {
     },
   },
   webAppIconMasked: {
-    strategy: 'composite',
+    strategy: INPUT_STRATEGY_COMPOSITE,
     options: {
       layers: [
         {input: 'iconMasked', style: 'webAppIconMaskedScale'},
@@ -212,13 +219,13 @@ module.exports = {
     },
   },
   windowsIco: {
-    strategy: 'degrade',
+    strategy: INPUT_STRATEGY_DEGRADE,
     options: {
       to: 'iconMaskedNoPadding',
     },
   },
   windowsTile: {
-    strategy: 'composite',
+    strategy: INPUT_STRATEGY_COMPOSITE,
     options: {
       layers: [
         {input: 'windowsTileIcon', style: 'windowsTileIconScale'},
@@ -226,13 +233,13 @@ module.exports = {
     },
   },
   windowsTileIcon: {
-    strategy: 'degrade',
+    strategy: INPUT_STRATEGY_DEGRADE,
     options: {
       to: 'iconSilhouette',
     },
   },
   windowsTileSmall: {
-    strategy: 'composite',
+    strategy: INPUT_STRATEGY_COMPOSITE,
     options: {
       layers: [
         {input: 'windowsTileIcon', style: 'windowsTileIconSmallScale'},

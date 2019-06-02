@@ -1,0 +1,30 @@
+const {cssifyObject: css} = require('css-in-js-utils')
+
+module.exports = {
+  createSvgTransformer,
+}
+
+function createSvgTransformer (withBrowserPage) {
+  return async function transformSvg (url, style) {
+    return withBrowserPage(async page => {
+      await page.goto(url)
+
+      return page.evaluate(
+        style => {
+          const svg = document.documentElement
+          const childNodes = Array.from(svg.childNodes)
+
+          const wrapper = document.createElementNS('http://www.w3.org/2000/svg', 'g')
+          wrapper.setAttribute('style', style)
+
+          svg.appendChild(wrapper)
+          childNodes.forEach(wrapper.appendChild.bind(wrapper))
+
+          return svg.outerHTML + '\n'
+        },
+
+        css({transformOrigin: 'center', ...style})
+      )
+    })
+  }
+}

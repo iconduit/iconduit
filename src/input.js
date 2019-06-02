@@ -8,6 +8,7 @@ const {
   EXTENSIONS_IMAGE,
   INPUT_STRATEGY_COMPOSITE,
   INPUT_STRATEGY_DEGRADE,
+  INPUT_STRATEGY_SVG_TRANSFORM,
   INPUT_TYPE_DOCUMENT,
   INPUT_TYPE_RENDERABLE,
   INPUT_TYPE_SVG,
@@ -24,7 +25,8 @@ function createInputBuilderFactory (
   defaultInputDir,
   fileSystem,
   readInternalTemplate,
-  readTemplate
+  readTemplate,
+  transformSvg
 ) {
   const {writeFile} = fileSystem
 
@@ -79,6 +81,7 @@ function createInputBuilderFactory (
         switch (strategy) {
           case INPUT_STRATEGY_COMPOSITE: return deriveCompositeSource()
           case INPUT_STRATEGY_DEGRADE: return deriveDegradeSource()
+          case INPUT_STRATEGY_SVG_TRANSFORM: return deriveSvgTransformSource()
         }
 
         throw new Error('Not implemented')
@@ -104,6 +107,21 @@ function createInputBuilderFactory (
         const {options: {to}} = inputDefinition
 
         return buildInput({...request, name: to, stack: subStack})
+      }
+
+      async function deriveSvgTransformSource () {
+        const {options: {input: transformInputName, style}} = inputDefinition
+        const styleDefinition = style === null ? {} : styleDefinitions[style]
+
+        if (!styleDefinition) throw new Error(`Missing definition for style.${style}:\n${renderStack(stack)}`)
+
+        const originalUrl = fileUrl(await buildInput({name: transformInputName, type: INPUT_TYPE_SVG, stack: subStack}))
+        const transformedPath = join(tempPath, `${cacheKey}.transformed.svg`)
+        const transformed = await transformSvg(originalUrl, styleDefinition)
+
+        await writeFile(transformedPath, transformed)
+
+        return transformedPath
       }
     }
 
