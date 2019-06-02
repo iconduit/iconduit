@@ -1,6 +1,6 @@
 const {format} = require('icns-lib')
 
-const {buildFileName} = require('./size.js')
+const {renderSize} = require('./size.js')
 
 const {
   ICNS_512_2X,
@@ -54,7 +54,7 @@ function mapEntriesBySize (entries) {
   const entriesBySize = {}
 
   for (const {content, size} of entries) {
-    entriesBySize[buildFileName('[dipWidth].[pixelRatio]', size)] = content
+    entriesBySize[renderSize('[dipWidth].[pixelRatio]', size)] = content
   }
 
   return entriesBySize

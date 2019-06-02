@@ -1,4 +1,4 @@
-const {buildFileName} = require('./size.js')
+const {renderSize} = require('./size.js')
 const {mimeTypeByPath} = require('./mime.js')
 
 module.exports = {
@@ -65,7 +65,7 @@ function buildWebAppManifestIcons (manifest) {
     const icon = {}
 
     add(icon, 'src', path)
-    add(icon, 'sizes', buildFileName('[dimensions]', size))
+    add(icon, 'sizes', renderSize('[dimensions]', size))
     add(icon, 'type', mimeTypeByPath(path))
 
     icons.push(icon)
@@ -77,7 +77,7 @@ function buildWebAppManifestIcons (manifest) {
     const icon = {}
 
     add(icon, 'src', path)
-    add(icon, 'sizes', buildFileName('[dimensions]', size))
+    add(icon, 'sizes', renderSize('[dimensions]', size))
     add(icon, 'type', mimeTypeByPath(path))
     add(icon, 'purpose', 'maskable')
 

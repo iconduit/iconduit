@@ -1,6 +1,6 @@
 const htmlTag = require('html-tag')
 
-const {buildFileName, resolveSize} = require('./size.js')
+const {renderSize, resolveSize} = require('./size.js')
 const {mimeTypeByPath} = require('./mime.js')
 const {resolveColors} = require('./config.js')
 
@@ -92,8 +92,8 @@ function buildManifestOutput (config, outputs) {
 
       for (const selector of sizes) {
         const {key, ...size} = resolveSize(sizeDefinitions, selector)
-        const htmlSizes = buildFileName('[dimensions]', size)
-        const path = buildFileName(template, size)
+        const htmlSizes = renderSize('[dimensions]', size)
+        const path = renderSize(template, size)
 
         output[outputName][key] = {htmlSizes, path, size, type: mimeTypeByPath(path)}
       }

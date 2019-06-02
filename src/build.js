@@ -2,7 +2,7 @@ const fileUrl = require('file-url')
 const toIco = require('to-ico')
 const {dirname, extname, join, relative} = require('path')
 
-const {buildFileNameSizeMap, resolveSizesForOutputs} = require('./size.js')
+const {groupSizes, resolveSizesForOutputs} = require('./size.js')
 const {buildManifest, buildTags} = require('./manifest.js')
 const {outputNames, selectOutputs, targetNames} = require('./target.js')
 const {toIcns} = require('./icns.js')
@@ -50,7 +50,7 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, mini
 
     async function buildOutput (outputName) {
       const {input: inputName, name: fileNameTemplate} = outputs[outputName]
-      const sizesByFilename = buildFileNameSizeMap(fileNameTemplate, sizesByOutput[outputName])
+      const sizesByFilename = groupSizes(fileNameTemplate, sizesByOutput[outputName])
       const cwdPath = cwd()
 
       for (const filename in sizesByFilename) {

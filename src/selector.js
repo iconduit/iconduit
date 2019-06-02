@@ -1,4 +1,4 @@
-const {buildFileName} = require('./size.js')
+const {renderSize} = require('./size.js')
 
 module.exports = {
   selectAppleTouchStartupMedia,
@@ -35,7 +35,7 @@ module.exports = {
 }
 
 function selectAppleTouchStartupMedia ({output}) {
-  return buildFileName(
+  return renderSize(
     '(device-width: [deviceWidth]px) and ' +
     '(device-height: [deviceHeight]px) and ' +
     '(-webkit-device-pixel-ratio: [pixelRatio]) and ' +
