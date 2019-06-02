@@ -34,7 +34,7 @@ function createFileSystem (env, logger) {
       result = await fn(tempPath)
     } finally {
       if (KEEP_TEMP_DIRS) {
-        logger.debug(`Keeping temporary directory ${tempPath}`)
+        logger.warn(`Keeping temporary directory ${tempPath}`)
       } else {
         await rmfr(tempPath)
       }
