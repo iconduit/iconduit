@@ -27,6 +27,9 @@
   },
   "description": "A build system for web application icon and image assets",
   "displayMode": "standalone",
+  "extra": {
+    "license": "MIT"
+  },
   "iarcRatingId": null,
   "language": "en-US",
   "masks": {

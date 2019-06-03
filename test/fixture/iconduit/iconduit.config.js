@@ -30,5 +30,8 @@ module.exports = () => {
         'appleTouchIconMasked',
       ],
     },
+    extra: {
+      license: 'MIT',
+    },
   }
 }

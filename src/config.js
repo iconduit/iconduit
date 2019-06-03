@@ -56,6 +56,7 @@ function normalize (configOrFn) {
     definitions = {},
     description = null,
     displayMode = 'standalone',
+    extra = {},
     iarcRatingId = null,
     inputs = {},
     language = 'en-US',
@@ -77,6 +78,7 @@ function normalize (configOrFn) {
 
   assertOptionalNonEmptyString(description, 'description')
   assertNonEmptyString(displayMode, 'displayMode')
+  assertObject(extra, 'extra')
   assertOptionalNonEmptyString(iarcRatingId, 'iarcRatingId')
   assertNonEmptyString(language, 'language')
   assertOptionalNonEmptyString(orientation, 'orientation')
@@ -96,6 +98,7 @@ function normalize (configOrFn) {
     definitions: normalizeDefinitions(definitions),
     description,
     displayMode,
+    extra,
     iarcRatingId,
     inputs: normalizeInputs(inputs),
     language,
