@@ -23,6 +23,9 @@ module.exports = {
   selectPrimaryPlayApp,
   selectPrimaryPlayAppId,
   selectPrimaryPlayAppLaunchUrl,
+  selectPrimaryWindowsApp,
+  selectPrimaryWindowsAppId,
+  selectPrimaryWindowsAppLaunchUrl,
   selectThemeColor,
   selectTwitterCardType,
   selectTwitterCardTypeIsApp,
@@ -138,6 +141,22 @@ function selectPrimaryPlayAppId (definitions) {
 
 function selectPrimaryPlayAppLaunchUrl (definitions) {
   const app = selectPrimaryPlayApp(definitions)
+
+  return app && app.launchUrl
+}
+
+function selectPrimaryWindowsApp ({manifest}) {
+  return manifest.applications.native.find(({platform}) => platform === 'windows')
+}
+
+function selectPrimaryWindowsAppId (definitions) {
+  const app = selectPrimaryWindowsApp(definitions)
+
+  return app && app.id
+}
+
+function selectPrimaryWindowsAppLaunchUrl (definitions) {
+  const app = selectPrimaryWindowsApp(definitions)
 
   return app && app.launchUrl
 }

@@ -20,6 +20,9 @@ const {
   selectPrimaryPlayApp,
   selectPrimaryPlayAppId,
   selectPrimaryPlayAppLaunchUrl,
+  selectPrimaryWindowsApp,
+  selectPrimaryWindowsAppId,
+  selectPrimaryWindowsAppLaunchUrl,
   selectThemeColor,
   selectTwitterCardType,
   selectTwitterCardTypeIsApp,
@@ -100,8 +103,112 @@ module.exports = {
       },
     ],
   },
+  appLinks: {
+    graph: [
+      {
+        tag: 'meta',
+        attributes: {
+          property: 'al:android:url',
+          content: selectPrimaryPlayAppLaunchUrl,
+        },
+        predicate: [
+          selectPrimaryPlayAppLaunchUrl,
+        ],
+      },
+      {
+        tag: 'meta',
+        attributes: {
+          property: 'al:android:package',
+          content: selectPrimaryPlayAppId,
+        },
+        predicate: [
+          selectPrimaryPlayAppId,
+        ],
+      },
+      {
+        tag: 'meta',
+        attributes: {
+          property: 'al:android:app_name',
+          content: selectName,
+        },
+        predicate: [
+          selectPrimaryPlayApp,
+        ],
+      },
+      {
+        tag: 'meta',
+        attributes: {
+          property: 'al:ios:url',
+          content: selectPrimaryIosAppLaunchUrl,
+        },
+        predicate: [
+          selectPrimaryIosAppLaunchUrl,
+        ],
+      },
+      {
+        tag: 'meta',
+        attributes: {
+          property: 'al:ios:app_store_id',
+          content: selectPrimaryIosAppId,
+        },
+        predicate: [
+          selectPrimaryIosAppId,
+        ],
+      },
+      {
+        tag: 'meta',
+        attributes: {
+          property: 'al:ios:app_name',
+          content: selectName,
+        },
+        predicate: [
+          selectPrimaryIosApp,
+        ],
+      },
+      {
+        tag: 'meta',
+        attributes: {
+          property: 'al:web:url',
+          content: selectUrl,
+        },
+        predicate: [
+          selectUrl,
+        ],
+      },
+      {
+        tag: 'meta',
+        attributes: {
+          property: 'al:windows:url',
+          content: selectPrimaryWindowsAppLaunchUrl,
+        },
+        predicate: [
+          selectPrimaryWindowsAppLaunchUrl,
+        ],
+      },
+      {
+        tag: 'meta',
+        attributes: {
+          property: 'al:windows:package',
+          content: selectPrimaryWindowsAppId,
+        },
+        predicate: [
+          selectPrimaryWindowsAppId,
+        ],
+      },
+      {
+        tag: 'meta',
+        attributes: {
+          property: 'al:windows:app_name',
+          content: selectName,
+        },
+        predicate: [
+          selectPrimaryWindowsApp,
+        ],
+      },
+    ],
+  },
   facebook: {
-    facebook: [
+    graph: [
       {
         tag: 'meta',
         attributes: {
@@ -175,7 +282,7 @@ module.exports = {
     ],
   },
   openGraph: {
-    openGraph: [
+    graph: [
       {
         tag: 'meta',
         attributes: {
@@ -243,7 +350,7 @@ module.exports = {
     ],
   },
   openGraphImage: {
-    openGraphImage: [
+    graphImage: [
       {
         tag: 'meta',
         attributes: {
@@ -309,7 +416,7 @@ module.exports = {
     ],
   },
   twitter: {
-    twitter: [
+    graph: [
       {
         tag: 'meta',
         attributes: {
@@ -468,7 +575,7 @@ module.exports = {
     ],
   },
   twitterImage: {
-    twitterImage: [
+    graphImage: [
       {
         tag: 'meta',
         attributes: {

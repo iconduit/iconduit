@@ -33,6 +33,25 @@ module.exports = () => {
         'serviceWorker',
       ],
     },
+    applications: {
+      native: [
+        {
+          platform: 'itunes',
+          id: '915056765',
+          launchUrl: 'iconduit://dashboard',
+        },
+        {
+          platform: 'play',
+          id: 'com.google.android.apps.maps',
+          launchUrl: 'https://iconduit.app/dashboard',
+        },
+        {
+          platform: 'windows',
+          id: '9wzdncrdtbvb',
+          launchUrl: 'iconduit://dashboard',
+        },
+      ],
+    },
     extra: {
       license: 'MIT',
     },

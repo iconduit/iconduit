@@ -21,6 +21,7 @@ const {
   OS_WINDOWS,
   WEB_FACEBOOK,
   WEB_GITHUB,
+  WEB_PINTEREST,
   WEB_REDDIT,
   WEB_TWITTER,
 } = require('./constant.js')
@@ -879,7 +880,7 @@ function normalizeTargets (targets) {
     browser = [BROWSER_TARGET_DEFAULTS],
     installer = [INSTALLER_DMG],
     os = [OS_IOS, OS_MACOS, OS_WINDOWS],
-    web = [WEB_FACEBOOK, WEB_GITHUB, WEB_REDDIT, WEB_TWITTER],
+    web = [WEB_FACEBOOK, WEB_GITHUB, WEB_PINTEREST, WEB_REDDIT, WEB_TWITTER],
   } = targets
 
   assertArrayOfNonEmptyStrings(browser, 'targets.browser')

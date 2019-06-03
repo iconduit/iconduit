@@ -93,6 +93,7 @@ module.exports = {
         'openGraphImage',
       ],
       tags: [
+        'appLinks',
         'facebook',
         'openGraph',
       ],
@@ -100,6 +101,11 @@ module.exports = {
     github: {
       outputs: [
         'githubAccountIcon',
+      ],
+    },
+    pinterest: {
+      tags: [
+        'appLinks',
       ],
     },
     reddit: {

@@ -31,6 +31,7 @@ exports.OS_WINDOWS = 'windows'
 
 exports.WEB_FACEBOOK = 'facebook'
 exports.WEB_GITHUB = 'github'
+exports.WEB_PINTEREST = 'pinterest'
 exports.WEB_REDDIT = 'reddit'
 exports.WEB_TWITTER = 'twitter'
 

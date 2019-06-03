@@ -8,14 +8,11 @@ const {
   },
   tag: {
     appleTouchStartup: appleTouchStartupTags = [],
-    facebook: facebookTags = [],
+    graph: graphTags = [],
+    graphImage: graphImageTags = [],
     icon: iconTags = [],
     link: linkTags = [],
     meta: metaTags = [],
-    openGraph: openGraphTags = [],
-    openGraphImage: openGraphImageTags = [],
-    twitter: twitterTags = [],
-    twitterImage: twitterImageTags = [],
   },
 } = manifest
 
@@ -31,11 +28,8 @@ const {
 <% for (const {html} of linkTags) { %><%- `\n  ${html}` %><% } %>
 <% for (const {html} of iconTags) { %><%- `\n  ${html}` %><% } %>
 <% for (const {html} of appleTouchStartupTags) { %><%- `\n  ${html}` %><% } %>
-<% for (const {html} of openGraphTags) { %><%- `\n  ${html}` %><% } %>
-<% for (const {html} of openGraphImageTags) { %><%- `\n  ${html}` %><% } %>
-<% for (const {html} of facebookTags) { %><%- `\n  ${html}` %><% } %>
-<% for (const {html} of twitterTags) { %><%- `\n  ${html}` %><% } %>
-<% for (const {html} of twitterImageTags) { %><%- `\n  ${html}` %><% } %>
+<% for (const {html} of graphTags) { %><%- `\n  ${html}` %><% } %>
+<% for (const {html} of graphImageTags) { %><%- `\n  ${html}` %><% } %>
 
   <!-- iconduit-end -->
 
