@@ -29,6 +29,9 @@ module.exports = () => {
       include: [
         'appleTouchIconMasked',
       ],
+      exclude: [
+        'serviceWorker',
+      ],
     },
     extra: {
       license: 'MIT',

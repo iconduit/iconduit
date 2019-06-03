@@ -685,10 +685,6 @@
       "path": "safari-mask-icon.svg",
       "type": "image/svg+xml"
     },
-    "serviceWorker": {
-      "path": "service-worker.js",
-      "type": "text/javascript"
-    },
     "twitterCardImage": {
       "primary": {
         "htmlSizes": "1200x600",

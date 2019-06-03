@@ -39,9 +39,6 @@
   ],
   "lang": "en-US",
   "name": "Iconduit",
-  "serviceworker": {
-    "src": "service-worker.js"
-  },
   "short_name": "Iconduit",
   "start_url": ".",
   "theme_color": "#D5415C"
