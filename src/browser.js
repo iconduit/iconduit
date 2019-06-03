@@ -6,10 +6,11 @@ module.exports = {
   createBrowserManager,
 }
 
-function createBrowserManager (env) {
+function createBrowserManager (env, isWsl) {
   const {BROWSER_TIMEOUT: envTimeout} = env
 
   let browser, options
+  const launchOptions = isWsl ? {args: ['--no-sandbox']} : {}
   const manager = {run, withPage}
 
   return manager
@@ -63,7 +64,7 @@ function createBrowserManager (env) {
   }
 
   async function initialize () {
-    browser = await puppeteer.launch()
+    browser = await puppeteer.launch(launchOptions)
   }
 
   async function destroy () {

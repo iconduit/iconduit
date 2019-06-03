@@ -1,4 +1,5 @@
 const Bottle = require('bottlejs')
+const isWsl = require('is-wsl')
 const {join} = require('path')
 
 const {createBoundTemplateReader, createTemplateReader} = require('./template.js')
@@ -17,7 +18,7 @@ const {systemClock} = require('./clock.js')
 
 const bottle = new Bottle()
 
-bottle.serviceFactory('browserManager', createBrowserManager, 'env')
+bottle.serviceFactory('browserManager', createBrowserManager, 'env', 'isWsl')
 bottle.serviceFactory(
   'build',
   createBuilder,
@@ -49,6 +50,7 @@ bottle.constant('cwd', process.cwd.bind(process))
 bottle.constant('defaultInputDir', join(__dirname, '../input'))
 bottle.constant('env', process.env)
 bottle.serviceFactory('fileSystem', createFileSystem, 'env', 'logger')
+bottle.constant('isWsl', isWsl)
 bottle.serviceFactory('logger', createLogger, 'env')
 bottle.serviceFactory('minifyImage', createImageMinifier)
 bottle.serviceFactory('readConfig', createConfigReader, 'cwd', 'fileSystem')
