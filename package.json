@@ -28,7 +28,7 @@
     "imagemin": "^6.1.0",
     "imagemin-mozjpeg": "^8.0.0",
     "imagemin-optipng": "^7.0.0",
-    "imagemin-pngquant": "^7.0.0",
+    "imagemin-pngquant": "^8.0.0",
     "is-self-closing": "^1.0.1",
     "json-stable-stringify": "^1.0.1",
     "puppeteer": "^1.15.0",
