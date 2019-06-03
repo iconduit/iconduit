@@ -160,12 +160,23 @@ module.exports = {
       'windowsIco16',
     ],
   },
-  windowsTile: {
+  windowsTileLarge: {
     name: 'windows-tile-[dimensions].png',
-    sizes: ['windowsTileMedium@2x', 'windowsTileLarge@2x', 'windowsTileWide@2x'],
+    sizes: ['windowsTileLarge@2x'],
+  },
+  windowsTileMedium: {
+    name: 'windows-tile-[dimensions].png',
+    sizes: ['windowsTileMedium@2x'],
+    tags: [
+      'msapplicationTileImage',
+    ],
   },
   windowsTileSmall: {
     name: 'windows-tile-[dimensions].png',
     sizes: ['windowsTileSmall@2x'],
+  },
+  windowsTileWide: {
+    name: 'windows-tile-[dimensions].png',
+    sizes: ['windowsTileWide@2x'],
   },
 }

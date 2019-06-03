@@ -3,13 +3,17 @@
 const {
   color,
   output: {
-    windowsTile: {
-      'large@2x': {path: large} = {},
-      'medium@2x': {path: medium} = {},
-      'wide@2x': {path: wide} = {},
-    } = {},
     windowsTileSmall: {
       'small@2x': {path: small} = {},
+    } = {},
+    windowsTileMedium: {
+      'medium@2x': {path: medium} = {},
+    } = {},
+    windowsTileLarge: {
+      'large@2x': {path: large} = {},
+    } = {},
+    windowsTileWide: {
+      'wide@2x': {path: wide} = {},
     } = {},
   },
 } = manifest

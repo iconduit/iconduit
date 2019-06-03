@@ -225,7 +225,13 @@ module.exports = {
       to: 'iconMaskedNoPadding',
     },
   },
-  windowsTile: {
+  windowsTileIcon: {
+    strategy: INPUT_STRATEGY_DEGRADE,
+    options: {
+      to: 'iconSilhouette',
+    },
+  },
+  windowsTileLarge: {
     strategy: INPUT_STRATEGY_COMPOSITE,
     options: {
       layers: [
@@ -233,10 +239,12 @@ module.exports = {
       ],
     },
   },
-  windowsTileIcon: {
-    strategy: INPUT_STRATEGY_DEGRADE,
+  windowsTileMedium: {
+    strategy: INPUT_STRATEGY_COMPOSITE,
     options: {
-      to: 'iconSilhouette',
+      layers: [
+        {input: 'windowsTileIcon', style: 'windowsTileIconScale'},
+      ],
     },
   },
   windowsTileSmall: {
@@ -244,6 +252,14 @@ module.exports = {
     options: {
       layers: [
         {input: 'windowsTileIcon', style: 'windowsTileIconSmallScale'},
+      ],
+    },
+  },
+  windowsTileWide: {
+    strategy: INPUT_STRATEGY_COMPOSITE,
+    options: {
+      layers: [
+        {input: 'windowsTileIcon', style: 'windowsTileIconScale'},
       ],
     },
   },

@@ -27,6 +27,7 @@ module.exports = {
   selectPrimaryWindowsAppId,
   selectPrimaryWindowsAppLaunchUrl,
   selectThemeColor,
+  selectTileColor,
   selectTwitterCardType,
   selectTwitterCardTypeIsApp,
   selectTwitterCardTypeIsSummary,
@@ -163,6 +164,10 @@ function selectPrimaryWindowsAppLaunchUrl (definitions) {
 
 function selectThemeColor ({manifest}) {
   return manifest.color.theme
+}
+
+function selectTileColor ({manifest}) {
+  return manifest.color.tile
 }
 
 function selectTwitterCardType ({manifest}) {

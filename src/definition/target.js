@@ -29,18 +29,26 @@ module.exports = {
     edge: {
       outputs: [
         'browserconfigXml',
-        'windowsTile',
+        'windowsTileLarge',
+        'windowsTileMedium',
         'windowsTileSmall',
+        'windowsTileWide',
       ],
-
+      tags: [
+        'msapplicationTileColor',
+      ],
     },
     ie: {
       outputs: [
         'browserconfigXml',
-        'windowsTile',
+        'windowsTileLarge',
+        'windowsTileMedium',
         'windowsTileSmall',
+        'windowsTileWide',
       ],
-
+      tags: [
+        'msapplicationTileColor',
+      ],
     },
     ios_saf: {
       outputs: [
@@ -54,7 +62,6 @@ module.exports = {
       outputs: [
         'safariMaskIcon',
       ],
-
     },
   },
   installer: {
@@ -62,7 +69,6 @@ module.exports = {
       outputs: [
         'dmgBackground',
       ],
-
     },
   },
   os: {
@@ -71,19 +77,16 @@ module.exports = {
         'appleTouchIcon',
         'appleTouchStartup',
       ],
-
     },
     macos: {
       outputs: [
         'macosIcns',
       ],
-
     },
     windows: {
       outputs: [
         'windowsIco',
       ],
-
     },
   },
   web: {

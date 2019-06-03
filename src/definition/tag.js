@@ -24,6 +24,7 @@ const {
   selectPrimaryWindowsAppId,
   selectPrimaryWindowsAppLaunchUrl,
   selectThemeColor,
+  selectTileColor,
   selectTwitterCardType,
   selectTwitterCardTypeIsApp,
   selectTwitterCardTypeIsSummary,
@@ -269,6 +270,30 @@ module.exports = {
       },
     ],
   },
+  msapplicationTileColor: {
+    meta: [
+      {
+        tag: 'meta',
+        attributes: {
+          name: 'msapplication-TileColor',
+          content: selectTileColor,
+        },
+        sortWeight: 5000,
+      },
+    ],
+  },
+  msapplicationTileImage: {
+    meta: [
+      {
+        tag: 'meta',
+        attributes: {
+          name: 'msapplication-TileImage',
+          content: selectOutputPath,
+        },
+        sortWeight: 5100,
+      },
+    ],
+  },
   msapplicationConfig: {
     meta: [
       {
@@ -277,7 +302,7 @@ module.exports = {
           name: 'msapplication-config',
           content: selectOutputPath,
         },
-        sortWeight: 5000,
+        sortWeight: 5200,
       },
     ],
   },
