@@ -14,6 +14,7 @@ const {
   selectOutputUrl,
   selectOutputWidth,
   selectPrimaryIosApp,
+  selectPrimaryIosAppBannerString,
   selectPrimaryIosAppCountry,
   selectPrimaryIosAppId,
   selectPrimaryIosAppLaunchUrl,
@@ -36,6 +37,20 @@ const {
 } = require('../selector.js')
 
 module.exports = {
+  appleItunesApp: {
+    graph: [
+      {
+        tag: 'meta',
+        attributes: {
+          name: 'apple-itunes-app',
+          content: selectPrimaryIosAppBannerString,
+        },
+        predicate: [
+          selectPrimaryIosAppBannerString,
+        ],
+      },
+    ],
+  },
   appleMobile: {
     meta: [
       {

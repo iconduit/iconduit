@@ -55,6 +55,7 @@ module.exports = {
         'safariMaskIcon',
       ],
       tags: [
+        'appleItunesApp',
         'appleMobile',
       ],
     },

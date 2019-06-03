@@ -17,6 +17,7 @@ module.exports = {
   selectOutputUrl,
   selectOutputWidth,
   selectPrimaryIosApp,
+  selectPrimaryIosAppBannerString,
   selectPrimaryIosAppCountry,
   selectPrimaryIosAppId,
   selectPrimaryIosAppLaunchUrl,
@@ -110,6 +111,15 @@ function selectOutputWidth ({output}) {
 
 function selectPrimaryIosApp ({manifest}) {
   return manifest.applications.native.find(({platform}) => platform === 'itunes')
+}
+
+function selectPrimaryIosAppBannerString (definitions) {
+  const id = selectPrimaryIosAppId(definitions)
+  const url = selectPrimaryIosAppLaunchUrl(definitions)
+
+  if (!id) return undefined
+
+  return url ? `app-id=${id}, app-argument=${url}` : `app-id=${id}`
 }
 
 function selectPrimaryIosAppCountry (definitions) {

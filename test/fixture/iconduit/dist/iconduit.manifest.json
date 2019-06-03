@@ -1301,6 +1301,18 @@
     "graph": [
       {
         "attributes": {
+          "content": "app-id=915056765, app-argument=iconduit://dashboard",
+          "name": "apple-itunes-app"
+        },
+        "children": [
+        ],
+        "html": "<meta name=\"apple-itunes-app\" content=\"app-id=915056765, app-argument=iconduit://dashboard\">",
+        "isSelfClosing": true,
+        "sortWeight": 0,
+        "tag": "meta"
+      },
+      {
+        "attributes": {
           "content": "https://iconduit.app/dashboard",
           "property": "al:android:url"
         },
