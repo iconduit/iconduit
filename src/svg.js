@@ -14,16 +14,17 @@ function createSvgTransformer (withBrowserPage) {
       return page.evaluate(
         ({maskColor, style}) => {
           const svg = document.documentElement
-          const childNodes = Array.from(svg.childNodes)
+          const createElement = document.createElementNS.bind(document, 'http://www.w3.org/2000/svg')
 
-          const wrapper = document.createElementNS('http://www.w3.org/2000/svg', 'g')
+          const wrapper = createElement('g')
           wrapper.setAttribute('style', style)
 
+          const childNodes = Array.from(svg.childNodes)
           svg.appendChild(wrapper)
           childNodes.forEach(wrapper.appendChild.bind(wrapper))
 
           if (maskColor) {
-            const maskStyle = document.createElementNS('http://www.w3.org/2000/svg', 'style')
+            const maskStyle = createElement('style')
             maskStyle.appendChild(document.createTextNode(`*{stroke:none!important;fill:${maskColor}!important}`))
 
             svg.appendChild(maskStyle)
