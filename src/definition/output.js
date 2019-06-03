@@ -162,10 +162,10 @@ module.exports = {
   },
   windowsTile: {
     name: 'windows-tile-[dimensions].png',
-    sizes: ['windowsTileMedium', 'windowsTileLarge', 'windowsTileWide'],
+    sizes: ['windowsTileMedium@2x', 'windowsTileLarge@2x', 'windowsTileWide@2x'],
   },
   windowsTileSmall: {
     name: 'windows-tile-[dimensions].png',
-    sizes: ['windowsTileSmall'],
+    sizes: ['windowsTileSmall@2x'],
   },
 }

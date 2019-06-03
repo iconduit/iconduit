@@ -966,61 +966,61 @@
       }
     },
     "windowsTile": {
-      "large": {
-        "htmlSizes": "310x310",
-        "path": "windows-tile-310x310.png",
+      "large@2x": {
+        "htmlSizes": "620x620",
+        "path": "windows-tile-620x620.png",
         "size": {
           "deviceHeight": null,
           "deviceWidth": null,
-          "height": 310,
+          "height": 620,
           "orientation": null,
           "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 310
+          "pixelRatio": 2,
+          "width": 620
         },
         "type": "image/png"
       },
-      "medium": {
-        "htmlSizes": "150x150",
-        "path": "windows-tile-150x150.png",
+      "medium@2x": {
+        "htmlSizes": "300x300",
+        "path": "windows-tile-300x300.png",
         "size": {
           "deviceHeight": null,
           "deviceWidth": null,
-          "height": 150,
+          "height": 300,
           "orientation": null,
           "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 150
+          "pixelRatio": 2,
+          "width": 300
         },
         "type": "image/png"
       },
-      "wide": {
-        "htmlSizes": "310x150",
-        "path": "windows-tile-310x150.png",
+      "wide@2x": {
+        "htmlSizes": "620x300",
+        "path": "windows-tile-620x300.png",
         "size": {
           "deviceHeight": null,
           "deviceWidth": null,
-          "height": 150,
+          "height": 300,
           "orientation": null,
           "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 310
+          "pixelRatio": 2,
+          "width": 620
         },
         "type": "image/png"
       }
     },
     "windowsTileSmall": {
-      "small": {
-        "htmlSizes": "70x70",
-        "path": "windows-tile-70x70.png",
+      "small@2x": {
+        "htmlSizes": "140x140",
+        "path": "windows-tile-140x140.png",
         "size": {
           "deviceHeight": null,
           "deviceWidth": null,
-          "height": 70,
+          "height": 140,
           "orientation": null,
           "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 70
+          "pixelRatio": 2,
+          "width": 140
         },
         "type": "image/png"
       }
