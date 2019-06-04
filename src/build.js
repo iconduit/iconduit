@@ -2,8 +2,9 @@ const fileUrl = require('file-url')
 const toIco = require('to-ico')
 const {dirname, extname, join, relative} = require('path')
 
-const {groupSizes, resolveSizesForOutputs} = require('./size.js')
 const {buildManifest, buildTags} = require('./manifest.js')
+const {formatList} = require('./logging.js')
+const {groupSizes, resolveSizesForOutputs} = require('./size.js')
 const {outputNames, selectOutputs, targetNames} = require('./target.js')
 const {toIcns} = require('./icns.js')
 
@@ -26,8 +27,6 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, mini
   const {now} = clock
   const {mkdir, readFile, writeFile} = fileSystem
 
-  const listFormatter = new Intl.ListFormat('en', {type: 'conjunction'})
-
   return async function build (config, options) {
     const startTime = now()
     const {configPath, outputPath} = options
@@ -40,8 +39,8 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, mini
     const buildInput = createInputBuilder(config, options)
 
     logger.info(`Building ${configPath}`)
-    logger.info(`Targets: ${listFormatter.format(targetNames(config))}`)
-    logger.info(`Selected outputs: ${listFormatter.format(outputNames(outputs))}`)
+    logger.info(`Targets: ${formatList(targetNames(config))}`)
+    logger.info(`Selected outputs: ${formatList(outputNames(outputs))}`)
 
     await Promise.all(Object.keys(outputs).map(buildOutput))
 

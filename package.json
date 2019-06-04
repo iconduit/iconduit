@@ -31,7 +31,7 @@
     "imagemin-pngquant": "^8.0.0",
     "is-self-closing": "^1.0.1",
     "is-wsl": "^2.0.0",
-    "json-stable-stringify": "^1.0.1",
+    "json-stable-stringify-without-jsonify": "^1.0.1",
     "puppeteer": "^1.15.0",
     "resolve": "^1.11.0",
     "rmfr": "^2.0.0",

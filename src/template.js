@@ -1,4 +1,4 @@
-const stringify = require('json-stable-stringify')
+const stringify = require('json-stable-stringify-without-jsonify')
 const {compile} = require('ejs')
 const {cssifyObject: css} = require('css-in-js-utils')
 const {join, resolve} = require('path')
