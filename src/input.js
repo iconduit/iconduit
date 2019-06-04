@@ -1,4 +1,5 @@
 const fileUrl = require('file-url')
+const flat = require('array.prototype.flat')
 const {dirname, extname, join} = require('path')
 
 const {resolveColors} = require('./config.js')
@@ -185,7 +186,7 @@ function createInputBuilderFactory (
           return group.layers
         }))
 
-        return {isMasked: isGroupMasked, layers: layers.flat()}
+        return {isMasked: isGroupMasked, layers: flat(layers)}
       }
 
       async function buildDegradeInputGroup () {
