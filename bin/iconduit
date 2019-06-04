@@ -4,10 +4,12 @@ const {buildConfigs, logger} = require('../src/services.js')
 
 async function main () {
   const [,, ...configPaths] = process.argv
+  const {OUTPUT_PATH: outputPath} = process.env
 
   if (configPaths.length < 1) return die('Usage: iconduit <config-path>...')
+  if (outputPath && configPaths.length > 1) return die('Error: OUTPUT_PATH cannot be used with multiple configs')
 
-  await buildConfigs(...configPaths)
+  await buildConfigs({outputPath}, ...configPaths)
 }
 
 main().catch(({stack}) => { die(stack) })

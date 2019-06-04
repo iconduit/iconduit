@@ -156,14 +156,28 @@ function createConfigBuilder (browserManager, build, fileSystem, readConfig) {
   const {withTempDir} = fileSystem
   const {run} = browserManager
 
-  return async function buildConfigs (...inputPaths) {
+  return async function buildConfigs (options, ...inputPaths) {
+    const {
+      outputPath: customOutputPath,
+    } = options
+
     await run(async () => Promise.all(inputPaths.map(buildConfig)))
 
     async function buildConfig (inputPath) {
-      const {config, configPath, outputPath, userInputDir} = await readConfig(inputPath)
+      const {
+        config,
+        configPath,
+        outputPath: configOutputPath,
+        userInputDir,
+      } = await readConfig(inputPath)
 
       await withTempDir(async tempPath => {
-        await build(config, {configPath, outputPath, tempPath, userInputDir})
+        await build(config, {
+          configPath,
+          outputPath: customOutputPath || configOutputPath,
+          tempPath,
+          userInputDir,
+        })
       })
     }
   }
