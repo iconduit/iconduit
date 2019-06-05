@@ -6,11 +6,11 @@ module.exports = {
   createBrowserManager,
 }
 
-function createBrowserManager (env, isWsl) {
+function createBrowserManager (env) {
   const {BROWSER_TIMEOUT: envTimeout} = env
 
   let browser, options
-  const launchOptions = isWsl ? {args: ['--no-sandbox']} : {}
+  const launchOptions = {args: ['--no-sandbox', '--disable-setuid-sandbox']}
   const manager = {run, withPage}
 
   return manager
