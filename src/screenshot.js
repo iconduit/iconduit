@@ -5,16 +5,18 @@ module.exports = {
   createScreenshotFactory,
 }
 
-function createScreenshotFactory (withBrowserPage) {
+function createScreenshotFactory (retryOperation, withBrowserPage) {
   return async function screenshot (url, size, options = {}) {
     const {type = IMAGE_TYPE_PNG} = options
     const sizeViewport = viewport(size)
 
     return withBrowserPage(async page => {
-      await page.setViewport(sizeViewport)
-      await page.goto(url)
+      await retryOperation(page.setViewport.bind(page, sizeViewport))
+      await retryOperation(page.goto.bind(page, url))
 
-      return page.screenshot({encoding: 'binary', fullPage: false, omitBackground: true, type})
+      return retryOperation(
+        page.screenshot.bind(page, {encoding: 'binary', fullPage: false, omitBackground: true, type})
+      )
     })
   }
 }

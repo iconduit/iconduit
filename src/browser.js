@@ -11,23 +11,16 @@ const launchOptions = {
   pipe: true,
 }
 
-function createBrowserManager (env) {
+function createBrowserManager (env, retryOperation) {
   const {BROWSER_TIMEOUT: envTimeout} = env
+  const timeout = envTimeout ? parseInt(envTimeout) : DEFAULT_BROWSER_TIMEOUT
 
-  let browser, options
+  let browser
   const manager = {run, withPage}
 
   return manager
 
-  async function run (fn, opt = {}) {
-    const {
-      timeout,
-    } = opt
-
-    options = {
-      timeout: chooseTimeout(timeout, envTimeout),
-    }
-
+  async function run (fn) {
     await initialize()
     let result
 
@@ -43,35 +36,24 @@ function createBrowserManager (env) {
   async function withPage (fn) {
     if (!browser) throw new Error('Browser manager not started')
 
-    const page = await browser.newPage()
+    const page = await retryOperation(browser.newPage.bind(browser))
     let result
 
     try {
-      page.setDefaultTimeout(options.timeout)
+      page.setDefaultTimeout(timeout)
       result = await fn(page)
     } finally {
-      await page.close()
+      await retryOperation(page.close.bind(page))
     }
 
     return result
   }
 
-  function chooseTimeout (...timeouts) {
-    for (const timeout of timeouts) {
-      const type = typeof timeout
-
-      if (type === 'number') return timeout
-      if (type === 'string' && timeout) return parseInt(timeout)
-    }
-
-    return DEFAULT_BROWSER_TIMEOUT
-  }
-
   async function initialize () {
-    browser = await puppeteer.launch(launchOptions)
+    browser = await retryOperation(puppeteer.launch.bind(puppeteer, launchOptions))
   }
 
   async function destroy () {
-    await browser.close()
+    await retryOperation(browser.close.bind(browser))
   }
 }

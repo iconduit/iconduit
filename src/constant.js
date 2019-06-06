@@ -53,3 +53,4 @@ exports.ICNS_16_2X = 'ic11'
 exports.ICNS_16_1X = 'icp4'
 
 exports.DEFAULT_BROWSER_TIMEOUT = 30000
+exports.DEFAULT_OPERATION_TIMEOUT = 300000

@@ -11,13 +11,14 @@ const {createImageMinifier} = require('./image.js')
 const {createInputBuilderFactory} = require('./input.js')
 const {createInputResolverFactory} = require('./module.js')
 const {createLogger} = require('./logging.js')
+const {createOperationRunner} = require('./operation.js')
 const {createScreenshotFactory} = require('./screenshot.js')
 const {createSvgTransformer} = require('./svg.js')
 const {systemClock} = require('./clock.js')
 
 const bottle = new Bottle()
 
-bottle.serviceFactory('browserManager', createBrowserManager, 'env')
+bottle.serviceFactory('browserManager', createBrowserManager, 'env', 'retryOperation')
 bottle.serviceFactory(
   'build',
   createBuilder,
@@ -54,7 +55,8 @@ bottle.serviceFactory('minifyImage', createImageMinifier)
 bottle.serviceFactory('readConfig', createConfigReader, 'cwd', 'fileSystem')
 bottle.serviceFactory('readInternalTemplate', createBoundTemplateReader, 'fileSystem', 'cwd', 'templateDir')
 bottle.serviceFactory('readTemplate', createTemplateReader, 'fileSystem', 'cwd')
-bottle.serviceFactory('screenshot', createScreenshotFactory, 'withBrowserPage')
+bottle.serviceFactory('retryOperation', createOperationRunner, 'clock', 'env', 'logger')
+bottle.serviceFactory('screenshot', createScreenshotFactory, 'retryOperation', 'withBrowserPage')
 bottle.constant('templateDir', join(__dirname, '../template'))
 bottle.serviceFactory('transformSvg', createSvgTransformer, 'withBrowserPage')
 bottle.factory('withBrowserPage', ({browserManager}) => browserManager.withPage.bind(browserManager))
