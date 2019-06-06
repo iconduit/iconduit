@@ -11,7 +11,7 @@ const launchOptions = {
   pipe: true,
 }
 
-function createBrowserManager (env, retryOperation) {
+function createBrowserManager (env, logger, retryOperation) {
   const {BROWSER_CONCURRENCY: envConcurrency, BROWSER_TIMEOUT: envTimeout} = env
 
   const clusterOptions = {
@@ -20,6 +20,8 @@ function createBrowserManager (env, retryOperation) {
     puppeteerOptions: launchOptions,
     timeout: envTimeout ? parseInt(envTimeout) : DEFAULT_BROWSER_TIMEOUT,
   }
+
+  logger.info(`Browser concurrency is ${clusterOptions.maxConcurrency}`)
 
   let cluster
   const manager = {run, withPage}
