@@ -6,11 +6,15 @@ module.exports = {
   createBrowserManager,
 }
 
+const launchOptions = {
+  args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  pipe: true,
+}
+
 function createBrowserManager (env) {
   const {BROWSER_TIMEOUT: envTimeout} = env
 
   let browser, options
-  const launchOptions = {args: ['--no-sandbox', '--disable-setuid-sandbox']}
   const manager = {run, withPage}
 
   return manager
