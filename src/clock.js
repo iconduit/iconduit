@@ -1,5 +1,7 @@
 const systemClock = {
+  clearTimeout,
   now,
+  setTimeout,
   withTimeout,
 }
 
@@ -19,10 +21,10 @@ function withTimeout (delay, fn) {
       reject(new Error('Operation timed out'))
     }
 
-    const timeoutId = setTimeout(rejectTimeout, delay)
+    const timeoutId = systemClock.setTimeout(rejectTimeout, delay)
 
     resolveTimeout = () => {
-      clearTimeout(timeoutId)
+      systemClock.clearTimeout(timeoutId)
       resolve()
     }
   })

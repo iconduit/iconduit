@@ -11,12 +11,12 @@ function createScreenshotFactory (retryOperation, withBrowserPage) {
     const sizeViewport = viewport(size)
 
     return withBrowserPage(async page => {
-      await retryOperation(page.setViewport.bind(page, sizeViewport))
-      await retryOperation(page.goto.bind(page, url))
+      await retryOperation(async function pageSetViewport () { return page.setViewport(sizeViewport) })
+      await retryOperation(async function pageGoto () { return page.goto(url) })
 
-      return retryOperation(
-        page.screenshot.bind(page, {encoding: 'binary', fullPage: false, omitBackground: true, type})
-      )
+      return retryOperation(async function pageScreenshot () {
+        return page.screenshot({encoding: 'binary', fullPage: false, omitBackground: true, type})
+      })
     })
   }
 }

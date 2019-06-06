@@ -36,24 +36,24 @@ function createBrowserManager (env, retryOperation) {
   async function withPage (fn) {
     if (!browser) throw new Error('Browser manager not started')
 
-    const page = await retryOperation(browser.newPage.bind(browser))
+    const page = await retryOperation(async function browserNewPage () { return browser.newPage() })
     let result
 
     try {
       page.setDefaultTimeout(timeout)
       result = await fn(page)
     } finally {
-      await retryOperation(page.close.bind(page))
+      await retryOperation(async function pageClose () { return page.close() })
     }
 
     return result
   }
 
   async function initialize () {
-    browser = await retryOperation(puppeteer.launch.bind(puppeteer, launchOptions))
+    browser = await retryOperation(async function puppeteerLaunch () { return puppeteer.launch(launchOptions) })
   }
 
   async function destroy () {
-    await retryOperation(browser.close.bind(browser))
+    await retryOperation(async function browserClose () { return browser.close() })
   }
 }
