@@ -1,6 +1,6 @@
-const puppeteer = require('puppeteer')
+const {Cluster} = require('puppeteer-cluster')
 
-const {DEFAULT_BROWSER_TIMEOUT} = require('./constant.js')
+const {DEFAULT_BROWSER_CONCURRENCY, DEFAULT_BROWSER_TIMEOUT} = require('./constant.js')
 
 module.exports = {
   createBrowserManager,
@@ -12,10 +12,16 @@ const launchOptions = {
 }
 
 function createBrowserManager (env, retryOperation) {
-  const {BROWSER_TIMEOUT: envTimeout} = env
-  const timeout = envTimeout ? parseInt(envTimeout) : DEFAULT_BROWSER_TIMEOUT
+  const {BROWSER_CONCURRENCY: envConcurrency, BROWSER_TIMEOUT: envTimeout} = env
 
-  let browser
+  const clusterOptions = {
+    concurrency: Cluster.CONCURRENCY_PAGE,
+    maxConcurrency: envConcurrency ? parseInt(envConcurrency) : DEFAULT_BROWSER_CONCURRENCY,
+    puppeteerOptions: launchOptions,
+    timeout: envTimeout ? parseInt(envTimeout) : DEFAULT_BROWSER_TIMEOUT,
+  }
+
+  let cluster
   const manager = {run, withPage}
 
   return manager
@@ -25,7 +31,7 @@ function createBrowserManager (env, retryOperation) {
     let result
 
     try {
-      result = await fn(browser)
+      result = await fn()
     } finally {
       await destroy()
     }
@@ -33,27 +39,18 @@ function createBrowserManager (env, retryOperation) {
     return result
   }
 
-  async function withPage (fn) {
-    if (!browser) throw new Error('Browser manager not started')
+  function withPage (fn) {
+    if (!cluster) throw new Error('Browser manager not started')
 
-    const page = await retryOperation(async function browserNewPage () { return browser.newPage() })
-    let result
-
-    try {
-      page.setDefaultTimeout(timeout)
-      result = await fn(page)
-    } finally {
-      await retryOperation(async function pageClose () { return page.close() })
-    }
-
-    return result
+    return retryOperation(async function clusterExecute () { return cluster.execute(({page}) => fn(page)) })
   }
 
   async function initialize () {
-    browser = await retryOperation(async function puppeteerLaunch () { return puppeteer.launch(launchOptions) })
+    cluster = await Cluster.launch(clusterOptions)
   }
 
   async function destroy () {
-    await retryOperation(async function browserClose () { return browser.close() })
+    await cluster.idle()
+    await cluster.close()
   }
 }

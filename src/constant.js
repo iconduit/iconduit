@@ -52,6 +52,7 @@ exports.ICNS_32_1X = 'icp5'
 exports.ICNS_16_2X = 'ic11'
 exports.ICNS_16_1X = 'icp4'
 
+exports.DEFAULT_BROWSER_CONCURRENCY = 4
 exports.DEFAULT_BROWSER_TIMEOUT = 30000
 
 exports.DEFAULT_OPERATION_SLEEP = 100
