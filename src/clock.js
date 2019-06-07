@@ -14,10 +14,13 @@ function now () {
 }
 
 function withTimeout (delay, fn) {
+  const status = {isTimeout: false}
   let resolveTimeout
 
   const timeout = new Promise((resolve, reject) => {
     function rejectTimeout () {
+      status.isTimeout = true
+
       const error = new Error(`Operation ${fn.name || '(anonymous)'} timed out`)
       error.isTimeout = true
 
@@ -32,7 +35,7 @@ function withTimeout (delay, fn) {
     }
   })
 
-  const operation = fn()
+  const operation = fn(status)
   operation.catch(() => {}).then(resolveTimeout)
 
   return Promise.race([timeout, operation])

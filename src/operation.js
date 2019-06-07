@@ -14,11 +14,11 @@ function createOperationRunner (clock, env, logger) {
     const operation = fn.name || '(anonymous)'
 
     try {
-      return await withTimeout(timeout, async () => {
+      return await withTimeout(timeout, async status => {
         let shouldContinue = true
         let result
 
-        while (shouldContinue) {
+        while (shouldContinue && !status.isTimeout) {
           try {
             result = await fn()
             shouldContinue = false
