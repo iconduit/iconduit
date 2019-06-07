@@ -6,36 +6,41 @@ module.exports = {
   createBrowserManager,
 }
 
-const launchOptions = {
-  args: ['--no-sandbox', '--disable-setuid-sandbox'],
-  pipe: true,
-}
-
 function createBrowserManager (env, logger, retryOperation) {
   const {BROWSER_CONCURRENCY: envConcurrency, BROWSER_TIMEOUT: envTimeout} = env
+
+  const puppeteerOptions = {
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    pipe: true,
+  }
 
   const clusterOptions = {
     concurrency: Cluster.CONCURRENCY_PAGE,
     maxConcurrency: envConcurrency ? parseInt(envConcurrency) : DEFAULT_BROWSER_CONCURRENCY,
-    puppeteerOptions: launchOptions,
+    puppeteerOptions,
     timeout: envTimeout ? parseInt(envTimeout) : DEFAULT_BROWSER_TIMEOUT,
   }
 
-  logger.info(`Browser concurrency is ${clusterOptions.maxConcurrency}`)
+  logger.info(`Concurrency is currently set to ${clusterOptions.maxConcurrency}`)
 
-  let cluster
+  let cluster = null
   const manager = {run, withPage}
 
   return manager
 
   async function run (fn) {
-    await initialize()
+    if (cluster) throw new Error('Browser manager already started')
+
+    cluster = await Cluster.launch(clusterOptions)
     let result
 
     try {
       result = await fn()
     } finally {
-      await destroy()
+      await cluster.idle()
+      await cluster.close()
+
+      cluster = null
     }
 
     return result
@@ -45,14 +50,5 @@ function createBrowserManager (env, logger, retryOperation) {
     if (!cluster) throw new Error('Browser manager not started')
 
     return retryOperation(async function clusterExecute () { return cluster.execute(({page}) => fn(page)) })
-  }
-
-  async function initialize () {
-    cluster = await Cluster.launch(clusterOptions)
-  }
-
-  async function destroy () {
-    await cluster.idle()
-    await cluster.close()
   }
 }

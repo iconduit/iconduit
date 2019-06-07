@@ -1,4 +1,4 @@
-const {DEFAULT_OPERATION_SLEEP, DEFAULT_OPERATION_TIMEOUT} = require('./constant.js')
+const {DEFAULT_OPERATION_DELAY, DEFAULT_OPERATION_TIMEOUT} = require('./constant.js')
 
 module.exports = {
   createOperationRunner,
@@ -6,9 +6,9 @@ module.exports = {
 
 function createOperationRunner (clock, env, logger) {
   const {setTimeout, withTimeout} = clock
-  const {OPERATION_SLEEP: envSleep, OPERATION_TIMEOUT: envTimeout} = env
+  const {OPERATION_DELAY: envDelay, OPERATION_TIMEOUT: envTimeout} = env
   const timeout = envTimeout ? parseInt(envTimeout) : DEFAULT_OPERATION_TIMEOUT
-  const sleep = envSleep ? parseInt(envSleep) : DEFAULT_OPERATION_SLEEP
+  const delay = envDelay ? parseInt(envDelay) : DEFAULT_OPERATION_DELAY
 
   return async function retryOperation (fn) {
     return withTimeout(timeout, async () => {
@@ -24,7 +24,7 @@ function createOperationRunner (clock, env, logger) {
           shouldContinue = true
         }
 
-        await new Promise(resolve => setTimeout(resolve, sleep))
+        await new Promise(resolve => setTimeout(resolve, delay))
       }
 
       return result
