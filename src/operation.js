@@ -11,23 +11,31 @@ function createOperationRunner (clock, env, logger) {
   const delay = envDelay ? parseInt(envDelay) : DEFAULT_OPERATION_DELAY
 
   return async function retryOperation (fn) {
-    return withTimeout(timeout, async () => {
-      let shouldContinue = true
-      let result
+    const operation = fn.name || '(anonymous)'
 
-      while (shouldContinue) {
-        try {
-          result = await fn()
-          shouldContinue = false
-        } catch (error) {
-          logger.warn(`Retrying operation ${fn.name || '(anonymous)'}: ${error.message}`)
-          shouldContinue = true
+    try {
+      return await withTimeout(timeout, async () => {
+        let shouldContinue = true
+        let result
+
+        while (shouldContinue) {
+          try {
+            result = await fn()
+            shouldContinue = false
+          } catch (error) {
+            logger.warn(`Retrying operation ${operation}: ${error.message}`)
+            shouldContinue = true
+          }
+
+          await new Promise(resolve => setTimeout(resolve, delay))
         }
 
-        await new Promise(resolve => setTimeout(resolve, delay))
-      }
+        return result
+      })
+    } catch (error) {
+      if (!error.isTimeout) throw error
 
-      return result
-    })
+      throw new Error(`Operation ${operation} timed out`)
+    }
   }
 }

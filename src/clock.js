@@ -18,7 +18,10 @@ function withTimeout (delay, fn) {
 
   const timeout = new Promise((resolve, reject) => {
     function rejectTimeout () {
-      reject(new Error('Operation timed out'))
+      const error = new Error(`Operation ${fn.name || '(anonymous)'} timed out`)
+      error.isTimeout = true
+
+      reject(error)
     }
 
     const timeoutId = systemClock.setTimeout(rejectTimeout, delay)
