@@ -19,22 +19,6 @@ exports.IMAGE_TYPE_SVG = 'svg'
 
 exports.TEMPLATE_COMPOSITE = 'composite.html'
 
-exports.DEFAULT_MASK = 'iconMask'
-
-exports.BROWSER_TARGET_DEFAULTS = 'defaults'
-
-exports.INSTALLER_DMG = 'dmg'
-
-exports.OS_IOS = 'ios'
-exports.OS_MACOS = 'macos'
-exports.OS_WINDOWS = 'windows'
-
-exports.WEB_FACEBOOK = 'facebook'
-exports.WEB_GITHUB = 'github'
-exports.WEB_PINTEREST = 'pinterest'
-exports.WEB_REDDIT = 'reddit'
-exports.WEB_TWITTER = 'twitter'
-
 exports.DEFAULT_LOG_LEVEL = 'info'
 
 exports.FILE_NAME_TOKEN_PATTERN = /\[([^\]]+)]/g

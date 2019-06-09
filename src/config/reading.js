@@ -1,12 +1,10 @@
 const {dirname, extname, join} = require('path')
 
-const {normalize} = require('./config.js')
-
 module.exports = {
   createConfigReader,
 }
 
-function createConfigReader (cwd, fileSystem) {
+function createConfigReader (cwd, fileSystem, normalizeConfig) {
   const {readFile} = fileSystem
 
   return async function readConfig (configPath) {
@@ -56,14 +54,17 @@ function createConfigReader (cwd, fileSystem) {
     }
   }
 
-  function buildResult (configPath, config) {
+  function buildResult (configPath, configOrFn) {
     const userInputDir = dirname(configPath)
-    config = normalize(config)
+    const config = typeof configOrFn === 'function' ? configOrFn() : configOrFn
+
+    const normalized = normalizeConfig(config)
+    const {outputPath} = normalized
 
     return {
-      config,
+      config: normalized,
       configPath,
-      outputPath: join(userInputDir, config.outputPath),
+      outputPath: join(userInputDir, outputPath),
       userInputDir,
     }
   }

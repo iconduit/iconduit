@@ -5,6 +5,7 @@ module.exports = {
   selectDescription,
   selectFacebookAppId,
   selectIosStatusBarStyle,
+  selectIosStatusBarStyleIsNotDefault,
   selectLanguage,
   selectLocale,
   selectMaskColor,
@@ -59,6 +60,10 @@ function selectFacebookAppId ({manifest}) {
 
 function selectIosStatusBarStyle ({manifest}) {
   return manifest.os.ios.statusBarStyle
+}
+
+function selectIosStatusBarStyleIsNotDefault ({manifest}) {
+  return manifest.os.ios.statusBarStyle !== 'default'
 }
 
 function selectLanguage ({manifest}) {

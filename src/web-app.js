@@ -29,10 +29,10 @@ function buildWebAppManifest (manifest) {
   add(webManifest, 'name', name)
   addOptional(webManifest, 'short_name', shortName)
   addOptional(webManifest, 'description', description)
-  addOptional(webManifest, 'scope', scope)
+  addNonDefault(webManifest, 'scope', scope, '.')
   addNonEmpty(webManifest, 'icons', buildWebAppManifestIcons(manifest))
   add(webManifest, 'display', displayMode)
-  addOptional(webManifest, 'orientation', orientation)
+  addNonDefault(webManifest, 'orientation', orientation, 'any')
   addOptional(webManifest, 'start_url', startUrl)
   addOptional(webManifest, 'serviceworker', buildWebAppManifestServiceWorker(manifest))
   add(webManifest, 'theme_color', themeColor)
@@ -41,7 +41,7 @@ function buildWebAppManifest (manifest) {
 
   if (applications.length > 0) {
     add(webManifest, 'related_applications', applications)
-    addOptional(webManifest, 'prefer_related_applications', preferRelatedApplications)
+    addNonDefault(webManifest, 'prefer_related_applications', preferRelatedApplications, false)
   }
 
   add(webManifest, 'background_color', backgroundColor)

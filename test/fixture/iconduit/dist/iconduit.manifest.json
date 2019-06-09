@@ -7,7 +7,6 @@
         ],
         "id": "915056765",
         "launchUrl": "iconduit://dashboard",
-        "minVersion": null,
         "platform": "itunes",
         "url": "https://itunes.apple.com/app/id915056765"
       },
@@ -17,7 +16,6 @@
         ],
         "id": "com.google.android.apps.maps",
         "launchUrl": "https://iconduit.app/dashboard",
-        "minVersion": null,
         "platform": "play",
         "url": "https://play.google.com/store/apps/details?id=com.google.android.apps.maps"
       },
@@ -27,22 +25,18 @@
         ],
         "id": "9wzdncrdtbvb",
         "launchUrl": "iconduit://dashboard",
-        "minVersion": null,
         "platform": "windows",
         "url": "https://microsoft.com/p/app/9wzdncrdtbvb"
       }
     ],
     "web": {
       "facebook": {
-        "appId": null
       },
       "openGraph": {
-        "determiner": null
+        "determiner": ""
       },
       "twitter": {
-        "cardType": "summary_large_image",
-        "creatorHandle": null,
-        "siteHandle": null
+        "cardType": "summary_large_image"
       }
     }
   },
@@ -60,7 +54,6 @@
   "extra": {
     "license": "MIT"
   },
-  "iarcRatingId": null,
   "language": "en-US",
   "masks": {
     "output": {
@@ -70,10 +63,10 @@
     "primary": "iconMaskAndroidSquircle"
   },
   "name": "Iconduit",
-  "orientation": null,
+  "orientation": "any",
   "os": {
     "ios": {
-      "statusBarStyle": null
+      "statusBarStyle": "default"
     }
   },
   "output": {
@@ -82,10 +75,7 @@
         "htmlSizes": "180x180",
         "path": "apple-touch-icon-180x180.png",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 180,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 180
@@ -98,10 +88,7 @@
         "htmlSizes": "180x180",
         "path": "apple-touch-icon-masked-180x180.png",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 180,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 180
@@ -400,10 +387,7 @@
         "htmlSizes": "512x288",
         "path": "dmg-background.png",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 288,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 512
@@ -414,10 +398,7 @@
         "htmlSizes": "1024x576",
         "path": "dmg-background@2x.png",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 576,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 2,
           "width": 1024
@@ -430,10 +411,7 @@
         "htmlSizes": "1024x1024",
         "path": "facebook-app-icon.png",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 1024,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 1024
@@ -446,10 +424,7 @@
         "htmlSizes": "48x48",
         "path": "favicon.ico",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 48,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 48
@@ -460,10 +435,7 @@
         "htmlSizes": "32x32",
         "path": "favicon.ico",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 32,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 32
@@ -474,10 +446,7 @@
         "htmlSizes": "16x16",
         "path": "favicon.ico",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 16,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 16
@@ -490,10 +459,7 @@
         "htmlSizes": "32x32",
         "path": "favicon-32x32.png",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 32,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 32
@@ -504,10 +470,7 @@
         "htmlSizes": "16x16",
         "path": "favicon-16x16.png",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 16,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 16
@@ -520,10 +483,7 @@
         "htmlSizes": "1024x1024",
         "path": "github-account-icon.png",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 1024,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 1024
@@ -544,10 +504,7 @@
         "htmlSizes": "128x128",
         "path": "macos.icns",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 128,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 128
@@ -558,10 +515,7 @@
         "htmlSizes": "256x256",
         "path": "macos.icns",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 256,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 2,
           "width": 256
@@ -572,10 +526,7 @@
         "htmlSizes": "16x16",
         "path": "macos.icns",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 16,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 16
@@ -586,10 +537,7 @@
         "htmlSizes": "32x32",
         "path": "macos.icns",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 32,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 2,
           "width": 32
@@ -600,10 +548,7 @@
         "htmlSizes": "256x256",
         "path": "macos.icns",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 256,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 256
@@ -614,10 +559,7 @@
         "htmlSizes": "512x512",
         "path": "macos.icns",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 512,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 2,
           "width": 512
@@ -628,10 +570,7 @@
         "htmlSizes": "32x32",
         "path": "macos.icns",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 32,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 32
@@ -642,10 +581,7 @@
         "htmlSizes": "64x64",
         "path": "macos.icns",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 64,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 2,
           "width": 64
@@ -656,10 +592,7 @@
         "htmlSizes": "512x512",
         "path": "macos.icns",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 512,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 512
@@ -670,10 +603,7 @@
         "htmlSizes": "1024x1024",
         "path": "macos.icns",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 1024,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 2,
           "width": 1024
@@ -684,10 +614,7 @@
         "htmlSizes": "64x64",
         "path": "macos.icns",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 64,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 64
@@ -700,10 +627,7 @@
         "htmlSizes": "1200x630",
         "path": "open-graph.png",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 630,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 1200
@@ -720,10 +644,7 @@
         "htmlSizes": "1200x600",
         "path": "twitter-card.png",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 600,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 1200
@@ -736,10 +657,7 @@
         "htmlSizes": "1024x1024",
         "path": "web-app-icon-maskable-1024x1024.png",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 1024,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 1024
@@ -750,10 +668,7 @@
         "htmlSizes": "512x512",
         "path": "web-app-icon-maskable-512x512.png",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 512,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 512
@@ -764,10 +679,7 @@
         "htmlSizes": "192x192",
         "path": "web-app-icon-maskable-192x192.png",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 192,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 192
@@ -780,10 +692,7 @@
         "htmlSizes": "1024x1024",
         "path": "web-app-icon-masked-1024x1024.png",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 1024,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 1024
@@ -794,10 +703,7 @@
         "htmlSizes": "512x512",
         "path": "web-app-icon-masked-512x512.png",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 512,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 512
@@ -808,10 +714,7 @@
         "htmlSizes": "192x192",
         "path": "web-app-icon-masked-192x192.png",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 192,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 192
@@ -828,10 +731,7 @@
         "htmlSizes": "128x128",
         "path": "windows.ico",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 128,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 128
@@ -842,10 +742,7 @@
         "htmlSizes": "16x16",
         "path": "windows.ico",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 16,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 16
@@ -856,10 +753,7 @@
         "htmlSizes": "22x22",
         "path": "windows.ico",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 22,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 22
@@ -870,10 +764,7 @@
         "htmlSizes": "24x24",
         "path": "windows.ico",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 24,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 24
@@ -884,10 +775,7 @@
         "htmlSizes": "256x256",
         "path": "windows.ico",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 256,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 256
@@ -898,10 +786,7 @@
         "htmlSizes": "32x32",
         "path": "windows.ico",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 32,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 32
@@ -912,10 +797,7 @@
         "htmlSizes": "40x40",
         "path": "windows.ico",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 40,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 40
@@ -926,10 +808,7 @@
         "htmlSizes": "48x48",
         "path": "windows.ico",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 48,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 48
@@ -940,10 +819,7 @@
         "htmlSizes": "64x64",
         "path": "windows.ico",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 64,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 64
@@ -954,10 +830,7 @@
         "htmlSizes": "96x96",
         "path": "windows.ico",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 96,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 1,
           "width": 96
@@ -970,10 +843,7 @@
         "htmlSizes": "620x620",
         "path": "windows-tile-620x620.png",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 620,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 2,
           "width": 620
@@ -986,10 +856,7 @@
         "htmlSizes": "300x300",
         "path": "windows-tile-300x300.png",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 300,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 2,
           "width": 300
@@ -1002,10 +869,7 @@
         "htmlSizes": "140x140",
         "path": "windows-tile-140x140.png",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 140,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 2,
           "width": 140
@@ -1018,10 +882,7 @@
         "htmlSizes": "620x300",
         "path": "windows-tile-620x300.png",
         "size": {
-          "deviceHeight": null,
-          "deviceWidth": null,
           "height": 300,
-          "orientation": null,
           "pixelDensity": 72,
           "pixelRatio": 2,
           "width": 620
@@ -1031,8 +892,8 @@
     }
   },
   "outputPath": "dist",
-  "preferRelatedApplications": null,
-  "scope": null,
+  "preferRelatedApplications": false,
+  "scope": ".",
   "shortName": "Iconduit",
   "startUrl": ".",
   "tag": {
@@ -1511,18 +1372,6 @@
         "children": [
         ],
         "html": "<meta name=\"twitter:card\" content=\"summary_large_image\">",
-        "isSelfClosing": true,
-        "sortWeight": 0,
-        "tag": "meta"
-      },
-      {
-        "attributes": {
-          "content": null,
-          "name": "twitter:site"
-        },
-        "children": [
-        ],
-        "html": "<meta name=\"twitter:site\">",
         "isSelfClosing": true,
         "sortWeight": 0,
         "tag": "meta"

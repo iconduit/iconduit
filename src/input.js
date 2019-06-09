@@ -2,7 +2,7 @@ const fileUrl = require('file-url')
 const flat = require('array.prototype.flat')
 const {dirname, extname, join} = require('path')
 
-const {resolveColors} = require('./config.js')
+const {resolveColors} = require('./config/resolution.js')
 
 const {
   EXTENSIONS_DOCUMENT,
@@ -174,7 +174,7 @@ function createInputBuilderFactory (
         const layers = await Promise.all(layerDefinitions.map(async (layerDefinition, index) => {
           const {input, style} = layerDefinition
 
-          const styleDefinition = style === null ? {} : styleDefinitions[style]
+          const styleDefinition = style ? styleDefinitions[style] : {}
 
           if (!styleDefinition) throw new Error(`Missing definition for style.${style}:\n${renderStack(stack)}`)
 

@@ -3,6 +3,7 @@ const {
   selectDescription,
   selectFacebookAppId,
   selectIosStatusBarStyle,
+  selectIosStatusBarStyleIsNotDefault,
   selectLocale,
   selectMaskColor,
   selectName,
@@ -77,7 +78,7 @@ module.exports = {
         },
         sortWeight: 4000,
         predicate: [
-          selectIosStatusBarStyle,
+          selectIosStatusBarStyleIsNotDefault,
         ],
       },
     ],
@@ -470,6 +471,9 @@ module.exports = {
           name: 'twitter:site',
           content: selectTwitterSiteHandle,
         },
+        predicate: [
+          selectTwitterSiteHandle,
+        ],
       },
       {
         tag: 'meta',

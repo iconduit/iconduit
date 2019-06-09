@@ -1,8 +1,8 @@
 const htmlTag = require('html-tag')
 
-const {renderSize, resolveSize} = require('./size.js')
 const {mimeTypeByPath} = require('./mime.js')
-const {resolveColors} = require('./config.js')
+const {renderSize, resolveSize} = require('./size.js')
+const {resolveColors} = require('./config/resolution.js')
 
 module.exports = {
   buildManifest,

@@ -20,6 +20,8 @@
     "node": ">=10"
   },
   "dependencies": {
+    "ajv": "^6.10.0",
+    "ajv-keywords": "^3.4.0",
     "array.prototype.flat": "^1.2.1",
     "bottlejs": "^1.7.2",
     "browserslist": "^4.5.6",
@@ -34,6 +36,7 @@
     "imagemin-optipng": "^7.0.0",
     "imagemin-pngquant": "^8.0.0",
     "is-self-closing": "^1.0.1",
+    "js-string-escape": "^1.0.1",
     "json-stable-stringify-without-jsonify": "^1.0.1",
     "puppeteer": "^1.17.0",
     "puppeteer-cluster": "^0.16.0",
