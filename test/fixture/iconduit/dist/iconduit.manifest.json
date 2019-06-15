@@ -29,6 +29,7 @@
         "url": "https://microsoft.com/p/app/9wzdncrdtbvb"
       }
     ],
+    "preferNative": false,
     "web": {
       "facebook": {
       },
@@ -890,7 +891,6 @@
     }
   },
   "outputPath": "dist",
-  "preferRelatedApplications": false,
   "scope": ".",
   "shortName": "Iconduit",
   "startUrl": ".",

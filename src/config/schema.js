@@ -95,6 +95,11 @@ module.exports = {
             },
           },
         },
+        preferNative: {
+          description: 'A hint to suggest whether native applications should be preferred over the application',
+          type: 'boolean',
+          default: false,
+        },
         web: {
           description: 'Additional settings related to web application integration',
           type: 'object',
@@ -693,11 +698,6 @@ module.exports = {
           default: [],
         },
       },
-    },
-    preferRelatedApplications: {
-      description: 'A hint to suggest whether native applications should be preferred over the application',
-      type: 'boolean',
-      default: false,
     },
     scope: {
       description: 'The top-most URL managed by the application',

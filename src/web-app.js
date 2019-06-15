@@ -7,6 +7,7 @@ module.exports = {
 
 function buildWebAppManifest (manifest) {
   const {
+    applications: {preferNative},
     categories,
     color: {background: backgroundColor, theme: themeColor},
     description,
@@ -15,7 +16,6 @@ function buildWebAppManifest (manifest) {
     language,
     name,
     orientation,
-    preferRelatedApplications,
     scope,
     shortName,
     startUrl,
@@ -41,7 +41,7 @@ function buildWebAppManifest (manifest) {
 
   if (applications.length > 0) {
     add(webManifest, 'related_applications', applications)
-    addNonDefault(webManifest, 'prefer_related_applications', preferRelatedApplications, false)
+    addNonDefault(webManifest, 'prefer_related_applications', preferNative, false)
   }
 
   add(webManifest, 'background_color', backgroundColor)
