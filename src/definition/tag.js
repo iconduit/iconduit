@@ -1,13 +1,13 @@
 const {
   selectAppleTouchStartupMedia,
   selectDescription,
+  selectDeterminer,
   selectFacebookAppId,
   selectIosStatusBarStyle,
   selectIosStatusBarStyleIsNotDefault,
   selectLocale,
   selectMaskColor,
   selectName,
-  selectOpenGraphDeterminer,
   selectOutputHeight,
   selectOutputHtmlSizes,
   selectOutputPath,
@@ -362,10 +362,10 @@ module.exports = {
         tag: 'meta',
         attributes: {
           property: 'og:determiner',
-          content: selectOpenGraphDeterminer,
+          content: selectDeterminer,
         },
         predicate: [
-          selectOpenGraphDeterminer,
+          selectDeterminer,
         ],
       },
       {

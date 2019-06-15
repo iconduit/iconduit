@@ -114,20 +114,6 @@ module.exports = {
                 },
               },
             },
-            openGraph: {
-              description: 'Additional settings related to Open Graph integration',
-              type: 'object',
-              default: {},
-              additionalProperties: false,
-              properties: {
-                determiner: {
-                  description: "The word that appears before the application's name in a sentence",
-                  type: 'string',
-                  default: '',
-                  enum: ['', 'a', 'an', 'auto', 'the'],
-                },
-              },
-            },
             twitter: {
               description: 'Additional settings related to Twitter integration',
               type: 'object',
@@ -583,6 +569,12 @@ module.exports = {
       description: 'A description of the purpose of the application',
       type: 'string',
       minLength: 1,
+    },
+    determiner: {
+      description: "The word that appears before the application's name in a sentence",
+      type: 'string',
+      default: '',
+      enum: ['', 'a', 'an', 'auto', 'the'],
     },
     displayMode: {
       description: 'The display mode to use when installed as a web app',

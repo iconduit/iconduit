@@ -3,6 +3,7 @@ const {renderSize} = require('./size.js')
 module.exports = {
   selectAppleTouchStartupMedia,
   selectDescription,
+  selectDeterminer,
   selectFacebookAppId,
   selectIosStatusBarStyle,
   selectIosStatusBarStyleIsNotDefault,
@@ -10,7 +11,6 @@ module.exports = {
   selectLocale,
   selectMaskColor,
   selectName,
-  selectOpenGraphDeterminer,
   selectOutputHeight,
   selectOutputHtmlSizes,
   selectOutputPath,
@@ -54,6 +54,10 @@ function selectDescription ({manifest}) {
   return manifest.description
 }
 
+function selectDeterminer ({manifest}) {
+  return manifest.determiner
+}
+
 function selectFacebookAppId ({manifest}) {
   return manifest.applications.web.facebook.appId
 }
@@ -81,11 +85,6 @@ function selectMaskColor ({manifest}) {
 function selectName ({manifest}) {
   return manifest.name
 }
-
-function selectOpenGraphDeterminer ({manifest}) {
-  return manifest.applications.web.openGraph.determiner
-}
-
 function selectOutputHeight ({output}) {
   return output.size.height
 }

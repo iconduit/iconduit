@@ -32,9 +32,6 @@
     "web": {
       "facebook": {
       },
-      "openGraph": {
-        "determiner": ""
-      },
       "twitter": {
         "cardType": "summary_large_image"
       }
@@ -50,6 +47,7 @@
     "tile": "#D5415C"
   },
   "description": "A build system for web application icon and image assets",
+  "determiner": "",
   "displayMode": "standalone",
   "extra": {
     "license": "MIT"
