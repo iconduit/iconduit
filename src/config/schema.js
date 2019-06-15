@@ -73,7 +73,7 @@ module.exports = {
                 description:
                   'A URL associated with the native application that can be used to launch it in a particular state',
                 type: 'string',
-                format: 'uri',
+                format: 'uri-reference',
               },
               minVersion: {
                 description:
@@ -90,7 +90,7 @@ module.exports = {
               url: {
                 description: 'A URL where the native application is available for installation and/or purchase',
                 type: 'string',
-                format: 'uri',
+                format: 'uri-reference',
               },
             },
           },
@@ -699,22 +699,10 @@ module.exports = {
         },
       },
     },
-    scope: {
-      description: 'The top-most URL managed by the application',
-      type: 'string',
-      default: '.',
-      format: 'uri-reference',
-    },
     shortName: {
       description: 'A short version of the application name intended for use when space is limited',
       type: 'string',
       minLength: 1,
-    },
-    startUrl: {
-      description: 'The URL that should be used when the application is launched',
-      type: 'string',
-      default: '.',
-      format: 'uri-reference',
     },
     tags: {
       description: 'Defines explicit lists of tags to include and exclude',
@@ -766,10 +754,36 @@ module.exports = {
       default: 'auto',
       enum: ['auto', 'ltr', 'rtl'],
     },
-    url: {
-      description: 'The URL where output assets will be served from',
-      type: 'string',
-      format: 'uri',
+    urls: {
+      description: 'Defines the output URL structure',
+      type: 'object',
+      default: {},
+      additionalProperties: false,
+      properties: {
+        base: {
+          description: 'The base URL against which all others are resolved',
+          type: 'string',
+          format: 'uri',
+        },
+        output: {
+          description: 'The URL where output assets will be served from',
+          type: 'string',
+          default: '.',
+          format: 'uri-reference',
+        },
+        scope: {
+          description: 'The top-most URL managed by the application',
+          type: 'string',
+          default: '.',
+          format: 'uri-reference',
+        },
+        start: {
+          description: 'The URL that should be used when the application is launched',
+          type: 'string',
+          default: '.',
+          format: 'uri-reference',
+        },
+      },
     },
     viewport: {
       description: 'Defines the viewport settings for the application',

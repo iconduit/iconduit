@@ -1,32 +1,19 @@
 <%
 
-const {
-  color,
-  output: {
-    windowsTileSmall: {
-      'small@2x': {path: small} = {},
-    } = {},
-    windowsTileMedium: {
-      'medium@2x': {path: medium} = {},
-    } = {},
-    windowsTileLarge: {
-      'large@2x': {path: large} = {},
-    } = {},
-    windowsTileWide: {
-      'wide@2x': {path: wide} = {},
-    } = {},
-  },
-} = manifest
+const smallUrl = consumer.imageUrl('windowsTileSmall', 'small@2x')
+const mediumUrl = consumer.imageUrl('windowsTileMedium', 'medium@2x')
+const largeUrl = consumer.imageUrl('windowsTileLarge', 'large@2x')
+const wideUrl = consumer.imageUrl('windowsTileWide', 'wide@2x')
 
 %><?xml version="1.0" encoding="utf-8"?>
 <browserconfig>
   <msapplication>
     <tile>
-      <TileColor><%= color.tile %></TileColor><% if (small) { %>
-      <square70x70logo src="<%= small %>" /><% } %><% if (medium) { %>
-      <square150x150logo src="<%= medium %>" /><% } %><% if (large) { %>
-      <square310x310logo src="<%= large %>" /><% } %><% if (wide) { %>
-      <wide310x150logo src="<%= wide %>" /><% } %>
+      <TileColor><%= manifest.color.tile %></TileColor><% if (smallUrl) { %>
+      <square70x70logo src="<%= smallUrl %>" /><% } %><% if (mediumUrl) { %>
+      <square150x150logo src="<%= mediumUrl %>" /><% } %><% if (largeUrl) { %>
+      <square310x310logo src="<%= largeUrl %>" /><% } %><% if (wideUrl) { %>
+      <wide310x150logo src="<%= wideUrl %>" /><% } %>
     </tile>
   </msapplication>
 </browserconfig>

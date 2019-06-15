@@ -3,6 +3,7 @@ const toIco = require('to-ico')
 const {dirname, extname, join, relative} = require('path')
 
 const {buildManifest, buildTags} = require('./manifest.js')
+const {createConsumer} = require('./consumer.js')
 const {formatList} = require('./logging.js')
 const {groupSizes, resolveSizesForOutputs} = require('./size.js')
 const {outputNames, selectOutputs, targetNames} = require('./target.js')
@@ -32,9 +33,13 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, mini
     const {configPath, outputPath} = options
 
     const {outputs, tags} = selectOutputs(config)
+
     const sizesByOutput = resolveSizesForOutputs(config, outputs)
-    const manifest = await buildManifest(config, outputs)
-    const manifestTag = await buildTags(manifest, tags, outputs)
+
+    const manifestNoTag = await buildManifest(config, outputs)
+    const manifestTag = await buildTags(manifestNoTag, tags, outputs)
+    const manifest = {...manifestNoTag, tag: manifestTag}
+    const consumer = createConsumer(manifest)
 
     const buildInput = createInputBuilder(config, options)
 
@@ -130,7 +135,7 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, mini
       const documentPath = await buildInput({name: inputName, type: INPUT_TYPE_DOCUMENT, stack})
       const template = await readTemplate(documentPath)
 
-      return template({manifest: {...manifest, tag: manifestTag}, ...templateVariables})
+      return template({consumer: consumer.forDocument(outputName), manifest, ...templateVariables})
     }
 
     async function buildImage (inputName, outputName, size, imageType) {

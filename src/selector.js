@@ -1,6 +1,9 @@
+const {isAbsolute, resolveUrl} = require('./url.js')
 const {renderSize} = require('./size.js')
 
 module.exports = {
+  selectAbsoluteOutputUrl,
+  selectAbsoluteStartUrl,
   selectAppleTouchStartupMedia,
   selectDescription,
   selectDeterminer,
@@ -13,7 +16,6 @@ module.exports = {
   selectName,
   selectOutputHeight,
   selectOutputHtmlSizes,
-  selectOutputPath,
   selectOutputType,
   selectOutputUrl,
   selectOutputWidth,
@@ -36,8 +38,21 @@ module.exports = {
   selectTwitterCreatorHandle,
   selectTwitterDescription,
   selectTwitterSiteHandle,
-  selectUrl,
   selectViewport,
+}
+
+function selectAbsoluteOutputUrl ({manifest, output}) {
+  const {base} = manifest.urls
+  const url = base ? resolveUrl(base, output.url) : output.url
+
+  return isAbsolute(url) ? url : undefined
+}
+
+function selectAbsoluteStartUrl ({manifest}) {
+  const {base, start} = manifest.urls
+  const url = base ? resolveUrl(base, start) : start
+
+  return isAbsolute(url) ? url : undefined
 }
 
 function selectAppleTouchStartupMedia ({output}) {
@@ -93,20 +108,12 @@ function selectOutputHtmlSizes ({output}) {
   return output.htmlSizes
 }
 
-function selectOutputPath ({output}) {
-  return output.path
-}
-
 function selectOutputType ({output}) {
   return output.type
 }
 
-function selectOutputUrl ({manifest, output}) {
-  const {url} = manifest
-
-  if (!url) return null
-
-  return new URL(output.path, url).toString()
+function selectOutputUrl ({output}) {
+  return output.url
 }
 
 function selectOutputWidth ({output}) {
@@ -139,9 +146,10 @@ function selectPrimaryIosAppId (definitions) {
 }
 
 function selectPrimaryIosAppLaunchUrl (definitions) {
+  const {manifest: {urls: {base}}} = definitions
   const app = selectPrimaryIosApp(definitions)
 
-  return app && app.launchUrl
+  return app && resolveUrl(base, app.launchUrl)
 }
 
 function selectPrimaryPlayApp ({manifest}) {
@@ -155,9 +163,10 @@ function selectPrimaryPlayAppId (definitions) {
 }
 
 function selectPrimaryPlayAppLaunchUrl (definitions) {
+  const {manifest: {urls: {base}}} = definitions
   const app = selectPrimaryPlayApp(definitions)
 
-  return app && app.launchUrl
+  return app && resolveUrl(base, app.launchUrl)
 }
 
 function selectPrimaryWindowsApp ({manifest}) {
@@ -171,9 +180,10 @@ function selectPrimaryWindowsAppId (definitions) {
 }
 
 function selectPrimaryWindowsAppLaunchUrl (definitions) {
+  const {manifest: {urls: {base}}} = definitions
   const app = selectPrimaryWindowsApp(definitions)
 
-  return app && app.launchUrl
+  return app && resolveUrl(base, app.launchUrl)
 }
 
 function selectThemeColor ({manifest}) {
@@ -214,10 +224,6 @@ function selectTwitterSiteHandle ({manifest}) {
   const {siteHandle} = manifest.applications.web.twitter
 
   return siteHandle && `@${siteHandle}`
-}
-
-function selectUrl ({manifest}) {
-  return manifest.url
 }
 
 function selectViewport ({manifest}) {

@@ -2,7 +2,7 @@ module.exports = {
   buildWebAppManifest,
 }
 
-function buildWebAppManifest (manifest) {
+function buildWebAppManifest (manifest, consumer) {
   const {
     applications: {preferNative},
     categories,
@@ -13,11 +13,16 @@ function buildWebAppManifest (manifest) {
     language,
     name,
     orientation,
-    scope,
     shortName,
-    startUrl,
     textDirection,
+    urls: {
+      scope,
+      start,
+    },
   } = manifest
+
+  const scopeUrl = consumer.url(scope)
+  const startUrl = consumer.url(start)
 
   const webManifest = {}
 
@@ -26,15 +31,15 @@ function buildWebAppManifest (manifest) {
   add(webManifest, 'name', name)
   addOptional(webManifest, 'short_name', shortName)
   addOptional(webManifest, 'description', description)
-  addNonDefault(webManifest, 'scope', scope, '.')
-  addNonEmpty(webManifest, 'icons', buildWebAppManifestIcons(manifest))
+  addNonDefault(webManifest, 'scope', scopeUrl, '.')
+  addNonEmpty(webManifest, 'icons', buildWebAppManifestIcons(manifest, consumer))
   add(webManifest, 'display', displayMode)
   addNonDefault(webManifest, 'orientation', orientation, 'any')
   addOptional(webManifest, 'start_url', startUrl)
-  addOptional(webManifest, 'serviceworker', buildWebAppManifestServiceWorker(manifest))
+  addOptional(webManifest, 'serviceworker', buildWebAppManifestServiceWorker(manifest, consumer))
   add(webManifest, 'theme_color', themeColor)
 
-  const applications = buildWebAppManifestRelatedApplications(manifest)
+  const applications = buildWebAppManifestRelatedApplications(manifest, consumer)
 
   if (applications.length > 0) {
     add(webManifest, 'related_applications', applications)
@@ -48,7 +53,7 @@ function buildWebAppManifest (manifest) {
   return webManifest
 }
 
-function buildWebAppManifestIcons (manifest) {
+function buildWebAppManifestIcons (manifest, consumer) {
   const {output: {
     webAppIconMaskable: maskable = {},
     webAppIconMasked: masked = {},
@@ -57,11 +62,11 @@ function buildWebAppManifestIcons (manifest) {
   const icons = []
 
   for (const key in masked) {
-    const {htmlSizes, path, type} = masked[key]
+    const {htmlSizes, type} = masked[key]
 
     const icon = {}
 
-    add(icon, 'src', path)
+    add(icon, 'src', consumer.imageUrl('webAppIconMasked', key))
     add(icon, 'sizes', htmlSizes)
     add(icon, 'type', type)
 
@@ -69,11 +74,11 @@ function buildWebAppManifestIcons (manifest) {
   }
 
   for (const key in maskable) {
-    const {htmlSizes, path, type} = maskable[key]
+    const {htmlSizes, type} = maskable[key]
 
     const icon = {}
 
-    add(icon, 'src', path)
+    add(icon, 'src', consumer.imageUrl('webAppIconMaskable', key))
     add(icon, 'sizes', htmlSizes)
     add(icon, 'type', type)
     add(icon, 'purpose', 'maskable')
@@ -84,19 +89,15 @@ function buildWebAppManifestIcons (manifest) {
   return icons
 }
 
-function buildWebAppManifestServiceWorker (manifest) {
-  const {output: {serviceWorker: output}} = manifest
-
-  if (!output) return null
-
-  const {path} = output
+function buildWebAppManifestServiceWorker (manifest, consumer) {
+  if (!manifest.output.serviceWorker) return null
 
   return {
-    src: path,
+    src: consumer.documentUrl('serviceWorker'),
   }
 }
 
-function buildWebAppManifestRelatedApplications (manifest) {
+function buildWebAppManifestRelatedApplications (manifest, consumer) {
   const {applications: {native}} = manifest
 
   return native.map(application => {
@@ -114,7 +115,7 @@ function buildWebAppManifestRelatedApplications (manifest) {
     addOptional(relatedApplication, 'id', id)
     addOptional(relatedApplication, 'min_version', minVersion)
     add(relatedApplication, 'platform', platform)
-    addOptional(relatedApplication, 'url', url)
+    addOptional(relatedApplication, 'url', consumer.absoluteUrl(url))
 
     return relatedApplication
   })

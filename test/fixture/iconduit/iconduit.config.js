@@ -2,7 +2,9 @@ module.exports = () => {
   return {
     name: 'Iconduit',
     description: 'A build system for web application icon and image assets',
-    url: 'https://iconduit.github.io/',
+    urls: {
+      base: 'https://iconduit.github.io/',
+    },
     colors: {
       brand: '#D5415C',
     },

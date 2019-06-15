@@ -3,6 +3,7 @@ const htmlTag = require('html-tag')
 const {getType} = require('./mime.js')
 const {renderSize, resolveSize} = require('./size.js')
 const {resolveColors} = require('./config/resolution.js')
+const {resolveUrl} = require('./url.js')
 
 module.exports = {
   buildManifest,
@@ -81,7 +82,7 @@ function buildTags (manifest, tags, outputs) {
 }
 
 function buildManifestOutput (config, outputs) {
-  const {definitions: {size: sizeDefinitions}} = config
+  const {definitions: {size: sizeDefinitions}, urls: {output: outputBaseUrl}} = config
   const output = {}
 
   for (const outputName in outputs) {
@@ -93,12 +94,17 @@ function buildManifestOutput (config, outputs) {
       for (const selector of sizes) {
         const {key, ...size} = resolveSize(sizeDefinitions, selector)
         const htmlSizes = renderSize('[dimensions]', size)
-        const path = renderSize(template, size)
+        const filename = renderSize(template, size)
+        const type = getType(filename)
+        const url = resolveUrl(outputBaseUrl, filename)
 
-        output[outputName][key] = {htmlSizes, size, path, type: getType(path)}
+        output[outputName][key] = {htmlSizes, size, type, url}
       }
     } else {
-      output[outputName] = {path: template, type: getType(template)}
+      const type = getType(template)
+      const url = resolveUrl(outputBaseUrl, template)
+
+      output[outputName] = {type, url}
     }
   }
 

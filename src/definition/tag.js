@@ -1,4 +1,6 @@
 const {
+  selectAbsoluteOutputUrl,
+  selectAbsoluteStartUrl,
   selectAppleTouchStartupMedia,
   selectDescription,
   selectDeterminer,
@@ -10,7 +12,6 @@ const {
   selectName,
   selectOutputHeight,
   selectOutputHtmlSizes,
-  selectOutputPath,
   selectOutputType,
   selectOutputUrl,
   selectOutputWidth,
@@ -33,7 +34,6 @@ const {
   selectTwitterCreatorHandle,
   selectTwitterDescription,
   selectTwitterSiteHandle,
-  selectUrl,
   selectViewport,
 } = require('../selector.js')
 
@@ -89,7 +89,7 @@ module.exports = {
         tag: 'link',
         attributes: {
           rel: 'apple-touch-icon',
-          href: selectOutputPath,
+          href: selectOutputUrl,
         },
         sortWeight: -1,
       },
@@ -101,7 +101,7 @@ module.exports = {
         tag: 'link',
         attributes: {
           rel: 'apple-touch-startup-image',
-          href: selectOutputPath,
+          href: selectOutputUrl,
           media: selectAppleTouchStartupMedia,
         },
         sortWeight: 0,
@@ -186,10 +186,10 @@ module.exports = {
         tag: 'meta',
         attributes: {
           property: 'al:web:url',
-          content: selectUrl,
+          content: selectAbsoluteStartUrl,
         },
         predicate: [
-          selectUrl,
+          selectAbsoluteStartUrl,
         ],
       },
       {
@@ -245,7 +245,7 @@ module.exports = {
         attributes: {
           rel: 'icon',
           type: selectOutputType,
-          href: selectOutputPath,
+          href: selectOutputUrl,
           sizes: selectOutputHtmlSizes,
         },
       },
@@ -257,7 +257,7 @@ module.exports = {
         tag: 'link',
         attributes: {
           rel: 'manifest',
-          href: selectOutputPath,
+          href: selectOutputUrl,
         },
       },
     ],
@@ -268,7 +268,7 @@ module.exports = {
         tag: 'link',
         attributes: {
           rel: 'mask-icon',
-          href: selectOutputPath,
+          href: selectOutputUrl,
           color: selectMaskColor,
         },
       },
@@ -304,7 +304,7 @@ module.exports = {
         tag: 'meta',
         attributes: {
           name: 'msapplication-TileImage',
-          content: selectOutputPath,
+          content: selectOutputUrl,
         },
         sortWeight: 5100,
       },
@@ -316,7 +316,7 @@ module.exports = {
         tag: 'meta',
         attributes: {
           name: 'msapplication-config',
-          content: selectOutputPath,
+          content: selectOutputUrl,
         },
         sortWeight: 5200,
       },
@@ -345,10 +345,10 @@ module.exports = {
         tag: 'meta',
         attributes: {
           property: 'og:url',
-          content: selectUrl,
+          content: selectAbsoluteStartUrl,
         },
         predicate: [
-          selectUrl,
+          selectAbsoluteStartUrl,
         ],
       },
       {
@@ -396,10 +396,10 @@ module.exports = {
         tag: 'meta',
         attributes: {
           property: 'og:image',
-          content: selectOutputUrl,
+          content: selectAbsoluteOutputUrl,
         },
         predicate: [
-          selectOutputUrl,
+          selectAbsoluteOutputUrl,
         ],
       },
       {
@@ -409,7 +409,7 @@ module.exports = {
           content: selectOutputType,
         },
         predicate: [
-          selectOutputUrl,
+          selectAbsoluteOutputUrl,
         ],
       },
       {
@@ -419,7 +419,7 @@ module.exports = {
           content: selectOutputWidth,
         },
         predicate: [
-          selectOutputUrl,
+          selectAbsoluteOutputUrl,
         ],
       },
       {
@@ -429,7 +429,7 @@ module.exports = {
           content: selectOutputHeight,
         },
         predicate: [
-          selectOutputUrl,
+          selectAbsoluteOutputUrl,
         ],
       },
       {
@@ -439,7 +439,7 @@ module.exports = {
           content: selectName,
         },
         predicate: [
-          selectOutputUrl,
+          selectAbsoluteOutputUrl,
         ],
       },
     ],
@@ -624,10 +624,10 @@ module.exports = {
         tag: 'meta',
         attributes: {
           name: 'twitter:image',
-          content: selectOutputUrl,
+          content: selectAbsoluteOutputUrl,
         },
         predicate: [
-          selectOutputUrl,
+          selectAbsoluteOutputUrl,
         ],
       },
       {
@@ -637,7 +637,7 @@ module.exports = {
           content: selectName,
         },
         predicate: [
-          selectOutputUrl,
+          selectAbsoluteOutputUrl,
         ],
       },
     ],
