@@ -24,12 +24,12 @@ const {
   <title><%= name %></title>
 
   <!-- iconduit-start -->
-<% for (const {html} of metaTags) { %><%- `\n  ${html}` %><% } %>
-<% for (const {html} of linkTags) { %><%- `\n  ${html}` %><% } %>
-<% for (const {html} of iconTags) { %><%- `\n  ${html}` %><% } %>
-<% for (const {html} of appleTouchStartupTags) { %><%- `\n  ${html}` %><% } %>
-<% for (const {html} of graphTags) { %><%- `\n  ${html}` %><% } %>
-<% for (const {html} of graphImageTags) { %><%- `\n  ${html}` %><% } %>
+<% for (const html of consumer.renderTagList(metaTags)) { %><%- `\n  ${html}` %><% } %>
+<% for (const html of consumer.renderTagList(linkTags)) { %><%- `\n  ${html}` %><% } %>
+<% for (const html of consumer.renderTagList(iconTags)) { %><%- `\n  ${html}` %><% } %>
+<% for (const html of consumer.renderTagList(appleTouchStartupTags)) { %><%- `\n  ${html}` %><% } %>
+<% for (const html of consumer.renderTagList(graphTags)) { %><%- `\n  ${html}` %><% } %>
+<% for (const html of consumer.renderTagList(graphImageTags)) { %><%- `\n  ${html}` %><% } %>
 
   <!-- iconduit-end -->
 

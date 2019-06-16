@@ -1,5 +1,4 @@
 const Ajv = require('ajv')
-const ajvKeywords = require('ajv-keywords')
 const escapeString = require('js-string-escape')
 
 module.exports = {
@@ -8,8 +7,6 @@ module.exports = {
 
 function createValidator (schema) {
   const ajv = new Ajv({allErrors: true, useDefaults: true})
-  ajvKeywords(ajv, ['typeof'])
-
   const validator = ajv.compile(schema)
 
   return function validate (data) {

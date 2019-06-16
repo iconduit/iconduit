@@ -1,41 +1,56 @@
-const {
-  selectAbsoluteOutputUrl,
-  selectAbsoluteStartUrl,
-  selectAppleTouchStartupMedia,
-  selectDescription,
-  selectDeterminer,
-  selectFacebookAppId,
-  selectIosStatusBarStyle,
-  selectIosStatusBarStyleIsNotDefault,
-  selectLocale,
-  selectMaskColor,
-  selectName,
-  selectOutputHeight,
-  selectOutputHtmlSizes,
-  selectOutputType,
-  selectOutputUrl,
-  selectOutputWidth,
-  selectPrimaryIosApp,
-  selectPrimaryIosAppBannerString,
-  selectPrimaryIosAppCountry,
-  selectPrimaryIosAppId,
-  selectPrimaryIosAppLaunchUrl,
-  selectPrimaryPlayApp,
-  selectPrimaryPlayAppId,
-  selectPrimaryPlayAppLaunchUrl,
-  selectPrimaryWindowsApp,
-  selectPrimaryWindowsAppId,
-  selectPrimaryWindowsAppLaunchUrl,
-  selectThemeColor,
-  selectTileColor,
-  selectTwitterCardType,
-  selectTwitterCardTypeIsApp,
-  selectTwitterCardTypeIsSummary,
-  selectTwitterCreatorHandle,
-  selectTwitterDescription,
-  selectTwitterSiteHandle,
-  selectViewport,
-} = require('../selector.js')
+/* eslint-disable no-template-curly-in-string */
+
+const selectAbsoluteImageUrl = '<%- consumer.absoluteImageUrl(outputName, sizeKey) %>'
+const selectAbsoluteStartUrl = '<%- consumer.absoluteUrl(manifest.urls.start) %>'
+const selectDescription = '<%- manifest.description %>'
+const selectDeterminer = '<%- manifest.determiner %>'
+const selectFacebookAppId = '<%- manifest.applications.web.facebook.appId %>'
+const selectIosStatusBarStyle = '<%- manifest.os.ios.statusBarStyle %>'
+const selectIosStatusBarStyleIsNotDefault = '<%- manifest.os.ios.statusBarStyle !== "default" ? "true" : "" %>'
+const selectLocale = '<%- manifest.language.replace("-", "_") %>'
+const selectMaskColor = '<%- manifest.color.mask %>'
+const selectName = '<%- manifest.name %>'
+const selectOutputHeight = '<%- output.size.height %>'
+const selectOutputHtmlSizes = '<%- output.htmlSizes %>'
+const selectOutputType = '<%- output.type %>'
+const selectOutputUrl = '<%- output.url %>'
+const selectOutputWidth = '<%- output.size.width %>'
+const selectThemeColor = '<%- manifest.color.theme %>'
+const selectTileColor = '<%- manifest.color.tile %>'
+const selectTwitterCardType = '<%- manifest.applications.web.twitter.cardType %>'
+const selectTwitterCardTypeIsApp = '<%- manifest.applications.web.twitter.cardType === "app" ? "true" : "" %>'
+const selectTwitterCardTypeIsSummary = '<%- manifest.applications.web.twitter.cardType.startsWith("summary") ? "true" : "" %>'
+const selectTwitterCreatorHandle = '<%- (handle => handle && `@${handle}`)(manifest.applications.web.twitter.creatorHandle) %>'
+const selectTwitterDescription = '<%- (manifest.description || "").length <= 200 ? manifest.description : manifest.description.substring(197) + "..." %>'
+const selectTwitterSiteHandle = '<%- (handle => handle && `@${handle}`)(manifest.applications.web.twitter.siteHandle) %>'
+const selectViewport = '<%- manifest.viewport %>'
+
+const selectAppleTouchStartupMedia =
+  '(device-width: <%- output.size.deviceWidth %>px) and ' +
+  '(device-height: <%- output.size.deviceHeight %>px) and ' +
+  '(-webkit-device-pixel-ratio: <%- output.size.pixelRatio %>) and ' +
+  '(orientation: <%- output.size.orientation %>)'
+
+const findPrimaryIosApp = 'manifest.applications.native.find(({platform}) => platform === "itunes")'
+const findPrimaryPlayApp = 'manifest.applications.native.find(({platform}) => platform === "play")'
+const findPrimaryWindowsApp = 'manifest.applications.native.find(({platform}) => platform === "windows")'
+
+const selectPrimaryIosApp = `<%- ${findPrimaryIosApp} ? "true" : "" %>`
+const selectPrimaryIosAppCountry = `<%- (${findPrimaryIosApp} || {}).country %>`
+const selectPrimaryIosAppId = `<%- (${findPrimaryIosApp} || {}).id %>`
+const selectPrimaryIosAppLaunchUrl = `<%- (({launchUrl} = {}) => launchUrl && consumer.absoluteUrl(launchUrl))(${findPrimaryIosApp}) %>`
+const selectPrimaryIosAppBannerString =
+  `<%- (({id, launchUrl} = {}) => id && (` +
+  'launchUrl ? `app-id=${id}, app-argument=${consumer.absoluteUrl(launchUrl)}` : `app-id=${id}`' +
+  `))(${findPrimaryIosApp}) %>`
+
+const selectPrimaryPlayApp = `<%- ${findPrimaryPlayApp} ? "true" : "" %>`
+const selectPrimaryPlayAppId = `<%- (${findPrimaryPlayApp} || {}).id %>`
+const selectPrimaryPlayAppLaunchUrl = `<%- (({launchUrl} = {}) => launchUrl && consumer.absoluteUrl(launchUrl))(${findPrimaryPlayApp}) %>`
+
+const selectPrimaryWindowsApp = `<%- ${findPrimaryWindowsApp} ? "true" : "" %>`
+const selectPrimaryWindowsAppId = `<%- (${findPrimaryWindowsApp} || {}).id %>`
+const selectPrimaryWindowsAppLaunchUrl = `<%- (({launchUrl} = {}) => launchUrl && consumer.absoluteUrl(launchUrl))(${findPrimaryWindowsApp}) %>`
 
 module.exports = {
   appleItunesApp: {
@@ -396,10 +411,10 @@ module.exports = {
         tag: 'meta',
         attributes: {
           property: 'og:image',
-          content: selectAbsoluteOutputUrl,
+          content: selectAbsoluteImageUrl,
         },
         predicate: [
-          selectAbsoluteOutputUrl,
+          selectAbsoluteImageUrl,
         ],
       },
       {
@@ -409,7 +424,7 @@ module.exports = {
           content: selectOutputType,
         },
         predicate: [
-          selectAbsoluteOutputUrl,
+          selectAbsoluteImageUrl,
         ],
       },
       {
@@ -419,7 +434,7 @@ module.exports = {
           content: selectOutputWidth,
         },
         predicate: [
-          selectAbsoluteOutputUrl,
+          selectAbsoluteImageUrl,
         ],
       },
       {
@@ -429,7 +444,7 @@ module.exports = {
           content: selectOutputHeight,
         },
         predicate: [
-          selectAbsoluteOutputUrl,
+          selectAbsoluteImageUrl,
         ],
       },
       {
@@ -439,7 +454,7 @@ module.exports = {
           content: selectName,
         },
         predicate: [
-          selectAbsoluteOutputUrl,
+          selectAbsoluteImageUrl,
         ],
       },
     ],
@@ -624,10 +639,10 @@ module.exports = {
         tag: 'meta',
         attributes: {
           name: 'twitter:image',
-          content: selectAbsoluteOutputUrl,
+          content: selectAbsoluteImageUrl,
         },
         predicate: [
-          selectAbsoluteOutputUrl,
+          selectAbsoluteImageUrl,
         ],
       },
       {
@@ -637,7 +652,7 @@ module.exports = {
           content: selectName,
         },
         predicate: [
-          selectAbsoluteOutputUrl,
+          selectAbsoluteImageUrl,
         ],
       },
     ],

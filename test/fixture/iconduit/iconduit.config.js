@@ -15,6 +15,11 @@ module.exports = () => {
         webAppIconMasked: 'iconMaskAndroidCircle',
       },
     },
+    os: {
+      ios: {
+        statusBarStyle: 'black-translucent',
+      },
+    },
     definitions: {
       output: {
         appleTouchIconMasked: {

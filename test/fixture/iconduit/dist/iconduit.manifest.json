@@ -65,7 +65,7 @@
   "orientation": "any",
   "os": {
     "ios": {
-      "statusBarStyle": "default"
+      "statusBarStyle": "black-translucent"
     }
   },
   "output": {
@@ -900,396 +900,174 @@
     "appleTouchStartup": [
       {
         "attributes": {
-          "href": "apple-touch-startup-2048x1536r2.png",
-          "media": "(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)",
+          "href": "<%- output.url %>",
+          "media": "(device-width: <%- output.size.deviceWidth %>px) and (device-height: <%- output.size.deviceHeight %>px) and (-webkit-device-pixel-ratio: <%- output.size.pixelRatio %>) and (orientation: <%- output.size.orientation %>)",
           "rel": "apple-touch-startup-image"
         },
         "children": [
         ],
-        "html": "<link rel=\"apple-touch-startup-image\" href=\"apple-touch-startup-2048x1536r2.png\" media=\"(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)\">",
+        "imageName": "appleTouchStartup",
         "isSelfClosing": true,
-        "sortWeight": 0,
-        "tag": "link"
-      },
-      {
-        "attributes": {
-          "href": "apple-touch-startup-1536x2048r2.png",
-          "media": "(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)",
-          "rel": "apple-touch-startup-image"
-        },
-        "children": [
+        "predicate": [
         ],
-        "html": "<link rel=\"apple-touch-startup-image\" href=\"apple-touch-startup-1536x2048r2.png\" media=\"(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)\">",
-        "isSelfClosing": true,
-        "sortWeight": 0,
-        "tag": "link"
-      },
-      {
-        "attributes": {
-          "href": "apple-touch-startup-2224x1668r2.png",
-          "media": "(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)",
-          "rel": "apple-touch-startup-image"
-        },
-        "children": [
-        ],
-        "html": "<link rel=\"apple-touch-startup-image\" href=\"apple-touch-startup-2224x1668r2.png\" media=\"(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)\">",
-        "isSelfClosing": true,
-        "sortWeight": 0,
-        "tag": "link"
-      },
-      {
-        "attributes": {
-          "href": "apple-touch-startup-1668x2224r2.png",
-          "media": "(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)",
-          "rel": "apple-touch-startup-image"
-        },
-        "children": [
-        ],
-        "html": "<link rel=\"apple-touch-startup-image\" href=\"apple-touch-startup-1668x2224r2.png\" media=\"(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)\">",
-        "isSelfClosing": true,
-        "sortWeight": 0,
-        "tag": "link"
-      },
-      {
-        "attributes": {
-          "href": "apple-touch-startup-2388x1668r2.png",
-          "media": "(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)",
-          "rel": "apple-touch-startup-image"
-        },
-        "children": [
-        ],
-        "html": "<link rel=\"apple-touch-startup-image\" href=\"apple-touch-startup-2388x1668r2.png\" media=\"(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)\">",
-        "isSelfClosing": true,
-        "sortWeight": 0,
-        "tag": "link"
-      },
-      {
-        "attributes": {
-          "href": "apple-touch-startup-1668x2388r2.png",
-          "media": "(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)",
-          "rel": "apple-touch-startup-image"
-        },
-        "children": [
-        ],
-        "html": "<link rel=\"apple-touch-startup-image\" href=\"apple-touch-startup-1668x2388r2.png\" media=\"(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)\">",
-        "isSelfClosing": true,
-        "sortWeight": 0,
-        "tag": "link"
-      },
-      {
-        "attributes": {
-          "href": "apple-touch-startup-2732x2048r2.png",
-          "media": "(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)",
-          "rel": "apple-touch-startup-image"
-        },
-        "children": [
-        ],
-        "html": "<link rel=\"apple-touch-startup-image\" href=\"apple-touch-startup-2732x2048r2.png\" media=\"(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)\">",
-        "isSelfClosing": true,
-        "sortWeight": 0,
-        "tag": "link"
-      },
-      {
-        "attributes": {
-          "href": "apple-touch-startup-2048x2732r2.png",
-          "media": "(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)",
-          "rel": "apple-touch-startup-image"
-        },
-        "children": [
-        ],
-        "html": "<link rel=\"apple-touch-startup-image\" href=\"apple-touch-startup-2048x2732r2.png\" media=\"(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)\">",
-        "isSelfClosing": true,
-        "sortWeight": 0,
-        "tag": "link"
-      },
-      {
-        "attributes": {
-          "href": "apple-touch-startup-2436x1125r3.png",
-          "media": "(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)",
-          "rel": "apple-touch-startup-image"
-        },
-        "children": [
-        ],
-        "html": "<link rel=\"apple-touch-startup-image\" href=\"apple-touch-startup-2436x1125r3.png\" media=\"(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)\">",
-        "isSelfClosing": true,
-        "sortWeight": 0,
-        "tag": "link"
-      },
-      {
-        "attributes": {
-          "href": "apple-touch-startup-1125x2436r3.png",
-          "media": "(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)",
-          "rel": "apple-touch-startup-image"
-        },
-        "children": [
-        ],
-        "html": "<link rel=\"apple-touch-startup-image\" href=\"apple-touch-startup-1125x2436r3.png\" media=\"(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)\">",
-        "isSelfClosing": true,
-        "sortWeight": 0,
-        "tag": "link"
-      },
-      {
-        "attributes": {
-          "href": "apple-touch-startup-2208x1242r3.png",
-          "media": "(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)",
-          "rel": "apple-touch-startup-image"
-        },
-        "children": [
-        ],
-        "html": "<link rel=\"apple-touch-startup-image\" href=\"apple-touch-startup-2208x1242r3.png\" media=\"(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)\">",
-        "isSelfClosing": true,
-        "sortWeight": 0,
-        "tag": "link"
-      },
-      {
-        "attributes": {
-          "href": "apple-touch-startup-1242x2208r3.png",
-          "media": "(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)",
-          "rel": "apple-touch-startup-image"
-        },
-        "children": [
-        ],
-        "html": "<link rel=\"apple-touch-startup-image\" href=\"apple-touch-startup-1242x2208r3.png\" media=\"(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)\">",
-        "isSelfClosing": true,
-        "sortWeight": 0,
-        "tag": "link"
-      },
-      {
-        "attributes": {
-          "href": "apple-touch-startup-2688x1242r3.png",
-          "media": "(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)",
-          "rel": "apple-touch-startup-image"
-        },
-        "children": [
-        ],
-        "html": "<link rel=\"apple-touch-startup-image\" href=\"apple-touch-startup-2688x1242r3.png\" media=\"(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)\">",
-        "isSelfClosing": true,
-        "sortWeight": 0,
-        "tag": "link"
-      },
-      {
-        "attributes": {
-          "href": "apple-touch-startup-1242x2688r3.png",
-          "media": "(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)",
-          "rel": "apple-touch-startup-image"
-        },
-        "children": [
-        ],
-        "html": "<link rel=\"apple-touch-startup-image\" href=\"apple-touch-startup-1242x2688r3.png\" media=\"(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)\">",
-        "isSelfClosing": true,
-        "sortWeight": 0,
-        "tag": "link"
-      },
-      {
-        "attributes": {
-          "href": "apple-touch-startup-1136x640r2.png",
-          "media": "(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)",
-          "rel": "apple-touch-startup-image"
-        },
-        "children": [
-        ],
-        "html": "<link rel=\"apple-touch-startup-image\" href=\"apple-touch-startup-1136x640r2.png\" media=\"(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)\">",
-        "isSelfClosing": true,
-        "sortWeight": 0,
-        "tag": "link"
-      },
-      {
-        "attributes": {
-          "href": "apple-touch-startup-640x1136r2.png",
-          "media": "(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)",
-          "rel": "apple-touch-startup-image"
-        },
-        "children": [
-        ],
-        "html": "<link rel=\"apple-touch-startup-image\" href=\"apple-touch-startup-640x1136r2.png\" media=\"(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)\">",
-        "isSelfClosing": true,
-        "sortWeight": 0,
-        "tag": "link"
-      },
-      {
-        "attributes": {
-          "href": "apple-touch-startup-1334x750r2.png",
-          "media": "(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)",
-          "rel": "apple-touch-startup-image"
-        },
-        "children": [
-        ],
-        "html": "<link rel=\"apple-touch-startup-image\" href=\"apple-touch-startup-1334x750r2.png\" media=\"(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)\">",
-        "isSelfClosing": true,
-        "sortWeight": 0,
-        "tag": "link"
-      },
-      {
-        "attributes": {
-          "href": "apple-touch-startup-750x1334r2.png",
-          "media": "(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)",
-          "rel": "apple-touch-startup-image"
-        },
-        "children": [
-        ],
-        "html": "<link rel=\"apple-touch-startup-image\" href=\"apple-touch-startup-750x1334r2.png\" media=\"(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)\">",
-        "isSelfClosing": true,
-        "sortWeight": 0,
-        "tag": "link"
-      },
-      {
-        "attributes": {
-          "href": "apple-touch-startup-1792x828r2.png",
-          "media": "(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)",
-          "rel": "apple-touch-startup-image"
-        },
-        "children": [
-        ],
-        "html": "<link rel=\"apple-touch-startup-image\" href=\"apple-touch-startup-1792x828r2.png\" media=\"(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)\">",
-        "isSelfClosing": true,
-        "sortWeight": 0,
-        "tag": "link"
-      },
-      {
-        "attributes": {
-          "href": "apple-touch-startup-828x1792r2.png",
-          "media": "(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)",
-          "rel": "apple-touch-startup-image"
-        },
-        "children": [
-        ],
-        "html": "<link rel=\"apple-touch-startup-image\" href=\"apple-touch-startup-828x1792r2.png\" media=\"(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)\">",
-        "isSelfClosing": true,
-        "sortWeight": 0,
         "tag": "link"
       }
     ],
     "graph": [
       {
         "attributes": {
-          "content": "app-id=915056765, app-argument=iconduit://dashboard",
+          "content": "<%- (({id, launchUrl} = {}) => id && (launchUrl ? `app-id=${id}, app-argument=${consumer.absoluteUrl(launchUrl)}` : `app-id=${id}`))(manifest.applications.native.find(({platform}) => platform === \"itunes\")) %>",
           "name": "apple-itunes-app"
         },
         "children": [
         ],
-        "html": "<meta name=\"apple-itunes-app\" content=\"app-id=915056765, app-argument=iconduit://dashboard\">",
         "isSelfClosing": true,
-        "sortWeight": 0,
+        "predicate": [
+          "<%- (({id, launchUrl} = {}) => id && (launchUrl ? `app-id=${id}, app-argument=${consumer.absoluteUrl(launchUrl)}` : `app-id=${id}`))(manifest.applications.native.find(({platform}) => platform === \"itunes\")) %>"
+        ],
         "tag": "meta"
       },
       {
         "attributes": {
-          "content": "https://iconduit.app/dashboard",
+          "content": "<%- (({launchUrl} = {}) => launchUrl && consumer.absoluteUrl(launchUrl))(manifest.applications.native.find(({platform}) => platform === \"play\")) %>",
           "property": "al:android:url"
         },
         "children": [
         ],
-        "html": "<meta property=\"al:android:url\" content=\"https://iconduit.app/dashboard\">",
         "isSelfClosing": true,
-        "sortWeight": 0,
+        "predicate": [
+          "<%- (({launchUrl} = {}) => launchUrl && consumer.absoluteUrl(launchUrl))(manifest.applications.native.find(({platform}) => platform === \"play\")) %>"
+        ],
         "tag": "meta"
       },
       {
         "attributes": {
-          "content": "com.google.android.apps.maps",
+          "content": "<%- (manifest.applications.native.find(({platform}) => platform === \"play\") || {}).id %>",
           "property": "al:android:package"
         },
         "children": [
         ],
-        "html": "<meta property=\"al:android:package\" content=\"com.google.android.apps.maps\">",
         "isSelfClosing": true,
-        "sortWeight": 0,
+        "predicate": [
+          "<%- (manifest.applications.native.find(({platform}) => platform === \"play\") || {}).id %>"
+        ],
         "tag": "meta"
       },
       {
         "attributes": {
-          "content": "Iconduit",
+          "content": "<%- manifest.name %>",
           "property": "al:android:app_name"
         },
         "children": [
         ],
-        "html": "<meta property=\"al:android:app_name\" content=\"Iconduit\">",
         "isSelfClosing": true,
-        "sortWeight": 0,
+        "predicate": [
+          "<%- manifest.applications.native.find(({platform}) => platform === \"play\") ? \"true\" : \"\" %>"
+        ],
         "tag": "meta"
       },
       {
         "attributes": {
-          "content": "iconduit://dashboard",
+          "content": "<%- (({launchUrl} = {}) => launchUrl && consumer.absoluteUrl(launchUrl))(manifest.applications.native.find(({platform}) => platform === \"itunes\")) %>",
           "property": "al:ios:url"
         },
         "children": [
         ],
-        "html": "<meta property=\"al:ios:url\" content=\"iconduit://dashboard\">",
         "isSelfClosing": true,
-        "sortWeight": 0,
+        "predicate": [
+          "<%- (({launchUrl} = {}) => launchUrl && consumer.absoluteUrl(launchUrl))(manifest.applications.native.find(({platform}) => platform === \"itunes\")) %>"
+        ],
         "tag": "meta"
       },
       {
         "attributes": {
-          "content": "915056765",
+          "content": "<%- (manifest.applications.native.find(({platform}) => platform === \"itunes\") || {}).id %>",
           "property": "al:ios:app_store_id"
         },
         "children": [
         ],
-        "html": "<meta property=\"al:ios:app_store_id\" content=\"915056765\">",
         "isSelfClosing": true,
-        "sortWeight": 0,
+        "predicate": [
+          "<%- (manifest.applications.native.find(({platform}) => platform === \"itunes\") || {}).id %>"
+        ],
         "tag": "meta"
       },
       {
         "attributes": {
-          "content": "Iconduit",
+          "content": "<%- manifest.name %>",
           "property": "al:ios:app_name"
         },
         "children": [
         ],
-        "html": "<meta property=\"al:ios:app_name\" content=\"Iconduit\">",
         "isSelfClosing": true,
-        "sortWeight": 0,
+        "predicate": [
+          "<%- manifest.applications.native.find(({platform}) => platform === \"itunes\") ? \"true\" : \"\" %>"
+        ],
         "tag": "meta"
       },
       {
         "attributes": {
-          "content": "https://iconduit.github.io/",
+          "content": "<%- consumer.absoluteUrl(manifest.urls.start) %>",
           "property": "al:web:url"
         },
         "children": [
         ],
-        "html": "<meta property=\"al:web:url\" content=\"https://iconduit.github.io/\">",
         "isSelfClosing": true,
-        "sortWeight": 0,
+        "predicate": [
+          "<%- consumer.absoluteUrl(manifest.urls.start) %>"
+        ],
         "tag": "meta"
       },
       {
         "attributes": {
-          "content": "iconduit://dashboard",
+          "content": "<%- (({launchUrl} = {}) => launchUrl && consumer.absoluteUrl(launchUrl))(manifest.applications.native.find(({platform}) => platform === \"windows\")) %>",
           "property": "al:windows:url"
         },
         "children": [
         ],
-        "html": "<meta property=\"al:windows:url\" content=\"iconduit://dashboard\">",
         "isSelfClosing": true,
-        "sortWeight": 0,
+        "predicate": [
+          "<%- (({launchUrl} = {}) => launchUrl && consumer.absoluteUrl(launchUrl))(manifest.applications.native.find(({platform}) => platform === \"windows\")) %>"
+        ],
         "tag": "meta"
       },
       {
         "attributes": {
-          "content": "9wzdncrdtbvb",
+          "content": "<%- (manifest.applications.native.find(({platform}) => platform === \"windows\") || {}).id %>",
           "property": "al:windows:package"
         },
         "children": [
         ],
-        "html": "<meta property=\"al:windows:package\" content=\"9wzdncrdtbvb\">",
         "isSelfClosing": true,
-        "sortWeight": 0,
+        "predicate": [
+          "<%- (manifest.applications.native.find(({platform}) => platform === \"windows\") || {}).id %>"
+        ],
         "tag": "meta"
       },
       {
         "attributes": {
-          "content": "Iconduit",
+          "content": "<%- manifest.name %>",
           "property": "al:windows:app_name"
         },
         "children": [
         ],
-        "html": "<meta property=\"al:windows:app_name\" content=\"Iconduit\">",
         "isSelfClosing": true,
-        "sortWeight": 0,
+        "predicate": [
+          "<%- manifest.applications.native.find(({platform}) => platform === \"windows\") ? \"true\" : \"\" %>"
+        ],
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "<%- manifest.applications.web.facebook.appId %>",
+          "property": "fb:app_id"
+        },
+        "children": [
+        ],
+        "isSelfClosing": true,
+        "predicate": [
+          "<%- manifest.applications.web.facebook.appId %>"
+        ],
         "tag": "meta"
       },
       {
@@ -1299,260 +1077,450 @@
         },
         "children": [
         ],
-        "html": "<meta property=\"og:type\" content=\"website\">",
         "isSelfClosing": true,
-        "sortWeight": 0,
+        "predicate": [
+        ],
         "tag": "meta"
       },
       {
         "attributes": {
-          "content": "en_US",
+          "content": "<%- manifest.language.replace(\"-\", \"_\") %>",
           "property": "og:locale"
         },
         "children": [
         ],
-        "html": "<meta property=\"og:locale\" content=\"en_US\">",
         "isSelfClosing": true,
-        "sortWeight": 0,
+        "predicate": [
+          "<%- manifest.language.replace(\"-\", \"_\") %>"
+        ],
         "tag": "meta"
       },
       {
         "attributes": {
-          "content": "https://iconduit.github.io/",
+          "content": "<%- consumer.absoluteUrl(manifest.urls.start) %>",
           "property": "og:url"
         },
         "children": [
         ],
-        "html": "<meta property=\"og:url\" content=\"https://iconduit.github.io/\">",
         "isSelfClosing": true,
-        "sortWeight": 0,
+        "predicate": [
+          "<%- consumer.absoluteUrl(manifest.urls.start) %>"
+        ],
         "tag": "meta"
       },
       {
         "attributes": {
-          "content": "Iconduit",
+          "content": "<%- manifest.name %>",
           "property": "og:site_name"
         },
         "children": [
         ],
-        "html": "<meta property=\"og:site_name\" content=\"Iconduit\">",
         "isSelfClosing": true,
-        "sortWeight": 0,
+        "predicate": [
+        ],
         "tag": "meta"
       },
       {
         "attributes": {
-          "content": "Iconduit",
+          "content": "<%- manifest.determiner %>",
+          "property": "og:determiner"
+        },
+        "children": [
+        ],
+        "isSelfClosing": true,
+        "predicate": [
+          "<%- manifest.determiner %>"
+        ],
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "<%- manifest.name %>",
           "property": "og:title"
         },
         "children": [
         ],
-        "html": "<meta property=\"og:title\" content=\"Iconduit\">",
         "isSelfClosing": true,
-        "sortWeight": 0,
+        "predicate": [
+          "<%- manifest.name %>"
+        ],
         "tag": "meta"
       },
       {
         "attributes": {
-          "content": "A build system for web application icon and image assets",
+          "content": "<%- manifest.description %>",
           "property": "og:description"
         },
         "children": [
         ],
-        "html": "<meta property=\"og:description\" content=\"A build system for web application icon and image assets\">",
         "isSelfClosing": true,
-        "sortWeight": 0,
+        "predicate": [
+          "<%- manifest.description %>"
+        ],
         "tag": "meta"
       },
       {
         "attributes": {
-          "content": "summary_large_image",
+          "content": "<%- manifest.applications.web.twitter.cardType %>",
           "name": "twitter:card"
         },
         "children": [
         ],
-        "html": "<meta name=\"twitter:card\" content=\"summary_large_image\">",
         "isSelfClosing": true,
-        "sortWeight": 0,
+        "predicate": [
+        ],
         "tag": "meta"
       },
       {
         "attributes": {
-          "content": "Iconduit",
+          "content": "<%- (handle => handle && `@${handle}`)(manifest.applications.web.twitter.siteHandle) %>",
+          "name": "twitter:site"
+        },
+        "children": [
+        ],
+        "isSelfClosing": true,
+        "predicate": [
+          "<%- (handle => handle && `@${handle}`)(manifest.applications.web.twitter.siteHandle) %>"
+        ],
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "<%- (handle => handle && `@${handle}`)(manifest.applications.web.twitter.creatorHandle) %>",
+          "name": "twitter:creator"
+        },
+        "children": [
+        ],
+        "isSelfClosing": true,
+        "predicate": [
+          "<%- manifest.applications.web.twitter.cardType.startsWith(\"summary\") ? \"true\" : \"\" %>",
+          "<%- (handle => handle && `@${handle}`)(manifest.applications.web.twitter.creatorHandle) %>"
+        ],
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "<%- manifest.name %>",
           "name": "twitter:title"
         },
         "children": [
         ],
-        "html": "<meta name=\"twitter:title\" content=\"Iconduit\">",
         "isSelfClosing": true,
-        "sortWeight": 0,
+        "predicate": [
+          "<%- manifest.applications.web.twitter.cardType.startsWith(\"summary\") ? \"true\" : \"\" %>"
+        ],
         "tag": "meta"
       },
       {
         "attributes": {
-          "content": "A build system for web application icon and image assets",
+          "content": "<%- (manifest.description || \"\").length <= 200 ? manifest.description : manifest.description.substring(197) + \"...\" %>",
           "name": "twitter:description"
         },
         "children": [
         ],
-        "html": "<meta name=\"twitter:description\" content=\"A build system for web application icon and image assets\">",
         "isSelfClosing": true,
-        "sortWeight": 0,
+        "predicate": [
+          "<%- (manifest.description || \"\").length <= 200 ? manifest.description : manifest.description.substring(197) + \"...\" %>"
+        ],
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "<%- (manifest.applications.native.find(({platform}) => platform === \"itunes\") || {}).country %>",
+          "name": "twitter:app:country"
+        },
+        "children": [
+        ],
+        "isSelfClosing": true,
+        "predicate": [
+          "<%- manifest.applications.web.twitter.cardType === \"app\" ? \"true\" : \"\" %>",
+          "<%- (manifest.applications.native.find(({platform}) => platform === \"itunes\") || {}).country %>"
+        ],
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "<%- manifest.name %>",
+          "name": "twitter:app:name:iphone"
+        },
+        "children": [
+        ],
+        "isSelfClosing": true,
+        "predicate": [
+          "<%- manifest.applications.web.twitter.cardType === \"app\" ? \"true\" : \"\" %>",
+          "<%- manifest.applications.native.find(({platform}) => platform === \"itunes\") ? \"true\" : \"\" %>"
+        ],
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "<%- (manifest.applications.native.find(({platform}) => platform === \"itunes\") || {}).id %>",
+          "name": "twitter:app:id:iphone"
+        },
+        "children": [
+        ],
+        "isSelfClosing": true,
+        "predicate": [
+          "<%- manifest.applications.web.twitter.cardType === \"app\" ? \"true\" : \"\" %>",
+          "<%- (manifest.applications.native.find(({platform}) => platform === \"itunes\") || {}).id %>"
+        ],
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "<%- (({launchUrl} = {}) => launchUrl && consumer.absoluteUrl(launchUrl))(manifest.applications.native.find(({platform}) => platform === \"itunes\")) %>",
+          "name": "twitter:app:url:iphone"
+        },
+        "children": [
+        ],
+        "isSelfClosing": true,
+        "predicate": [
+          "<%- manifest.applications.web.twitter.cardType === \"app\" ? \"true\" : \"\" %>",
+          "<%- (({launchUrl} = {}) => launchUrl && consumer.absoluteUrl(launchUrl))(manifest.applications.native.find(({platform}) => platform === \"itunes\")) %>"
+        ],
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "<%- manifest.name %>",
+          "name": "twitter:app:name:ipad"
+        },
+        "children": [
+        ],
+        "isSelfClosing": true,
+        "predicate": [
+          "<%- manifest.applications.web.twitter.cardType === \"app\" ? \"true\" : \"\" %>",
+          "<%- manifest.applications.native.find(({platform}) => platform === \"itunes\") ? \"true\" : \"\" %>"
+        ],
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "<%- (manifest.applications.native.find(({platform}) => platform === \"itunes\") || {}).id %>",
+          "name": "twitter:app:id:ipad"
+        },
+        "children": [
+        ],
+        "isSelfClosing": true,
+        "predicate": [
+          "<%- manifest.applications.web.twitter.cardType === \"app\" ? \"true\" : \"\" %>",
+          "<%- (manifest.applications.native.find(({platform}) => platform === \"itunes\") || {}).id %>"
+        ],
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "<%- (({launchUrl} = {}) => launchUrl && consumer.absoluteUrl(launchUrl))(manifest.applications.native.find(({platform}) => platform === \"itunes\")) %>",
+          "name": "twitter:app:url:ipad"
+        },
+        "children": [
+        ],
+        "isSelfClosing": true,
+        "predicate": [
+          "<%- manifest.applications.web.twitter.cardType === \"app\" ? \"true\" : \"\" %>",
+          "<%- (({launchUrl} = {}) => launchUrl && consumer.absoluteUrl(launchUrl))(manifest.applications.native.find(({platform}) => platform === \"itunes\")) %>"
+        ],
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "<%- manifest.name %>",
+          "name": "twitter:app:name:googleplay"
+        },
+        "children": [
+        ],
+        "isSelfClosing": true,
+        "predicate": [
+          "<%- manifest.applications.web.twitter.cardType === \"app\" ? \"true\" : \"\" %>",
+          "<%- manifest.applications.native.find(({platform}) => platform === \"play\") ? \"true\" : \"\" %>"
+        ],
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "<%- (manifest.applications.native.find(({platform}) => platform === \"play\") || {}).id %>",
+          "name": "twitter:app:id:googleplay"
+        },
+        "children": [
+        ],
+        "isSelfClosing": true,
+        "predicate": [
+          "<%- manifest.applications.web.twitter.cardType === \"app\" ? \"true\" : \"\" %>",
+          "<%- (manifest.applications.native.find(({platform}) => platform === \"play\") || {}).id %>"
+        ],
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "<%- (({launchUrl} = {}) => launchUrl && consumer.absoluteUrl(launchUrl))(manifest.applications.native.find(({platform}) => platform === \"play\")) %>",
+          "name": "twitter:app:url:googleplay"
+        },
+        "children": [
+        ],
+        "isSelfClosing": true,
+        "predicate": [
+          "<%- manifest.applications.web.twitter.cardType === \"app\" ? \"true\" : \"\" %>",
+          "<%- (({launchUrl} = {}) => launchUrl && consumer.absoluteUrl(launchUrl))(manifest.applications.native.find(({platform}) => platform === \"play\")) %>"
+        ],
         "tag": "meta"
       }
     ],
     "graphImage": [
       {
         "attributes": {
-          "content": "https://iconduit.github.io/open-graph.png",
+          "content": "<%- consumer.absoluteImageUrl(outputName, sizeKey) %>",
           "property": "og:image"
         },
         "children": [
         ],
-        "html": "<meta property=\"og:image\" content=\"https://iconduit.github.io/open-graph.png\">",
+        "imageName": "openGraphImage",
         "isSelfClosing": true,
-        "sortWeight": 0,
+        "predicate": [
+          "<%- consumer.absoluteImageUrl(outputName, sizeKey) %>"
+        ],
         "tag": "meta"
       },
       {
         "attributes": {
-          "content": "image/png",
+          "content": "<%- output.type %>",
           "property": "og:image:type"
         },
         "children": [
         ],
-        "html": "<meta property=\"og:image:type\" content=\"image/png\">",
+        "imageName": "openGraphImage",
         "isSelfClosing": true,
-        "sortWeight": 0,
+        "predicate": [
+          "<%- consumer.absoluteImageUrl(outputName, sizeKey) %>"
+        ],
         "tag": "meta"
       },
       {
         "attributes": {
-          "content": "1200",
+          "content": "<%- output.size.width %>",
           "property": "og:image:width"
         },
         "children": [
         ],
-        "html": "<meta property=\"og:image:width\" content=\"1200\">",
+        "imageName": "openGraphImage",
         "isSelfClosing": true,
-        "sortWeight": 0,
+        "predicate": [
+          "<%- consumer.absoluteImageUrl(outputName, sizeKey) %>"
+        ],
         "tag": "meta"
       },
       {
         "attributes": {
-          "content": "630",
+          "content": "<%- output.size.height %>",
           "property": "og:image:height"
         },
         "children": [
         ],
-        "html": "<meta property=\"og:image:height\" content=\"630\">",
+        "imageName": "openGraphImage",
         "isSelfClosing": true,
-        "sortWeight": 0,
+        "predicate": [
+          "<%- consumer.absoluteImageUrl(outputName, sizeKey) %>"
+        ],
         "tag": "meta"
       },
       {
         "attributes": {
-          "content": "Iconduit",
+          "content": "<%- manifest.name %>",
           "property": "og:image:alt"
         },
         "children": [
         ],
-        "html": "<meta property=\"og:image:alt\" content=\"Iconduit\">",
+        "imageName": "openGraphImage",
         "isSelfClosing": true,
-        "sortWeight": 0,
+        "predicate": [
+          "<%- consumer.absoluteImageUrl(outputName, sizeKey) %>"
+        ],
         "tag": "meta"
       },
       {
         "attributes": {
-          "content": "https://iconduit.github.io/twitter-card.png",
+          "content": "<%- consumer.absoluteImageUrl(outputName, sizeKey) %>",
           "name": "twitter:image"
         },
         "children": [
         ],
-        "html": "<meta name=\"twitter:image\" content=\"https://iconduit.github.io/twitter-card.png\">",
+        "imageName": "twitterCardImage",
         "isSelfClosing": true,
-        "sortWeight": 0,
+        "predicate": [
+          "<%- consumer.absoluteImageUrl(outputName, sizeKey) %>"
+        ],
         "tag": "meta"
       },
       {
         "attributes": {
-          "content": "Iconduit",
+          "content": "<%- manifest.name %>",
           "name": "twitter:image:alt"
         },
         "children": [
         ],
-        "html": "<meta name=\"twitter:image:alt\" content=\"Iconduit\">",
+        "imageName": "twitterCardImage",
         "isSelfClosing": true,
-        "sortWeight": 0,
+        "predicate": [
+          "<%- consumer.absoluteImageUrl(outputName, sizeKey) %>"
+        ],
         "tag": "meta"
       }
     ],
     "icon": [
       {
         "attributes": {
-          "href": "apple-touch-icon-180x180.png",
+          "href": "<%- output.url %>",
           "rel": "apple-touch-icon"
         },
         "children": [
         ],
-        "html": "<link rel=\"apple-touch-icon\" href=\"apple-touch-icon-180x180.png\">",
+        "imageName": "appleTouchIcon",
         "isSelfClosing": true,
-        "sortWeight": -1,
+        "predicate": [
+        ],
         "tag": "link"
       },
       {
         "attributes": {
-          "href": "favicon-32x32.png",
+          "href": "<%- output.url %>",
           "rel": "icon",
-          "sizes": "32x32",
-          "type": "image/png"
+          "sizes": "<%- output.htmlSizes %>",
+          "type": "<%- output.type %>"
         },
         "children": [
         ],
-        "html": "<link rel=\"icon\" type=\"image/png\" href=\"favicon-32x32.png\" sizes=\"32x32\">",
+        "imageName": "faviconPng",
         "isSelfClosing": true,
-        "sortWeight": 0,
-        "tag": "link"
-      },
-      {
-        "attributes": {
-          "href": "favicon-16x16.png",
-          "rel": "icon",
-          "sizes": "16x16",
-          "type": "image/png"
-        },
-        "children": [
+        "predicate": [
         ],
-        "html": "<link rel=\"icon\" type=\"image/png\" href=\"favicon-16x16.png\" sizes=\"16x16\">",
-        "isSelfClosing": true,
-        "sortWeight": 0,
         "tag": "link"
       },
       {
         "attributes": {
-          "color": "#D5415C",
-          "href": "safari-mask-icon.svg",
+          "color": "<%- manifest.color.mask %>",
+          "href": "<%- output.url %>",
           "rel": "mask-icon"
         },
         "children": [
         ],
-        "html": "<link rel=\"mask-icon\" href=\"safari-mask-icon.svg\" color=\"#D5415C\">",
+        "documentName": "safariMaskIcon",
         "isSelfClosing": true,
-        "sortWeight": 0,
+        "predicate": [
+        ],
         "tag": "link"
       }
     ],
     "link": [
       {
         "attributes": {
-          "href": "site.webmanifest",
+          "href": "<%- output.url %>",
           "rel": "manifest"
         },
         "children": [
         ],
-        "html": "<link rel=\"manifest\" href=\"site.webmanifest\">",
+        "documentName": "webAppManifest",
         "isSelfClosing": true,
-        "sortWeight": 0,
+        "predicate": [
+        ],
         "tag": "link"
       }
     ],
@@ -1564,9 +1532,9 @@
         },
         "children": [
         ],
-        "html": "<meta name=\"mobile-web-app-capable\" content=\"yes\">",
         "isSelfClosing": true,
-        "sortWeight": 1000,
+        "predicate": [
+        ],
         "tag": "meta"
       },
       {
@@ -1576,93 +1544,108 @@
         },
         "children": [
         ],
-        "html": "<meta name=\"apple-mobile-web-app-capable\" content=\"yes\">",
         "isSelfClosing": true,
-        "sortWeight": 1000,
+        "predicate": [
+        ],
         "tag": "meta"
       },
       {
         "attributes": {
-          "content": "Iconduit",
+          "content": "<%- manifest.name %>",
           "name": "application-name"
         },
         "children": [
         ],
-        "html": "<meta name=\"application-name\" content=\"Iconduit\">",
         "isSelfClosing": true,
-        "sortWeight": 2000,
+        "predicate": [
+        ],
         "tag": "meta"
       },
       {
         "attributes": {
-          "content": "Iconduit",
+          "content": "<%- manifest.name %>",
           "name": "apple-mobile-web-app-title"
         },
         "children": [
         ],
-        "html": "<meta name=\"apple-mobile-web-app-title\" content=\"Iconduit\">",
         "isSelfClosing": true,
-        "sortWeight": 2000,
+        "predicate": [
+        ],
         "tag": "meta"
       },
       {
         "attributes": {
-          "content": "width=device-width, initial-scale=1",
+          "content": "<%- manifest.viewport %>",
           "name": "viewport"
         },
         "children": [
         ],
-        "html": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
         "isSelfClosing": true,
-        "sortWeight": 3000,
+        "predicate": [
+        ],
         "tag": "meta"
       },
       {
         "attributes": {
-          "content": "#D5415C",
+          "content": "<%- manifest.color.theme %>",
           "name": "theme-color"
         },
         "children": [
         ],
-        "html": "<meta name=\"theme-color\" content=\"#D5415C\">",
         "isSelfClosing": true,
-        "sortWeight": 4000,
+        "predicate": [
+        ],
         "tag": "meta"
       },
       {
         "attributes": {
-          "content": "#D5415C",
+          "content": "<%- manifest.os.ios.statusBarStyle %>",
+          "name": "apple-mobile-web-app-status-bar-style"
+        },
+        "children": [
+        ],
+        "isSelfClosing": true,
+        "predicate": [
+          "<%- manifest.os.ios.statusBarStyle !== \"default\" ? \"true\" : \"\" %>"
+        ],
+        "tag": "meta"
+      },
+      {
+        "attributes": {
+          "content": "<%- manifest.color.tile %>",
           "name": "msapplication-TileColor"
         },
         "children": [
         ],
-        "html": "<meta name=\"msapplication-TileColor\" content=\"#D5415C\">",
         "isSelfClosing": true,
-        "sortWeight": 5000,
+        "predicate": [
+        ],
         "tag": "meta"
       },
       {
         "attributes": {
-          "content": "windows-tile-300x300.png",
+          "content": "<%- output.url %>",
           "name": "msapplication-TileImage"
         },
         "children": [
         ],
-        "html": "<meta name=\"msapplication-TileImage\" content=\"windows-tile-300x300.png\">",
+        "imageName": "windowsTileMedium",
         "isSelfClosing": true,
-        "sortWeight": 5100,
+        "predicate": [
+        ],
         "tag": "meta"
       },
       {
         "attributes": {
-          "content": "browserconfig.xml",
+          "content": "<%- output.url %>",
           "name": "msapplication-config"
         },
         "children": [
         ],
-        "html": "<meta name=\"msapplication-config\" content=\"browserconfig.xml\">",
+        "documentName": "browserconfigXml",
         "isSelfClosing": true,
-        "sortWeight": 5200,
+        "predicate": [
+        ],
         "tag": "meta"
       }
     ]

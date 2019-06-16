@@ -899,15 +899,8 @@ module.exports = {
     },
     tagValue: {
       description: 'A value used in tag creation as an attribute value, or predicate',
-      oneOf: [
-        {
-          type: 'string',
-          minLength: 1,
-        },
-        {
-          typeof: 'function',
-        },
-      ],
+      type: 'string',
+      minLength: 1,
     },
     targetOutputs: {
       description: 'A set of output and tag names',

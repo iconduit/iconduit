@@ -2,7 +2,7 @@ const fileUrl = require('file-url')
 const toIco = require('to-ico')
 const {dirname, extname, join, relative} = require('path')
 
-const {buildManifest, buildTags} = require('./manifest.js')
+const {buildManifest} = require('./manifest.js')
 const {createConsumer} = require('./consumer.js')
 const {formatList} = require('./logging.js')
 const {groupSizes, resolveSizesForOutputs} = require('./size.js')
@@ -36,9 +36,7 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, mini
 
     const sizesByOutput = resolveSizesForOutputs(config, outputs)
 
-    const manifestNoTag = await buildManifest(config, outputs)
-    const manifestTag = await buildTags(manifestNoTag, tags, outputs)
-    const manifest = {...manifestNoTag, tag: manifestTag}
+    const manifest = await buildManifest(config, outputs, tags)
     const consumer = createConsumer(manifest)
 
     const buildInput = createInputBuilder(config, options)
