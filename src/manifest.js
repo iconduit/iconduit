@@ -45,7 +45,7 @@ function buildManifestOutput (config, outputs) {
         imageSizes[key] = {htmlSizes, size, type, url}
       }
 
-      output.image[outputName] = imageSizes
+      output.image[outputName] = imageContainerSize(imageSizes) || imageSizes
     } else {
       const type = getType(template)
       const url = resolveUrl(outputBaseUrl, template)
@@ -55,6 +55,48 @@ function buildManifestOutput (config, outputs) {
   }
 
   return output
+}
+
+function imageContainerSize (sizesByKey) {
+  const sizes = Object.values(sizesByKey)
+
+  if (sizes.length < 2) return null
+
+  const {
+    htmlSizes: firstHtmlSizes,
+    size: firstSize,
+    type,
+    url,
+  } = sizes.shift()
+
+  const containerSize = {
+    size: firstSize,
+    sizes: [firstSize],
+    type,
+    url,
+  }
+  const containerHtmlSizes = new Set([firstHtmlSizes])
+
+  for (const {htmlSizes, size, url} of sizes) {
+    if (url !== containerSize.url) return null
+
+    containerHtmlSizes.add(htmlSizes)
+    containerSize.sizes.push(size)
+
+    if (compareSize(containerSize.size, size) > 0) containerSize.size = size
+  }
+
+  containerSize.htmlSizes = Array.from(containerHtmlSizes).join(' ')
+
+  return {container: containerSize}
+}
+
+function compareSize (a, b) {
+  const widthDelta = b.width - a.width
+
+  if (widthDelta !== 0) return widthDelta
+
+  return b.height - a.height
 }
 
 function buildManifestTag (tags, outputs) {

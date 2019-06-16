@@ -438,36 +438,34 @@
         }
       },
       "faviconIco": {
-        "large": {
-          "htmlSizes": "48x48",
+        "container": {
+          "htmlSizes": "48x48 32x32 16x16",
           "size": {
             "height": 48,
             "pixelDensity": 72,
             "pixelRatio": 1,
             "width": 48
           },
-          "type": "image/vnd.microsoft.icon",
-          "url": "favicon.ico"
-        },
-        "medium": {
-          "htmlSizes": "32x32",
-          "size": {
-            "height": 32,
-            "pixelDensity": 72,
-            "pixelRatio": 1,
-            "width": 32
-          },
-          "type": "image/vnd.microsoft.icon",
-          "url": "favicon.ico"
-        },
-        "small": {
-          "htmlSizes": "16x16",
-          "size": {
-            "height": 16,
-            "pixelDensity": 72,
-            "pixelRatio": 1,
-            "width": 16
-          },
+          "sizes": [
+            {
+              "height": 48,
+              "pixelDensity": 72,
+              "pixelRatio": 1,
+              "width": 48
+            },
+            {
+              "height": 32,
+              "pixelDensity": 72,
+              "pixelRatio": 1,
+              "width": 32
+            },
+            {
+              "height": 16,
+              "pixelDensity": 72,
+              "pixelRatio": 1,
+              "width": 16
+            }
+          ],
           "type": "image/vnd.microsoft.icon",
           "url": "favicon.ico"
         }
@@ -510,124 +508,82 @@
         }
       },
       "macosIcns": {
-        "128": {
-          "htmlSizes": "128x128",
-          "size": {
-            "height": 128,
-            "pixelDensity": 72,
-            "pixelRatio": 1,
-            "width": 128
-          },
-          "type": "image/icns",
-          "url": "macos.icns"
-        },
-        "128@2x": {
-          "htmlSizes": "256x256",
-          "size": {
-            "height": 256,
-            "pixelDensity": 72,
-            "pixelRatio": 2,
-            "width": 256
-          },
-          "type": "image/icns",
-          "url": "macos.icns"
-        },
-        "16": {
-          "htmlSizes": "16x16",
-          "size": {
-            "height": 16,
-            "pixelDensity": 72,
-            "pixelRatio": 1,
-            "width": 16
-          },
-          "type": "image/icns",
-          "url": "macos.icns"
-        },
-        "16@2x": {
-          "htmlSizes": "32x32",
-          "size": {
-            "height": 32,
-            "pixelDensity": 72,
-            "pixelRatio": 2,
-            "width": 32
-          },
-          "type": "image/icns",
-          "url": "macos.icns"
-        },
-        "256": {
-          "htmlSizes": "256x256",
-          "size": {
-            "height": 256,
-            "pixelDensity": 72,
-            "pixelRatio": 1,
-            "width": 256
-          },
-          "type": "image/icns",
-          "url": "macos.icns"
-        },
-        "256@2x": {
-          "htmlSizes": "512x512",
-          "size": {
-            "height": 512,
-            "pixelDensity": 72,
-            "pixelRatio": 2,
-            "width": 512
-          },
-          "type": "image/icns",
-          "url": "macos.icns"
-        },
-        "32": {
-          "htmlSizes": "32x32",
-          "size": {
-            "height": 32,
-            "pixelDensity": 72,
-            "pixelRatio": 1,
-            "width": 32
-          },
-          "type": "image/icns",
-          "url": "macos.icns"
-        },
-        "32@2x": {
-          "htmlSizes": "64x64",
-          "size": {
-            "height": 64,
-            "pixelDensity": 72,
-            "pixelRatio": 2,
-            "width": 64
-          },
-          "type": "image/icns",
-          "url": "macos.icns"
-        },
-        "512": {
-          "htmlSizes": "512x512",
-          "size": {
-            "height": 512,
-            "pixelDensity": 72,
-            "pixelRatio": 1,
-            "width": 512
-          },
-          "type": "image/icns",
-          "url": "macos.icns"
-        },
-        "512@2x": {
-          "htmlSizes": "1024x1024",
+        "container": {
+          "htmlSizes": "16x16 32x32 64x64 128x128 256x256 512x512 1024x1024",
           "size": {
             "height": 1024,
             "pixelDensity": 72,
             "pixelRatio": 2,
             "width": 1024
           },
-          "type": "image/icns",
-          "url": "macos.icns"
-        },
-        "64": {
-          "htmlSizes": "64x64",
-          "size": {
-            "height": 64,
-            "pixelDensity": 72,
-            "pixelRatio": 1,
-            "width": 64
-          },
+          "sizes": [
+            {
+              "height": 16,
+              "pixelDensity": 72,
+              "pixelRatio": 1,
+              "width": 16
+            },
+            {
+              "height": 32,
+              "pixelDensity": 72,
+              "pixelRatio": 1,
+              "width": 32
+            },
+            {
+              "height": 64,
+              "pixelDensity": 72,
+              "pixelRatio": 1,
+              "width": 64
+            },
+            {
+              "height": 128,
+              "pixelDensity": 72,
+              "pixelRatio": 1,
+              "width": 128
+            },
+            {
+              "height": 256,
+              "pixelDensity": 72,
+              "pixelRatio": 1,
+              "width": 256
+            },
+            {
+              "height": 512,
+              "pixelDensity": 72,
+              "pixelRatio": 1,
+              "width": 512
+            },
+            {
+              "height": 1024,
+              "pixelDensity": 72,
+              "pixelRatio": 2,
+              "width": 1024
+            },
+            {
+              "height": 512,
+              "pixelDensity": 72,
+              "pixelRatio": 2,
+              "width": 512
+            },
+            {
+              "height": 256,
+              "pixelDensity": 72,
+              "pixelRatio": 2,
+              "width": 256
+            },
+            {
+              "height": 64,
+              "pixelDensity": 72,
+              "pixelRatio": 2,
+              "width": 64
+            },
+            {
+              "height": 32,
+              "pixelDensity": 72,
+              "pixelRatio": 2,
+              "width": 32
+            }
+          ],
           "type": "image/icns",
           "url": "macos.icns"
         }
@@ -729,113 +685,76 @@
         }
       },
       "windowsIco": {
-        "128": {
-          "htmlSizes": "128x128",
-          "size": {
-            "height": 128,
-            "pixelDensity": 72,
-            "pixelRatio": 1,
-            "width": 128
-          },
-          "type": "image/vnd.microsoft.icon",
-          "url": "windows.ico"
-        },
-        "16": {
-          "htmlSizes": "16x16",
-          "size": {
-            "height": 16,
-            "pixelDensity": 72,
-            "pixelRatio": 1,
-            "width": 16
-          },
-          "type": "image/vnd.microsoft.icon",
-          "url": "windows.ico"
-        },
-        "22": {
-          "htmlSizes": "22x22",
-          "size": {
-            "height": 22,
-            "pixelDensity": 72,
-            "pixelRatio": 1,
-            "width": 22
-          },
-          "type": "image/vnd.microsoft.icon",
-          "url": "windows.ico"
-        },
-        "24": {
-          "htmlSizes": "24x24",
-          "size": {
-            "height": 24,
-            "pixelDensity": 72,
-            "pixelRatio": 1,
-            "width": 24
-          },
-          "type": "image/vnd.microsoft.icon",
-          "url": "windows.ico"
-        },
-        "256": {
-          "htmlSizes": "256x256",
+        "container": {
+          "htmlSizes": "16x16 22x22 24x24 32x32 40x40 48x48 64x64 96x96 128x128 256x256",
           "size": {
             "height": 256,
             "pixelDensity": 72,
             "pixelRatio": 1,
             "width": 256
           },
-          "type": "image/vnd.microsoft.icon",
-          "url": "windows.ico"
-        },
-        "32": {
-          "htmlSizes": "32x32",
-          "size": {
-            "height": 32,
-            "pixelDensity": 72,
-            "pixelRatio": 1,
-            "width": 32
-          },
-          "type": "image/vnd.microsoft.icon",
-          "url": "windows.ico"
-        },
-        "40": {
-          "htmlSizes": "40x40",
-          "size": {
-            "height": 40,
-            "pixelDensity": 72,
-            "pixelRatio": 1,
-            "width": 40
-          },
-          "type": "image/vnd.microsoft.icon",
-          "url": "windows.ico"
-        },
-        "48": {
-          "htmlSizes": "48x48",
-          "size": {
-            "height": 48,
-            "pixelDensity": 72,
-            "pixelRatio": 1,
-            "width": 48
-          },
-          "type": "image/vnd.microsoft.icon",
-          "url": "windows.ico"
-        },
-        "64": {
-          "htmlSizes": "64x64",
-          "size": {
-            "height": 64,
-            "pixelDensity": 72,
-            "pixelRatio": 1,
-            "width": 64
-          },
-          "type": "image/vnd.microsoft.icon",
-          "url": "windows.ico"
-        },
-        "96": {
-          "htmlSizes": "96x96",
-          "size": {
-            "height": 96,
-            "pixelDensity": 72,
-            "pixelRatio": 1,
-            "width": 96
-          },
+          "sizes": [
+            {
+              "height": 16,
+              "pixelDensity": 72,
+              "pixelRatio": 1,
+              "width": 16
+            },
+            {
+              "height": 22,
+              "pixelDensity": 72,
+              "pixelRatio": 1,
+              "width": 22
+            },
+            {
+              "height": 24,
+              "pixelDensity": 72,
+              "pixelRatio": 1,
+              "width": 24
+            },
+            {
+              "height": 32,
+              "pixelDensity": 72,
+              "pixelRatio": 1,
+              "width": 32
+            },
+            {
+              "height": 40,
+              "pixelDensity": 72,
+              "pixelRatio": 1,
+              "width": 40
+            },
+            {
+              "height": 48,
+              "pixelDensity": 72,
+              "pixelRatio": 1,
+              "width": 48
+            },
+            {
+              "height": 64,
+              "pixelDensity": 72,
+              "pixelRatio": 1,
+              "width": 64
+            },
+            {
+              "height": 96,
+              "pixelDensity": 72,
+              "pixelRatio": 1,
+              "width": 96
+            },
+            {
+              "height": 128,
+              "pixelDensity": 72,
+              "pixelRatio": 1,
+              "width": 128
+            },
+            {
+              "height": 256,
+              "pixelDensity": 72,
+              "pixelRatio": 1,
+              "width": 256
+            }
+          ],
           "type": "image/vnd.microsoft.icon",
           "url": "windows.ico"
         }
