@@ -8,11 +8,11 @@ module.exports = {
   createTemplateReader,
 }
 
-function createBoundTemplateReader (fileSystem, cwd, path) {
+function createBoundTemplateReader (fileSystem, cwd, basePath) {
   const readTemplate = createTemplateReader(fileSystem, cwd)
 
   return async function readBoundTemplate (name) {
-    return readTemplate(join(path, name))
+    return readTemplate(join(basePath, name))
   }
 }
 
@@ -20,8 +20,8 @@ function createTemplateReader (fileSystem, cwd) {
   const {readFile} = fileSystem
   const templates = {}
 
-  return async function readTemplate (path) {
-    const fullPath = resolve(cwd(), path)
+  return async function readTemplate (templatePath) {
+    const fullPath = resolve(cwd(), templatePath)
 
     if (!templates[fullPath]) {
       const content = await readFile(fullPath)

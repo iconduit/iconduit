@@ -12,8 +12,8 @@ const resolve = promisify(resolveCps)
 function createInputResolverFactory (logger) {
   const resolvers = {}
 
-  return function createInputResolver (basePath, path) {
-    const existingResolver = resolvers[path]
+  return function createInputResolver (basePath, inputPath) {
+    const existingResolver = resolvers[inputPath]
 
     if (existingResolver) return existingResolver
 
@@ -24,12 +24,12 @@ function createInputResolverFactory (logger) {
     const resolutions = {}
     const results = {}
 
-    resolvers[path] = {
+    resolvers[inputPath] = {
       async resolveAsync (id) {
         if (id === '.') {
-          logger.debug(`Module ID . resolved to ${path}`)
+          logger.debug(`Module ID . resolved to ${inputPath}`)
 
-          return path
+          return inputPath
         }
 
         if (results[id]) return results[id]
@@ -60,9 +60,9 @@ function createInputResolverFactory (logger) {
 
       resolveSync (id) {
         if (id === '.') {
-          logger.debug(`Module ID . resolved to ${path}`)
+          logger.debug(`Module ID . resolved to ${inputPath}`)
 
-          return path
+          return inputPath
         }
 
         if (!results[id]) {
@@ -80,6 +80,6 @@ function createInputResolverFactory (logger) {
       },
     }
 
-    return resolvers[path]
+    return resolvers[inputPath]
   }
 }
