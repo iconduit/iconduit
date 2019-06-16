@@ -1,6 +1,3 @@
-const {renderSize} = require('./size.js')
-const {mimeTypeByPath} = require('./mime.js')
-
 module.exports = {
   buildWebAppManifest,
 }
@@ -60,25 +57,25 @@ function buildWebAppManifestIcons (manifest) {
   const icons = []
 
   for (const key in masked) {
-    const {path, size} = masked[key]
+    const {htmlSizes, path, type} = masked[key]
 
     const icon = {}
 
     add(icon, 'src', path)
-    add(icon, 'sizes', renderSize('[dimensions]', size))
-    add(icon, 'type', mimeTypeByPath(path))
+    add(icon, 'sizes', htmlSizes)
+    add(icon, 'type', type)
 
     icons.push(icon)
   }
 
   for (const key in maskable) {
-    const {path, size} = maskable[key]
+    const {htmlSizes, path, type} = maskable[key]
 
     const icon = {}
 
     add(icon, 'src', path)
-    add(icon, 'sizes', renderSize('[dimensions]', size))
-    add(icon, 'type', mimeTypeByPath(path))
+    add(icon, 'sizes', htmlSizes)
+    add(icon, 'type', type)
     add(icon, 'purpose', 'maskable')
 
     icons.push(icon)

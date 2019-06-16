@@ -1,47 +1,19 @@
+const mime = require('mime')
 const {extname} = require('path')
 
 module.exports = {
-  mimeTypeByPath,
+  getType,
 }
 
-function mimeTypeByPath (path) {
-  const extension = extname(path)
+function getType (filename) {
+  const result = mime.getType(filename)
 
-  switch (extension) {
-    case '.gif':
-      return 'image/gif'
+  if (result) return result
 
-    case '.html':
-      return 'text/html'
-
+  switch (extname(filename)) {
     case '.icns':
       return 'image/icns'
-
-    case '.ico':
-      return 'image/vnd.microsoft.icon'
-
-    case '.jpg':
-    case '.jpeg':
-      return 'image/jpeg'
-
-    case '.js':
-      return 'text/javascript'
-
-    case '.json':
-      return 'application/json'
-
-    case '.png':
-      return 'image/png'
-
-    case '.svg':
-      return 'image/svg+xml'
-
-    case '.webmanifest':
-      return 'application/manifest+json'
-
-    case '.xml':
-      return 'application/xml'
   }
 
-  throw new Error(`Unknown extension ${extension}`)
+  throw new Error(`Unable to determine MIME type for ${filename}`)
 }
