@@ -55,16 +55,19 @@ function buildTags (manifest, tags, outputs) {
 
   for (const outputName in outputs) {
     const {sizes, tags} = outputs[outputName]
-    const output = manifestOutput[outputName]
     const setting = `definitions.output.${outputName}.tags`
 
     if (sizes.length > 0) {
+      const output = manifestOutput.image[outputName]
+
       for (const key in output) {
         const outputSize = output[key]
 
         add(tags, createTagResolver({manifest, output: outputSize}), setting)
       }
     } else {
+      const output = manifestOutput.document[outputName]
+
       add(tags, createTagResolver({manifest, output}), setting)
     }
   }
@@ -83,13 +86,13 @@ function buildTags (manifest, tags, outputs) {
 
 function buildManifestOutput (config, outputs) {
   const {definitions: {size: sizeDefinitions}, urls: {output: outputBaseUrl}} = config
-  const output = {}
+  const output = {document: {}, image: {}}
 
   for (const outputName in outputs) {
     const {name: template, sizes} = outputs[outputName]
 
     if (sizes.length > 0) {
-      output[outputName] = {}
+      const imageSizes = {}
 
       for (const selector of sizes) {
         const {key, ...size} = resolveSize(sizeDefinitions, selector)
@@ -98,13 +101,15 @@ function buildManifestOutput (config, outputs) {
         const type = getType(filename)
         const url = resolveUrl(outputBaseUrl, filename)
 
-        output[outputName][key] = {htmlSizes, size, type, url}
+        imageSizes[key] = {htmlSizes, size, type, url}
       }
+
+      output.image[outputName] = imageSizes
     } else {
       const type = getType(template)
       const url = resolveUrl(outputBaseUrl, template)
 
-      output[outputName] = {type, url}
+      output.document[outputName] = {type, url}
     }
   }
 

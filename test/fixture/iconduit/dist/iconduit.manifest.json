@@ -69,824 +69,828 @@
     }
   },
   "output": {
-    "appleTouchIcon": {
-      "retina": {
-        "htmlSizes": "180x180",
-        "size": {
-          "height": 180,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 180
-        },
-        "type": "image/png",
-        "url": "apple-touch-icon-180x180.png"
+    "document": {
+      "browserconfigXml": {
+        "type": "application/xml",
+        "url": "browserconfig.xml"
+      },
+      "iconduitManifest": {
+        "type": "application/json",
+        "url": "iconduit.manifest.json"
+      },
+      "indexHtml": {
+        "type": "text/html",
+        "url": "index.html"
+      },
+      "safariMaskIcon": {
+        "type": "image/svg+xml",
+        "url": "safari-mask-icon.svg"
+      },
+      "webAppManifest": {
+        "type": "application/manifest+json",
+        "url": "site.webmanifest"
       }
     },
-    "appleTouchIconMasked": {
-      "retina": {
-        "htmlSizes": "180x180",
-        "size": {
-          "height": 180,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 180
-        },
-        "type": "image/png",
-        "url": "apple-touch-icon-masked-180x180.png"
-      }
-    },
-    "appleTouchStartup": {
-      "ipad1536x2048d264.landscape": {
-        "htmlSizes": "2048x1536",
-        "size": {
-          "deviceHeight": 1024,
-          "deviceWidth": 768,
-          "height": 1536,
-          "orientation": "landscape",
-          "pixelDensity": 264,
-          "pixelRatio": 2,
-          "width": 2048
-        },
-        "type": "image/png",
-        "url": "apple-touch-startup-2048x1536r2.png"
+    "image": {
+      "appleTouchIcon": {
+        "retina": {
+          "htmlSizes": "180x180",
+          "size": {
+            "height": 180,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 180
+          },
+          "type": "image/png",
+          "url": "apple-touch-icon-180x180.png"
+        }
       },
-      "ipad1536x2048d264.portrait": {
-        "htmlSizes": "1536x2048",
-        "size": {
-          "deviceHeight": 1024,
-          "deviceWidth": 768,
-          "height": 2048,
-          "orientation": "portrait",
-          "pixelDensity": 264,
-          "pixelRatio": 2,
-          "width": 1536
-        },
-        "type": "image/png",
-        "url": "apple-touch-startup-1536x2048r2.png"
+      "appleTouchIconMasked": {
+        "retina": {
+          "htmlSizes": "180x180",
+          "size": {
+            "height": 180,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 180
+          },
+          "type": "image/png",
+          "url": "apple-touch-icon-masked-180x180.png"
+        }
       },
-      "ipad1668x2224d264.landscape": {
-        "htmlSizes": "2224x1668",
-        "size": {
-          "deviceHeight": 1112,
-          "deviceWidth": 834,
-          "height": 1668,
-          "orientation": "landscape",
-          "pixelDensity": 264,
-          "pixelRatio": 2,
-          "width": 2224
+      "appleTouchStartup": {
+        "ipad1536x2048d264.landscape": {
+          "htmlSizes": "2048x1536",
+          "size": {
+            "deviceHeight": 1024,
+            "deviceWidth": 768,
+            "height": 1536,
+            "orientation": "landscape",
+            "pixelDensity": 264,
+            "pixelRatio": 2,
+            "width": 2048
+          },
+          "type": "image/png",
+          "url": "apple-touch-startup-2048x1536r2.png"
         },
-        "type": "image/png",
-        "url": "apple-touch-startup-2224x1668r2.png"
+        "ipad1536x2048d264.portrait": {
+          "htmlSizes": "1536x2048",
+          "size": {
+            "deviceHeight": 1024,
+            "deviceWidth": 768,
+            "height": 2048,
+            "orientation": "portrait",
+            "pixelDensity": 264,
+            "pixelRatio": 2,
+            "width": 1536
+          },
+          "type": "image/png",
+          "url": "apple-touch-startup-1536x2048r2.png"
+        },
+        "ipad1668x2224d264.landscape": {
+          "htmlSizes": "2224x1668",
+          "size": {
+            "deviceHeight": 1112,
+            "deviceWidth": 834,
+            "height": 1668,
+            "orientation": "landscape",
+            "pixelDensity": 264,
+            "pixelRatio": 2,
+            "width": 2224
+          },
+          "type": "image/png",
+          "url": "apple-touch-startup-2224x1668r2.png"
+        },
+        "ipad1668x2224d264.portrait": {
+          "htmlSizes": "1668x2224",
+          "size": {
+            "deviceHeight": 1112,
+            "deviceWidth": 834,
+            "height": 2224,
+            "orientation": "portrait",
+            "pixelDensity": 264,
+            "pixelRatio": 2,
+            "width": 1668
+          },
+          "type": "image/png",
+          "url": "apple-touch-startup-1668x2224r2.png"
+        },
+        "ipad1668x2388d264.landscape": {
+          "htmlSizes": "2388x1668",
+          "size": {
+            "deviceHeight": 1194,
+            "deviceWidth": 834,
+            "height": 1668,
+            "orientation": "landscape",
+            "pixelDensity": 264,
+            "pixelRatio": 2,
+            "width": 2388
+          },
+          "type": "image/png",
+          "url": "apple-touch-startup-2388x1668r2.png"
+        },
+        "ipad1668x2388d264.portrait": {
+          "htmlSizes": "1668x2388",
+          "size": {
+            "deviceHeight": 1194,
+            "deviceWidth": 834,
+            "height": 2388,
+            "orientation": "portrait",
+            "pixelDensity": 264,
+            "pixelRatio": 2,
+            "width": 1668
+          },
+          "type": "image/png",
+          "url": "apple-touch-startup-1668x2388r2.png"
+        },
+        "ipad2048x2732d264.landscape": {
+          "htmlSizes": "2732x2048",
+          "size": {
+            "deviceHeight": 1366,
+            "deviceWidth": 1024,
+            "height": 2048,
+            "orientation": "landscape",
+            "pixelDensity": 264,
+            "pixelRatio": 2,
+            "width": 2732
+          },
+          "type": "image/png",
+          "url": "apple-touch-startup-2732x2048r2.png"
+        },
+        "ipad2048x2732d264.portrait": {
+          "htmlSizes": "2048x2732",
+          "size": {
+            "deviceHeight": 1366,
+            "deviceWidth": 1024,
+            "height": 2732,
+            "orientation": "portrait",
+            "pixelDensity": 264,
+            "pixelRatio": 2,
+            "width": 2048
+          },
+          "type": "image/png",
+          "url": "apple-touch-startup-2048x2732r2.png"
+        },
+        "iphone1125x2436.landscape": {
+          "htmlSizes": "2436x1125",
+          "size": {
+            "deviceHeight": 812,
+            "deviceWidth": 375,
+            "height": 1125,
+            "orientation": "landscape",
+            "pixelDensity": 458,
+            "pixelRatio": 3,
+            "width": 2436
+          },
+          "type": "image/png",
+          "url": "apple-touch-startup-2436x1125r3.png"
+        },
+        "iphone1125x2436.portrait": {
+          "htmlSizes": "1125x2436",
+          "size": {
+            "deviceHeight": 812,
+            "deviceWidth": 375,
+            "height": 2436,
+            "orientation": "portrait",
+            "pixelDensity": 458,
+            "pixelRatio": 3,
+            "width": 1125
+          },
+          "type": "image/png",
+          "url": "apple-touch-startup-1125x2436r3.png"
+        },
+        "iphone1242x2208.landscape": {
+          "htmlSizes": "2208x1242",
+          "size": {
+            "deviceHeight": 736,
+            "deviceWidth": 414,
+            "height": 1242,
+            "orientation": "landscape",
+            "pixelDensity": 462,
+            "pixelRatio": 3,
+            "width": 2208
+          },
+          "type": "image/png",
+          "url": "apple-touch-startup-2208x1242r3.png"
+        },
+        "iphone1242x2208.portrait": {
+          "htmlSizes": "1242x2208",
+          "size": {
+            "deviceHeight": 736,
+            "deviceWidth": 414,
+            "height": 2208,
+            "orientation": "portrait",
+            "pixelDensity": 462,
+            "pixelRatio": 3,
+            "width": 1242
+          },
+          "type": "image/png",
+          "url": "apple-touch-startup-1242x2208r3.png"
+        },
+        "iphone1242x2688.landscape": {
+          "htmlSizes": "2688x1242",
+          "size": {
+            "deviceHeight": 896,
+            "deviceWidth": 414,
+            "height": 1242,
+            "orientation": "landscape",
+            "pixelDensity": 458,
+            "pixelRatio": 3,
+            "width": 2688
+          },
+          "type": "image/png",
+          "url": "apple-touch-startup-2688x1242r3.png"
+        },
+        "iphone1242x2688.portrait": {
+          "htmlSizes": "1242x2688",
+          "size": {
+            "deviceHeight": 896,
+            "deviceWidth": 414,
+            "height": 2688,
+            "orientation": "portrait",
+            "pixelDensity": 458,
+            "pixelRatio": 3,
+            "width": 1242
+          },
+          "type": "image/png",
+          "url": "apple-touch-startup-1242x2688r3.png"
+        },
+        "iphone640x1136.landscape": {
+          "htmlSizes": "1136x640",
+          "size": {
+            "deviceHeight": 568,
+            "deviceWidth": 320,
+            "height": 640,
+            "orientation": "landscape",
+            "pixelDensity": 326,
+            "pixelRatio": 2,
+            "width": 1136
+          },
+          "type": "image/png",
+          "url": "apple-touch-startup-1136x640r2.png"
+        },
+        "iphone640x1136.portrait": {
+          "htmlSizes": "640x1136",
+          "size": {
+            "deviceHeight": 568,
+            "deviceWidth": 320,
+            "height": 1136,
+            "orientation": "portrait",
+            "pixelDensity": 326,
+            "pixelRatio": 2,
+            "width": 640
+          },
+          "type": "image/png",
+          "url": "apple-touch-startup-640x1136r2.png"
+        },
+        "iphone750x1334.landscape": {
+          "htmlSizes": "1334x750",
+          "size": {
+            "deviceHeight": 667,
+            "deviceWidth": 375,
+            "height": 750,
+            "orientation": "landscape",
+            "pixelDensity": 326,
+            "pixelRatio": 2,
+            "width": 1334
+          },
+          "type": "image/png",
+          "url": "apple-touch-startup-1334x750r2.png"
+        },
+        "iphone750x1334.portrait": {
+          "htmlSizes": "750x1334",
+          "size": {
+            "deviceHeight": 667,
+            "deviceWidth": 375,
+            "height": 1334,
+            "orientation": "portrait",
+            "pixelDensity": 326,
+            "pixelRatio": 2,
+            "width": 750
+          },
+          "type": "image/png",
+          "url": "apple-touch-startup-750x1334r2.png"
+        },
+        "iphone828x1792.landscape": {
+          "htmlSizes": "1792x828",
+          "size": {
+            "deviceHeight": 896,
+            "deviceWidth": 414,
+            "height": 828,
+            "orientation": "landscape",
+            "pixelDensity": 326,
+            "pixelRatio": 2,
+            "width": 1792
+          },
+          "type": "image/png",
+          "url": "apple-touch-startup-1792x828r2.png"
+        },
+        "iphone828x1792.portrait": {
+          "htmlSizes": "828x1792",
+          "size": {
+            "deviceHeight": 896,
+            "deviceWidth": 414,
+            "height": 1792,
+            "orientation": "portrait",
+            "pixelDensity": 326,
+            "pixelRatio": 2,
+            "width": 828
+          },
+          "type": "image/png",
+          "url": "apple-touch-startup-828x1792r2.png"
+        }
       },
-      "ipad1668x2224d264.portrait": {
-        "htmlSizes": "1668x2224",
-        "size": {
-          "deviceHeight": 1112,
-          "deviceWidth": 834,
-          "height": 2224,
-          "orientation": "portrait",
-          "pixelDensity": 264,
-          "pixelRatio": 2,
-          "width": 1668
+      "dmgBackground": {
+        "primary": {
+          "htmlSizes": "512x288",
+          "size": {
+            "height": 288,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 512
+          },
+          "type": "image/png",
+          "url": "dmg-background.png"
         },
-        "type": "image/png",
-        "url": "apple-touch-startup-1668x2224r2.png"
+        "primary@2x": {
+          "htmlSizes": "1024x576",
+          "size": {
+            "height": 576,
+            "pixelDensity": 72,
+            "pixelRatio": 2,
+            "width": 1024
+          },
+          "type": "image/png",
+          "url": "dmg-background@2x.png"
+        }
       },
-      "ipad1668x2388d264.landscape": {
-        "htmlSizes": "2388x1668",
-        "size": {
-          "deviceHeight": 1194,
-          "deviceWidth": 834,
-          "height": 1668,
-          "orientation": "landscape",
-          "pixelDensity": 264,
-          "pixelRatio": 2,
-          "width": 2388
-        },
-        "type": "image/png",
-        "url": "apple-touch-startup-2388x1668r2.png"
+      "facebookAppIcon": {
+        "primary": {
+          "htmlSizes": "1024x1024",
+          "size": {
+            "height": 1024,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 1024
+          },
+          "type": "image/png",
+          "url": "facebook-app-icon.png"
+        }
       },
-      "ipad1668x2388d264.portrait": {
-        "htmlSizes": "1668x2388",
-        "size": {
-          "deviceHeight": 1194,
-          "deviceWidth": 834,
-          "height": 2388,
-          "orientation": "portrait",
-          "pixelDensity": 264,
-          "pixelRatio": 2,
-          "width": 1668
+      "faviconIco": {
+        "large": {
+          "htmlSizes": "48x48",
+          "size": {
+            "height": 48,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 48
+          },
+          "type": "image/vnd.microsoft.icon",
+          "url": "favicon.ico"
         },
-        "type": "image/png",
-        "url": "apple-touch-startup-1668x2388r2.png"
+        "medium": {
+          "htmlSizes": "32x32",
+          "size": {
+            "height": 32,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 32
+          },
+          "type": "image/vnd.microsoft.icon",
+          "url": "favicon.ico"
+        },
+        "small": {
+          "htmlSizes": "16x16",
+          "size": {
+            "height": 16,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 16
+          },
+          "type": "image/vnd.microsoft.icon",
+          "url": "favicon.ico"
+        }
       },
-      "ipad2048x2732d264.landscape": {
-        "htmlSizes": "2732x2048",
-        "size": {
-          "deviceHeight": 1366,
-          "deviceWidth": 1024,
-          "height": 2048,
-          "orientation": "landscape",
-          "pixelDensity": 264,
-          "pixelRatio": 2,
-          "width": 2732
+      "faviconPng": {
+        "medium": {
+          "htmlSizes": "32x32",
+          "size": {
+            "height": 32,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 32
+          },
+          "type": "image/png",
+          "url": "favicon-32x32.png"
         },
-        "type": "image/png",
-        "url": "apple-touch-startup-2732x2048r2.png"
+        "small": {
+          "htmlSizes": "16x16",
+          "size": {
+            "height": 16,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 16
+          },
+          "type": "image/png",
+          "url": "favicon-16x16.png"
+        }
       },
-      "ipad2048x2732d264.portrait": {
-        "htmlSizes": "2048x2732",
-        "size": {
-          "deviceHeight": 1366,
-          "deviceWidth": 1024,
-          "height": 2732,
-          "orientation": "portrait",
-          "pixelDensity": 264,
-          "pixelRatio": 2,
-          "width": 2048
-        },
-        "type": "image/png",
-        "url": "apple-touch-startup-2048x2732r2.png"
+      "githubAccountIcon": {
+        "primary": {
+          "htmlSizes": "1024x1024",
+          "size": {
+            "height": 1024,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 1024
+          },
+          "type": "image/png",
+          "url": "github-account-icon.png"
+        }
       },
-      "iphone1125x2436.landscape": {
-        "htmlSizes": "2436x1125",
-        "size": {
-          "deviceHeight": 812,
-          "deviceWidth": 375,
-          "height": 1125,
-          "orientation": "landscape",
-          "pixelDensity": 458,
-          "pixelRatio": 3,
-          "width": 2436
+      "macosIcns": {
+        "128": {
+          "htmlSizes": "128x128",
+          "size": {
+            "height": 128,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 128
+          },
+          "type": "image/icns",
+          "url": "macos.icns"
         },
-        "type": "image/png",
-        "url": "apple-touch-startup-2436x1125r3.png"
+        "128@2x": {
+          "htmlSizes": "256x256",
+          "size": {
+            "height": 256,
+            "pixelDensity": 72,
+            "pixelRatio": 2,
+            "width": 256
+          },
+          "type": "image/icns",
+          "url": "macos.icns"
+        },
+        "16": {
+          "htmlSizes": "16x16",
+          "size": {
+            "height": 16,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 16
+          },
+          "type": "image/icns",
+          "url": "macos.icns"
+        },
+        "16@2x": {
+          "htmlSizes": "32x32",
+          "size": {
+            "height": 32,
+            "pixelDensity": 72,
+            "pixelRatio": 2,
+            "width": 32
+          },
+          "type": "image/icns",
+          "url": "macos.icns"
+        },
+        "256": {
+          "htmlSizes": "256x256",
+          "size": {
+            "height": 256,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 256
+          },
+          "type": "image/icns",
+          "url": "macos.icns"
+        },
+        "256@2x": {
+          "htmlSizes": "512x512",
+          "size": {
+            "height": 512,
+            "pixelDensity": 72,
+            "pixelRatio": 2,
+            "width": 512
+          },
+          "type": "image/icns",
+          "url": "macos.icns"
+        },
+        "32": {
+          "htmlSizes": "32x32",
+          "size": {
+            "height": 32,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 32
+          },
+          "type": "image/icns",
+          "url": "macos.icns"
+        },
+        "32@2x": {
+          "htmlSizes": "64x64",
+          "size": {
+            "height": 64,
+            "pixelDensity": 72,
+            "pixelRatio": 2,
+            "width": 64
+          },
+          "type": "image/icns",
+          "url": "macos.icns"
+        },
+        "512": {
+          "htmlSizes": "512x512",
+          "size": {
+            "height": 512,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 512
+          },
+          "type": "image/icns",
+          "url": "macos.icns"
+        },
+        "512@2x": {
+          "htmlSizes": "1024x1024",
+          "size": {
+            "height": 1024,
+            "pixelDensity": 72,
+            "pixelRatio": 2,
+            "width": 1024
+          },
+          "type": "image/icns",
+          "url": "macos.icns"
+        },
+        "64": {
+          "htmlSizes": "64x64",
+          "size": {
+            "height": 64,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 64
+          },
+          "type": "image/icns",
+          "url": "macos.icns"
+        }
       },
-      "iphone1125x2436.portrait": {
-        "htmlSizes": "1125x2436",
-        "size": {
-          "deviceHeight": 812,
-          "deviceWidth": 375,
-          "height": 2436,
-          "orientation": "portrait",
-          "pixelDensity": 458,
-          "pixelRatio": 3,
-          "width": 1125
-        },
-        "type": "image/png",
-        "url": "apple-touch-startup-1125x2436r3.png"
+      "openGraphImage": {
+        "primary": {
+          "htmlSizes": "1200x630",
+          "size": {
+            "height": 630,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 1200
+          },
+          "type": "image/png",
+          "url": "open-graph.png"
+        }
       },
-      "iphone1242x2208.landscape": {
-        "htmlSizes": "2208x1242",
-        "size": {
-          "deviceHeight": 736,
-          "deviceWidth": 414,
-          "height": 1242,
-          "orientation": "landscape",
-          "pixelDensity": 462,
-          "pixelRatio": 3,
-          "width": 2208
-        },
-        "type": "image/png",
-        "url": "apple-touch-startup-2208x1242r3.png"
+      "twitterCardImage": {
+        "primary": {
+          "htmlSizes": "1200x600",
+          "size": {
+            "height": 600,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 1200
+          },
+          "type": "image/png",
+          "url": "twitter-card.png"
+        }
       },
-      "iphone1242x2208.portrait": {
-        "htmlSizes": "1242x2208",
-        "size": {
-          "deviceHeight": 736,
-          "deviceWidth": 414,
-          "height": 2208,
-          "orientation": "portrait",
-          "pixelDensity": 462,
-          "pixelRatio": 3,
-          "width": 1242
+      "webAppIconMaskable": {
+        "large": {
+          "htmlSizes": "1024x1024",
+          "size": {
+            "height": 1024,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 1024
+          },
+          "type": "image/png",
+          "url": "web-app-icon-maskable-1024x1024.png"
         },
-        "type": "image/png",
-        "url": "apple-touch-startup-1242x2208r3.png"
+        "medium": {
+          "htmlSizes": "512x512",
+          "size": {
+            "height": 512,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 512
+          },
+          "type": "image/png",
+          "url": "web-app-icon-maskable-512x512.png"
+        },
+        "small": {
+          "htmlSizes": "192x192",
+          "size": {
+            "height": 192,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 192
+          },
+          "type": "image/png",
+          "url": "web-app-icon-maskable-192x192.png"
+        }
       },
-      "iphone1242x2688.landscape": {
-        "htmlSizes": "2688x1242",
-        "size": {
-          "deviceHeight": 896,
-          "deviceWidth": 414,
-          "height": 1242,
-          "orientation": "landscape",
-          "pixelDensity": 458,
-          "pixelRatio": 3,
-          "width": 2688
+      "webAppIconMasked": {
+        "large": {
+          "htmlSizes": "1024x1024",
+          "size": {
+            "height": 1024,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 1024
+          },
+          "type": "image/png",
+          "url": "web-app-icon-masked-1024x1024.png"
         },
-        "type": "image/png",
-        "url": "apple-touch-startup-2688x1242r3.png"
+        "medium": {
+          "htmlSizes": "512x512",
+          "size": {
+            "height": 512,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 512
+          },
+          "type": "image/png",
+          "url": "web-app-icon-masked-512x512.png"
+        },
+        "small": {
+          "htmlSizes": "192x192",
+          "size": {
+            "height": 192,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 192
+          },
+          "type": "image/png",
+          "url": "web-app-icon-masked-192x192.png"
+        }
       },
-      "iphone1242x2688.portrait": {
-        "htmlSizes": "1242x2688",
-        "size": {
-          "deviceHeight": 896,
-          "deviceWidth": 414,
-          "height": 2688,
-          "orientation": "portrait",
-          "pixelDensity": 458,
-          "pixelRatio": 3,
-          "width": 1242
+      "windowsIco": {
+        "128": {
+          "htmlSizes": "128x128",
+          "size": {
+            "height": 128,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 128
+          },
+          "type": "image/vnd.microsoft.icon",
+          "url": "windows.ico"
         },
-        "type": "image/png",
-        "url": "apple-touch-startup-1242x2688r3.png"
+        "16": {
+          "htmlSizes": "16x16",
+          "size": {
+            "height": 16,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 16
+          },
+          "type": "image/vnd.microsoft.icon",
+          "url": "windows.ico"
+        },
+        "22": {
+          "htmlSizes": "22x22",
+          "size": {
+            "height": 22,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 22
+          },
+          "type": "image/vnd.microsoft.icon",
+          "url": "windows.ico"
+        },
+        "24": {
+          "htmlSizes": "24x24",
+          "size": {
+            "height": 24,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 24
+          },
+          "type": "image/vnd.microsoft.icon",
+          "url": "windows.ico"
+        },
+        "256": {
+          "htmlSizes": "256x256",
+          "size": {
+            "height": 256,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 256
+          },
+          "type": "image/vnd.microsoft.icon",
+          "url": "windows.ico"
+        },
+        "32": {
+          "htmlSizes": "32x32",
+          "size": {
+            "height": 32,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 32
+          },
+          "type": "image/vnd.microsoft.icon",
+          "url": "windows.ico"
+        },
+        "40": {
+          "htmlSizes": "40x40",
+          "size": {
+            "height": 40,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 40
+          },
+          "type": "image/vnd.microsoft.icon",
+          "url": "windows.ico"
+        },
+        "48": {
+          "htmlSizes": "48x48",
+          "size": {
+            "height": 48,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 48
+          },
+          "type": "image/vnd.microsoft.icon",
+          "url": "windows.ico"
+        },
+        "64": {
+          "htmlSizes": "64x64",
+          "size": {
+            "height": 64,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 64
+          },
+          "type": "image/vnd.microsoft.icon",
+          "url": "windows.ico"
+        },
+        "96": {
+          "htmlSizes": "96x96",
+          "size": {
+            "height": 96,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 96
+          },
+          "type": "image/vnd.microsoft.icon",
+          "url": "windows.ico"
+        }
       },
-      "iphone640x1136.landscape": {
-        "htmlSizes": "1136x640",
-        "size": {
-          "deviceHeight": 568,
-          "deviceWidth": 320,
-          "height": 640,
-          "orientation": "landscape",
-          "pixelDensity": 326,
-          "pixelRatio": 2,
-          "width": 1136
-        },
-        "type": "image/png",
-        "url": "apple-touch-startup-1136x640r2.png"
+      "windowsTileLarge": {
+        "large@2x": {
+          "htmlSizes": "620x620",
+          "size": {
+            "height": 620,
+            "pixelDensity": 72,
+            "pixelRatio": 2,
+            "width": 620
+          },
+          "type": "image/png",
+          "url": "windows-tile-620x620.png"
+        }
       },
-      "iphone640x1136.portrait": {
-        "htmlSizes": "640x1136",
-        "size": {
-          "deviceHeight": 568,
-          "deviceWidth": 320,
-          "height": 1136,
-          "orientation": "portrait",
-          "pixelDensity": 326,
-          "pixelRatio": 2,
-          "width": 640
-        },
-        "type": "image/png",
-        "url": "apple-touch-startup-640x1136r2.png"
+      "windowsTileMedium": {
+        "medium@2x": {
+          "htmlSizes": "300x300",
+          "size": {
+            "height": 300,
+            "pixelDensity": 72,
+            "pixelRatio": 2,
+            "width": 300
+          },
+          "type": "image/png",
+          "url": "windows-tile-300x300.png"
+        }
       },
-      "iphone750x1334.landscape": {
-        "htmlSizes": "1334x750",
-        "size": {
-          "deviceHeight": 667,
-          "deviceWidth": 375,
-          "height": 750,
-          "orientation": "landscape",
-          "pixelDensity": 326,
-          "pixelRatio": 2,
-          "width": 1334
-        },
-        "type": "image/png",
-        "url": "apple-touch-startup-1334x750r2.png"
+      "windowsTileSmall": {
+        "small@2x": {
+          "htmlSizes": "140x140",
+          "size": {
+            "height": 140,
+            "pixelDensity": 72,
+            "pixelRatio": 2,
+            "width": 140
+          },
+          "type": "image/png",
+          "url": "windows-tile-140x140.png"
+        }
       },
-      "iphone750x1334.portrait": {
-        "htmlSizes": "750x1334",
-        "size": {
-          "deviceHeight": 667,
-          "deviceWidth": 375,
-          "height": 1334,
-          "orientation": "portrait",
-          "pixelDensity": 326,
-          "pixelRatio": 2,
-          "width": 750
-        },
-        "type": "image/png",
-        "url": "apple-touch-startup-750x1334r2.png"
-      },
-      "iphone828x1792.landscape": {
-        "htmlSizes": "1792x828",
-        "size": {
-          "deviceHeight": 896,
-          "deviceWidth": 414,
-          "height": 828,
-          "orientation": "landscape",
-          "pixelDensity": 326,
-          "pixelRatio": 2,
-          "width": 1792
-        },
-        "type": "image/png",
-        "url": "apple-touch-startup-1792x828r2.png"
-      },
-      "iphone828x1792.portrait": {
-        "htmlSizes": "828x1792",
-        "size": {
-          "deviceHeight": 896,
-          "deviceWidth": 414,
-          "height": 1792,
-          "orientation": "portrait",
-          "pixelDensity": 326,
-          "pixelRatio": 2,
-          "width": 828
-        },
-        "type": "image/png",
-        "url": "apple-touch-startup-828x1792r2.png"
-      }
-    },
-    "browserconfigXml": {
-      "type": "application/xml",
-      "url": "browserconfig.xml"
-    },
-    "dmgBackground": {
-      "primary": {
-        "htmlSizes": "512x288",
-        "size": {
-          "height": 288,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 512
-        },
-        "type": "image/png",
-        "url": "dmg-background.png"
-      },
-      "primary@2x": {
-        "htmlSizes": "1024x576",
-        "size": {
-          "height": 576,
-          "pixelDensity": 72,
-          "pixelRatio": 2,
-          "width": 1024
-        },
-        "type": "image/png",
-        "url": "dmg-background@2x.png"
-      }
-    },
-    "facebookAppIcon": {
-      "primary": {
-        "htmlSizes": "1024x1024",
-        "size": {
-          "height": 1024,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 1024
-        },
-        "type": "image/png",
-        "url": "facebook-app-icon.png"
-      }
-    },
-    "faviconIco": {
-      "large": {
-        "htmlSizes": "48x48",
-        "size": {
-          "height": 48,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 48
-        },
-        "type": "image/vnd.microsoft.icon",
-        "url": "favicon.ico"
-      },
-      "medium": {
-        "htmlSizes": "32x32",
-        "size": {
-          "height": 32,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 32
-        },
-        "type": "image/vnd.microsoft.icon",
-        "url": "favicon.ico"
-      },
-      "small": {
-        "htmlSizes": "16x16",
-        "size": {
-          "height": 16,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 16
-        },
-        "type": "image/vnd.microsoft.icon",
-        "url": "favicon.ico"
-      }
-    },
-    "faviconPng": {
-      "medium": {
-        "htmlSizes": "32x32",
-        "size": {
-          "height": 32,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 32
-        },
-        "type": "image/png",
-        "url": "favicon-32x32.png"
-      },
-      "small": {
-        "htmlSizes": "16x16",
-        "size": {
-          "height": 16,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 16
-        },
-        "type": "image/png",
-        "url": "favicon-16x16.png"
-      }
-    },
-    "githubAccountIcon": {
-      "primary": {
-        "htmlSizes": "1024x1024",
-        "size": {
-          "height": 1024,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 1024
-        },
-        "type": "image/png",
-        "url": "github-account-icon.png"
-      }
-    },
-    "iconduitManifest": {
-      "type": "application/json",
-      "url": "iconduit.manifest.json"
-    },
-    "indexHtml": {
-      "type": "text/html",
-      "url": "index.html"
-    },
-    "macosIcns": {
-      "128": {
-        "htmlSizes": "128x128",
-        "size": {
-          "height": 128,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 128
-        },
-        "type": "image/icns",
-        "url": "macos.icns"
-      },
-      "128@2x": {
-        "htmlSizes": "256x256",
-        "size": {
-          "height": 256,
-          "pixelDensity": 72,
-          "pixelRatio": 2,
-          "width": 256
-        },
-        "type": "image/icns",
-        "url": "macos.icns"
-      },
-      "16": {
-        "htmlSizes": "16x16",
-        "size": {
-          "height": 16,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 16
-        },
-        "type": "image/icns",
-        "url": "macos.icns"
-      },
-      "16@2x": {
-        "htmlSizes": "32x32",
-        "size": {
-          "height": 32,
-          "pixelDensity": 72,
-          "pixelRatio": 2,
-          "width": 32
-        },
-        "type": "image/icns",
-        "url": "macos.icns"
-      },
-      "256": {
-        "htmlSizes": "256x256",
-        "size": {
-          "height": 256,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 256
-        },
-        "type": "image/icns",
-        "url": "macos.icns"
-      },
-      "256@2x": {
-        "htmlSizes": "512x512",
-        "size": {
-          "height": 512,
-          "pixelDensity": 72,
-          "pixelRatio": 2,
-          "width": 512
-        },
-        "type": "image/icns",
-        "url": "macos.icns"
-      },
-      "32": {
-        "htmlSizes": "32x32",
-        "size": {
-          "height": 32,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 32
-        },
-        "type": "image/icns",
-        "url": "macos.icns"
-      },
-      "32@2x": {
-        "htmlSizes": "64x64",
-        "size": {
-          "height": 64,
-          "pixelDensity": 72,
-          "pixelRatio": 2,
-          "width": 64
-        },
-        "type": "image/icns",
-        "url": "macos.icns"
-      },
-      "512": {
-        "htmlSizes": "512x512",
-        "size": {
-          "height": 512,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 512
-        },
-        "type": "image/icns",
-        "url": "macos.icns"
-      },
-      "512@2x": {
-        "htmlSizes": "1024x1024",
-        "size": {
-          "height": 1024,
-          "pixelDensity": 72,
-          "pixelRatio": 2,
-          "width": 1024
-        },
-        "type": "image/icns",
-        "url": "macos.icns"
-      },
-      "64": {
-        "htmlSizes": "64x64",
-        "size": {
-          "height": 64,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 64
-        },
-        "type": "image/icns",
-        "url": "macos.icns"
-      }
-    },
-    "openGraphImage": {
-      "primary": {
-        "htmlSizes": "1200x630",
-        "size": {
-          "height": 630,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 1200
-        },
-        "type": "image/png",
-        "url": "open-graph.png"
-      }
-    },
-    "safariMaskIcon": {
-      "type": "image/svg+xml",
-      "url": "safari-mask-icon.svg"
-    },
-    "twitterCardImage": {
-      "primary": {
-        "htmlSizes": "1200x600",
-        "size": {
-          "height": 600,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 1200
-        },
-        "type": "image/png",
-        "url": "twitter-card.png"
-      }
-    },
-    "webAppIconMaskable": {
-      "large": {
-        "htmlSizes": "1024x1024",
-        "size": {
-          "height": 1024,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 1024
-        },
-        "type": "image/png",
-        "url": "web-app-icon-maskable-1024x1024.png"
-      },
-      "medium": {
-        "htmlSizes": "512x512",
-        "size": {
-          "height": 512,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 512
-        },
-        "type": "image/png",
-        "url": "web-app-icon-maskable-512x512.png"
-      },
-      "small": {
-        "htmlSizes": "192x192",
-        "size": {
-          "height": 192,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 192
-        },
-        "type": "image/png",
-        "url": "web-app-icon-maskable-192x192.png"
-      }
-    },
-    "webAppIconMasked": {
-      "large": {
-        "htmlSizes": "1024x1024",
-        "size": {
-          "height": 1024,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 1024
-        },
-        "type": "image/png",
-        "url": "web-app-icon-masked-1024x1024.png"
-      },
-      "medium": {
-        "htmlSizes": "512x512",
-        "size": {
-          "height": 512,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 512
-        },
-        "type": "image/png",
-        "url": "web-app-icon-masked-512x512.png"
-      },
-      "small": {
-        "htmlSizes": "192x192",
-        "size": {
-          "height": 192,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 192
-        },
-        "type": "image/png",
-        "url": "web-app-icon-masked-192x192.png"
-      }
-    },
-    "webAppManifest": {
-      "type": "application/manifest+json",
-      "url": "site.webmanifest"
-    },
-    "windowsIco": {
-      "128": {
-        "htmlSizes": "128x128",
-        "size": {
-          "height": 128,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 128
-        },
-        "type": "image/vnd.microsoft.icon",
-        "url": "windows.ico"
-      },
-      "16": {
-        "htmlSizes": "16x16",
-        "size": {
-          "height": 16,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 16
-        },
-        "type": "image/vnd.microsoft.icon",
-        "url": "windows.ico"
-      },
-      "22": {
-        "htmlSizes": "22x22",
-        "size": {
-          "height": 22,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 22
-        },
-        "type": "image/vnd.microsoft.icon",
-        "url": "windows.ico"
-      },
-      "24": {
-        "htmlSizes": "24x24",
-        "size": {
-          "height": 24,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 24
-        },
-        "type": "image/vnd.microsoft.icon",
-        "url": "windows.ico"
-      },
-      "256": {
-        "htmlSizes": "256x256",
-        "size": {
-          "height": 256,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 256
-        },
-        "type": "image/vnd.microsoft.icon",
-        "url": "windows.ico"
-      },
-      "32": {
-        "htmlSizes": "32x32",
-        "size": {
-          "height": 32,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 32
-        },
-        "type": "image/vnd.microsoft.icon",
-        "url": "windows.ico"
-      },
-      "40": {
-        "htmlSizes": "40x40",
-        "size": {
-          "height": 40,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 40
-        },
-        "type": "image/vnd.microsoft.icon",
-        "url": "windows.ico"
-      },
-      "48": {
-        "htmlSizes": "48x48",
-        "size": {
-          "height": 48,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 48
-        },
-        "type": "image/vnd.microsoft.icon",
-        "url": "windows.ico"
-      },
-      "64": {
-        "htmlSizes": "64x64",
-        "size": {
-          "height": 64,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 64
-        },
-        "type": "image/vnd.microsoft.icon",
-        "url": "windows.ico"
-      },
-      "96": {
-        "htmlSizes": "96x96",
-        "size": {
-          "height": 96,
-          "pixelDensity": 72,
-          "pixelRatio": 1,
-          "width": 96
-        },
-        "type": "image/vnd.microsoft.icon",
-        "url": "windows.ico"
-      }
-    },
-    "windowsTileLarge": {
-      "large@2x": {
-        "htmlSizes": "620x620",
-        "size": {
-          "height": 620,
-          "pixelDensity": 72,
-          "pixelRatio": 2,
-          "width": 620
-        },
-        "type": "image/png",
-        "url": "windows-tile-620x620.png"
-      }
-    },
-    "windowsTileMedium": {
-      "medium@2x": {
-        "htmlSizes": "300x300",
-        "size": {
-          "height": 300,
-          "pixelDensity": 72,
-          "pixelRatio": 2,
-          "width": 300
-        },
-        "type": "image/png",
-        "url": "windows-tile-300x300.png"
-      }
-    },
-    "windowsTileSmall": {
-      "small@2x": {
-        "htmlSizes": "140x140",
-        "size": {
-          "height": 140,
-          "pixelDensity": 72,
-          "pixelRatio": 2,
-          "width": 140
-        },
-        "type": "image/png",
-        "url": "windows-tile-140x140.png"
-      }
-    },
-    "windowsTileWide": {
-      "wide@2x": {
-        "htmlSizes": "620x300",
-        "size": {
-          "height": 300,
-          "pixelDensity": 72,
-          "pixelRatio": 2,
-          "width": 620
-        },
-        "type": "image/png",
-        "url": "windows-tile-620x300.png"
+      "windowsTileWide": {
+        "wide@2x": {
+          "htmlSizes": "620x300",
+          "size": {
+            "height": 300,
+            "pixelDensity": 72,
+            "pixelRatio": 2,
+            "width": 620
+          },
+          "type": "image/png",
+          "url": "windows-tile-620x300.png"
+        }
       }
     }
   },

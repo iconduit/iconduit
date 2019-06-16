@@ -5,7 +5,7 @@ module.exports = {
 }
 
 function createConsumer (manifest, baseUrl) {
-  const {output, urls: {base: appBaseUrl, output: outputBaseUrl}} = manifest
+  const {output: {document, image}, urls: {base: appBaseUrl, output: outputBaseUrl}} = manifest
   const baseRelativeUrl = relativeUrl.bind(null, baseUrl || outputBaseUrl)
 
   return {
@@ -16,13 +16,13 @@ function createConsumer (manifest, baseUrl) {
     },
 
     documentUrl (outputName) {
-      const definition = output[outputName]
+      const definition = document[outputName]
 
       return definition ? baseRelativeUrl(definition.url) : null
     },
 
     forDocument (outputName) {
-      const definition = output[outputName]
+      const definition = document[outputName]
 
       if (!definition) throw new Error(`Undefined document output ${JSON.stringify(outputName)}`)
 
@@ -30,7 +30,7 @@ function createConsumer (manifest, baseUrl) {
     },
 
     imageUrl (outputName, sizeKey) {
-      const definition = output[outputName] || {}
+      const definition = image[outputName] || {}
       const sizeDefinition = definition[sizeKey]
 
       return sizeDefinition ? baseRelativeUrl(sizeDefinition.url) : null

@@ -54,10 +54,14 @@ function buildWebAppManifest (manifest, consumer) {
 }
 
 function buildWebAppManifestIcons (manifest, consumer) {
-  const {output: {
-    webAppIconMaskable: maskable = {},
-    webAppIconMasked: masked = {},
-  }} = manifest
+  const {
+    output: {
+      image: {
+        webAppIconMaskable: maskable = {},
+        webAppIconMasked: masked = {},
+      },
+    },
+  } = manifest
 
   const icons = []
 
@@ -90,7 +94,7 @@ function buildWebAppManifestIcons (manifest, consumer) {
 }
 
 function buildWebAppManifestServiceWorker (manifest, consumer) {
-  if (!manifest.output.serviceWorker) return null
+  if (!manifest.output.document.serviceWorker) return null
 
   return {
     src: consumer.documentUrl('serviceWorker'),
