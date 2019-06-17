@@ -17,19 +17,22 @@ function createConfigReader (cwd, fileSystem, normalizeConfig) {
   }
 
   async function readDirConfig (configPath) {
-    let firstError
+    const jsConfigPath = join(configPath, 'iconduit.config.js')
+    const jsonConfigPath = join(configPath, 'iconduit.config.json')
 
     try {
-      return await readJsConfig(join(configPath, 'iconduit.config.js'))
+      return await readJsConfig(jsConfigPath)
     } catch (error) {
-      firstError = error
+      if (!error.isNotFound) throw error
     }
 
     try {
-      return await readJsonConfig(join(configPath, 'iconduit.config.json'))
+      return await readJsonConfig(jsonConfigPath)
     } catch (error) {
-      throw firstError
+      if (!error.isNotFound) throw error
     }
+
+    throw createNotFound(`${jsConfigPath} or ${jsonConfigPath}`)
   }
 
   async function readJsConfig (configPath) {
@@ -38,7 +41,7 @@ function createConfigReader (cwd, fileSystem, normalizeConfig) {
     try {
       require.resolve(absoluteConfigPath)
     } catch (error) {
-      if (error.code === 'MODULE_NOT_FOUND') throw new Error(`No config found at ${configPath}`)
+      throw error.code === 'MODULE_NOT_FOUND' ? createNotFound(configPath) : error
     }
 
     return buildResult(absoluteConfigPath, require(absoluteConfigPath))
@@ -48,10 +51,15 @@ function createConfigReader (cwd, fileSystem, normalizeConfig) {
     try {
       return buildResult(configPath, JSON.parse(await readFile(configPath)))
     } catch (error) {
-      if (error.code === 'ENOENT') throw new Error(`No config found at ${configPath}`)
-
-      throw error
+      throw error.code === 'ENOENT' ? createNotFound(configPath) : error
     }
+  }
+
+  function createNotFound (configPath) {
+    const error = new Error(`No config found at ${configPath}`)
+    error.isNotFound = true
+
+    return error
   }
 
   function buildResult (configPath, configOrFn) {
