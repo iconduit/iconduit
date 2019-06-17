@@ -1,9 +1,9 @@
 const fileUrl = require('file-url')
 const toIco = require('to-ico')
+const {createConsumer} = require('@iconduit/consumer')
 const {dirname, extname, join, relative} = require('path')
 
 const {buildManifest} = require('./manifest.js')
-const {createConsumer} = require('./consumer.js')
 const {formatList} = require('./logging.js')
 const {groupSizes, resolveSizesForOutputs} = require('./size.js')
 const {outputNames, selectOutputs, targetNames} = require('./target.js')

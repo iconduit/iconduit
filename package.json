@@ -20,6 +20,7 @@
     "node": ">=10"
   },
   "dependencies": {
+    "@iconduit/consumer": "^0.1.2",
     "ajv": "^6.10.0",
     "array.prototype.flat": "^1.2.1",
     "bottlejs": "^1.7.2",
@@ -28,7 +29,6 @@
     "ejs": "^2.6.1",
     "file-url": "^3.0.0",
     "fraction.js": "^4.0.12",
-    "html-tag": "^2.0.0",
     "icns-lib": "^1.0.1",
     "imagemin": "^6.1.0",
     "imagemin-mozjpeg": "^8.0.0",
