@@ -224,6 +224,7 @@ module.exports = {
     definitions: {
       description: 'Contains definitions relating to the inputs and outputs to be produced',
       type: 'object',
+      default: {},
       additionalProperties: false,
       properties: {
         color: {
@@ -617,6 +618,7 @@ module.exports = {
     masks: {
       description: 'Defines which mask should be used for each output',
       type: 'object',
+      default: {},
       additionalProperties: false,
       properties: {
         primary: {
