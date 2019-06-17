@@ -21,7 +21,7 @@ function createBrowserManager (env, logger, retryOperation) {
     timeout: envTimeout ? parseInt(envTimeout) : DEFAULT_BROWSER_TIMEOUT,
   }
 
-  logger.info(`Concurrency is currently set to ${clusterOptions.maxConcurrency}`)
+  logger.debug(`Concurrency is currently set to ${clusterOptions.maxConcurrency}`)
 
   let cluster = null
   const manager = {run, withPage}
