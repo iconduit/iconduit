@@ -1,7 +1,8 @@
+const {resolveUrl} = require('@iconduit/consumer')
+
 const {getType} = require('./mime.js')
 const {renderSize, resolveSize} = require('./size.js')
 const {resolveColors} = require('./config/resolution.js')
-const {resolveUrl} = require('./url.js')
 
 module.exports = {
   buildManifest,
