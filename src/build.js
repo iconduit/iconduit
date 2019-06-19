@@ -56,7 +56,7 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, mini
       const cwdPath = cwd()
 
       for (const filename in sizesByFilename) {
-        const content = await buildOutputContent(extname(filename), inputName, outputName, sizesByFilename[filename])
+        const content = await buildOutputContent(filename, inputName, outputName, sizesByFilename[filename])
         const fullOutputPath = join(outputPath, filename)
 
         await mkdir(dirname(fullOutputPath), {recursive: true})
@@ -66,8 +66,8 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, mini
       }
     }
 
-    async function buildOutputContent (outputType, inputName, outputName, outputSizes) {
-      switch (outputType) {
+    async function buildOutputContent (filename, inputName, outputName, outputSizes) {
+      switch (extname(filename)) {
         case '.png':
           return buildOutputImage(inputName, outputName, outputSizes, IMAGE_TYPE_PNG)
 
@@ -85,7 +85,7 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, mini
           return buildOutputSvg(inputName, outputName, outputSizes)
       }
 
-      return buildOutputDocument(inputName, outputName, outputSizes)
+      return buildOutputDocument(filename, inputName, outputName, outputSizes)
     }
 
     async function buildOutputIcns (inputName, outputName, outputSizes) {
@@ -124,7 +124,7 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, mini
       return minifyImage(IMAGE_TYPE_SVG, await readFile(inputPath))
     }
 
-    async function buildOutputDocument (inputName, outputName, outputSizes) {
+    async function buildOutputDocument (filename, inputName, outputName, outputSizes) {
       const {options: {variables: templateVariables}} = outputs[outputName]
 
       assertNoSizes(outputSizes, outputName)
@@ -133,7 +133,15 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, mini
       const documentPath = await buildInput({name: inputName, type: INPUT_TYPE_DOCUMENT, stack})
       const template = await readTemplate(documentPath)
 
-      return template({consumer: consumer.forDocument(outputName), manifest, ...templateVariables})
+      const fullOutputPath = join(outputPath, filename)
+      const outputDirPath = relative(dirname(fullOutputPath), outputPath) || '.'
+
+      return template({
+        consumer: consumer.forDocument(outputName),
+        manifest: {...manifest, outputPath: outputDirPath},
+
+        ...templateVariables,
+      })
     }
 
     async function buildImage (inputName, outputName, size, imageType) {

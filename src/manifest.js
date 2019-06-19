@@ -14,6 +14,7 @@ function buildManifest (config, outputs, tags) {
   delete meta.definitions
   delete meta.inputs
   delete meta.outputs
+  delete meta.outputPath
   delete meta.tags
   delete meta.targets
 

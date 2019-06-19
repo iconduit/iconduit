@@ -813,7 +813,7 @@
       }
     }
   },
-  "outputPath": "dist",
+  "outputPath": ".",
   "shortName": "Iconduit",
   "tag": {
     "appleTouchStartup": [
