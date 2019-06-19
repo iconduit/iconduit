@@ -44,7 +44,7 @@ function buildManifestOutput (config, outputs) {
         const type = getType(filename)
         const url = resolveUrl(outputBaseUrl, filename)
 
-        imageSizes[key] = {htmlSizes, size, type, url}
+        imageSizes[key] = {htmlSizes, path: filename, size, type, url}
       }
 
       output.image[outputName] = imageContainerSize(imageSizes) || imageSizes
@@ -52,7 +52,7 @@ function buildManifestOutput (config, outputs) {
       const type = getType(template)
       const url = resolveUrl(outputBaseUrl, template)
 
-      output.document[outputName] = {type, url}
+      output.document[outputName] = {path: template, type, url}
     }
   }
 

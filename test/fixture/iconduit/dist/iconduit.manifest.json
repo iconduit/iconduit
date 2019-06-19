@@ -71,26 +71,32 @@
   "output": {
     "document": {
       "browserconfigXml": {
+        "path": "browserconfig.xml",
         "type": "application/xml",
         "url": "browserconfig.xml"
       },
       "iconduitConsumer": {
+        "path": "iconduit.consumer.js",
         "type": "application/javascript",
         "url": "iconduit.consumer.js"
       },
       "iconduitManifest": {
+        "path": "iconduit.manifest.json",
         "type": "application/json",
         "url": "iconduit.manifest.json"
       },
       "indexHtml": {
+        "path": "index.html",
         "type": "text/html",
         "url": "index.html"
       },
       "safariMaskIcon": {
+        "path": "safari-mask-icon.svg",
         "type": "image/svg+xml",
         "url": "safari-mask-icon.svg"
       },
       "webAppManifest": {
+        "path": "site.webmanifest",
         "type": "application/manifest+json",
         "url": "site.webmanifest"
       }
@@ -99,6 +105,7 @@
       "appleTouchIcon": {
         "retina": {
           "htmlSizes": "180x180",
+          "path": "apple-touch-icon-180x180.png",
           "size": {
             "height": 180,
             "pixelDensity": 72,
@@ -112,6 +119,7 @@
       "appleTouchIconMasked": {
         "retina": {
           "htmlSizes": "180x180",
+          "path": "apple-touch-icon-masked-180x180.png",
           "size": {
             "height": 180,
             "pixelDensity": 72,
@@ -125,6 +133,7 @@
       "appleTouchStartup": {
         "ipad1536x2048d264.landscape": {
           "htmlSizes": "2048x1536",
+          "path": "apple-touch-startup-2048x1536r2.png",
           "size": {
             "deviceHeight": 1024,
             "deviceWidth": 768,
@@ -139,6 +148,7 @@
         },
         "ipad1536x2048d264.portrait": {
           "htmlSizes": "1536x2048",
+          "path": "apple-touch-startup-1536x2048r2.png",
           "size": {
             "deviceHeight": 1024,
             "deviceWidth": 768,
@@ -153,6 +163,7 @@
         },
         "ipad1668x2224d264.landscape": {
           "htmlSizes": "2224x1668",
+          "path": "apple-touch-startup-2224x1668r2.png",
           "size": {
             "deviceHeight": 1112,
             "deviceWidth": 834,
@@ -167,6 +178,7 @@
         },
         "ipad1668x2224d264.portrait": {
           "htmlSizes": "1668x2224",
+          "path": "apple-touch-startup-1668x2224r2.png",
           "size": {
             "deviceHeight": 1112,
             "deviceWidth": 834,
@@ -181,6 +193,7 @@
         },
         "ipad1668x2388d264.landscape": {
           "htmlSizes": "2388x1668",
+          "path": "apple-touch-startup-2388x1668r2.png",
           "size": {
             "deviceHeight": 1194,
             "deviceWidth": 834,
@@ -195,6 +208,7 @@
         },
         "ipad1668x2388d264.portrait": {
           "htmlSizes": "1668x2388",
+          "path": "apple-touch-startup-1668x2388r2.png",
           "size": {
             "deviceHeight": 1194,
             "deviceWidth": 834,
@@ -209,6 +223,7 @@
         },
         "ipad2048x2732d264.landscape": {
           "htmlSizes": "2732x2048",
+          "path": "apple-touch-startup-2732x2048r2.png",
           "size": {
             "deviceHeight": 1366,
             "deviceWidth": 1024,
@@ -223,6 +238,7 @@
         },
         "ipad2048x2732d264.portrait": {
           "htmlSizes": "2048x2732",
+          "path": "apple-touch-startup-2048x2732r2.png",
           "size": {
             "deviceHeight": 1366,
             "deviceWidth": 1024,
@@ -237,6 +253,7 @@
         },
         "iphone1125x2436.landscape": {
           "htmlSizes": "2436x1125",
+          "path": "apple-touch-startup-2436x1125r3.png",
           "size": {
             "deviceHeight": 812,
             "deviceWidth": 375,
@@ -251,6 +268,7 @@
         },
         "iphone1125x2436.portrait": {
           "htmlSizes": "1125x2436",
+          "path": "apple-touch-startup-1125x2436r3.png",
           "size": {
             "deviceHeight": 812,
             "deviceWidth": 375,
@@ -265,6 +283,7 @@
         },
         "iphone1242x2208.landscape": {
           "htmlSizes": "2208x1242",
+          "path": "apple-touch-startup-2208x1242r3.png",
           "size": {
             "deviceHeight": 736,
             "deviceWidth": 414,
@@ -279,6 +298,7 @@
         },
         "iphone1242x2208.portrait": {
           "htmlSizes": "1242x2208",
+          "path": "apple-touch-startup-1242x2208r3.png",
           "size": {
             "deviceHeight": 736,
             "deviceWidth": 414,
@@ -293,6 +313,7 @@
         },
         "iphone1242x2688.landscape": {
           "htmlSizes": "2688x1242",
+          "path": "apple-touch-startup-2688x1242r3.png",
           "size": {
             "deviceHeight": 896,
             "deviceWidth": 414,
@@ -307,6 +328,7 @@
         },
         "iphone1242x2688.portrait": {
           "htmlSizes": "1242x2688",
+          "path": "apple-touch-startup-1242x2688r3.png",
           "size": {
             "deviceHeight": 896,
             "deviceWidth": 414,
@@ -321,6 +343,7 @@
         },
         "iphone640x1136.landscape": {
           "htmlSizes": "1136x640",
+          "path": "apple-touch-startup-1136x640r2.png",
           "size": {
             "deviceHeight": 568,
             "deviceWidth": 320,
@@ -335,6 +358,7 @@
         },
         "iphone640x1136.portrait": {
           "htmlSizes": "640x1136",
+          "path": "apple-touch-startup-640x1136r2.png",
           "size": {
             "deviceHeight": 568,
             "deviceWidth": 320,
@@ -349,6 +373,7 @@
         },
         "iphone750x1334.landscape": {
           "htmlSizes": "1334x750",
+          "path": "apple-touch-startup-1334x750r2.png",
           "size": {
             "deviceHeight": 667,
             "deviceWidth": 375,
@@ -363,6 +388,7 @@
         },
         "iphone750x1334.portrait": {
           "htmlSizes": "750x1334",
+          "path": "apple-touch-startup-750x1334r2.png",
           "size": {
             "deviceHeight": 667,
             "deviceWidth": 375,
@@ -377,6 +403,7 @@
         },
         "iphone828x1792.landscape": {
           "htmlSizes": "1792x828",
+          "path": "apple-touch-startup-1792x828r2.png",
           "size": {
             "deviceHeight": 896,
             "deviceWidth": 414,
@@ -391,6 +418,7 @@
         },
         "iphone828x1792.portrait": {
           "htmlSizes": "828x1792",
+          "path": "apple-touch-startup-828x1792r2.png",
           "size": {
             "deviceHeight": 896,
             "deviceWidth": 414,
@@ -407,6 +435,7 @@
       "dmgBackground": {
         "primary": {
           "htmlSizes": "512x288",
+          "path": "dmg-background.png",
           "size": {
             "height": 288,
             "pixelDensity": 72,
@@ -418,6 +447,7 @@
         },
         "primary@2x": {
           "htmlSizes": "1024x576",
+          "path": "dmg-background@2x.png",
           "size": {
             "height": 576,
             "pixelDensity": 72,
@@ -431,6 +461,7 @@
       "facebookAppIcon": {
         "primary": {
           "htmlSizes": "1024x1024",
+          "path": "facebook-app-icon.png",
           "size": {
             "height": 1024,
             "pixelDensity": 72,
@@ -477,6 +508,7 @@
       "faviconPng": {
         "medium": {
           "htmlSizes": "32x32",
+          "path": "favicon-32x32.png",
           "size": {
             "height": 32,
             "pixelDensity": 72,
@@ -488,6 +520,7 @@
         },
         "small": {
           "htmlSizes": "16x16",
+          "path": "favicon-16x16.png",
           "size": {
             "height": 16,
             "pixelDensity": 72,
@@ -501,6 +534,7 @@
       "githubAccountIcon": {
         "primary": {
           "htmlSizes": "1024x1024",
+          "path": "github-account-icon.png",
           "size": {
             "height": 1024,
             "pixelDensity": 72,
@@ -595,6 +629,7 @@
       "openGraphImage": {
         "primary": {
           "htmlSizes": "1200x630",
+          "path": "open-graph.png",
           "size": {
             "height": 630,
             "pixelDensity": 72,
@@ -608,6 +643,7 @@
       "twitterCardImage": {
         "primary": {
           "htmlSizes": "1200x600",
+          "path": "twitter-card.png",
           "size": {
             "height": 600,
             "pixelDensity": 72,
@@ -621,6 +657,7 @@
       "webAppIconMaskable": {
         "large": {
           "htmlSizes": "1024x1024",
+          "path": "web-app-icon-maskable-1024x1024.png",
           "size": {
             "height": 1024,
             "pixelDensity": 72,
@@ -632,6 +669,7 @@
         },
         "medium": {
           "htmlSizes": "512x512",
+          "path": "web-app-icon-maskable-512x512.png",
           "size": {
             "height": 512,
             "pixelDensity": 72,
@@ -643,6 +681,7 @@
         },
         "small": {
           "htmlSizes": "192x192",
+          "path": "web-app-icon-maskable-192x192.png",
           "size": {
             "height": 192,
             "pixelDensity": 72,
@@ -656,6 +695,7 @@
       "webAppIconMasked": {
         "large": {
           "htmlSizes": "1024x1024",
+          "path": "web-app-icon-masked-1024x1024.png",
           "size": {
             "height": 1024,
             "pixelDensity": 72,
@@ -667,6 +707,7 @@
         },
         "medium": {
           "htmlSizes": "512x512",
+          "path": "web-app-icon-masked-512x512.png",
           "size": {
             "height": 512,
             "pixelDensity": 72,
@@ -678,6 +719,7 @@
         },
         "small": {
           "htmlSizes": "192x192",
+          "path": "web-app-icon-masked-192x192.png",
           "size": {
             "height": 192,
             "pixelDensity": 72,
@@ -766,6 +808,7 @@
       "windowsTileLarge": {
         "large@2x": {
           "htmlSizes": "620x620",
+          "path": "windows-tile-620x620.png",
           "size": {
             "height": 620,
             "pixelDensity": 72,
@@ -779,6 +822,7 @@
       "windowsTileMedium": {
         "medium@2x": {
           "htmlSizes": "300x300",
+          "path": "windows-tile-300x300.png",
           "size": {
             "height": 300,
             "pixelDensity": 72,
@@ -792,6 +836,7 @@
       "windowsTileSmall": {
         "small@2x": {
           "htmlSizes": "140x140",
+          "path": "windows-tile-140x140.png",
           "size": {
             "height": 140,
             "pixelDensity": 72,
@@ -805,6 +850,7 @@
       "windowsTileWide": {
         "wide@2x": {
           "htmlSizes": "620x300",
+          "path": "windows-tile-620x300.png",
           "size": {
             "height": 300,
             "pixelDensity": 72,
