@@ -1,6 +1,7 @@
 module.exports = {
   all: {
     outputs: [
+      'iconduitConsumer',
       'iconduitManifest',
     ],
   },

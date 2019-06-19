@@ -77,6 +77,9 @@ module.exports = {
       'icon',
     ],
   },
+  iconduitConsumer: {
+    name: 'iconduit.consumer.js',
+  },
   iconduitManifest: {
     name: 'iconduit.manifest.json',
   },

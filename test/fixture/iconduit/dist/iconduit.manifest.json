@@ -74,6 +74,10 @@
         "type": "application/xml",
         "url": "browserconfig.xml"
       },
+      "iconduitConsumer": {
+        "type": "application/javascript",
+        "url": "iconduit.consumer.js"
+      },
       "iconduitManifest": {
         "type": "application/json",
         "url": "iconduit.manifest.json"
