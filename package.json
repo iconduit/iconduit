@@ -20,7 +20,7 @@
     "node": ">=10"
   },
   "dependencies": {
-    "@iconduit/consumer": "^0.1.4",
+    "@iconduit/consumer": "^0.1.5",
     "ajv": "^6.10.0",
     "array.prototype.flat": "^1.2.1",
     "bottlejs": "^1.7.2",
