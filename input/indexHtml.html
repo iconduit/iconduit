@@ -3,9 +3,6 @@
 const {
   language,
   name,
-  output: {
-    serviceWorker: {path: serviceWorkerPath} = {},
-  },
   tag: {
     appleTouchStartup: appleTouchStartupTags = [],
     graph: graphTags = [],
@@ -15,6 +12,8 @@ const {
     meta: metaTags = [],
   },
 } = manifest
+
+const serviceWorkerUrl = consumer.documentUrl('serviceWorker')
 
 %><!DOCTYPE html>
 <html lang="<%= language %>">
@@ -127,7 +126,7 @@ const {
 <body>
   <h1><%= name %></h1>
 
-<% if (serviceWorkerPath) { %>
+<% if (serviceWorkerUrl) { %>
   <span id="installation-status">
     <p id="not-installable">Not installable</p>
     <p id="is-installing">Installing</p>
@@ -145,7 +144,7 @@ const {
   </ul>
 
   <script>
-    const serviceWorkerUrl = <%- json(serviceWorkerPath) %>
+    const serviceWorkerUrl = <%- json(serviceWorkerUrl) %>
 
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
