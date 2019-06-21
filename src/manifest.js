@@ -66,21 +66,23 @@ function imageContainerSize (sizesByKey) {
 
   const {
     htmlSizes: firstHtmlSizes,
+    path: firstPath,
     size: firstSize,
     type,
-    url,
+    url: firstUrl,
   } = sizes.shift()
 
   const containerSize = {
+    path: firstPath,
     size: firstSize,
     sizes: [firstSize],
     type,
-    url,
+    url: firstUrl,
   }
   const containerHtmlSizes = new Set([firstHtmlSizes])
 
-  for (const {htmlSizes, size, url} of sizes) {
-    if (url !== containerSize.url) return null
+  for (const {htmlSizes, path, size, url} of sizes) {
+    if (path !== containerSize.path || url !== containerSize.url) return null
 
     containerHtmlSizes.add(htmlSizes)
     containerSize.sizes.push(size)

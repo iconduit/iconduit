@@ -475,6 +475,7 @@
       "faviconIco": {
         "container": {
           "htmlSizes": "48x48 32x32 16x16",
+          "path": "favicon.ico",
           "size": {
             "height": 48,
             "pixelDensity": 72,
@@ -548,6 +549,7 @@
       "macosIcns": {
         "container": {
           "htmlSizes": "16x16 32x32 64x64 128x128 256x256 512x512 1024x1024",
+          "path": "macos.icns",
           "size": {
             "height": 1024,
             "pixelDensity": 72,
@@ -733,6 +735,7 @@
       "windowsIco": {
         "container": {
           "htmlSizes": "16x16 22x22 24x24 32x32 40x40 48x48 64x64 96x96 128x128 256x256",
+          "path": "windows.ico",
           "size": {
             "height": 256,
             "pixelDensity": 72,
