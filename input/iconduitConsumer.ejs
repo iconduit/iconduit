@@ -1,8 +1,4 @@
-<%
-
-const manifestPath = consumer.documentUrl('iconduitManifest')
-
-%>const {join} = require('path')
+const {join} = require('path')
 const {readConsumer} = require('@iconduit/consumer')
 
-module.exports = readConsumer(join(__dirname, <%- JSON.stringify(manifestPath) %>))
+module.exports = readConsumer(join(__dirname, <%- JSON.stringify(documentPath('iconduitManifest')) %>))

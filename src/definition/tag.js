@@ -1,7 +1,7 @@
 /* eslint-disable no-template-curly-in-string */
 
-const selectAbsoluteImageUrl = '<%- consumer.absoluteImageUrl(outputName, sizeKey) %>'
-const selectAbsoluteStartUrl = '<%- consumer.absoluteUrl(manifest.urls.start) %>'
+const selectAbsoluteImageUrl = '<%- absoluteImageUrl(current.name, current.size) %>'
+const selectAbsoluteStartUrl = '<%- absoluteUrl(manifest.urls.start) %>'
 const selectDescription = '<%- manifest.description %>'
 const selectDeterminer = '<%- manifest.determiner %>'
 const selectFacebookAppId = '<%- manifest.applications.web.facebook.appId %>'
@@ -10,11 +10,11 @@ const selectIosStatusBarStyleIsNotDefault = '<%- manifest.os.ios.statusBarStyle 
 const selectLocale = '<%- manifest.language.replace("-", "_") %>'
 const selectMaskColor = '<%- manifest.color.mask %>'
 const selectName = '<%- manifest.name %>'
-const selectOutputHeight = '<%- output.size.height %>'
-const selectOutputHtmlSizes = '<%- output.htmlSizes %>'
-const selectOutputType = '<%- output.type %>'
-const selectOutputUrl = '<%- consumer.url(output.url) %>'
-const selectOutputWidth = '<%- output.size.width %>'
+const selectOutputHeight = '<%- current.output.size.height %>'
+const selectOutputHtmlSizes = '<%- current.output.htmlSizes %>'
+const selectOutputType = '<%- current.output.type %>'
+const selectOutputUrl = '<%- url(current.output.url) %>'
+const selectOutputWidth = '<%- current.output.size.width %>'
 const selectThemeColor = '<%- manifest.color.theme %>'
 const selectTileColor = '<%- manifest.color.tile %>'
 const selectTwitterCardType = '<%- manifest.applications.web.twitter.cardType %>'
@@ -26,10 +26,10 @@ const selectTwitterSiteHandle = '<%- (handle => handle && `@${handle}`)(manifest
 const selectViewport = '<%- manifest.viewport %>'
 
 const selectAppleTouchStartupMedia =
-  '(device-width: <%- output.size.deviceWidth %>px) and ' +
-  '(device-height: <%- output.size.deviceHeight %>px) and ' +
-  '(-webkit-device-pixel-ratio: <%- output.size.pixelRatio %>) and ' +
-  '(orientation: <%- output.size.orientation %>)'
+  '(device-width: <%- current.output.size.deviceWidth %>px) and ' +
+  '(device-height: <%- current.output.size.deviceHeight %>px) and ' +
+  '(-webkit-device-pixel-ratio: <%- current.output.size.pixelRatio %>) and ' +
+  '(orientation: <%- current.output.size.orientation %>)'
 
 const findPrimaryIosApp = 'manifest.applications.native.find(({platform}) => platform === "itunes")'
 const findPrimaryPlayApp = 'manifest.applications.native.find(({platform}) => platform === "play")'
@@ -38,19 +38,19 @@ const findPrimaryWindowsApp = 'manifest.applications.native.find(({platform}) =>
 const selectPrimaryIosApp = `<%- ${findPrimaryIosApp} ? "true" : "" %>`
 const selectPrimaryIosAppCountry = `<%- (${findPrimaryIosApp} || {}).country %>`
 const selectPrimaryIosAppId = `<%- (${findPrimaryIosApp} || {}).id %>`
-const selectPrimaryIosAppLaunchUrl = `<%- (({launchUrl} = {}) => launchUrl && consumer.absoluteUrl(launchUrl))(${findPrimaryIosApp}) %>`
+const selectPrimaryIosAppLaunchUrl = `<%- (({launchUrl} = {}) => launchUrl && absoluteUrl(launchUrl))(${findPrimaryIosApp}) %>`
 const selectPrimaryIosAppBannerString =
   `<%- (({id, launchUrl} = {}) => id && (` +
-  'launchUrl ? `app-id=${id}, app-argument=${consumer.absoluteUrl(launchUrl)}` : `app-id=${id}`' +
+  'launchUrl ? `app-id=${id}, app-argument=${absoluteUrl(launchUrl)}` : `app-id=${id}`' +
   `))(${findPrimaryIosApp}) %>`
 
 const selectPrimaryPlayApp = `<%- ${findPrimaryPlayApp} ? "true" : "" %>`
 const selectPrimaryPlayAppId = `<%- (${findPrimaryPlayApp} || {}).id %>`
-const selectPrimaryPlayAppLaunchUrl = `<%- (({launchUrl} = {}) => launchUrl && consumer.absoluteUrl(launchUrl))(${findPrimaryPlayApp}) %>`
+const selectPrimaryPlayAppLaunchUrl = `<%- (({launchUrl} = {}) => launchUrl && absoluteUrl(launchUrl))(${findPrimaryPlayApp}) %>`
 
 const selectPrimaryWindowsApp = `<%- ${findPrimaryWindowsApp} ? "true" : "" %>`
 const selectPrimaryWindowsAppId = `<%- (${findPrimaryWindowsApp} || {}).id %>`
-const selectPrimaryWindowsAppLaunchUrl = `<%- (({launchUrl} = {}) => launchUrl && consumer.absoluteUrl(launchUrl))(${findPrimaryWindowsApp}) %>`
+const selectPrimaryWindowsAppLaunchUrl = `<%- (({launchUrl} = {}) => launchUrl && absoluteUrl(launchUrl))(${findPrimaryWindowsApp}) %>`
 
 module.exports = {
   appleItunesApp: {

@@ -2,7 +2,7 @@ module.exports = {
   buildWebAppManifest,
 }
 
-function buildWebAppManifest (manifest, consumer) {
+function buildWebAppManifest (consumer) {
   const {
     applications: {preferNative},
     categories,
@@ -19,7 +19,7 @@ function buildWebAppManifest (manifest, consumer) {
       scope,
       start,
     },
-  } = manifest
+  } = consumer.manifest
 
   const scopeUrl = consumer.url(scope)
   const startUrl = consumer.url(start)
@@ -32,14 +32,14 @@ function buildWebAppManifest (manifest, consumer) {
   addOptional(webManifest, 'short_name', shortName)
   addOptional(webManifest, 'description', description)
   addNonDefault(webManifest, 'scope', scopeUrl, '.')
-  addNonEmpty(webManifest, 'icons', buildWebAppManifestIcons(manifest, consumer))
+  addNonEmpty(webManifest, 'icons', buildWebAppManifestIcons(consumer))
   add(webManifest, 'display', displayMode)
   addNonDefault(webManifest, 'orientation', orientation, 'any')
   addOptional(webManifest, 'start_url', startUrl)
-  addOptional(webManifest, 'serviceworker', buildWebAppManifestServiceWorker(manifest, consumer))
+  addOptional(webManifest, 'serviceworker', buildWebAppManifestServiceWorker(consumer))
   add(webManifest, 'theme_color', themeColor)
 
-  const applications = buildWebAppManifestRelatedApplications(manifest, consumer)
+  const applications = buildWebAppManifestRelatedApplications(consumer)
 
   if (applications.length > 0) {
     add(webManifest, 'related_applications', applications)
@@ -53,7 +53,7 @@ function buildWebAppManifest (manifest, consumer) {
   return webManifest
 }
 
-function buildWebAppManifestIcons (manifest, consumer) {
+function buildWebAppManifestIcons (consumer) {
   const {
     output: {
       image: {
@@ -61,7 +61,7 @@ function buildWebAppManifestIcons (manifest, consumer) {
         webAppIconMasked: masked = {},
       },
     },
-  } = manifest
+  } = consumer.manifest
 
   const icons = []
 
@@ -93,16 +93,16 @@ function buildWebAppManifestIcons (manifest, consumer) {
   return icons
 }
 
-function buildWebAppManifestServiceWorker (manifest, consumer) {
-  if (!manifest.output.document.serviceWorker) return null
+function buildWebAppManifestServiceWorker (consumer) {
+  if (!consumer.manifest.output.document.serviceWorker) return null
 
   return {
     src: consumer.documentUrl('serviceWorker'),
   }
 }
 
-function buildWebAppManifestRelatedApplications (manifest, consumer) {
-  const {applications: {native}} = manifest
+function buildWebAppManifestRelatedApplications (consumer) {
+  const {applications: {native}} = consumer.manifest
 
   return native.map(application => {
     const {

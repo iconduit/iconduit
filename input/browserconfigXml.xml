@@ -1,9 +1,9 @@
 <%
 
-const smallUrl = consumer.imageUrl('windowsTileSmall', 'small@2x')
-const mediumUrl = consumer.imageUrl('windowsTileMedium', 'medium@2x')
-const largeUrl = consumer.imageUrl('windowsTileLarge', 'large@2x')
-const wideUrl = consumer.imageUrl('windowsTileWide', 'wide@2x')
+const smallUrl = imageUrl('windowsTileSmall', 'small@2x')
+const mediumUrl = imageUrl('windowsTileMedium', 'medium@2x')
+const largeUrl = imageUrl('windowsTileLarge', 'large@2x')
+const wideUrl = imageUrl('windowsTileWide', 'wide@2x')
 
 %><?xml version="1.0" encoding="utf-8"?>
 <browserconfig>

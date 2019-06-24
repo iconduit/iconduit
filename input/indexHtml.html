@@ -13,7 +13,7 @@ const {
   },
 } = manifest
 
-const serviceWorkerUrl = consumer.documentUrl('serviceWorker')
+const serviceWorkerUrl = documentUrl('serviceWorker')
 
 %><!DOCTYPE html>
 <html lang="<%= language %>">
@@ -23,12 +23,12 @@ const serviceWorkerUrl = consumer.documentUrl('serviceWorker')
   <title><%= name %></title>
 
   <!-- iconduit-start -->
-<% for (const html of consumer.renderTagList(metaTags)) { %><%- `\n  ${html}` %><% } %>
-<% for (const html of consumer.renderTagList(linkTags)) { %><%- `\n  ${html}` %><% } %>
-<% for (const html of consumer.renderTagList(iconTags)) { %><%- `\n  ${html}` %><% } %>
-<% for (const html of consumer.renderTagList(appleTouchStartupTags)) { %><%- `\n  ${html}` %><% } %>
-<% for (const html of consumer.renderTagList(graphTags)) { %><%- `\n  ${html}` %><% } %>
-<% for (const html of consumer.renderTagList(graphImageTags)) { %><%- `\n  ${html}` %><% } %>
+<% for (const html of renderTagList(metaTags)) { %><%- `\n  ${html}` %><% } %>
+<% for (const html of renderTagList(linkTags)) { %><%- `\n  ${html}` %><% } %>
+<% for (const html of renderTagList(iconTags)) { %><%- `\n  ${html}` %><% } %>
+<% for (const html of renderTagList(appleTouchStartupTags)) { %><%- `\n  ${html}` %><% } %>
+<% for (const html of renderTagList(graphTags)) { %><%- `\n  ${html}` %><% } %>
+<% for (const html of renderTagList(graphImageTags)) { %><%- `\n  ${html}` %><% } %>
 
   <!-- iconduit-end -->
 

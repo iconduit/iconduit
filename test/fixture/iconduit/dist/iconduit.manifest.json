@@ -872,8 +872,8 @@
     "appleTouchStartup": [
       {
         "attributes": {
-          "href": "<%- consumer.url(output.url) %>",
-          "media": "(device-width: <%- output.size.deviceWidth %>px) and (device-height: <%- output.size.deviceHeight %>px) and (-webkit-device-pixel-ratio: <%- output.size.pixelRatio %>) and (orientation: <%- output.size.orientation %>)",
+          "href": "<%- url(current.output.url) %>",
+          "media": "(device-width: <%- current.output.size.deviceWidth %>px) and (device-height: <%- current.output.size.deviceHeight %>px) and (-webkit-device-pixel-ratio: <%- current.output.size.pixelRatio %>) and (orientation: <%- current.output.size.orientation %>)",
           "rel": "apple-touch-startup-image"
         },
         "children": [
@@ -888,27 +888,27 @@
     "graph": [
       {
         "attributes": {
-          "content": "<%- (({id, launchUrl} = {}) => id && (launchUrl ? `app-id=${id}, app-argument=${consumer.absoluteUrl(launchUrl)}` : `app-id=${id}`))(manifest.applications.native.find(({platform}) => platform === \"itunes\")) %>",
+          "content": "<%- (({id, launchUrl} = {}) => id && (launchUrl ? `app-id=${id}, app-argument=${absoluteUrl(launchUrl)}` : `app-id=${id}`))(manifest.applications.native.find(({platform}) => platform === \"itunes\")) %>",
           "name": "apple-itunes-app"
         },
         "children": [
         ],
         "isSelfClosing": true,
         "predicate": [
-          "<%- (({id, launchUrl} = {}) => id && (launchUrl ? `app-id=${id}, app-argument=${consumer.absoluteUrl(launchUrl)}` : `app-id=${id}`))(manifest.applications.native.find(({platform}) => platform === \"itunes\")) %>"
+          "<%- (({id, launchUrl} = {}) => id && (launchUrl ? `app-id=${id}, app-argument=${absoluteUrl(launchUrl)}` : `app-id=${id}`))(manifest.applications.native.find(({platform}) => platform === \"itunes\")) %>"
         ],
         "tag": "meta"
       },
       {
         "attributes": {
-          "content": "<%- (({launchUrl} = {}) => launchUrl && consumer.absoluteUrl(launchUrl))(manifest.applications.native.find(({platform}) => platform === \"play\")) %>",
+          "content": "<%- (({launchUrl} = {}) => launchUrl && absoluteUrl(launchUrl))(manifest.applications.native.find(({platform}) => platform === \"play\")) %>",
           "property": "al:android:url"
         },
         "children": [
         ],
         "isSelfClosing": true,
         "predicate": [
-          "<%- (({launchUrl} = {}) => launchUrl && consumer.absoluteUrl(launchUrl))(manifest.applications.native.find(({platform}) => platform === \"play\")) %>"
+          "<%- (({launchUrl} = {}) => launchUrl && absoluteUrl(launchUrl))(manifest.applications.native.find(({platform}) => platform === \"play\")) %>"
         ],
         "tag": "meta"
       },
@@ -940,14 +940,14 @@
       },
       {
         "attributes": {
-          "content": "<%- (({launchUrl} = {}) => launchUrl && consumer.absoluteUrl(launchUrl))(manifest.applications.native.find(({platform}) => platform === \"itunes\")) %>",
+          "content": "<%- (({launchUrl} = {}) => launchUrl && absoluteUrl(launchUrl))(manifest.applications.native.find(({platform}) => platform === \"itunes\")) %>",
           "property": "al:ios:url"
         },
         "children": [
         ],
         "isSelfClosing": true,
         "predicate": [
-          "<%- (({launchUrl} = {}) => launchUrl && consumer.absoluteUrl(launchUrl))(manifest.applications.native.find(({platform}) => platform === \"itunes\")) %>"
+          "<%- (({launchUrl} = {}) => launchUrl && absoluteUrl(launchUrl))(manifest.applications.native.find(({platform}) => platform === \"itunes\")) %>"
         ],
         "tag": "meta"
       },
@@ -979,27 +979,27 @@
       },
       {
         "attributes": {
-          "content": "<%- consumer.absoluteUrl(manifest.urls.start) %>",
+          "content": "<%- absoluteUrl(manifest.urls.start) %>",
           "property": "al:web:url"
         },
         "children": [
         ],
         "isSelfClosing": true,
         "predicate": [
-          "<%- consumer.absoluteUrl(manifest.urls.start) %>"
+          "<%- absoluteUrl(manifest.urls.start) %>"
         ],
         "tag": "meta"
       },
       {
         "attributes": {
-          "content": "<%- (({launchUrl} = {}) => launchUrl && consumer.absoluteUrl(launchUrl))(manifest.applications.native.find(({platform}) => platform === \"windows\")) %>",
+          "content": "<%- (({launchUrl} = {}) => launchUrl && absoluteUrl(launchUrl))(manifest.applications.native.find(({platform}) => platform === \"windows\")) %>",
           "property": "al:windows:url"
         },
         "children": [
         ],
         "isSelfClosing": true,
         "predicate": [
-          "<%- (({launchUrl} = {}) => launchUrl && consumer.absoluteUrl(launchUrl))(manifest.applications.native.find(({platform}) => platform === \"windows\")) %>"
+          "<%- (({launchUrl} = {}) => launchUrl && absoluteUrl(launchUrl))(manifest.applications.native.find(({platform}) => platform === \"windows\")) %>"
         ],
         "tag": "meta"
       },
@@ -1069,14 +1069,14 @@
       },
       {
         "attributes": {
-          "content": "<%- consumer.absoluteUrl(manifest.urls.start) %>",
+          "content": "<%- absoluteUrl(manifest.urls.start) %>",
           "property": "og:url"
         },
         "children": [
         ],
         "isSelfClosing": true,
         "predicate": [
-          "<%- consumer.absoluteUrl(manifest.urls.start) %>"
+          "<%- absoluteUrl(manifest.urls.start) %>"
         ],
         "tag": "meta"
       },
@@ -1240,7 +1240,7 @@
       },
       {
         "attributes": {
-          "content": "<%- (({launchUrl} = {}) => launchUrl && consumer.absoluteUrl(launchUrl))(manifest.applications.native.find(({platform}) => platform === \"itunes\")) %>",
+          "content": "<%- (({launchUrl} = {}) => launchUrl && absoluteUrl(launchUrl))(manifest.applications.native.find(({platform}) => platform === \"itunes\")) %>",
           "name": "twitter:app:url:iphone"
         },
         "children": [
@@ -1248,7 +1248,7 @@
         "isSelfClosing": true,
         "predicate": [
           "<%- manifest.applications.web.twitter.cardType === \"app\" ? \"true\" : \"\" %>",
-          "<%- (({launchUrl} = {}) => launchUrl && consumer.absoluteUrl(launchUrl))(manifest.applications.native.find(({platform}) => platform === \"itunes\")) %>"
+          "<%- (({launchUrl} = {}) => launchUrl && absoluteUrl(launchUrl))(manifest.applications.native.find(({platform}) => platform === \"itunes\")) %>"
         ],
         "tag": "meta"
       },
@@ -1282,7 +1282,7 @@
       },
       {
         "attributes": {
-          "content": "<%- (({launchUrl} = {}) => launchUrl && consumer.absoluteUrl(launchUrl))(manifest.applications.native.find(({platform}) => platform === \"itunes\")) %>",
+          "content": "<%- (({launchUrl} = {}) => launchUrl && absoluteUrl(launchUrl))(manifest.applications.native.find(({platform}) => platform === \"itunes\")) %>",
           "name": "twitter:app:url:ipad"
         },
         "children": [
@@ -1290,7 +1290,7 @@
         "isSelfClosing": true,
         "predicate": [
           "<%- manifest.applications.web.twitter.cardType === \"app\" ? \"true\" : \"\" %>",
-          "<%- (({launchUrl} = {}) => launchUrl && consumer.absoluteUrl(launchUrl))(manifest.applications.native.find(({platform}) => platform === \"itunes\")) %>"
+          "<%- (({launchUrl} = {}) => launchUrl && absoluteUrl(launchUrl))(manifest.applications.native.find(({platform}) => platform === \"itunes\")) %>"
         ],
         "tag": "meta"
       },
@@ -1324,7 +1324,7 @@
       },
       {
         "attributes": {
-          "content": "<%- (({launchUrl} = {}) => launchUrl && consumer.absoluteUrl(launchUrl))(manifest.applications.native.find(({platform}) => platform === \"play\")) %>",
+          "content": "<%- (({launchUrl} = {}) => launchUrl && absoluteUrl(launchUrl))(manifest.applications.native.find(({platform}) => platform === \"play\")) %>",
           "name": "twitter:app:url:googleplay"
         },
         "children": [
@@ -1332,7 +1332,7 @@
         "isSelfClosing": true,
         "predicate": [
           "<%- manifest.applications.web.twitter.cardType === \"app\" ? \"true\" : \"\" %>",
-          "<%- (({launchUrl} = {}) => launchUrl && consumer.absoluteUrl(launchUrl))(manifest.applications.native.find(({platform}) => platform === \"play\")) %>"
+          "<%- (({launchUrl} = {}) => launchUrl && absoluteUrl(launchUrl))(manifest.applications.native.find(({platform}) => platform === \"play\")) %>"
         ],
         "tag": "meta"
       }
@@ -1340,7 +1340,7 @@
     "graphImage": [
       {
         "attributes": {
-          "content": "<%- consumer.absoluteImageUrl(outputName, sizeKey) %>",
+          "content": "<%- absoluteImageUrl(current.name, current.size) %>",
           "property": "og:image"
         },
         "children": [
@@ -1348,13 +1348,13 @@
         "imageName": "openGraphImage",
         "isSelfClosing": true,
         "predicate": [
-          "<%- consumer.absoluteImageUrl(outputName, sizeKey) %>"
+          "<%- absoluteImageUrl(current.name, current.size) %>"
         ],
         "tag": "meta"
       },
       {
         "attributes": {
-          "content": "<%- output.type %>",
+          "content": "<%- current.output.type %>",
           "property": "og:image:type"
         },
         "children": [
@@ -1362,13 +1362,13 @@
         "imageName": "openGraphImage",
         "isSelfClosing": true,
         "predicate": [
-          "<%- consumer.absoluteImageUrl(outputName, sizeKey) %>"
+          "<%- absoluteImageUrl(current.name, current.size) %>"
         ],
         "tag": "meta"
       },
       {
         "attributes": {
-          "content": "<%- output.size.width %>",
+          "content": "<%- current.output.size.width %>",
           "property": "og:image:width"
         },
         "children": [
@@ -1376,13 +1376,13 @@
         "imageName": "openGraphImage",
         "isSelfClosing": true,
         "predicate": [
-          "<%- consumer.absoluteImageUrl(outputName, sizeKey) %>"
+          "<%- absoluteImageUrl(current.name, current.size) %>"
         ],
         "tag": "meta"
       },
       {
         "attributes": {
-          "content": "<%- output.size.height %>",
+          "content": "<%- current.output.size.height %>",
           "property": "og:image:height"
         },
         "children": [
@@ -1390,7 +1390,7 @@
         "imageName": "openGraphImage",
         "isSelfClosing": true,
         "predicate": [
-          "<%- consumer.absoluteImageUrl(outputName, sizeKey) %>"
+          "<%- absoluteImageUrl(current.name, current.size) %>"
         ],
         "tag": "meta"
       },
@@ -1404,13 +1404,13 @@
         "imageName": "openGraphImage",
         "isSelfClosing": true,
         "predicate": [
-          "<%- consumer.absoluteImageUrl(outputName, sizeKey) %>"
+          "<%- absoluteImageUrl(current.name, current.size) %>"
         ],
         "tag": "meta"
       },
       {
         "attributes": {
-          "content": "<%- consumer.absoluteImageUrl(outputName, sizeKey) %>",
+          "content": "<%- absoluteImageUrl(current.name, current.size) %>",
           "name": "twitter:image"
         },
         "children": [
@@ -1418,7 +1418,7 @@
         "imageName": "twitterCardImage",
         "isSelfClosing": true,
         "predicate": [
-          "<%- consumer.absoluteImageUrl(outputName, sizeKey) %>"
+          "<%- absoluteImageUrl(current.name, current.size) %>"
         ],
         "tag": "meta"
       },
@@ -1432,7 +1432,7 @@
         "imageName": "twitterCardImage",
         "isSelfClosing": true,
         "predicate": [
-          "<%- consumer.absoluteImageUrl(outputName, sizeKey) %>"
+          "<%- absoluteImageUrl(current.name, current.size) %>"
         ],
         "tag": "meta"
       }
@@ -1440,7 +1440,7 @@
     "icon": [
       {
         "attributes": {
-          "href": "<%- consumer.url(output.url) %>",
+          "href": "<%- url(current.output.url) %>",
           "rel": "apple-touch-icon"
         },
         "children": [
@@ -1453,10 +1453,10 @@
       },
       {
         "attributes": {
-          "href": "<%- consumer.url(output.url) %>",
+          "href": "<%- url(current.output.url) %>",
           "rel": "icon",
-          "sizes": "<%- output.htmlSizes %>",
-          "type": "<%- output.type %>"
+          "sizes": "<%- current.output.htmlSizes %>",
+          "type": "<%- current.output.type %>"
         },
         "children": [
         ],
@@ -1469,7 +1469,7 @@
       {
         "attributes": {
           "color": "<%- manifest.color.mask %>",
-          "href": "<%- consumer.url(output.url) %>",
+          "href": "<%- url(current.output.url) %>",
           "rel": "mask-icon"
         },
         "children": [
@@ -1484,7 +1484,7 @@
     "link": [
       {
         "attributes": {
-          "href": "<%- consumer.url(output.url) %>",
+          "href": "<%- url(current.output.url) %>",
           "rel": "manifest"
         },
         "children": [
@@ -1596,7 +1596,7 @@
       },
       {
         "attributes": {
-          "content": "<%- consumer.url(output.url) %>",
+          "content": "<%- url(current.output.url) %>",
           "name": "msapplication-TileImage"
         },
         "children": [
@@ -1609,7 +1609,7 @@
       },
       {
         "attributes": {
-          "content": "<%- consumer.url(output.url) %>",
+          "content": "<%- url(current.output.url) %>",
           "name": "msapplication-config"
         },
         "children": [
