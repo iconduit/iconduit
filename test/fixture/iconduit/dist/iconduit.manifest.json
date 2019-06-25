@@ -872,7 +872,7 @@
     "appleTouchStartup": [
       {
         "attributes": {
-          "href": "<%- url(current.output.url) %>",
+          "href": "<%- current.url() %>",
           "media": "(device-width: <%- current.output.size.deviceWidth %>px) and (device-height: <%- current.output.size.deviceHeight %>px) and (-webkit-device-pixel-ratio: <%- current.output.size.pixelRatio %>) and (orientation: <%- current.output.size.orientation %>)",
           "rel": "apple-touch-startup-image"
         },
@@ -1440,7 +1440,7 @@
     "icon": [
       {
         "attributes": {
-          "href": "<%- url(current.output.url) %>",
+          "href": "<%- current.url() %>",
           "rel": "apple-touch-icon"
         },
         "children": [
@@ -1453,7 +1453,7 @@
       },
       {
         "attributes": {
-          "href": "<%- url(current.output.url) %>",
+          "href": "<%- current.url() %>",
           "rel": "icon",
           "sizes": "<%- current.output.htmlSizes %>",
           "type": "<%- current.output.type %>"
@@ -1469,7 +1469,7 @@
       {
         "attributes": {
           "color": "<%- manifest.color.mask %>",
-          "href": "<%- url(current.output.url) %>",
+          "href": "<%- current.url() %>",
           "rel": "mask-icon"
         },
         "children": [
@@ -1484,7 +1484,7 @@
     "link": [
       {
         "attributes": {
-          "href": "<%- url(current.output.url) %>",
+          "href": "<%- current.url() %>",
           "rel": "manifest"
         },
         "children": [
@@ -1596,7 +1596,7 @@
       },
       {
         "attributes": {
-          "content": "<%- url(current.output.url) %>",
+          "content": "<%- current.url() %>",
           "name": "msapplication-TileImage"
         },
         "children": [
@@ -1609,7 +1609,7 @@
       },
       {
         "attributes": {
-          "content": "<%- url(current.output.url) %>",
+          "content": "<%- current.url() %>",
           "name": "msapplication-config"
         },
         "children": [
