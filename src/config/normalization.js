@@ -1,4 +1,5 @@
 const isSelfClosingFn = require('is-self-closing')
+const {toDirUrl} = require('@iconduit/consumer')
 
 const standardDeviceDefinitions = require('../definition/device.js')
 const standardDisplayDefinitions = require('../definition/display.js')
@@ -29,12 +30,14 @@ function createConfigNormalizer (validateConfig) {
       definitions = {},
     } = config
 
-    return applyDefaults(
-      validateConfig({
-        ...config,
+    return applyNormalization(
+      applyDefaults(
+        validateConfig({
+          ...config,
 
-        definitions: mergeDefinitions(definitions),
-      })
+          definitions: mergeDefinitions(definitions),
+        })
+      )
     )
   }
 }
@@ -289,6 +292,34 @@ function applyTagDefaults (tag) {
 
     children: applyTagListDefaults(children),
     isSelfClosing: typeof isSelfClosing === 'boolean' ? isSelfClosing : isSelfClosingFn(tagName),
+  }
+}
+
+function applyNormalization (config) {
+  const {
+    urls,
+  } = config
+
+  return {
+    ...config,
+
+    urls: applyUrlsNormalization(urls),
+  }
+}
+
+function applyUrlsNormalization (urls) {
+  const {
+    base,
+    output,
+    scope,
+    start,
+  } = urls
+
+  return {
+    base: toDirUrl(base),
+    output: toDirUrl(output),
+    scope: toDirUrl(scope),
+    start,
   }
 }
 
