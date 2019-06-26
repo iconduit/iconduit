@@ -36,7 +36,6 @@ function buildWebAppManifest (consumer) {
   add(webManifest, 'display', displayMode)
   addNonDefault(webManifest, 'orientation', orientation, 'any')
   addOptional(webManifest, 'start_url', startUrl)
-  addOptional(webManifest, 'serviceworker', buildWebAppManifestServiceWorker(consumer))
   add(webManifest, 'theme_color', themeColor)
 
   const applications = buildWebAppManifestRelatedApplications(consumer)
@@ -91,14 +90,6 @@ function buildWebAppManifestIcons (consumer) {
   }
 
   return icons
-}
-
-function buildWebAppManifestServiceWorker (consumer) {
-  if (!consumer.manifest.output.document.serviceWorker) return null
-
-  return {
-    src: consumer.documentUrl('serviceWorker'),
-  }
 }
 
 function buildWebAppManifestRelatedApplications (consumer) {
