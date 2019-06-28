@@ -31,7 +31,7 @@ bottle.serviceFactory(
   'logger',
   'minifyImage',
   'readTemplate',
-  'screenshot'
+  'screenshot',
 )
 bottle.serviceFactory('buildConfigs', createConfigBuilder, 'browserManager', 'build', 'fileSystem', 'readConfig')
 bottle.constant('clock', systemClock)
@@ -46,7 +46,7 @@ bottle.serviceFactory(
   'fileSystem',
   'readInternalTemplate',
   'readTemplate',
-  'transformSvg'
+  'transformSvg',
 )
 bottle.serviceFactory('createInputResolver', createInputResolverFactory, 'logger')
 bottle.constant('cwd', process.cwd.bind(process))

@@ -36,8 +36,8 @@ function createConfigNormalizer (validateConfig) {
           ...config,
 
           definitions: mergeDefinitions(definitions),
-        })
-      )
+        }),
+      ),
     )
   }
 }

@@ -98,7 +98,7 @@ function selectBrowserOutputs (outputNames, tagNames, definitions, browser) {
 function selectBrowsers (browser, definitions) {
   const selected = new Set(
     browserslist(browser)
-      .map(result => result.substring(0, result.indexOf(' ')))
+      .map(result => result.substring(0, result.indexOf(' '))),
   )
 
   return Array.from(selected).filter(name => definitions[name])

@@ -46,7 +46,7 @@ function createInputResolverFactory (logger) {
                 logger.debug(`Module ID ${id} did not resolve in ${basePath}`)
 
                 return null
-              }
+              },
             )
             .then(result => {
               results[id] = result

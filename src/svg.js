@@ -33,7 +33,7 @@ function createSvgTransformer (withBrowserPage) {
           return svg.outerHTML + '\n'
         },
 
-        {maskColor, style: css({transformOrigin: 'center', ...style})}
+        {maskColor, style: css({transformOrigin: 'center', ...style})},
       )
     })
   }

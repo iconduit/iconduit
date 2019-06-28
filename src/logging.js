@@ -13,7 +13,7 @@ function createLogger (env) {
   return winston.createLogger({
     format: winston.format.combine(
       winston.format.colorize(),
-      winston.format.simple()
+      winston.format.simple(),
     ),
     transports: [new winston.transports.Console({level})],
   })

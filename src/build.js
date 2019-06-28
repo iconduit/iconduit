@@ -95,7 +95,7 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, mini
             await minifyImage(IMAGE_TYPE_PNG, await buildImage(inputName, outputName, size, IMAGE_TYPE_PNG))
 
           return {content, size}
-        }
+        },
       ))
 
       return toIcns(logger, entries)
@@ -103,7 +103,7 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, mini
 
     async function buildOutputIco (inputName, outputName, outputSizes) {
       const pngs = await Promise.all(outputSizes.map(
-        async size => minifyImage(IMAGE_TYPE_ICO_PNG, await buildImage(inputName, outputName, size, IMAGE_TYPE_PNG))
+        async size => minifyImage(IMAGE_TYPE_ICO_PNG, await buildImage(inputName, outputName, size, IMAGE_TYPE_PNG)),
       ))
 
       return toIco(pngs)

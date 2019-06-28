@@ -27,7 +27,7 @@ function createInputBuilderFactory (
   fileSystem,
   readInternalTemplate,
   readTemplate,
-  transformSvg
+  transformSvg,
 ) {
   const {writeFile} = fileSystem
 

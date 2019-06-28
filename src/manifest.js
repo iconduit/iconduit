@@ -123,7 +123,7 @@ function buildManifestTag (tags, outputs) {
 
       for (const sectionName in setDefinition) {
         tag[sectionName] = (tag[sectionName] || []).concat(
-          setDefinition[sectionName].map(tagDefinition => ({[nameKey]: outputName, ...tagDefinition}))
+          setDefinition[sectionName].map(tagDefinition => ({[nameKey]: outputName, ...tagDefinition})),
         )
       }
     }

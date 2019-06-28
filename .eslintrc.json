@@ -4,33 +4,41 @@
     "mocha"
   ],
   "env": {
-    "mocha": true
+    "mocha": true,
+    "node": true
   },
   "rules": {
-    "comma-dangle": ["error", "always-multiline"],
+    "arrow-parens": ["error", "as-needed"],
+    "comma-dangle": ["error", {
+      "arrays": "always-multiline",
+      "objects": "always-multiline",
+      "imports": "always-multiline",
+      "exports": "always-multiline",
+      "functions": "always-multiline"
+    }],
     "no-unused-vars": "error",
     "object-curly-spacing": ["error", "never"],
+    "padding-line-between-statements": ["error", {
+      "blankLine": "always",
+      "prev": "*",
+      "next": "return"
+    }],
     "prefer-const": "error",
     "quote-props": ["error", "as-needed"],
 
-    "import/default": "error",
-    "import/export": "error",
-    "import/extensions": ["error", "always"],
-    "import/first": "error",
-    "import/named": "error",
-    "import/namespace": "error",
-    "import/newline-after-import": "error",
-    "import/no-amd": "error",
-    "import/no-cycle": "error",
-    "import/no-deprecated": "error",
-    "import/no-duplicates": "error",
-    "import/no-extraneous-dependencies": "error",
-    "import/no-mutable-exports": "error",
-    "import/no-named-as-default-member": "error",
-    "import/no-named-default": "error",
-    "import/no-self-import": "error",
-    "import/no-unresolved": "error",
-    "import/no-useless-path-segments": "error",
+    "node/file-extension-in-import": ["error", "always"],
+    "node/no-deprecated-api": "error",
+    "node/no-extraneous-import": "error",
+    "node/no-extraneous-require": "error",
+    "node/no-missing-import": "error",
+    "node/no-unpublished-bin": "error",
+    "node/no-unpublished-import": "error",
+    "node/no-unpublished-require": "error",
+    "node/no-unsupported-features/es-builtins": "error",
+    "node/no-unsupported-features/es-syntax": "error",
+    "node/no-unsupported-features/node-builtins": "error",
+    "node/process-exit-as-throw": "error",
+    "node/shebang": "error",
 
     "mocha/handle-done-callback": "error",
     "mocha/no-exclusive-tests": "error",
