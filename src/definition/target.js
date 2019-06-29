@@ -12,6 +12,7 @@ module.exports = {
         'faviconPng',
         'indexHtml',
         'serviceWorker',
+        'tagsHtml',
         'webAppIconMaskable',
         'webAppIconMasked',
         'webAppManifest',

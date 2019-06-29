@@ -121,6 +121,9 @@ module.exports = {
   serviceWorker: {
     name: 'service-worker.js',
   },
+  tagsHtml: {
+    name: 'tags.html',
+  },
   twitterCardImage: {
     name: 'twitter-card.png',
     options: {

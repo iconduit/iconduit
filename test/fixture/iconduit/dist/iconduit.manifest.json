@@ -95,6 +95,11 @@
         "type": "image/svg+xml",
         "url": "safari-mask-icon.svg"
       },
+      "tagsHtml": {
+        "path": "tags.html",
+        "type": "text/html",
+        "url": "tags.html"
+      },
       "webAppManifest": {
         "path": "site.webmanifest",
         "type": "application/manifest+json",
