@@ -267,17 +267,13 @@ function applyTagDefinitionsDefaults (tag) {
     const sections = tag[tagName]
 
     for (const section in sections) {
-      defaultedSections[section] = applyTagListDefaults(sections[section])
+      defaultedSections[section] = sections[section].map(applyTagDefaults)
     }
 
     defaulted[tagName] = defaultedSections
   }
 
   return defaulted
-}
-
-function applyTagListDefaults (tagList) {
-  return tagList.map(applyTagDefaults)
 }
 
 function applyTagDefaults (tag) {
@@ -290,7 +286,7 @@ function applyTagDefaults (tag) {
   return {
     ...tag,
 
-    children: applyTagListDefaults(children),
+    children: children.map(applyTagDefaults),
     isSelfClosing: typeof isSelfClosing === 'boolean' ? isSelfClosing : isSelfClosingFn(tagName),
   }
 }

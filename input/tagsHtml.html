@@ -1,9 +1,9 @@
 <!-- iconduit-start -->
-<% for (const html of renderTagList(manifest.tag.meta || [])) { %><%- `\n${html}` %><% } %>
-<% for (const html of renderTagList(manifest.tag.link || [])) { %><%- `\n${html}` %><% } %>
-<% for (const html of renderTagList(manifest.tag.icon || [])) { %><%- `\n${html}` %><% } %>
-<% for (const html of renderTagList(manifest.tag.appleTouchStartup || [])) { %><%- `\n${html}` %><% } %>
-<% for (const html of renderTagList(manifest.tag.graph || [])) { %><%- `\n${html}` %><% } %>
-<% for (const html of renderTagList(manifest.tag.graphImage || [])) { %><%- `\n${html}` %><% } %>
+<% for (const html of renderTagDefinitions(manifest.tag.meta || [])) { %><%- `\n${html}` %><% } %>
+<% for (const html of renderTagDefinitions(manifest.tag.link || [])) { %><%- `\n${html}` %><% } %>
+<% for (const html of renderTagDefinitions(manifest.tag.icon || [])) { %><%- `\n${html}` %><% } %>
+<% for (const html of renderTagDefinitions(manifest.tag.appleTouchStartup || [])) { %><%- `\n${html}` %><% } %>
+<% for (const html of renderTagDefinitions(manifest.tag.graph || [])) { %><%- `\n${html}` %><% } %>
+<% for (const html of renderTagDefinitions(manifest.tag.graphImage || [])) { %><%- `\n${html}` %><% } %>
 
 <!-- iconduit-end -->

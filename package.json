@@ -30,7 +30,7 @@
     "file-url": "^3.0.0",
     "fraction.js": "^4.0.12",
     "icns-lib": "^1.0.1",
-    "imagemin": "^6.1.0",
+    "imagemin": "^7.0.0",
     "imagemin-mozjpeg": "^8.0.0",
     "imagemin-optipng": "^7.0.0",
     "imagemin-pngquant": "^8.0.0",
