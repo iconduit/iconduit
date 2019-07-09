@@ -81,7 +81,7 @@ module.exports = {
     name: 'iconduit.consumer.js',
   },
   iconduitManifest: {
-    name: 'iconduit.manifest.json',
+    name: 'site.iconduitmanifest',
   },
   indexHtml: {
     name: 'index.html',

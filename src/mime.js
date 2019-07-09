@@ -13,6 +13,9 @@ function getType (filename) {
   switch (extname(filename)) {
     case '.icns':
       return 'image/icns'
+
+    case '.iconduitmanifest':
+      return 'application/vnd.iconduit.manifest'
   }
 
   throw new Error(`Unable to determine MIME type for ${filename}`)

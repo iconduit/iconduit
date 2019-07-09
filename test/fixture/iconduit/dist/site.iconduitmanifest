@@ -81,9 +81,9 @@
         "url": "iconduit.consumer.js"
       },
       "iconduitManifest": {
-        "path": "iconduit.manifest.json",
-        "type": "application/json",
-        "url": "iconduit.manifest.json"
+        "path": "site.iconduitmanifest",
+        "type": "application/vnd.iconduit.manifest",
+        "url": "site.iconduitmanifest"
       },
       "indexHtml": {
         "path": "index.html",
