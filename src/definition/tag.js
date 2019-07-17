@@ -4,6 +4,7 @@ const selectAbsoluteImageUrl = '<%- absoluteImageUrl(current.name, current.size)
 const selectAbsoluteStartUrl = '<%- absoluteUrl(manifest.urls.start) %>'
 const selectDescription = '<%- manifest.description %>'
 const selectDeterminer = '<%- manifest.determiner %>'
+const selectDisplayModeIsStandaloneOrFullscreen = '<%- (mode => ["standalone", "fullscreen"].includes(mode))(manifest.displayMode) ? "true" : "" %>'
 const selectFacebookAppId = '<%- manifest.applications.web.facebook.appId %>'
 const selectIosStatusBarStyle = '<%- manifest.os.ios.statusBarStyle %>'
 const selectIosStatusBarStyleIsNotDefault = '<%- manifest.os.ios.statusBarStyle !== "default" ? "true" : "" %>'
@@ -75,6 +76,9 @@ module.exports = {
           content: 'yes',
         },
         sortWeight: 1000,
+        predicate: [
+          selectDisplayModeIsStandaloneOrFullscreen,
+        ],
       },
       {
         tag: 'meta',
@@ -297,6 +301,9 @@ module.exports = {
           content: 'yes',
         },
         sortWeight: 1000,
+        predicate: [
+          selectDisplayModeIsStandaloneOrFullscreen,
+        ],
       },
     ],
   },

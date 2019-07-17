@@ -1511,6 +1511,7 @@
         ],
         "isSelfClosing": true,
         "predicate": [
+          "<%- (mode => [\"standalone\", \"fullscreen\"].includes(mode))(manifest.displayMode) ? \"true\" : \"\" %>"
         ],
         "tag": "meta"
       },
@@ -1523,6 +1524,7 @@
         ],
         "isSelfClosing": true,
         "predicate": [
+          "<%- (mode => [\"standalone\", \"fullscreen\"].includes(mode))(manifest.displayMode) ? \"true\" : \"\" %>"
         ],
         "tag": "meta"
       },
