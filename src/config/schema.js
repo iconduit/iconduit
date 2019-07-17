@@ -787,12 +787,6 @@ module.exports = {
         },
       },
     },
-    viewport: {
-      description: 'Defines the viewport settings for the application',
-      type: 'string',
-      default: 'width=device-width, initial-scale=1',
-      minLength: 1,
-    },
   },
   definitions: {
     colorName: {

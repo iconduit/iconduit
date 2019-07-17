@@ -20,7 +20,6 @@ module.exports = {
       tags: [
         'applicationName',
         'themeColor',
-        'viewport',
       ],
     },
     and_chr: {
