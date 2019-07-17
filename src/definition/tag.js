@@ -24,6 +24,7 @@ const selectTwitterCardTypeIsSummary = '<%- manifest.applications.web.twitter.ca
 const selectTwitterCreatorHandle = '<%- (handle => handle && `@${handle}`)(manifest.applications.web.twitter.creatorHandle) %>'
 const selectTwitterDescription = '<%- (manifest.description || "").length <= 200 ? manifest.description : manifest.description.substring(197) + "..." %>'
 const selectTwitterSiteHandle = '<%- (handle => handle && `@${handle}`)(manifest.applications.web.twitter.siteHandle) %>'
+const selectViewport = '<%- manifest.viewport %>'
 
 const selectAppleTouchStartupMedia =
   '(device-width: <%- current.output.size.deviceWidth %>px) and ' +
@@ -671,6 +672,18 @@ module.exports = {
         predicate: [
           selectAbsoluteImageUrl,
         ],
+      },
+    ],
+  },
+  viewport: {
+    meta: [
+      {
+        tag: 'meta',
+        attributes: {
+          name: 'viewport',
+          content: selectViewport,
+        },
+        sortWeight: 4000,
       },
     ],
   },

@@ -21,6 +21,7 @@ module.exports = {
         'applicationName',
         'description',
         'themeColor',
+        'viewport',
       ],
     },
     and_chr: {
