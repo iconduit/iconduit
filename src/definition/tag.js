@@ -94,7 +94,7 @@ module.exports = {
           name: 'apple-mobile-web-app-status-bar-style',
           content: selectIosStatusBarStyle,
         },
-        sortWeight: 4000,
+        sortWeight: 5000,
         predicate: [
           selectIosStatusBarStyleIsNotDefault,
         ],
@@ -242,6 +242,18 @@ module.exports = {
       },
     ],
   },
+  description: {
+    meta: [
+      {
+        tag: 'meta',
+        attributes: {
+          name: 'description',
+          content: selectDescription,
+        },
+        sortWeight: 3000,
+      },
+    ],
+  },
   facebook: {
     graph: [
       {
@@ -315,7 +327,7 @@ module.exports = {
           name: 'msapplication-TileColor',
           content: selectTileColor,
         },
-        sortWeight: 5000,
+        sortWeight: 6000,
       },
     ],
   },
@@ -327,7 +339,7 @@ module.exports = {
           name: 'msapplication-TileImage',
           content: selectOutputUrl,
         },
-        sortWeight: 5100,
+        sortWeight: 6100,
       },
     ],
   },
@@ -339,7 +351,7 @@ module.exports = {
           name: 'msapplication-config',
           content: selectOutputUrl,
         },
-        sortWeight: 5200,
+        sortWeight: 6200,
       },
     ],
   },
@@ -473,7 +485,7 @@ module.exports = {
           name: 'theme-color',
           content: selectThemeColor,
         },
-        sortWeight: 4000,
+        sortWeight: 5000,
       },
     ],
   },

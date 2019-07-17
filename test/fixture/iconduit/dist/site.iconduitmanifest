@@ -1554,6 +1554,18 @@
       },
       {
         "attributes": {
+          "content": "<%- manifest.description %>",
+          "name": "description"
+        },
+        "children": [
+        ],
+        "isSelfClosing": true,
+        "predicate": [
+        ],
+        "tag": "meta"
+      },
+      {
+        "attributes": {
           "content": "<%- manifest.color.theme %>",
           "name": "theme-color"
         },
