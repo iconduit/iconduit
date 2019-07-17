@@ -122,7 +122,6 @@ module.exports = {
           href: selectOutputUrl,
           media: selectAppleTouchStartupMedia,
         },
-        sortWeight: 0,
       },
     ],
   },
