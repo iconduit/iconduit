@@ -2,6 +2,7 @@ dist: xenial
 language: node_js
 node_js: [node]
 cache: yarn
+install: yarn install --no-lockfile
 script: [yarn test, yarn ci-lint]
 before_deploy: yarn version --no-git-tag-version --new-version "$TRAVIS_TAG"
 deploy:
