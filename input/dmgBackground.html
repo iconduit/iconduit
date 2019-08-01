@@ -6,8 +6,8 @@
     @font-face {
       font-family: 'Lato';
       font-style: italic;
-      font-weight: 300;
-      src: url('lato-v15-latin-300italic.woff2') format('woff2');
+      font-weight: 400;
+      src: url('lato-v16-latin-italic.woff2') format('woff2');
     }
 
     body {
@@ -17,50 +17,61 @@
       display: grid;
       align-items: center;
       justify-items: center;
-      grid-template-rows: 8vh 1fr 6vh 5vh 6vh;
+      grid-template-rows: 1fr 192px .25fr 1.5fr .25fr;
+      grid-template-columns: 1fr 160px 4fr 160px 1fr;
       grid-template-areas:
-        "..."
-        "drag"
-        "..."
-        "instructions"
-        "..."
+        ".... .... .... .... ...."
+        ".... left drag rght ...."
+        ".... .... .... .... ...."
+        ".... inst inst inst ...."
+        ".... .... .... .... ...."
       ;
 
-      background-color: #ddd;
-      color: #444;
+      background-color: #eee;
+      color: #888;
 
       font-family: 'Lato', sans-serif;
       font-size: 5vh;
     }
 
-    .arrow {
-      grid-area: drag;
+    .icon {
+      width: 160px;
+      height: 192px;
 
-      width: calc(100% - 16vh);
-      height: 100%;
+      border-radius: 10px;
 
-      display: grid;
-      align-items: center;
-      justify-items: center;
-
-      border-radius: 4vh;
-      font-size: 40vh;
-
-      font-family: sans-serif;
-
-      color: #ddd;
-      background-color: #eee;
+      background-color: #fcfcfc;
     }
 
-    .instructions {
-      grid-area: instructions;
+    #left {
+      grid-area: left;
+    }
+
+    #right {
+      grid-area: rght;
+    }
+
+    #arrow {
+      grid-area: drag;
+      margin-left: 3vh;
+
+      font-size: 30vh;
+      font-family: sans-serif;
+
+      color: #aaa;
+    }
+
+    #instructions {
+      grid-area: inst;
       margin: 0;
     }
   </style>
 </head>
 <body>
-  <div class="arrow">&#x27A1;</div>
+  <div id="left" class="icon"></div>
+  <div id="arrow">&#x27A1;</div>
+  <div id="right" class="icon"></div>
 
-  <p class="instructions">To install, drag the icon to your Applications folder.</p>
+  <p id="instructions">To install, drag the icon to your Applications folder.</p>
 </body>
 </html>
