@@ -439,25 +439,25 @@
       },
       "dmgBackground": {
         "primary": {
-          "htmlSizes": "512x288",
+          "htmlSizes": "640x380",
           "path": "dmg-background.png",
           "size": {
-            "height": 288,
+            "height": 380,
             "pixelDensity": 72,
             "pixelRatio": 1,
-            "width": 512
+            "width": 640
           },
           "type": "image/png",
           "url": "dmg-background.png"
         },
         "primary@2x": {
-          "htmlSizes": "1024x576",
+          "htmlSizes": "1280x760",
           "path": "dmg-background@2x.png",
           "size": {
-            "height": 576,
+            "height": 760,
             "pixelDensity": 72,
             "pixelRatio": 2,
-            "width": 1024
+            "width": 1280
           },
           "type": "image/png",
           "url": "dmg-background@2x.png"

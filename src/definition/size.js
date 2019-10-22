@@ -1,6 +1,6 @@
 module.exports = {
   appleTouchIconRetina: {key: 'retina', width: 180, height: 180},
-  dmgBackground: {key: 'primary', width: 512, height: 288},
+  dmgBackground: {key: 'primary', width: 640, height: 380},
   facebookAppIcon: {key: 'primary', width: 1024, height: 1024},
   faviconLarge: {key: 'large', width: 48, height: 48},
   faviconMedium: {key: 'medium', width: 32, height: 32},
