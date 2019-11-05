@@ -156,13 +156,10 @@ module.exports = {
     sizes: [
       'windowsIco256',
       'windowsIco128',
-      'windowsIco96',
       'windowsIco64',
       'windowsIco48',
-      'windowsIco40',
       'windowsIco32',
       'windowsIco24',
-      'windowsIco22',
       'windowsIco16',
     ],
   },
