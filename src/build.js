@@ -1,5 +1,4 @@
 const fileUrl = require('file-url')
-const toIco = require('to-ico')
 const {createConsumer} = require('@iconduit/consumer')
 const {dirname, extname, join, relative} = require('path')
 
@@ -8,6 +7,7 @@ const {formatList} = require('./logging.js')
 const {groupSizes, resolveSizesForOutputs} = require('./size.js')
 const {outputNames, selectOutputs, targetNames} = require('./target.js')
 const {toIcns} = require('./icns.js')
+const {toIco} = require('./ico.js')
 
 const {
   IMAGE_TYPE_ICO_PNG,
@@ -102,11 +102,16 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, mini
     }
 
     async function buildOutputIco (inputName, outputName, outputSizes) {
-      const pngs = await Promise.all(outputSizes.map(
-        async size => minifyImage(IMAGE_TYPE_ICO_PNG, await buildImage(inputName, outputName, size, IMAGE_TYPE_PNG)),
+      const entries = await Promise.all(outputSizes.map(
+        async size => {
+          const content =
+            await minifyImage(IMAGE_TYPE_ICO_PNG, await buildImage(inputName, outputName, size, IMAGE_TYPE_PNG))
+
+          return {content, size}
+        },
       ))
 
-      return toIco(pngs)
+      return toIco(logger, entries)
     }
 
     async function buildOutputImage (inputName, outputName, outputSizes, imageType) {
