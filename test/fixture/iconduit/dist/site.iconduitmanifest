@@ -739,7 +739,7 @@
       },
       "windowsIco": {
         "container": {
-          "htmlSizes": "16x16 24x24 32x32 48x48 64x64 128x128 256x256",
+          "htmlSizes": "16x16 22x22 24x24 32x32 40x40 48x48 64x64 96x96 128x128 256x256",
           "path": "windows.ico",
           "size": {
             "height": 256,
@@ -755,6 +755,12 @@
               "width": 16
             },
             {
+              "height": 22,
+              "pixelDensity": 72,
+              "pixelRatio": 1,
+              "width": 22
+            },
+            {
               "height": 24,
               "pixelDensity": 72,
               "pixelRatio": 1,
@@ -767,6 +773,12 @@
               "width": 32
             },
             {
+              "height": 40,
+              "pixelDensity": 72,
+              "pixelRatio": 1,
+              "width": 40
+            },
+            {
               "height": 48,
               "pixelDensity": 72,
               "pixelRatio": 1,
@@ -777,6 +789,12 @@
               "pixelDensity": 72,
               "pixelRatio": 1,
               "width": 64
+            },
+            {
+              "height": 96,
+              "pixelDensity": 72,
+              "pixelRatio": 1,
+              "width": 96
             },
             {
               "height": 128,
