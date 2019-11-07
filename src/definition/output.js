@@ -95,11 +95,8 @@ module.exports = {
       'icns256',
       'icns128@2x',
       'icns128',
-      'icns64',
       'icns32@2x',
-      'icns32',
       'icns16@2x',
-      'icns16',
     ],
   },
   openGraphImage: {

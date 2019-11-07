@@ -11,7 +11,6 @@ module.exports = {
   icns256: {key: '256', width: 256, height: 256},
   icns32: {key: '32', width: 32, height: 32},
   icns512: {key: '512', width: 512, height: 512},
-  icns64: {key: '64', width: 64, height: 64},
   openGraphImage: {key: 'primary', width: 1200, height: 630},
   twitterCardImage: {key: 'primary', width: 1200, height: 600},
   webAppIconLarge: {key: 'large', width: 1024, height: 1024},
