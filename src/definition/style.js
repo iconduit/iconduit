@@ -16,6 +16,11 @@ module.exports = {
     // and an exact 1/1 size
     transform: cssScaleFraction(fraction(1).div(72, 108)),
   },
+  notificationBadgeScale: {
+    // the difference between the Android safe zone (66/108)
+    // and an exact 1/1 size
+    transform: cssScaleFraction(fraction(1).div(66, 108)),
+  },
   opacity1Third: {opacity: cssFraction(fraction(1, 3))},
   opacity10Percent: {opacity: '.1'},
   opacity2Thirds: {opacity: cssFraction(fraction(2, 3))},

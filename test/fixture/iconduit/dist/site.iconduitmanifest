@@ -627,6 +627,34 @@
           "url": "macos.icns"
         }
       },
+      "notificationBadge": {
+        "primary": {
+          "htmlSizes": "128x128",
+          "path": "notification-badge.png",
+          "size": {
+            "height": 128,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 128
+          },
+          "type": "image/png",
+          "url": "notification-badge.png"
+        }
+      },
+      "notificationIcon": {
+        "primary": {
+          "htmlSizes": "256x256",
+          "path": "notification-icon.png",
+          "size": {
+            "height": 256,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 256
+          },
+          "type": "image/png",
+          "url": "notification-icon.png"
+        }
+      },
       "openGraphImage": {
         "primary": {
           "htmlSizes": "1200x630",

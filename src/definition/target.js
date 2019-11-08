@@ -11,6 +11,8 @@ module.exports = {
         'faviconIco',
         'faviconPng',
         'indexHtml',
+        'notificationBadge',
+        'notificationIcon',
         'serviceWorker',
         'tagsHtml',
         'webAppIconMaskable',

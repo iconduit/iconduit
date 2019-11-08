@@ -101,6 +101,14 @@ module.exports = {
       'icns16',
     ],
   },
+  notificationBadge: {
+    name: 'notification-badge.png',
+    sizes: ['notificationBadge'],
+  },
+  notificationIcon: {
+    name: 'notification-icon.png',
+    sizes: ['notificationIcon'],
+  },
   openGraphImage: {
     name: 'open-graph.png',
     options: {

@@ -174,6 +174,20 @@ module.exports = {
       ],
     },
   },
+  notificationBadge: {
+    strategy: INPUT_STRATEGY_COMPOSITE,
+    options: {
+      layers: [
+        {input: 'iconSilhouette', style: 'notificationBadgeScale'},
+      ],
+    },
+  },
+  notificationIcon: {
+    strategy: INPUT_STRATEGY_DEGRADE,
+    options: {
+      to: 'iconMaskedNoPadding',
+    },
+  },
   openGraphImage: {
     strategy: INPUT_STRATEGY_DEGRADE,
     options: {
