@@ -479,7 +479,7 @@
       },
       "faviconIco": {
         "container": {
-          "htmlSizes": "48x48 32x32 16x16",
+          "htmlSizes": "16x16 32x32 48x48",
           "path": "favicon.ico",
           "size": {
             "height": 48,
@@ -553,7 +553,7 @@
       },
       "macosIcns": {
         "container": {
-          "htmlSizes": "16x16 32x32 128x128 256x256 512x512 1024x1024 64x64",
+          "htmlSizes": "16x16 32x32 64x64 128x128 256x256 512x512 1024x1024",
           "path": "macos.icns",
           "size": {
             "height": 1024,

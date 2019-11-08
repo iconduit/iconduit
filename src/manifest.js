@@ -90,7 +90,9 @@ function imageContainerSize (sizesByKey) {
     if (compareSize(containerSize.size, size) > 0) containerSize.size = size
   }
 
-  containerSize.htmlSizes = Array.from(containerHtmlSizes).join(' ')
+  containerSize.htmlSizes = Array.from(containerHtmlSizes).sort((a, b) => {
+    return parseInt(a) - parseInt(b)
+  }).join(' ')
 
   return {container: containerSize}
 }
