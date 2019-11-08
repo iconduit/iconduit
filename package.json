@@ -20,6 +20,7 @@
     "node": ">=10"
   },
   "dependencies": {
+    "@fiahfy/packbits": "^0.0.3",
     "@iconduit/consumer": "^0.1.16",
     "ajv": "^6.10.0",
     "array.prototype.flat": "^1.2.1",
@@ -38,6 +39,7 @@
     "js-string-escape": "^1.0.1",
     "json-stable-stringify-without-jsonify": "^1.0.1",
     "mime": "^2.4.4",
+    "pngjs": "^3.4.0",
     "puppeteer": "^1.18.0",
     "puppeteer-cluster": "^0.16.0",
     "resolve": "^1.11.0",

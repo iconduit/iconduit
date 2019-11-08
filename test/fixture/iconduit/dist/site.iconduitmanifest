@@ -553,7 +553,7 @@
       },
       "macosIcns": {
         "container": {
-          "htmlSizes": "16x16 32x32 64x64 128x128 256x256 512x512 1024x1024",
+          "htmlSizes": "16x16 32x32 128x128 256x256 512x512 1024x1024 64x64",
           "path": "macos.icns",
           "size": {
             "height": 1024,
@@ -573,12 +573,6 @@
               "pixelDensity": 72,
               "pixelRatio": 1,
               "width": 32
-            },
-            {
-              "height": 64,
-              "pixelDensity": 72,
-              "pixelRatio": 1,
-              "width": 64
             },
             {
               "height": 128,

@@ -31,7 +31,11 @@ exports.ICNS_256_1X = 'ic08'
 exports.ICNS_128_2X = 'ic13'
 exports.ICNS_128_1X = 'ic07'
 exports.ICNS_32_2X = 'ic12'
+exports.ICNS_32_1X = 'il32'
+exports.ICNS_32_1X_MASK = 'l8mk'
 exports.ICNS_16_2X = 'ic11'
+exports.ICNS_16_1X = 'is32'
+exports.ICNS_16_1X_MASK = 's8mk'
 
 exports.DEFAULT_BROWSER_CONCURRENCY = 4
 exports.DEFAULT_BROWSER_TIMEOUT = 10000
