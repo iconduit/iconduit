@@ -41,7 +41,7 @@ const selectPrimaryIosAppCountry = `<%- (${findPrimaryIosApp} || {}).country %>`
 const selectPrimaryIosAppId = `<%- (${findPrimaryIosApp} || {}).id %>`
 const selectPrimaryIosAppLaunchUrl = `<%- (({launchUrl} = {}) => launchUrl && absoluteUrl(launchUrl))(${findPrimaryIosApp}) %>`
 const selectPrimaryIosAppBannerString =
-  `<%- (({id, launchUrl} = {}) => id && (` +
+  '<%- (({id, launchUrl} = {}) => id && (' +
   'launchUrl ? `app-id=${id}, app-argument=${absoluteUrl(launchUrl)}` : `app-id=${id}`' +
   `))(${findPrimaryIosApp}) %>`
 
