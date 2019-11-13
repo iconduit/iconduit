@@ -20,7 +20,7 @@
     "node": ">=10"
   },
   "dependencies": {
-    "@fiahfy/packbits": "^0.0.3",
+    "@fiahfy/packbits": "^0.0.4",
     "@iconduit/consumer": "^0.1.16",
     "ajv": "^6.10.0",
     "array.prototype.flat": "^1.2.1",
