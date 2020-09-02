@@ -10,7 +10,7 @@ function createBrowserManager (env, logger, retryOperation) {
   const {BROWSER_CONCURRENCY: envConcurrency, BROWSER_TIMEOUT: envTimeout} = env
 
   const puppeteerOptions = {
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-web-security'],
     pipe: true,
   }
 
