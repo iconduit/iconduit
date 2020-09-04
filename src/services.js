@@ -50,7 +50,7 @@ bottle.serviceFactory(
 )
 bottle.serviceFactory('createInputResolver', createInputResolverFactory, 'logger')
 bottle.constant('cwd', process.cwd.bind(process))
-bottle.constant('defaultInputDir', join(__dirname, '../input'))
+bottle.constant('defaultInputDir', join(__dirname, 'input'))
 bottle.constant('env', process.env)
 bottle.serviceFactory('fileSystem', createFileSystem, 'env', 'logger')
 bottle.serviceFactory('logger', createLogger, 'env')
@@ -61,7 +61,7 @@ bottle.serviceFactory('readInternalTemplate', createBoundTemplateReader, 'fileSy
 bottle.serviceFactory('readTemplate', createTemplateReader, 'fileSystem', 'cwd')
 bottle.serviceFactory('retryOperation', createOperationRunner, 'clock', 'env', 'logger')
 bottle.serviceFactory('screenshot', createScreenshotFactory, 'withBrowserPage')
-bottle.constant('templateDir', join(__dirname, '../template'))
+bottle.constant('templateDir', join(__dirname, 'template'))
 bottle.serviceFactory('transformSvg', createSvgTransformer, 'withBrowserPage')
 bottle.factory('withBrowserPage', ({browserManager}) => browserManager.withPage.bind(browserManager))
 
