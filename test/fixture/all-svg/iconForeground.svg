@@ -1,15 +1,9 @@
 <svg
-  id="#"
+  id="__root"
   xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 108 108"
 >
-  <defs>
-    <rect id="lol" x="20" y="20" width="20" height="20" fill="red" />
-  </defs>
-
-  <use href="#lol" />
-
-  <use width="108" height="108" href="iconBleed.svg##" />
+  <use width="108" height="108" href="iconBleed.svg#__root" />
   <image width="108" height="108" href="icon.png" />
 
   <script href="flatten-svg.js" />
