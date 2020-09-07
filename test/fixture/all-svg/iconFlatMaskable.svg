@@ -1,0 +1,8 @@
+<svg
+  id="#"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 108 108"
+>
+  <use width="108" height="108" href="iconBackground.svg##" />
+  <use width="108" height="108" href="iconFlatForeground.svg##" />
+</svg>
