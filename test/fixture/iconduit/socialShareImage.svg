@@ -1,0 +1,17 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 1 1"
+  preserveAspectRatio="xMidYMid meet"
+>
+  <style>
+    svg {
+      background-color: #D5415C;
+    }
+
+    image {
+      width: 100%;
+    }
+  </style>
+
+  <image href="iconSilhouette.svg" />
+</svg>
