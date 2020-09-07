@@ -14,17 +14,19 @@ function createDefs (parent, svgDocuments) {
   parent.insertBefore(defs, parent.firstChild)
 }
 
-function findReplaceableUses (svgDocument) {
-  const uses = []
+function findUses (svgDocument) {
+  const local = []
+  const external = []
 
   for (const use of svgDocument.getElementsByTagName('use')) {
-    const href = use.href.baseVal
-    const hashPosition = href.indexOf('#')
-
-    if (hashPosition) uses.push(use)
+    if (use.getAttribute('href').indexOf('#')) {
+      external.push(use)
+    } else {
+      local.push(use)
+    }
   }
 
-  return uses
+  return [local, external]
 }
 
 async function fetchChild (documents, fetched, mapping, url) {
@@ -34,7 +36,7 @@ async function fetchChild (documents, fetched, mapping, url) {
   const content = await response.text()
   const child = parseSvg(content)
 
-  if (!child) return
+  if (!child) return // failed to parse
 
   fetched[url] = child
   rewriteIds(mapping, url, child)
@@ -47,14 +49,14 @@ async function main () {
   const fetched = {}
   const mapping = {}
 
+  // this loop avoids recursion
   while (documents.length > 0) {
     const [baseHref, svgDocument] = documents.pop()
-    const uses = findReplaceableUses(svgDocument)
+    const [, uses] = findUses(svgDocument)
     const fetches = []
 
     for (const use of uses) {
-      const href = use.getAttribute('href')
-      const url = new URL(href, baseHref)
+      const url = new URL(use.getAttribute('href'), baseHref)
 
       replacements.push([url, use])
       fetches.push(fetchChild(documents, fetched, mapping, stripUrlHash(url)))
@@ -121,13 +123,21 @@ function rewriteIds (mapping, baseHref, svgDocument) {
     mapping[oldHref] = newId
   }
 
+  // rewrite same-document use references
+  for (const element of findUses(svgDocument)[0]) {
+    const oldValue = element.getAttribute('href')
+    const newValue = oldValue.replace(idPattern, (match, id) => `#${localMapping[id] || id}`)
+
+    if (newValue !== oldValue) element.setAttribute('href', newValue)
+  }
+
   // rewrite attribute references to replaced IDs
   for (const attribute of iriAttributes) {
     for (const element of svgDocument.querySelectorAll(`[${attribute}]`)) {
       const oldValue = element.getAttribute(attribute)
       const newValue = oldValue.replace(idPattern, (match, id) => `#${localMapping[id] || id}`)
 
-      if (newValue != oldValue) element.setAttribute(attribute, newValue)
+      if (newValue !== oldValue) element.setAttribute(attribute, newValue)
     }
   }
 
@@ -136,7 +146,7 @@ function rewriteIds (mapping, baseHref, svgDocument) {
     const oldValue = element.textContent
     const newValue = oldValue.replace(idPattern, (match, id) => `#${localMapping[id] || id}`)
 
-    if (newValue != oldValue) element.textContent = newValue
+    if (newValue !== oldValue) element.textContent = newValue
   }
 }
 
