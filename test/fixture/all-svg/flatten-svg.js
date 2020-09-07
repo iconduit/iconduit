@@ -4,48 +4,73 @@ ready(() => {
   })
 })
 
-async function flatten (baseHref, svgDocument) {
-  const toReplace = []
+function createDefs (parent, svgDocuments) {
+  const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs')
+  for (const {documentElement} of svgDocuments) defs.appendChild(documentElement)
+  parent.insertBefore(defs, parent.firstChild)
+}
 
-  for (const useElement of svgDocument.getElementsByTagName('use')) {
-    const href = useElement.href.baseVal
+function findReplaceableUses (svgDocument) {
+  const uses = []
+
+  for (const use of svgDocument.getElementsByTagName('use')) {
+    const href = use.href.baseVal
     const hashPosition = href.indexOf('#')
 
-    if (hashPosition) toReplace.push(useElement)
+    if (hashPosition) uses.push(use)
   }
 
-  if (toReplace.length < 1) return
+  return uses
+}
 
-  const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs')
-  const {documentElement} = svgDocument
-  documentElement.insertBefore(defs, documentElement.firstChild)
+async function flatten (baseHref, svgDocument) {
+  const documents = [[baseHref, svgDocument]]
+  const replacements = []
+  const fetchedDocuments = {}
+  const mapping = {}
 
-  for (const useElement of toReplace) {
-    const href = useElement.getAttribute('href')
-    const url = new URL(href, baseHref)
-    const hrefId = url.hash.substring(1)
+  while (documents.length > 0) {
+    const [baseHref, svgDocument] = documents.pop()
 
-    const response = await fetch(href)
-    const content = await response.text()
-    let child
+    for (const use of findReplaceableUses(svgDocument)) {
+      const href = use.getAttribute('href')
+      const hrefUrl = new URL(href, baseHref)
 
-    try {
-      child = parseSvg(content)
-    } catch (error) {
-      console.error(error)
+      const documentUrl = new URL(hrefUrl)
+      documentUrl.hash = ''
+      const documentUrlString = documentUrl.toString()
 
-      continue
+      if (!fetchedDocuments[documentUrlString]) {
+        const response = await fetch(href)
+        const content = await response.text()
+        let child
+
+        try {
+          child = parseSvg(content)
+        } catch (error) {
+          console.error(error)
+
+          continue
+        }
+
+        fetchedDocuments[documentUrlString] = child
+        rewriteIds(mapping, hrefUrl, child)
+        documents.push([hrefUrl, child])
+      }
+
+      replacements.push([hrefUrl, use])
     }
-
-    const mapping = rewriteIds(child)
-    const mappedId = mapping[hrefId]
-
-    if (!mappedId) continue
-
-    flatten(url, child)
-    defs.appendChild(child.documentElement)
-    useElement.setAttribute('href', `#${mappedId}`)
   }
+
+  if (replacements.length < 1) return
+
+  for (const [hrefUrl, use] of replacements) {
+    const mappedId = mapping[hrefUrl.toString()]
+
+    if (mappedId) use.setAttribute('href', `#${mappedId}`)
+  }
+
+  createDefs(svgDocument.documentElement, Object.values(fetchedDocuments))
 }
 
 async function main () {
@@ -85,35 +110,35 @@ const iriAttributes = [
 const idPattern = /#([^),{;\s]+)/g
 let seq = 0
 
-function rewriteIds (element) {
-  const mapping = {}
+function rewriteIds (mapping, baseHref, svgDocument) {
+  const localMapping = {}
 
   // rewrite IDs
-  for (const idElement of element.querySelectorAll('[id]')) {
-    const oldId = idElement.getAttribute('id')
+  for (const element of svgDocument.querySelectorAll('[id]')) {
+    const oldId = element.getAttribute('id')
+    const oldHref = new URL(`#${oldId}`, baseHref)
     const newId = `__flat-${++seq}-${oldId}`
 
-    idElement.setAttribute('id', newId)
-    mapping[oldId] = newId
+    element.setAttribute('id', newId)
+    localMapping[oldId] = newId
+    mapping[oldHref.toString()] = newId
   }
 
   // rewrite attribute references to replaced IDs
   for (const attribute of iriAttributes) {
-    for (const iriElement of element.querySelectorAll(`[${attribute}]`)) {
-      const oldValue = iriElement.getAttribute(attribute)
-      const newValue = oldValue.replace(idPattern, (match, id) => `#${mapping[id] || id}`)
+    for (const element of svgDocument.querySelectorAll(`[${attribute}]`)) {
+      const oldValue = element.getAttribute(attribute)
+      const newValue = oldValue.replace(idPattern, (match, id) => `#${localMapping[id] || id}`)
 
-      if (newValue != oldValue) iriElement.setAttribute(attribute, newValue)
+      if (newValue != oldValue) element.setAttribute(attribute, newValue)
     }
   }
 
   // rewrite style references to replaced IDs
-  for (const styleElement of element.getElementsByTagName('style')) {
-    const oldValue = styleElement.textContent
-    const newValue = oldValue.replace(idPattern, (match, id) => `#${mapping[id] || id}`)
+  for (const element of svgDocument.getElementsByTagName('style')) {
+    const oldValue = element.textContent
+    const newValue = oldValue.replace(idPattern, (match, id) => `#${localMapping[id] || id}`)
 
-    if (newValue != oldValue) styleElement.textContent = newValue
+    if (newValue != oldValue) element.textContent = newValue
   }
-
-  return mapping
 }
