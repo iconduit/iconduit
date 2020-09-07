@@ -1,7 +1,7 @@
 <svg
-  id="#"
+  id="__root"
   xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 72 72"
 >
-  <use width="108" x="-18" href="iconFlatMaskable.svg##" />
+  <use width="108" x="-18" href="iconFlatMaskable.svg#__root" />
 </svg>

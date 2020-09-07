@@ -116,7 +116,7 @@ function rewriteIds (mapping, baseHref, svgDocument) {
   for (const element of svgDocument.querySelectorAll('[id]')) {
     const oldId = element.getAttribute('id')
     const oldHref = new URL(`#${oldId}`, baseHref)
-    const newId = `__flat-${++seq}-${oldId}`
+    const newId = `__flat_${++seq}_${oldId}`
 
     element.setAttribute('id', newId)
     localMapping[oldId] = newId

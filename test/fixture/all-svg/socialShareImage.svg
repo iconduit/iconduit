@@ -1,9 +1,9 @@
 <svg
-  id="#"
+  id="__root"
   xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 1 1"
   preserveAspectRatio="xMidYMid meet"
   style="background-color: #D5415C"
 >
-  <use width="1" href="iconSilhouette.svg##" />
+  <use width="1" href="iconSilhouette.svg#__root" />
 </svg>
