@@ -28,25 +28,21 @@ function findReplaceableUses (svgDocument) {
 }
 
 async function fetchChild (documents, fetched, mapping, url) {
-  const documentUrl = new URL(url)
-  documentUrl.hash = ''
-  const documentUrlString = documentUrl.toString()
-
-  if (fetched[documentUrlString]) return
+  if (fetched[url]) return
 
   const response = await fetch(url)
   const content = await response.text()
   const child = parseSvg(content)
 
-  if (child) {
-    fetched[documentUrlString] = child
-    rewriteIds(mapping, url, child)
-    documents.push([url, child])
-  }
+  if (!child) return
+
+  fetched[url] = child
+  rewriteIds(mapping, url, child)
+  documents.push([url, child])
 }
 
-async function flatten (baseHref, svgDocument) {
-  const documents = [[baseHref, svgDocument]]
+async function main () {
+  const documents = [[location.href, document]]
   const replacements = []
   const fetched = {}
   const mapping = {}
@@ -58,10 +54,10 @@ async function flatten (baseHref, svgDocument) {
 
     for (const use of uses) {
       const href = use.getAttribute('href')
-      const hrefUrl = new URL(href, baseHref)
+      const url = new URL(href, baseHref)
 
-      replacements.push([hrefUrl, use])
-      fetches.push(fetchChild(documents, fetched, mapping, hrefUrl))
+      replacements.push([url, use])
+      fetches.push(fetchChild(documents, fetched, mapping, stripUrlHash(url)))
     }
 
     await Promise.all(fetches)
@@ -69,17 +65,13 @@ async function flatten (baseHref, svgDocument) {
 
   if (replacements.length < 1) return
 
-  for (const [hrefUrl, use] of replacements) {
-    const mappedId = mapping[hrefUrl.toString()]
+  for (const [url, use] of replacements) {
+    const mappedId = mapping[url]
 
     if (mappedId) use.setAttribute('href', `#${mappedId}`)
   }
 
-  createDefs(svgDocument.documentElement, Object.values(fetched))
-}
-
-async function main () {
-  await flatten(location.href, document)
+  createDefs(document.documentElement, Object.values(fetched))
 }
 
 const domParser = new DOMParser()
@@ -126,7 +118,7 @@ function rewriteIds (mapping, baseHref, svgDocument) {
 
     element.setAttribute('id', newId)
     localMapping[oldId] = newId
-    mapping[oldHref.toString()] = newId
+    mapping[oldHref] = newId
   }
 
   // rewrite attribute references to replaced IDs
@@ -146,4 +138,11 @@ function rewriteIds (mapping, baseHref, svgDocument) {
 
     if (newValue != oldValue) element.textContent = newValue
   }
+}
+
+function stripUrlHash (url) {
+  const stripped = new URL(url)
+  stripped.hash = ''
+
+  return stripped
 }
