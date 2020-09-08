@@ -1,0 +1,8 @@
+<svg
+  id="__root"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 1 1"
+>
+  <style>@import url(variables.css)</style>
+  <use style="transform: scale(var(--iconduit-scale-windows-tile-icon-small)); transform-origin: center" href="iconSilhouette.svg#__root" />
+</svg>
