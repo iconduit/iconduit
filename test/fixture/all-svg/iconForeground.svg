@@ -5,6 +5,4 @@
 >
   <use width="108" height="108" href="iconBleed.svg#__root" />
   <image width="108" height="108" href="icon.png" />
-
-  <script href="flatten-svg.js" />
 </svg>
