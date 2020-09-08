@@ -5,6 +5,4 @@
 >
   <use width="108" height="108" href="iconBackground.svg#__root" />
   <use width="108" height="108" href="iconForeground.svg#__root" />
-
-  <script href="flatten-svg.js" />
 </svg>
