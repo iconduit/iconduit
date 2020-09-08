@@ -3,12 +3,6 @@
   xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 72 72"
 >
-  <style>
-    :root {
-      --android-mask-size: calc(72 / 108);
-      --no-padding-icon-scale: calc(1 / var(--android-mask-size));
-    }
-  </style>
-
-  <use style="transform: scale(var(--no-padding-icon-scale)); transform-origin: center" href="iconMasked.svg#__root" />
+  <style>@import url(variables.css)</style>
+  <use style="transform: scale(var(--iconduit-scale-no-padding-icon)); transform-origin: center" href="iconMasked.svg#__root" />
 </svg>

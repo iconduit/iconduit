@@ -1,0 +1,7 @@
+:root {
+  --iconduit-size-android-mask: calc(72 / 108);
+  --iconduit-size-apple-icon-grid-large-circle: calc(892 / 1024);
+
+  --iconduit-scale-macos-icon: calc(var(--iconduit-size-apple-icon-grid-large-circle) / var(--iconduit-size-android-mask));
+  --iconduit-scale-no-padding-icon: calc(1 / var(--iconduit-size-android-mask));
+}

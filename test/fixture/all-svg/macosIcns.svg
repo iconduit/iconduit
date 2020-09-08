@@ -3,13 +3,6 @@
   xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 108 108"
 >
-  <style>
-    :root {
-      --android-mask-size: calc(72 / 108);
-      --apple-icon-grid-large-circle-size: calc(892 / 1024);
-      --macos-icon-scale: calc(var(--apple-icon-grid-large-circle-size) / var(--android-mask-size));
-    }
-  </style>
-
-  <use style="transform: scale(var(--macos-icon-scale)); transform-origin: center" href="iconFlatMasked.svg#__root" />
+  <style>@import url(variables.css)</style>
+  <use style="transform: scale(var(--iconduit-scale-macos-icon)); transform-origin: center" href="iconFlatMasked.svg#__root" />
 </svg>
