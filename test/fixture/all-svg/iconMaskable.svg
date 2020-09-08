@@ -3,6 +3,6 @@
   xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 108 108"
 >
-  <use width="108" height="108" href="iconBackground.svg#__root" />
-  <use width="108" height="108" href="iconForeground.svg#__root" />
+  <use href="iconBackground.svg#__root" />
+  <use href="iconForeground.svg#__root" />
 </svg>

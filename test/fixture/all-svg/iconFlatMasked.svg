@@ -3,5 +3,5 @@
   xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 108 108"
 >
-  <use width="108" height="108" clip-path="url(iconMaskAndroidSquircle.svg#mask)" href="iconFlatMaskable.svg#__root" />
+  <use clip-path="url(iconMaskAndroidSquircle.svg#mask)" href="iconFlatMaskable.svg#__root" />
 </svg>

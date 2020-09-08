@@ -5,5 +5,5 @@
   preserveAspectRatio="xMidYMid meet"
   style="background-color: #D5415C"
 >
-  <use width="1" href="iconSilhouette.svg#__root" />
+  <use href="iconSilhouette.svg#__root" />
 </svg>
