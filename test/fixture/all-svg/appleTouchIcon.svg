@@ -1,7 +1,14 @@
 <svg
   id="__root"
   xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 72 72"
+  viewBox="0 0 108 108"
 >
-  <use width="108" height="108" x="-18" y="-18" href="iconFlatMaskable.svg#__root" />
+  <style>
+    :root {
+      --android-mask-size: calc(72 / 108);
+      --no-padding-icon-scale: calc(1 / var(--android-mask-size));
+    }
+  </style>
+
+  <use style="transform: scale(var(--no-padding-icon-scale)); transform-origin: center" href="iconFlatMaskable.svg#__root" />
 </svg>
