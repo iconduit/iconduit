@@ -4,5 +4,5 @@
   viewBox="0 0 108 108"
 >
   <style>@import url(variables.css)</style>
-  <use style="transform: scale(var(--iconduit-scale-no-padding-icon)); transform-origin: center" href="iconMasked.svg#__root" />
+  <use style="transform: scale(var(--iconduit-scale-web-app-icon)); transform-origin: center" href="iconMaskable.svg#__root" />
 </svg>

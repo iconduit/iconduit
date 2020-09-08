@@ -1,7 +1,7 @@
 <svg
   id="__root"
   xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 72 72"
+  viewBox="0 0 108 108"
 >
   <style>@import url(variables.css)</style>
   <use style="transform: scale(var(--iconduit-scale-no-padding-icon)); transform-origin: center" href="iconMaskable.svg#__root" />

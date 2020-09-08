@@ -21,6 +21,32 @@ module.exports = () => {
       },
     },
     definitions: {
+      input: {
+        windowsTileLarge: {
+          strategy: INPUT_STRATEGY_DEGRADE,
+          options: {
+            to: 'windowsTileIcon',
+          },
+        },
+        windowsTileMedium: {
+          strategy: INPUT_STRATEGY_DEGRADE,
+          options: {
+            to: 'windowsTileIcon',
+          },
+        },
+        windowsTileSmall: {
+          strategy: INPUT_STRATEGY_DEGRADE,
+          options: {
+            to: 'windowsTileIconSmall',
+          },
+        },
+        windowsTileWide: {
+          strategy: INPUT_STRATEGY_DEGRADE,
+          options: {
+            to: 'windowsTileIcon',
+          },
+        },
+      },
       output: {
         appleTouchIconMasked: {
           input: 'appleTouchIcon',
