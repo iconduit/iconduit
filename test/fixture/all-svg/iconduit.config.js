@@ -23,25 +23,25 @@ module.exports = () => {
     definitions: {
       input: {
         windowsTileLarge: {
-          strategy: INPUT_STRATEGY_DEGRADE,
+          strategy: 'degrade',
           options: {
             to: 'windowsTileIcon',
           },
         },
         windowsTileMedium: {
-          strategy: INPUT_STRATEGY_DEGRADE,
+          strategy: 'degrade',
           options: {
             to: 'windowsTileIcon',
           },
         },
         windowsTileSmall: {
-          strategy: INPUT_STRATEGY_DEGRADE,
+          strategy: 'degrade',
           options: {
             to: 'windowsTileIconSmall',
           },
         },
         windowsTileWide: {
-          strategy: INPUT_STRATEGY_DEGRADE,
+          strategy: 'degrade',
           options: {
             to: 'windowsTileIcon',
           },

@@ -7,8 +7,8 @@ module.exports = {
 function createOperationRunner (clock, env, logger) {
   const {setTimeout, withTimeout} = clock
   const {OPERATION_DELAY: envDelay, OPERATION_TIMEOUT: envTimeout} = env
-  const timeout = envTimeout ? parseInt(envTimeout) : DEFAULT_OPERATION_TIMEOUT
-  const delay = envDelay ? parseInt(envDelay) : DEFAULT_OPERATION_DELAY
+  const timeout = envTimeout ? parseInt(envTimeout, 10) : DEFAULT_OPERATION_TIMEOUT
+  const delay = envDelay ? parseInt(envDelay, 10) : DEFAULT_OPERATION_DELAY
 
   return async function retryOperation (fn) {
     const operation = fn.name || '(anonymous)'
@@ -23,7 +23,7 @@ function createOperationRunner (clock, env, logger) {
             result = await fn()
             shouldContinue = false
           } catch (error) {
-            logger.warn(`Retrying operation ${operation}: ${error.message}`)
+            logger.warn(`Retrying operation ${operation}: ${error.stack}`)
             shouldContinue = true
           }
 
