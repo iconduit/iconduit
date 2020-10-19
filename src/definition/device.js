@@ -1,3 +1,13 @@
+/*
+ * iPad model names taken from https://support.apple.com/en-us/HT201471
+ * iPhone model names taken from https://support.apple.com/en-au/HT201296
+ *
+ * Names are mostly verbatim, but with a few exceptions for consistency:
+ *
+ * - Physical sizes are always enclosed in parentheses.
+ * - The "generation" is always omitted for 1st generation models.
+ */
+
 module.exports = {
   ipad3rdGeneration: {name: 'iPad (3rd generation)', display: 'ipad1536x2048d264'},
   ipad4thGeneration: {name: 'iPad (4th generation)', display: 'ipad1536x2048d264'},
@@ -12,9 +22,9 @@ module.exports = {
   ipadMini5thGeneration: {name: 'iPad mini (5th generation)', display: 'ipad1536x2048d326'},
   ipadPro10Point5Inch: {name: 'iPad Pro (10.5-inch)', display: 'ipad1668x2224d264'},
   ipadPro11Inch: {name: 'iPad Pro (11-inch)', display: 'ipad1668x2388d264'},
-  ipadPro12Point9Inch1stGeneration: {name: 'iPad Pro (12.9-inch) (1st generation)', display: 'ipad2048x2732d264'},
   ipadPro12Point9Inch2ndGeneration: {name: 'iPad Pro (12.9-inch) (2nd generation)', display: 'ipad2048x2732d264'},
   ipadPro12Point9Inch3rdGeneration: {name: 'iPad Pro (12.9-inch) (3rd generation)', display: 'ipad2048x2732d264'},
+  ipadPro12Point9Inch: {name: 'iPad Pro (12.9-inch)', display: 'ipad2048x2732d264'},
   ipadPro9Point7Inch: {name: 'iPad Pro (9.7-inch)', display: 'ipad1536x2048d264'},
   iphone11: {name: 'iPhone 11', display: 'iphone828x1792'},
   iphone11Pro: {name: 'iPhone 11 Pro', display: 'iphone1125x2436'},
