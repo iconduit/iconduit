@@ -1,8 +1,4 @@
-module.exports = {
-  resolveColors,
-}
-
-function resolveColors (config) {
+export function resolveColors (config) {
   const {colors, definitions: {color}} = config
 
   const resolved = {}

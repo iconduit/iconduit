@@ -1,10 +1,6 @@
-const {cssifyObject: css} = require('css-in-js-utils')
+import {cssifyObject as css} from 'css-in-js-utils'
 
-module.exports = {
-  createSvgTransformer,
-}
-
-function createSvgTransformer (withBrowserPage) {
+export function createSvgTransformer (withBrowserPage) {
   return async function transformSvg (url, options = {}) {
     const {maskColor, style = {}} = options
 

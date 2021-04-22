@@ -1,6 +1,6 @@
-const fraction = require('fraction.js')
+import fraction from 'fraction.js'
 
-module.exports = {
+export default {
   appleTouchIconScale: {
     // the difference between the Android mask size (72/108)
     // and an exact 1/1 size

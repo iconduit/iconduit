@@ -1,10 +1,6 @@
-const {DEFAULT_OPERATION_DELAY, DEFAULT_OPERATION_TIMEOUT} = require('./constant.js')
+import {DEFAULT_OPERATION_DELAY, DEFAULT_OPERATION_TIMEOUT} from './constant.js'
 
-module.exports = {
-  createOperationRunner,
-}
-
-function createOperationRunner (clock, env, logger) {
+export function createOperationRunner (clock, env, logger) {
   const {setTimeout, withTimeout} = clock
   const {OPERATION_DELAY: envDelay, OPERATION_TIMEOUT: envTimeout} = env
   const timeout = envTimeout ? parseInt(envTimeout) : DEFAULT_OPERATION_TIMEOUT

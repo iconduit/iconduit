@@ -1,15 +1,15 @@
-const fileUrl = require('file-url')
-const {createConsumer} = require('@iconduit/consumer')
-const {dirname, extname, join, relative} = require('path')
+import fileUrl from 'file-url'
+import {createConsumer} from '@iconduit/consumer'
+import {dirname, extname, join, relative} from 'path'
 
-const {buildManifest} = require('./manifest.js')
-const {formatList} = require('./logging.js')
-const {groupSizes, resolveSizesForOutputs} = require('./size.js')
-const {outputNames, selectOutputs, targetNames} = require('./target.js')
-const {toIcns} = require('./icns.js')
-const {toIco} = require('./ico.js')
+import {buildManifest} from './manifest.js'
+import {formatList} from './logging.js'
+import {groupSizes, resolveSizesForOutputs} from './size.js'
+import {outputNames, selectOutputs, targetNames} from './target.js'
+import {toIcns} from './icns.js'
+import {toIco} from './ico.js'
 
-const {
+import {
   IMAGE_TYPE_ICO_PNG,
   IMAGE_TYPE_JPEG,
   IMAGE_TYPE_PNG,
@@ -17,14 +17,9 @@ const {
   INPUT_TYPE_DOCUMENT,
   INPUT_TYPE_RENDERABLE,
   INPUT_TYPE_SVG,
-} = require('./constant.js')
+} from './constant.js'
 
-module.exports = {
-  createBuilder,
-  createConfigBuilder,
-}
-
-function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, minifyImage, readTemplate, screenshot) {
+export function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, minifyImage, readTemplate, screenshot) {
   const {now} = clock
   const {mkdir, readFile, writeFile} = fileSystem
 
@@ -160,7 +155,7 @@ function createBuilder (clock, createInputBuilder, cwd, fileSystem, logger, mini
   }
 }
 
-function createConfigBuilder (browserManager, build, fileSystem, readConfig) {
+export function createConfigBuilder (browserManager, build, fileSystem, readConfig) {
   const {withTempDir} = fileSystem
   const {run} = browserManager
 

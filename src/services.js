@@ -1,22 +1,25 @@
-const Bottle = require('bottlejs')
-const {join} = require('path')
+import Bottle from 'bottlejs'
+import {dirname, join} from 'path'
+import {fileURLToPath} from 'url'
 
-const {createBoundTemplateReader, createTemplateReader} = require('./template.js')
-const {createBrowserManager} = require('./browser.js')
-const {createBuilder, createConfigBuilder} = require('./build.js')
-const {createCacheFactory} = require('./cache.js')
-const {createConfigNormalizer} = require('./config/normalization.js')
-const {createConfigReader} = require('./config/reading.js')
-const {createConfigValidator} = require('./config/validation.js')
-const {createFileSystem} = require('./fs.js')
-const {createImageMinifier} = require('./image.js')
-const {createInputBuilderFactory} = require('./input.js')
-const {createInputResolverFactory} = require('./module.js')
-const {createLogger} = require('./logging.js')
-const {createOperationRunner} = require('./operation.js')
-const {createScreenshotFactory} = require('./screenshot.js')
-const {createSvgTransformer} = require('./svg.js')
-const {systemClock} = require('./clock.js')
+import {createBoundTemplateReader, createTemplateReader} from './template.js'
+import {createBrowserManager} from './browser.js'
+import {createBuilder, createConfigBuilder} from './build.js'
+import {createCacheFactory} from './cache.js'
+import {createConfigNormalizer} from './config/normalization.js'
+import {createConfigReader} from './config/reading.js'
+import {createConfigValidator} from './config/validation.js'
+import {createFileSystem} from './fs.js'
+import {createImageMinifier} from './image.js'
+import {createInputBuilderFactory} from './input.js'
+import {createInputResolverFactory} from './module.js'
+import {createLogger} from './logging.js'
+import {createOperationRunner} from './operation.js'
+import {createScreenshotFactory} from './screenshot.js'
+import {createSvgTransformer} from './svg.js'
+import {systemClock} from './clock.js'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
 const bottle = new Bottle()
 
@@ -65,4 +68,4 @@ bottle.constant('templateDir', join(__dirname, 'template'))
 bottle.serviceFactory('transformSvg', createSvgTransformer, 'withBrowserPage')
 bottle.factory('withBrowserPage', ({browserManager}) => browserManager.withPage.bind(browserManager))
 
-module.exports = bottle.container
+export default bottle.container

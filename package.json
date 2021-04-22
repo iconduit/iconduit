@@ -8,8 +8,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "type": "module",
   "main": "src/index.js",
-  "bin": "bin/iconduit",
+  "bin": "bin/iconduit.js",
   "files": [
     "/bin/",
     "/input/",
@@ -20,38 +21,38 @@
     "node": ">=10"
   },
   "dependencies": {
-    "@fiahfy/packbits": "^0.0.5",
-    "@iconduit/consumer": "^0.1.17",
-    "ajv": "^6.10.0",
-    "array.prototype.flat": "^1.2.1",
+    "@fiahfy/packbits": "^0.0.6",
+    "@iconduit/consumer": "^0.2.0",
+    "ajv": "^8.1.0",
+    "ajv-formats": "^2.0.2",
+    "array.prototype.flat": "^1.2.4",
     "bottlejs": "^2.0.0",
-    "browserslist": "^4.6.3",
+    "browserslist": "^4.16.4",
     "css-in-js-utils": "^3.0.2",
-    "ejs": "^3.1.5",
-    "file-url": "^3.0.0",
-    "fraction.js": "^4.0.12",
+    "ejs": "^3.1.6",
+    "file-url": "^4.0.0",
+    "fraction.js": "^4.0.13",
     "icns-lib": "^1.0.1",
     "imagemin": "^7.0.0",
     "imagemin-mozjpeg": "^9.0.0",
     "imagemin-optipng": "^8.0.0",
-    "imagemin-pngquant": "^9.0.0",
+    "imagemin-pngquant": "^9.0.2",
     "is-self-closing": "^1.0.1",
     "js-string-escape": "^1.0.1",
     "json-stable-stringify-without-jsonify": "^1.0.1",
-    "mime": "^2.4.4",
-    "pngjs": "^5.0.0",
-    "puppeteer": "^5.2.1",
+    "mime": "^2.5.2",
+    "pngjs": "^6.0.0",
+    "puppeteer": "^8.0.0",
     "puppeteer-cluster": "^0.22.0",
-    "resolve": "^1.11.0",
+    "resolve": "^1.20.0",
     "rmfr": "^2.0.0",
     "winston": "^3.2.1"
   },
   "devDependencies": {
-    "eslint": "^7.8.1",
-    "eslint-config-standard": "^14.1.0",
-    "eslint-plugin-import": "^2.18.0",
+    "eslint": "^7.24.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.0"
+    "eslint-plugin-promise": "^4.2.1"
   }
 }

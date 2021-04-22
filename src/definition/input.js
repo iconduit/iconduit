@@ -1,10 +1,10 @@
-const {
+import {
   INPUT_STRATEGY_COMPOSITE,
   INPUT_STRATEGY_DEGRADE,
   INPUT_STRATEGY_SVG_TRANSFORM,
-} = require('../constant.js')
+} from '../constant.js'
 
-module.exports = {
+export default {
   appleTouchIcon: {
     strategy: INPUT_STRATEGY_COMPOSITE,
     options: {

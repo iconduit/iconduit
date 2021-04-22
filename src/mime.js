@@ -1,11 +1,7 @@
-const mime = require('mime')
-const {extname} = require('path')
+import mime from 'mime'
+import {extname} from 'path'
 
-module.exports = {
-  getType,
-}
-
-function getType (filename) {
+export function getType (filename) {
   const result = mime.getType(filename)
 
   if (result) return result

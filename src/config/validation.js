@@ -1,11 +1,7 @@
-const schema = require('./schema.js')
-const {createValidator} = require('../validation.js')
+import schema from './schema.js'
+import {createValidator} from '../validation.js'
 
-module.exports = {
-  createConfigValidator,
-}
-
-function createConfigValidator () {
+export function createConfigValidator () {
   const validate = createValidator(schema)
 
   return function validateConfig (config) {

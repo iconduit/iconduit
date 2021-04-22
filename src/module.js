@@ -1,15 +1,11 @@
-const resolveCps = require('resolve')
-const {promisify} = require('util')
+import resolveCps from 'resolve'
+import {promisify} from 'util'
 
-const {EXTENSIONS_INPUT} = require('./constant.js')
-
-module.exports = {
-  createInputResolverFactory,
-}
+import {EXTENSIONS_INPUT} from './constant.js'
 
 const resolve = promisify(resolveCps)
 
-function createInputResolverFactory (logger) {
+export function createInputResolverFactory (logger) {
   const resolvers = {}
 
   return function createInputResolver (basePath, inputPath) {

@@ -1,8 +1,4 @@
-module.exports = {
-  buildWebAppManifest,
-}
-
-function buildWebAppManifest (consumer) {
+export function buildWebAppManifest (consumer) {
   const {
     applications: {preferNative},
     categories,

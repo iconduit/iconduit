@@ -1,16 +1,6 @@
-const {FILE_NAME_TOKEN_PATTERN, SIZE_SELECTOR_PATTERN} = require('./constant.js')
+import {FILE_NAME_TOKEN_PATTERN, SIZE_SELECTOR_PATTERN} from './constant.js'
 
-module.exports = {
-  applyMultiplier,
-  dipSize,
-  groupSizes,
-  parseSelector,
-  renderSize,
-  resolveSize,
-  resolveSizesForOutputs,
-}
-
-function applyMultiplier (definition, multiplier) {
+export function applyMultiplier (definition, multiplier) {
   const {key, width, height, deviceWidth, deviceHeight, orientation, pixelDensity, pixelRatio} = definition
 
   const [keyName] = parseSelector(key)
@@ -28,7 +18,7 @@ function applyMultiplier (definition, multiplier) {
   }
 }
 
-function dipSize (size) {
+export function dipSize (size) {
   const {width, height, pixelRatio} = size
 
   return {
@@ -37,7 +27,7 @@ function dipSize (size) {
   }
 }
 
-function groupSizes (template, sizes) {
+export function groupSizes (template, sizes) {
   if (sizes.length < 1) return {[template]: []}
 
   const map = {}
@@ -56,7 +46,7 @@ function groupSizes (template, sizes) {
   return map
 }
 
-function parseSelector (selector) {
+export function parseSelector (selector) {
   const match = SIZE_SELECTOR_PATTERN.exec(selector)
 
   if (!match) throw new Error(`Invalid size selector ${JSON.stringify(selector)}`)
@@ -66,7 +56,7 @@ function parseSelector (selector) {
   return [name, multiplier ? parseInt(multiplier) : null]
 }
 
-function renderSize (template, size) {
+export function renderSize (template, size) {
   const {key, width, height, deviceWidth, deviceHeight, orientation, pixelDensity, pixelRatio} = size
   const {width: dipWidth, height: dipHeight} = dipSize(size)
 
@@ -91,7 +81,7 @@ function renderSize (template, size) {
   })
 }
 
-function resolveSize (definitions, selector) {
+export function resolveSize (definitions, selector) {
   const [name, multiplier] = parseSelector(selector)
   const definition = definitions[name]
 
@@ -100,7 +90,7 @@ function resolveSize (definitions, selector) {
   return multiplier === null ? definition : applyMultiplier(definition, multiplier)
 }
 
-function resolveSizesForOutputs (config, outputs) {
+export function resolveSizesForOutputs (config, outputs) {
   const {definitions: {size: definitions}} = config
   const sizes = {}
 

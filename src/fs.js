@@ -1,14 +1,10 @@
-const fs = require('fs')
-const rmfr = require('rmfr')
-const {join} = require('path')
-const {promisify} = require('util')
-const {tmpdir} = require('os')
+import fs from 'fs'
+import rmfr from 'rmfr'
+import {join} from 'path'
+import {promisify} from 'util'
+import {tmpdir} from 'os'
 
-module.exports = {
-  createFileSystem,
-}
-
-function createFileSystem (env, logger) {
+export function createFileSystem (env, logger) {
   const access = promisify(fs.access)
   const mkdir = promisify(fs.mkdir)
   const mkdtemp = promisify(fs.mkdtemp)

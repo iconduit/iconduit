@@ -1,14 +1,10 @@
-const {resolveUrl} = require('@iconduit/consumer')
+import {resolveUrl} from '@iconduit/consumer'
 
-const {getType} = require('./mime.js')
-const {renderSize, resolveSize} = require('./size.js')
-const {resolveColors} = require('./config/resolution.js')
+import {getType} from './mime.js'
+import {renderSize, resolveSize} from './size.js'
+import {resolveColors} from './config/resolution.js'
 
-module.exports = {
-  buildManifest,
-}
-
-function buildManifest (config, outputs, tags) {
+export function buildManifest (config, outputs, tags) {
   const meta = {...config}
   delete meta.colors
   delete meta.definitions

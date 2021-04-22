@@ -1,16 +1,10 @@
-const browserslist = require('browserslist')
+import browserslist from 'browserslist'
 
-module.exports = {
-  outputNames,
-  selectOutputs,
-  targetNames,
-}
-
-function outputNames (outputs) {
+export function outputNames (outputs) {
   return Object.keys(outputs).sort()
 }
 
-function selectOutputs (config) {
+export function selectOutputs (config) {
   const {
     definitions: {
       output,
@@ -58,7 +52,7 @@ function selectOutputs (config) {
   }
 }
 
-function targetNames (config) {
+export function targetNames (config) {
   const {
     definitions: {
       target: {

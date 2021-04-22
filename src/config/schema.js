@@ -1,10 +1,10 @@
-const {
+import {
   INPUT_STRATEGY_COMPOSITE,
   INPUT_STRATEGY_DEGRADE,
   INPUT_STRATEGY_SVG_TRANSFORM,
-} = require('../constant.js')
+} from '../constant.js'
 
-module.exports = {
+export default {
   $schema: 'http://json-schema.org/draft-07/schema#',
   $id: 'https://iconduit.github.io/schema/config.schema.json',
   title: 'Iconduit configuration',
@@ -330,7 +330,7 @@ module.exports = {
                       isMasked: {
                         description: 'Whether the input should have a mask applied',
                         type: 'boolean',
-                        default: false,
+                        // default: false,
                       },
                       layers: {
                         description: 'The layers to compose together into an input',
@@ -759,7 +759,6 @@ module.exports = {
     urls: {
       description: 'Defines the output URL structure',
       type: 'object',
-      default: {},
       additionalProperties: false,
       properties: {
         base: {
@@ -824,7 +823,6 @@ module.exports = {
     outputSet: {
       description: 'A set of output names',
       type: 'array',
-      default: [],
       uniqueItems: true,
       items: {$ref: '#/definitions/outputName'},
     },
@@ -841,7 +839,6 @@ module.exports = {
     tagDefinition: {
       description: 'Defines how a tag should be produced',
       type: 'object',
-      default: {},
       additionalProperties: false,
       required: ['tag'],
       properties: {
@@ -895,7 +892,6 @@ module.exports = {
     tagSet: {
       description: 'A set of tag names',
       type: 'array',
-      default: [],
       uniqueItems: true,
       items: {$ref: '#/definitions/tagName'},
     },
@@ -907,7 +903,6 @@ module.exports = {
     targetOutputs: {
       description: 'A set of output and tag names',
       type: 'object',
-      default: {},
       additionalProperties: false,
       properties: {
         outputs: {
@@ -923,7 +918,6 @@ module.exports = {
     targetOutputsByTarget: {
       description: 'Defines sets of output and tag names for a set of named targets',
       type: 'object',
-      default: {},
       propertyNames: {
         description: 'The name of an target',
         type: 'string',

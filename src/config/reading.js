@@ -1,10 +1,6 @@
-const {dirname, extname, join} = require('path')
+import {dirname, extname, join} from 'path'
 
-module.exports = {
-  createConfigReader,
-}
-
-function createConfigReader (cwd, fileSystem, normalizeConfig) {
+export function createConfigReader (cwd, fileSystem, normalizeConfig) {
   const {readFile} = fileSystem
 
   return async function readConfig (configPath) {
@@ -37,14 +33,15 @@ function createConfigReader (cwd, fileSystem, normalizeConfig) {
 
   async function readJsConfig (configPath) {
     const absoluteConfigPath = join(cwd(), configPath)
+    let configModule
 
     try {
-      require.resolve(absoluteConfigPath)
+      configModule = await import(absoluteConfigPath)
     } catch (error) {
       throw error.code === 'MODULE_NOT_FOUND' ? createNotFound(configPath) : error
     }
 
-    return buildResult(absoluteConfigPath, require(absoluteConfigPath))
+    return buildResult(absoluteConfigPath, configModule.default)
   }
 
   async function readJsonConfig (configPath) {

@@ -1,13 +1,8 @@
-const winston = require('winston')
+import winston from 'winston'
 
-const {DEFAULT_LOG_LEVEL} = require('./constant.js')
+import {DEFAULT_LOG_LEVEL} from './constant.js'
 
-module.exports = {
-  createLogger,
-  formatList,
-}
-
-function createLogger (env) {
+export function createLogger (env) {
   const {LOG_LEVEL: level = DEFAULT_LOG_LEVEL} = env
 
   return winston.createLogger({
@@ -19,7 +14,7 @@ function createLogger (env) {
   })
 }
 
-function formatList (list) {
+export function formatList (list) {
   const {length} = list
 
   if (!length) throw new Error('Invalid list')

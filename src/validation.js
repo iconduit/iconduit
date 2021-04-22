@@ -1,12 +1,11 @@
-const Ajv = require('ajv')
-const escapeString = require('js-string-escape')
+import Ajv from 'ajv'
+import ajvFormats from 'ajv-formats'
+import escapeString from 'js-string-escape'
 
-module.exports = {
-  createValidator,
-}
-
-function createValidator (schema) {
+export function createValidator (schema) {
   const ajv = new Ajv({allErrors: true, useDefaults: true})
+  ajvFormats(ajv)
+
   const validator = ajv.compile(schema)
 
   return function validate (data) {

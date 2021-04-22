@@ -1,12 +1,8 @@
-const systemClock = {
+export const systemClock = {
   clearTimeout,
   now,
   setTimeout,
   withTimeout,
-}
-
-module.exports = {
-  systemClock,
 }
 
 function now () {

@@ -8,7 +8,7 @@
  * - The "generation" is always omitted for 1st generation models.
  */
 
-module.exports = {
+export default {
   ipad5thGeneration: {name: 'iPad (5th generation)', display: 'ipad1536x2048d264'},
   ipad6thGeneration: {name: 'iPad (6th generation)', display: 'ipad1536x2048d264'},
   ipad7thGeneration: {name: 'iPad (7th generation)', display: 'ipad1620x2160d264'},

@@ -1,12 +1,8 @@
-const {Cluster} = require('puppeteer-cluster')
+import {Cluster} from 'puppeteer-cluster'
 
-const {DEFAULT_BROWSER_CONCURRENCY, DEFAULT_BROWSER_TIMEOUT} = require('./constant.js')
+import {DEFAULT_BROWSER_CONCURRENCY, DEFAULT_BROWSER_TIMEOUT} from './constant.js'
 
-module.exports = {
-  createBrowserManager,
-}
-
-function createBrowserManager (env, logger, retryOperation) {
+export function createBrowserManager (env, logger, retryOperation) {
   const {BROWSER_CONCURRENCY: envConcurrency, BROWSER_TIMEOUT: envTimeout} = env
 
   const puppeteerOptions = {

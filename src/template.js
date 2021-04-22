@@ -1,14 +1,9 @@
-const stringify = require('json-stable-stringify-without-jsonify')
-const {compile} = require('ejs')
-const {cssifyObject: css} = require('css-in-js-utils')
-const {join, resolve} = require('path')
+import stringify from 'json-stable-stringify-without-jsonify'
+import {compile} from 'ejs'
+import {cssifyObject as css} from 'css-in-js-utils'
+import {join, resolve} from 'path'
 
-module.exports = {
-  createBoundTemplateReader,
-  createTemplateReader,
-}
-
-function createBoundTemplateReader (fileSystem, cwd, basePath) {
+export function createBoundTemplateReader (fileSystem, cwd, basePath) {
   const readTemplate = createTemplateReader(fileSystem, cwd)
 
   return async function readBoundTemplate (name) {
@@ -16,7 +11,7 @@ function createBoundTemplateReader (fileSystem, cwd, basePath) {
   }
 }
 
-function createTemplateReader (fileSystem, cwd) {
+export function createTemplateReader (fileSystem, cwd) {
   const {readFile} = fileSystem
   const templates = {}
 

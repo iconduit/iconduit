@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   ipad1536x2048d264: {resolution: {horizontal: 1536, vertical: 2048}, pixelDensity: 264, pixelRatio: 2, orientation: 'portrait'},
   ipad1536x2048d326: {resolution: {horizontal: 1536, vertical: 2048}, pixelDensity: 326, pixelRatio: 2, orientation: 'portrait'},
   ipad1620x2160d264: {resolution: {horizontal: 1620, vertical: 2160}, pixelDensity: 264, pixelRatio: 2, orientation: 'portrait'},

@@ -1,19 +1,15 @@
-const imageminMozjpeg = require('imagemin-mozjpeg')
-const imageminOptipng = require('imagemin-optipng')
-const imageminPngquant = require('imagemin-pngquant')
-const {buffer} = require('imagemin')
+import imageminMozjpeg from 'imagemin-mozjpeg'
+import imageminOptipng from 'imagemin-optipng'
+import imageminPngquant from 'imagemin-pngquant'
+import {buffer} from 'imagemin'
 
-const {
+import {
   IMAGE_TYPE_ICO_PNG,
   IMAGE_TYPE_JPEG,
   IMAGE_TYPE_PNG,
-} = require('./constant.js')
+} from './constant.js'
 
-module.exports = {
-  createImageMinifier,
-}
-
-function createImageMinifier () {
+export function createImageMinifier () {
   const icoPngOptions = {plugins: [imageminOptipng({colorTypeReduction: false})]}
   const lossyJpegOptions = {plugins: [imageminMozjpeg()]}
   const lossyPngOptions = {plugins: [imageminPngquant()]}

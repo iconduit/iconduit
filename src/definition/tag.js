@@ -53,7 +53,7 @@ const selectPrimaryWindowsApp = `<%- ${findPrimaryWindowsApp} ? "true" : "" %>`
 const selectPrimaryWindowsAppId = `<%- (${findPrimaryWindowsApp} || {}).id %>`
 const selectPrimaryWindowsAppLaunchUrl = `<%- (({launchUrl} = {}) => launchUrl && absoluteUrl(launchUrl))(${findPrimaryWindowsApp}) %>`
 
-module.exports = {
+export default {
   appleItunesApp: {
     graph: [
       {

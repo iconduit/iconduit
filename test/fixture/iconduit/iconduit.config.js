@@ -1,4 +1,4 @@
-module.exports = () => {
+export default () => {
   return {
     name: 'Iconduit',
     description: 'A build system for web application icon and image assets',

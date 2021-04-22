@@ -1,10 +1,10 @@
-const {encode} = require('@fiahfy/packbits')
-const {format} = require('icns-lib')
-const {PNG} = require('pngjs')
+import {encode} from '@fiahfy/packbits'
+import {format} from 'icns-lib'
+import {PNG} from 'pngjs'
 
-const {renderSize} = require('./size.js')
+import {renderSize} from './size.js'
 
-const {
+import {
   ICNS_512_2X,
   ICNS_512_1X,
   ICNS_256_2X,
@@ -17,13 +17,9 @@ const {
   ICNS_16_2X,
   ICNS_16_1X,
   ICNS_16_1X_MASK,
-} = require('./constant.js')
+} from './constant.js'
 
-module.exports = {
-  toIcns,
-}
-
-async function toIcns (logger, entries) {
+export async function toIcns (logger, entries) {
   const entriesBySize = mapEntriesBySize(entries)
   const types = {}
 

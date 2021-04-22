@@ -1,8 +1,4 @@
-module.exports = {
-  createCacheFactory,
-}
-
-function createCacheFactory (logger) {
+export function createCacheFactory (logger) {
   return function createCache () {
     const map = {}
 

@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   appleTouchIconRetina: {key: 'retina', width: 180, height: 180},
   dmgBackground: {key: 'primary', width: 640, height: 380},
   facebookAppIcon: {key: 'primary', width: 1024, height: 1024},

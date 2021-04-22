@@ -1,6 +1,6 @@
-const {buildWebAppManifest} = require('../web-app.js')
+import {buildWebAppManifest} from '../web-app.js'
 
-module.exports = {
+export default {
   appleTouchIcon: {
     name: 'apple-touch-icon-[dimensions].png',
     options: {

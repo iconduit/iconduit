@@ -1,10 +1,10 @@
-const fileUrl = require('file-url')
-const flat = require('array.prototype.flat')
-const {dirname, extname, join} = require('path')
+import fileUrl from 'file-url'
+import flat from 'array.prototype.flat'
+import {dirname, extname, join} from 'path'
 
-const {resolveColors} = require('./config/resolution.js')
+import {resolveColors} from './config/resolution.js'
 
-const {
+import {
   EXTENSIONS_DOCUMENT,
   EXTENSIONS_IMAGE,
   INPUT_STRATEGY_COMPOSITE,
@@ -14,13 +14,9 @@ const {
   INPUT_TYPE_RENDERABLE,
   INPUT_TYPE_SVG,
   TEMPLATE_COMPOSITE,
-} = require('./constant.js')
+} from './constant.js'
 
-module.exports = {
-  createInputBuilderFactory,
-}
-
-function createInputBuilderFactory (
+export function createInputBuilderFactory (
   createCache,
   createInputResolver,
   defaultInputDir,

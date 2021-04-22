@@ -1,11 +1,7 @@
-module.exports = {
-  toIco,
-}
-
 const ICONDIR_SIZE = 6
 const ICONDIRENTRY_SIZE = 16
 
-function toIco (logger, entries) {
+export function toIco (logger, entries) {
   const ico = Buffer.alloc(
     entries.reduce((total, {content: {length}}) => total + length + ICONDIRENTRY_SIZE, ICONDIR_SIZE),
   )

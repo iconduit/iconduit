@@ -1,11 +1,7 @@
-const {IMAGE_TYPE_PNG} = require('./constant.js')
-const {dipSize} = require('./size.js')
+import {IMAGE_TYPE_PNG} from './constant.js'
+import {dipSize} from './size.js'
 
-module.exports = {
-  createScreenshotFactory,
-}
-
-function createScreenshotFactory (withBrowserPage) {
+export function createScreenshotFactory (withBrowserPage) {
   return async function screenshot (url, size, options = {}) {
     const {type = IMAGE_TYPE_PNG} = options
     const sizeViewport = viewport(size)

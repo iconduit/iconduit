@@ -1,14 +1,14 @@
-const isSelfClosingFn = require('is-self-closing')
-const {toDirUrl} = require('@iconduit/consumer')
+import isSelfClosingFn from 'is-self-closing'
+import {toDirUrl} from '@iconduit/consumer'
 
-const standardDeviceDefinitions = require('../definition/device.js')
-const standardDisplayDefinitions = require('../definition/display.js')
-const standardInputDefinitions = require('../definition/input.js')
-const standardOutputDefinitions = require('../definition/output.js')
-const standardSizeDefinitions = require('../definition/size.js')
-const standardStyleDefinitions = require('../definition/style.js')
-const standardTagDefinitions = require('../definition/tag.js')
-const standardTargetDefinitions = require('../definition/target.js')
+import standardDeviceDefinitions from '../definition/device.js'
+import standardDisplayDefinitions from '../definition/display.js'
+import standardInputDefinitions from '../definition/input.js'
+import standardOutputDefinitions from '../definition/output.js'
+import standardSizeDefinitions from '../definition/size.js'
+import standardStyleDefinitions from '../definition/style.js'
+import standardTagDefinitions from '../definition/tag.js'
+import standardTargetDefinitions from '../definition/target.js'
 
 const {
   all: standardAllTargetDefinition,
@@ -18,11 +18,7 @@ const {
   web: standardWebTargetDefinitions,
 } = standardTargetDefinitions
 
-module.exports = {
-  createConfigNormalizer,
-}
-
-function createConfigNormalizer (validateConfig) {
+export function createConfigNormalizer (validateConfig) {
   return function normalizeConfig (config) {
     assertObject(config, 'config')
 
