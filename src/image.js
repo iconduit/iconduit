@@ -1,13 +1,15 @@
 import imageminMozjpeg from 'imagemin-mozjpeg'
 import imageminOptipng from 'imagemin-optipng'
 import imageminPngquant from 'imagemin-pngquant'
-import {buffer} from 'imagemin'
+import imagemin from 'imagemin'
 
 import {
   IMAGE_TYPE_ICO_PNG,
   IMAGE_TYPE_JPEG,
   IMAGE_TYPE_PNG,
 } from './constant.js'
+
+const {buffer} = imagemin
 
 export function createImageMinifier () {
   const icoPngOptions = {plugins: [imageminOptipng({colorTypeReduction: false})]}
