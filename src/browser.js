@@ -12,9 +12,9 @@ export function createBrowserManager (env, logger, retryOperation) {
 
   const clusterOptions = {
     concurrency: Cluster.CONCURRENCY_PAGE,
-    maxConcurrency: envConcurrency ? parseInt(envConcurrency) : DEFAULT_BROWSER_CONCURRENCY,
+    maxConcurrency: envConcurrency ? parseInt(envConcurrency, 10) : DEFAULT_BROWSER_CONCURRENCY,
     puppeteerOptions,
-    timeout: envTimeout ? parseInt(envTimeout) : DEFAULT_BROWSER_TIMEOUT,
+    timeout: envTimeout ? parseInt(envTimeout, 10) : DEFAULT_BROWSER_TIMEOUT,
   }
 
   logger.debug(`Concurrency is currently set to ${clusterOptions.maxConcurrency}`)
