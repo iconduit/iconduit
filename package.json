@@ -39,8 +39,9 @@
     "js-string-escape": "^1.0.1",
     "json-stable-stringify-without-jsonify": "^1.0.1",
     "mime": "^2.4.4",
-    "playwright-firefox": "^1.3.0",
     "pngjs": "^5.0.0",
+    "puppeteer": "^5.2.1",
+    "puppeteer-cluster": "^0.22.0",
     "resolve": "^1.11.0",
     "rmfr": "^2.0.0",
     "winston": "^3.2.1"

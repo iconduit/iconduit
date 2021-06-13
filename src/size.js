@@ -63,7 +63,7 @@ function parseSelector (selector) {
 
   const [, name, multiplier] = match
 
-  return [name, multiplier ? parseInt(multiplier, 10) : null]
+  return [name, multiplier ? parseInt(multiplier) : null]
 }
 
 function renderSize (template, size) {

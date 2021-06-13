@@ -63,6 +63,6 @@ bottle.serviceFactory('retryOperation', createOperationRunner, 'clock', 'env', '
 bottle.serviceFactory('screenshot', createScreenshotFactory, 'withBrowserPage')
 bottle.constant('templateDir', join(__dirname, 'template'))
 bottle.serviceFactory('transformSvg', createSvgTransformer, 'withBrowserPage')
-bottle.factory('withBrowserPage', ({browserManager: {withPage}}) => withPage)
+bottle.factory('withBrowserPage', ({browserManager}) => browserManager.withPage.bind(browserManager))
 
 module.exports = bottle.container
