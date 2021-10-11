@@ -7,7 +7,6 @@ export function createBrowserManager (env, logger, retryOperation) {
 
   const puppeteerOptions = {
     args: ['--no-sandbox', '--disable-dev-shm-usage', '--disable-setuid-sandbox', '--disable-web-security'],
-    pipe: true,
   }
 
   const clusterOptions = {
