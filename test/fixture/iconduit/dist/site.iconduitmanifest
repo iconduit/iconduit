@@ -75,10 +75,15 @@
         "type": "application/xml",
         "url": "browserconfig.xml"
       },
-      "iconduitConsumer": {
-        "path": "iconduit.consumer.js",
+      "iconduitConsumerCjs": {
+        "path": "iconduit.consumer.cjs",
+        "type": "application/node",
+        "url": "iconduit.consumer.cjs"
+      },
+      "iconduitConsumerMjs": {
+        "path": "iconduit.consumer.mjs",
         "type": "application/javascript",
-        "url": "iconduit.consumer.js"
+        "url": "iconduit.consumer.mjs"
       },
       "iconduitManifest": {
         "path": "site.iconduitmanifest",

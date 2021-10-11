@@ -1,7 +1,8 @@
 export default {
   all: {
     outputs: [
-      'iconduitConsumer',
+      'iconduitConsumerCjs',
+      'iconduitConsumerMjs',
       'iconduitManifest',
     ],
   },

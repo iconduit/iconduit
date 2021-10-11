@@ -89,8 +89,11 @@ export default {
       'icon',
     ],
   },
-  iconduitConsumer: {
-    name: 'iconduit.consumer.js',
+  iconduitConsumerCjs: {
+    name: 'iconduit.consumer.cjs',
+  },
+  iconduitConsumerMjs: {
+    name: 'iconduit.consumer.mjs',
   },
   iconduitManifest: {
     name: 'site.iconduitmanifest',
