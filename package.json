@@ -34,7 +34,7 @@
     "fraction.js": "^4.0.13",
     "icns-lib": "^1.0.1",
     "imagemin": "^8.0.0",
-    "imagemin-mozjpeg": "^9.0.0",
+    "imagemin-mozjpeg": "^10.0.0",
     "imagemin-optipng": "^8.0.0",
     "imagemin-pngquant": "^9.0.2",
     "is-self-closing": "^1.0.1",
