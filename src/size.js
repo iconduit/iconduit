@@ -53,7 +53,7 @@ export function parseSelector (selector) {
 
   const [, name, multiplier] = match
 
-  return [name, multiplier ? parseInt(multiplier) : null]
+  return [name, multiplier ? parseInt(multiplier, 10) : null]
 }
 
 export function renderSize (template, size) {

@@ -21,5 +21,6 @@ module.exports = {
     }],
     'prefer-const': 'error',
     'quote-props': ['error', 'as-needed'],
+    radix: 'error',
   },
 }
