@@ -49,7 +49,7 @@ export default {
   githubAccountIcon: {
     strategy: INPUT_STRATEGY_DEGRADE,
     options: {
-      to: 'iconMaskedNoPadding',
+      to: 'iconMaskableNoPadding',
     },
   },
   githubAppIcon: {
