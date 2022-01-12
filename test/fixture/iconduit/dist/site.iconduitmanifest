@@ -736,6 +736,20 @@
           "url": "github-account-icon.png"
         }
       },
+      "githubAppIcon": {
+        "primary": {
+          "htmlSizes": "1024x1024",
+          "path": "github-app-icon.png",
+          "size": {
+            "height": 1024,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 1024
+          },
+          "type": "image/png",
+          "url": "github-app-icon.png"
+        }
+      },
       "macosIcns": {
         "container": {
           "htmlSizes": "16x16 32x32 64x64 128x128 256x256 512x512 1024x1024",

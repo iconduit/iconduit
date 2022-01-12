@@ -6,6 +6,7 @@ export default {
   faviconMedium: {key: 'medium', width: 32, height: 32},
   faviconSmall: {key: 'small', width: 16, height: 16},
   githubAccountIcon: {key: 'primary', width: 1024, height: 1024},
+  githubAppIcon: {key: 'primary', width: 1024, height: 1024},
   icns128: {key: '128', width: 128, height: 128},
   icns16: {key: '16', width: 16, height: 16},
   icns256: {key: '256', width: 256, height: 256},
