@@ -111,7 +111,6 @@ export default {
     github: {
       outputs: [
         'githubAccountIcon',
-        'githubAppIcon',
       ],
     },
     pinterest: {

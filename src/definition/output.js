@@ -78,10 +78,6 @@ export default {
     name: 'github-account-icon.png',
     sizes: ['githubAccountIcon'],
   },
-  githubAppIcon: {
-    name: 'github-app-icon.png',
-    sizes: ['githubAppIcon'],
-  },
   faviconIco: {
     name: 'favicon.ico',
     sizes: ['faviconLarge', 'faviconMedium', 'faviconSmall'],

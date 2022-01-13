@@ -52,14 +52,6 @@ export default {
       to: 'iconMaskableNoPadding',
     },
   },
-  githubAppIcon: {
-    strategy: INPUT_STRATEGY_COMPOSITE,
-    options: {
-      layers: [
-        {input: 'icon', style: 'githubAppIconScale'},
-      ],
-    },
-  },
   iconBackground: {
     strategy: INPUT_STRATEGY_DEGRADE,
     options: {
