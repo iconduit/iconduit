@@ -72,24 +72,30 @@ async function loadSvg(href) {
 
 function createSymbolFromSvg(svg, href) {
   const symbol = document.createElementNS(SVG, "symbol");
-  symbol.setAttribute("viewBox", svg.getAttribute("viewBox"));
+  symbol.setAttribute("id", svg.getAttribute("id") ?? "");
+  symbol.setAttribute("viewBox", svg.getAttribute("viewBox") ?? "");
   symbol.replaceChildren(...svg.children);
+  symbol.dataset.__fixSvgUseHref = shortenUrl(href);
+  remapId(symbol, href);
 
-  const svgId = svg.getAttribute("id");
-
-  if (svgId) {
-    const rootHref = new URL(`#${encodeURIComponent(svgId)}`, href);
-    const symbolId = nextId();
-    idMap[rootHref] = symbolId;
-    symbol.setAttribute("id", symbolId);
+  for (const element of symbol.querySelectorAll('*[id]:not([id=""])')) {
+    remapId(element, href);
   }
 
-  symbol.dataset.__fixSvgUseHref = shortenUrl(href);
-
-  const idElements = symbol.querySelectorAll('*[id]:not([id=""])');
-  console.log(idElements);
-
   return symbol;
+}
+
+function remapId(element, documentHref) {
+  const elementId = element.getAttribute("id");
+
+  if (!elementId) return;
+
+  const anchor = `#${encodeURIComponent(element.getAttribute("id"))}`;
+  const elementHref = new URL(anchor, documentHref);
+  const mappedId = nextId();
+  idMap[elementHref.toString()] = mappedId;
+  element.setAttribute("id", mappedId);
+  element.dataset.__fixSvgUseId = elementId;
 }
 
 function shortenUrl(url) {
