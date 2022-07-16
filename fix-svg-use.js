@@ -22,19 +22,7 @@ async function main() {
 function findUses() {
   const uses = document.getElementsByTagNameNS(SVG, "use");
 
-  return [...uses].filter((use) => !isLocalHref(use.getAttribute("href")));
-}
-
-function isLocalHref(hrefAttribute) {
-  const windowHref = new URL(window.location.href);
-  windowHref.hash = "";
-  windowHref.search = "";
-
-  const href = new URL(hrefAttribute, window.location.href);
-  href.hash = "";
-  href.search = "";
-
-  return href.href === windowHref.href;
+  return [...uses].filter((use) => !use.getAttribute("href").startsWith("#"));
 }
 
 async function flattenUses(uses) {
