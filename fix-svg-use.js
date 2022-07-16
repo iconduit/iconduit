@@ -36,7 +36,7 @@ async function flattenUse(use) {
 
   try {
     const svg = await loadSvg(href);
-    const symbol = createSymbolForUse(use, svg);
+    const symbol = createSymbolFromSvg(svg);
 
     use.parentNode.insertBefore(symbol, use);
     use.setAttribute("href", `#${symbol.getAttribute("id")}`);
@@ -58,7 +58,7 @@ async function loadSvg(href) {
   return document.documentElement;
 }
 
-function createSymbolForUse(use, svg) {
+function createSymbolFromSvg(svg) {
   const symbol = document.createElementNS(SVG, "symbol");
   symbol.setAttribute("id", `__fix_svg_use_${useNumber++}`);
   symbol.setAttribute("viewBox", svg.getAttribute("viewBox"));
