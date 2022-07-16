@@ -7,7 +7,7 @@
                 <g id="Foreground">
                     <g id="Bleed">
                         <g opacity="0.1">
-                            <path d="M109.337,148.181L39.001,77.845L57.738,59.108L44.856,46.225L61.234,29.847L144.452,113.065L109.337,148.181Z" id="target" />
+                            <path d="M109.337,148.181L39.001,77.845L57.738,59.108L44.856,46.225L61.234,29.847L144.452,113.065L109.337,148.181Z" style="fill:url(#_Linear1);" />
                         </g>
                     </g>
                 </g>
@@ -17,9 +17,4 @@
     <defs>
         <linearGradient id="_Linear1" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(97.2462,36.3515,-36.3515,97.2462,61.2338,29.847)"><stop offset="0" style="stop-color:black;stop-opacity:1"/><stop offset="1" style="stop-color:black;stop-opacity:0"/></linearGradient>
     </defs>
-    <style>
-        #target {
-            fill: url(#_Linear1);
-        }
-    </style>
 </svg>
