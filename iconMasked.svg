@@ -1,0 +1,7 @@
+<svg
+  id="__root"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 108 108"
+>
+  <use clip-path="url(iconMask.svg#mask)" href="iconMaskable.svg#__root" />
+</svg>
