@@ -1,6 +1,7 @@
 const SVG = "http://www.w3.org/2000/svg";
 const seenHrefs = {};
-let useNumber = 0;
+const idMap = {};
+let idSequence = 0;
 
 main().catch((error) => {
   console.error(error);
@@ -18,6 +19,8 @@ async function main() {
 
     await flattenUses(external);
   }
+
+  console.log(idMap);
 }
 
 function findExternalUses() {
@@ -48,12 +51,11 @@ async function flattenUse(use) {
 
   if (svg == null) return;
 
-  const symbol = createSymbolFromSvg(svg);
-  symbol.dataset.__fixSvgUseHref = hrefAttribute;
+  const symbol = createSymbolFromSvg(svg, href);
 
   use.ownerDocument.documentElement.appendChild(symbol);
   use.setAttribute("href", `#${symbol.getAttribute("id")}`);
-  use.dataset.__fixSvgUseHref = hrefAttribute;
+  use.dataset.__fixSvgUseHref = shortenUrl(href);
 }
 
 async function loadSvg(href) {
@@ -68,16 +70,36 @@ async function loadSvg(href) {
   return document.documentElement;
 }
 
-function createSymbolFromSvg(svg) {
+function createSymbolFromSvg(svg, href) {
   const symbol = document.createElementNS(SVG, "symbol");
-  symbol.setAttribute("id", `__fix_svg_use_${useNumber++}`);
   symbol.setAttribute("viewBox", svg.getAttribute("viewBox"));
   symbol.replaceChildren(...svg.children);
 
-  // const idElements = symbol.querySelectorAll('*[id]:not([id=""])');
-  // console.log(idElements);
+  const svgId = svg.getAttribute("id");
+
+  if (svgId) {
+    const rootHref = new URL(`#${encodeURIComponent(svgId)}`, href);
+    const symbolId = nextId();
+    idMap[rootHref] = symbolId;
+    symbol.setAttribute("id", symbolId);
+  }
+
+  symbol.dataset.__fixSvgUseHref = shortenUrl(href);
+
+  const idElements = symbol.querySelectorAll('*[id]:not([id=""])');
+  console.log(idElements);
 
   return symbol;
+}
+
+function shortenUrl(url) {
+  if (url.origin !== window.location.origin) return url.toString();
+
+  return url.toString().substring(url.origin.length);
+}
+
+function nextId() {
+  return `__fix_svg_use_${idSequence++}`;
 }
 
 function domReady() {
