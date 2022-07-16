@@ -19,8 +19,6 @@ async function main() {
 
     await flattenUses(external);
   }
-
-  console.log(idMap);
 }
 
 function findExternalUses() {
