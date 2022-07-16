@@ -44,18 +44,20 @@ async function flattenUses(uses) {
 
 async function flattenUse(use) {
   const hrefAttribute = use.getAttribute("href");
-  const href = new URL(hrefAttribute, window.location.href);
-  // const hash = href.hash;
-  href.hash = "";
-  const svg = await loadSvg(href);
+  const svgHref = new URL(hrefAttribute, window.location.href);
+  svgHref.hash = "";
+  const svg = await loadSvg(svgHref);
 
   if (svg == null) return;
 
-  const symbol = createSymbolFromSvg(svg, href);
-
+  const symbol = createSymbolFromSvg(svg, svgHref);
   use.ownerDocument.documentElement.appendChild(symbol);
-  use.setAttribute("href", `#${symbol.getAttribute("id")}`);
-  use.dataset.__fixSvgUseHref = shortenUrl(href);
+
+  const useHref = new URL(hrefAttribute, window.location.href);
+  const mappedId = idMap[useHref.toString()];
+
+  use.setAttribute("href", `#${mappedId}`);
+  use.dataset.__fixSvgUseHref = shortenUrl(useHref);
 }
 
 async function loadSvg(href) {
