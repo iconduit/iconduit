@@ -82,6 +82,8 @@ function createSymbolFromSvg(svg, href) {
     remapId(element, href);
   }
 
+  remapAllUrlReferences(symbol, "fill", href);
+
   return symbol;
 }
 
@@ -96,6 +98,46 @@ function remapId(element, documentHref) {
   idMap[elementHref.toString()] = mappedId;
   element.setAttribute("id", mappedId);
   element.dataset.__fixSvgUseId = elementId;
+}
+
+function remapAllUrlReferences(node, type, documentHref) {
+  for (const element of node.querySelectorAll(`*[${type}]:not([${type}=""])`)) {
+    const remappedAttribute = remapUrlReference(
+      element.getAttribute(type) ?? "",
+      documentHref
+    );
+
+    if (remappedAttribute) {
+      element.setAttribute(type, remappedAttribute);
+    } else {
+      element.removeAttribute(type);
+    }
+
+    const remappedStyle = remapUrlReference(
+      element.style[type] ?? "",
+      documentHref
+    );
+
+    if (remappedStyle) {
+      element.style[type] = remappedStyle;
+    } else {
+      element.style.removeProperty(type);
+    }
+  }
+}
+
+function remapUrlReference(reference, documentHref) {
+  const match = reference.match(/^url\(([^)]+)\)$/);
+
+  if (!match) return reference;
+
+  const [, content] = match;
+  const href = content.startsWith('"') ? JSON.parse(content) : content;
+  const fullHref = new URL(href, documentHref);
+
+  const mappedId = idMap[fullHref.toString()];
+
+  return mappedId ? `url(${JSON.stringify(`#${mappedId}`)})` : undefined;
 }
 
 function shortenUrl(url) {
