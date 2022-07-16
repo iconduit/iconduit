@@ -1,4 +1,5 @@
 const SVG = "http://www.w3.org/2000/svg";
+const seenHrefs = {};
 let useNumber = 0;
 
 main().catch((error) => {
@@ -9,20 +10,29 @@ async function main() {
   await domReady();
 
   for (let i = 0; i < 100; ++i) {
-    const uses = findUses();
+    const external = findExternalUses();
 
-    if (uses.length < 1) {
+    if (external.length < 1) {
       break;
     }
 
-    await flattenUses(uses);
+    await flattenUses(external);
   }
 }
 
-function findUses() {
+function findExternalUses() {
   const uses = document.getElementsByTagNameNS(SVG, "use");
 
-  return [...uses].filter((use) => !use.getAttribute("href").startsWith("#"));
+  return [...uses].filter((use) => {
+    const hrefAttribute = use.getAttribute("href");
+
+    if (hrefAttribute.startsWith("#")) return false;
+
+    const href = new URL(hrefAttribute, window.location.href);
+    href.hash = "";
+
+    return seenHrefs[href.toString()] == null;
+  });
 }
 
 async function flattenUses(uses) {
@@ -30,27 +40,27 @@ async function flattenUses(uses) {
 }
 
 async function flattenUse(use) {
-  console.log("Flattening", use);
+  const hrefAttribute = use.getAttribute("href");
+  const href = new URL(hrefAttribute, window.location.href);
+  // const hash = href.hash;
+  href.hash = "";
+  const svg = await loadSvg(href);
 
-  const href = new URL(use.getAttribute("href"), window.location.href);
+  if (svg == null) return;
 
-  try {
-    const svg = await loadSvg(href);
-    const symbol = createSymbolFromSvg(svg);
+  const symbol = createSymbolFromSvg(svg);
+  symbol.dataset.__fixSvgUseHref = hrefAttribute;
 
-    use.parentNode.insertBefore(symbol, use);
-    use.setAttribute("href", `#${symbol.getAttribute("id")}`);
-  } catch {}
+  use.ownerDocument.documentElement.appendChild(symbol);
+  use.setAttribute("href", `#${symbol.getAttribute("id")}`);
+  use.dataset.__fixSvgUseHref = hrefAttribute;
 }
 
 async function loadSvg(href) {
+  seenHrefs[href.toString()] = true;
   const res = await fetch(href);
 
-  if (!res.ok) {
-    throw new Error(
-      `Unexpected HTTP status ${res.status} when fetching ${href}`
-    );
-  }
+  if (!res.ok) return undefined;
 
   const domParser = new DOMParser();
   const document = domParser.parseFromString(await res.text(), "text/xml");
@@ -63,6 +73,9 @@ function createSymbolFromSvg(svg) {
   symbol.setAttribute("id", `__fix_svg_use_${useNumber++}`);
   symbol.setAttribute("viewBox", svg.getAttribute("viewBox"));
   symbol.replaceChildren(...svg.children);
+
+  // const idElements = symbol.querySelectorAll('*[id]:not([id=""])');
+  // console.log(idElements);
 
   return symbol;
 }
