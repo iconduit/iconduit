@@ -32,32 +32,43 @@ async function main() {
   await svgLoader.loadSvgs();
 }
 
+interface SvgReference {
+  href: URL;
+}
+
+type SvgReferences = Record<string, SvgReference>;
+
 function createSvgLoader() {
   return {
     async loadSvgs() {
+      const references: SvgReferences = {};
       const documentHref = new URL(window.location.href);
 
       for (const svg of document.getElementsByTagName("svg")) {
-        console.log(findReferences(documentHref, svg));
+        console.log(findReferences(references, documentHref, svg));
       }
     },
   };
 
-  function findReferences(documentHref: URL, svg: SVGSVGElement) {
-    const references = new Set<string>();
-
+  function findReferences(
+    references: SvgReferences,
+    documentHref: URL,
+    svg: SVGSVGElement
+  ) {
     for (const tagName of SVG_REFERENCE_HREF_TAG_NAMES) {
       const elements = svg.getElementsByTagName(tagName);
 
       for (const element of elements) {
-        const href = element.getAttribute("href") ?? "";
-        const xlinkHref = element.getAttributeNS(NS_XLINK, "href") ?? "";
+        const reference = element.getAttribute("href") ?? "";
+        const xlinkReference = element.getAttributeNS(NS_XLINK, "href") ?? "";
 
-        if (href) {
-          references.add(new URL(href, documentHref).toString());
+        if (reference) {
+          const href = new URL(reference, documentHref);
+          references[href.toString()] = { href };
         }
-        if (xlinkHref) {
-          references.add(new URL(xlinkHref, documentHref).toString());
+        if (xlinkReference) {
+          const href = new URL(xlinkReference, documentHref);
+          references[href.toString()] = { href };
         }
       }
     }
@@ -69,15 +80,62 @@ function createSvgLoader() {
 
       for (const element of elements) {
         const reference = element.getAttribute(attribute) ?? "";
+        const referenceUrl = parseCssUrlReference(reference);
 
-        if (reference) {
-          references.add(new URL(reference, documentHref).toString());
+        if (referenceUrl) {
+          const href = new URL(referenceUrl, documentHref);
+          references[href.toString()] = { href };
         }
       }
     }
 
     return references;
   }
+}
+
+function parseCssUrlReference(value: string): string {
+  let remainder = value.trimStart();
+
+  if (!remainder.startsWith("url(")) return ""; // non-url
+
+  remainder = remainder.substring(4).trimStart();
+
+  const quoteStyle = (() => {
+    if (remainder.startsWith('"')) return '"';
+    if (remainder.startsWith("'")) return "'";
+    return "";
+  })();
+
+  if (quoteStyle) remainder = remainder.substring(1);
+
+  let state = "consume";
+  let endChar = "";
+  let result = "";
+
+  for (const c of remainder) {
+    if (state === "consume") {
+      if (c === " " || c === ")" || c === quoteStyle) {
+        state = "end";
+        endChar = c;
+
+        break;
+      }
+
+      if (c === "\\") {
+        state = "escape";
+      } else {
+        result += c;
+      }
+    } else if (state === "escape") {
+      result += c;
+      state = "consume";
+    }
+  }
+
+  if (state !== "end") return "";
+  if (quoteStyle && endChar !== quoteStyle) return "";
+
+  return result;
 }
 
 // function findExternalUses() {
