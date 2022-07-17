@@ -34,6 +34,8 @@ async function main() {
 
 interface SvgReference {
   href: URL;
+  documentHref: URL;
+  fragment: string;
 }
 
 type SvgReferences = Record<string, SvgReference>;
@@ -49,7 +51,10 @@ function createSvgLoader() {
         findReferences(references, documentHref, svg);
       }
 
-      console.log(findDocuments(references));
+      console.log(Object.values(references));
+
+      const documents = findDocuments(references);
+      console.log(Object.values(documents).map(String));
     },
   };
 
@@ -67,11 +72,11 @@ function createSvgLoader() {
 
         if (reference) {
           const href = new URL(reference, documentHref);
-          references[href.toString()] = { href };
+          references[href.toString()] = createReference(href);
         }
         if (xlinkReference) {
           const href = new URL(xlinkReference, documentHref);
-          references[href.toString()] = { href };
+          references[href.toString()] = createReference(href);
         }
       }
     }
@@ -87,7 +92,7 @@ function createSvgLoader() {
 
         if (referenceUrl) {
           const href = new URL(referenceUrl, documentHref);
-          references[href.toString()] = { href };
+          references[href.toString()] = createReference(href);
         }
       }
     }
@@ -95,13 +100,18 @@ function createSvgLoader() {
     return references;
   }
 
+  function createReference(href: URL): SvgReference {
+    const documentHref = new URL(href);
+    documentHref.hash = "";
+    const fragment = href.hash.replace(/^#/, "");
+
+    return { href, documentHref, fragment };
+  }
+
   function findDocuments(references: SvgReferences): SvgDocuments {
     const documents = {};
 
-    for (const { href } of Object.values(references)) {
-      const documentHref = new URL(href);
-      documentHref.hash = "";
-
+    for (const { documentHref } of Object.values(references)) {
       documents[documentHref.toString()] = documentHref;
     }
 

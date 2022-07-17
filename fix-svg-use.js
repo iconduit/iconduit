@@ -34,7 +34,9 @@ function createSvgLoader() {
             for (const svg of document.getElementsByTagName("svg")) {
                 findReferences(references, documentHref, svg);
             }
-            console.log(findDocuments(references));
+            console.log(Object.values(references));
+            const documents = findDocuments(references);
+            console.log(Object.values(documents).map(String));
         },
     };
     function findReferences(references, documentHref, svg) {
@@ -45,11 +47,11 @@ function createSvgLoader() {
                 const xlinkReference = element.getAttributeNS(NS_XLINK, "href") ?? "";
                 if (reference) {
                     const href = new URL(reference, documentHref);
-                    references[href.toString()] = { href };
+                    references[href.toString()] = createReference(href);
                 }
                 if (xlinkReference) {
                     const href = new URL(xlinkReference, documentHref);
-                    references[href.toString()] = { href };
+                    references[href.toString()] = createReference(href);
                 }
             }
         }
@@ -60,17 +62,21 @@ function createSvgLoader() {
                 const referenceUrl = parseCssUrlReference(reference);
                 if (referenceUrl) {
                     const href = new URL(referenceUrl, documentHref);
-                    references[href.toString()] = { href };
+                    references[href.toString()] = createReference(href);
                 }
             }
         }
         return references;
     }
+    function createReference(href) {
+        const documentHref = new URL(href);
+        documentHref.hash = "";
+        const fragment = href.hash.replace(/^#/, "");
+        return { href, documentHref, fragment };
+    }
     function findDocuments(references) {
         const documents = {};
-        for (const { href } of Object.values(references)) {
-            const documentHref = new URL(href);
-            documentHref.hash = "";
+        for (const { documentHref } of Object.values(references)) {
             documents[documentHref.toString()] = documentHref;
         }
         return documents;
