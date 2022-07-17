@@ -42,6 +42,8 @@ type SvgReferences = Record<string, SvgReference>;
 type SvgDocuments = Record<string, URL>;
 
 function createSvgLoader() {
+  const loadedDocuments: SvgDocuments = {};
+
   return {
     async loadSvgs() {
       const references: SvgReferences = {};
@@ -51,10 +53,10 @@ function createSvgLoader() {
         findReferences(references, documentHref, svg);
       }
 
-      console.log(Object.values(references));
-
       const documents = findDocuments(references);
-      console.log(Object.values(documents).map(String));
+      const documentsToLoad = filterLoadedDocuments(documents);
+
+      console.log(Object.values(documentsToLoad).map(String));
     },
   };
 
@@ -116,6 +118,16 @@ function createSvgLoader() {
     }
 
     return documents;
+  }
+
+  function filterLoadedDocuments(documents: SvgDocuments): SvgDocuments {
+    const filtered = {};
+
+    for (const href in documents) {
+      if (!loadedDocuments[href]) filtered[href] = documents[href];
+    }
+
+    return filtered;
   }
 }
 

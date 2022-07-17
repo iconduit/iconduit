@@ -27,6 +27,7 @@ async function main() {
     await svgLoader.loadSvgs();
 }
 function createSvgLoader() {
+    const loadedDocuments = {};
     return {
         async loadSvgs() {
             const references = {};
@@ -34,9 +35,9 @@ function createSvgLoader() {
             for (const svg of document.getElementsByTagName("svg")) {
                 findReferences(references, documentHref, svg);
             }
-            console.log(Object.values(references));
             const documents = findDocuments(references);
-            console.log(Object.values(documents).map(String));
+            const documentsToLoad = filterLoadedDocuments(documents);
+            console.log(Object.values(documentsToLoad).map(String));
         },
     };
     function findReferences(references, documentHref, svg) {
@@ -80,6 +81,14 @@ function createSvgLoader() {
             documents[documentHref.toString()] = documentHref;
         }
         return documents;
+    }
+    function filterLoadedDocuments(documents) {
+        const filtered = {};
+        for (const href in documents) {
+            if (!loadedDocuments[href])
+                filtered[href] = documents[href];
+        }
+        return filtered;
     }
 }
 function parseCssUrlReference(value) {
