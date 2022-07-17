@@ -34,6 +34,7 @@ function createSvgLoader() {
         async loadSvgs() {
             const references = {};
             const documentHref = new URL(window.location.href);
+            // const container = createContainer();
             for (const svg of document.getElementsByTagName("svg")) {
                 findReferences(references, documentHref, svg);
             }
@@ -43,6 +44,14 @@ function createSvgLoader() {
             console.log(svgs);
         },
     };
+    // function createContainer(): HTMLElement | SVGElement {
+    //   if (document.documentElement instanceof SVGSVGElement) {
+    //     return document.createElementNS(NS_SVG, "defs");
+    //   }
+    //   const container = document.createElementNS(NS_SVG, "svg");
+    //   container.setAttribute("hidden", "");
+    //   return container;
+    // }
     async function loadSvg(href) {
         const hrefString = href.toString();
         loadedDocuments[hrefString] = href;
