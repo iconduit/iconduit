@@ -37,6 +37,7 @@ interface SvgReference {
 }
 
 type SvgReferences = Record<string, SvgReference>;
+type SvgDocuments = Record<string, URL>;
 
 function createSvgLoader() {
   return {
@@ -45,8 +46,10 @@ function createSvgLoader() {
       const documentHref = new URL(window.location.href);
 
       for (const svg of document.getElementsByTagName("svg")) {
-        console.log(findReferences(references, documentHref, svg));
+        findReferences(references, documentHref, svg);
       }
+
+      console.log(findDocuments(references));
     },
   };
 
@@ -90,6 +93,19 @@ function createSvgLoader() {
     }
 
     return references;
+  }
+
+  function findDocuments(references: SvgReferences): SvgDocuments {
+    const documents = {};
+
+    for (const { href } of Object.values(references)) {
+      const documentHref = new URL(href);
+      documentHref.hash = "";
+
+      documents[documentHref.toString()] = documentHref;
+    }
+
+    return documents;
   }
 }
 

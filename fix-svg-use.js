@@ -32,8 +32,9 @@ function createSvgLoader() {
             const references = {};
             const documentHref = new URL(window.location.href);
             for (const svg of document.getElementsByTagName("svg")) {
-                console.log(findReferences(references, documentHref, svg));
+                findReferences(references, documentHref, svg);
             }
+            console.log(findDocuments(references));
         },
     };
     function findReferences(references, documentHref, svg) {
@@ -64,6 +65,15 @@ function createSvgLoader() {
             }
         }
         return references;
+    }
+    function findDocuments(references) {
+        const documents = {};
+        for (const { href } of Object.values(references)) {
+            const documentHref = new URL(href);
+            documentHref.hash = "";
+            documents[documentHref.toString()] = documentHref;
+        }
+        return documents;
     }
 }
 function parseCssUrlReference(value) {
