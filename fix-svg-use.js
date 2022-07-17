@@ -50,9 +50,9 @@ function createSvgLoader() {
         if (!res.ok)
             return;
         try {
-            const document = domParser.parseFromString(await res.text(), "text/xml");
-            if (document.documentElement instanceof SVGSVGElement) {
-                svgs[hrefString] = document.documentElement;
+            const loaded = domParser.parseFromString(await res.text(), "text/xml");
+            if (loaded.documentElement instanceof SVGSVGElement) {
+                svgs[hrefString] = loaded.documentElement;
             }
         }
         catch { }
