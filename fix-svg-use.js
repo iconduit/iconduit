@@ -1,4 +1,4 @@
-const NS_SVG = "http://www.w3.org/2000/svg";
+// const NS_SVG = "http://www.w3.org/2000/svg";
 const NS_XLINK = "http://www.w3.org/1999/xlink";
 const SVG_REFERENCE_HREF_TAG_NAMES = [
     "image",
@@ -27,7 +27,9 @@ async function main() {
     await svgLoader.loadSvgs();
 }
 function createSvgLoader() {
+    const domParser = new DOMParser();
     const loadedDocuments = {};
+    const svgs = {};
     return {
         async loadSvgs() {
             const references = {};
@@ -37,9 +39,24 @@ function createSvgLoader() {
             }
             const documents = findDocuments(references);
             const documentsToLoad = filterLoadedDocuments(documents);
-            console.log(Object.values(documentsToLoad).map(String));
+            await Promise.all(Object.values(documentsToLoad).map((href) => loadSvg(href)));
+            console.log(svgs);
         },
     };
+    async function loadSvg(href) {
+        const hrefString = href.toString();
+        loadedDocuments[hrefString] = href;
+        const res = await fetch(href);
+        if (!res.ok)
+            return;
+        try {
+            const document = domParser.parseFromString(await res.text(), "text/xml");
+            if (document.documentElement instanceof SVGSVGElement) {
+                svgs[hrefString] = document.documentElement;
+            }
+        }
+        catch { }
+    }
     function findReferences(references, documentHref, svg) {
         for (const tagName of SVG_REFERENCE_HREF_TAG_NAMES) {
             const elements = svg.getElementsByTagName(tagName);

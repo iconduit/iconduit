@@ -1,4 +1,4 @@
-const NS_SVG = "http://www.w3.org/2000/svg";
+// const NS_SVG = "http://www.w3.org/2000/svg";
 const NS_XLINK = "http://www.w3.org/1999/xlink";
 
 const SVG_REFERENCE_HREF_TAG_NAMES = [
@@ -39,10 +39,13 @@ interface SvgReference {
 }
 
 type SvgReferences = Record<string, SvgReference>;
-type SvgDocuments = Record<string, URL>;
+type HrefMap = Record<string, URL>;
+type Svgs = Record<string, SVGSVGElement>;
 
 function createSvgLoader() {
-  const loadedDocuments: SvgDocuments = {};
+  const domParser = new DOMParser();
+  const loadedDocuments: HrefMap = {};
+  const svgs: Svgs = {};
 
   return {
     async loadSvgs() {
@@ -56,9 +59,29 @@ function createSvgLoader() {
       const documents = findDocuments(references);
       const documentsToLoad = filterLoadedDocuments(documents);
 
-      console.log(Object.values(documentsToLoad).map(String));
+      await Promise.all(
+        Object.values(documentsToLoad).map((href) => loadSvg(href))
+      );
+
+      console.log(svgs);
     },
   };
+
+  async function loadSvg(href: URL) {
+    const hrefString = href.toString();
+    loadedDocuments[hrefString] = href;
+    const res = await fetch(href);
+
+    if (!res.ok) return;
+
+    try {
+      const document = domParser.parseFromString(await res.text(), "text/xml");
+
+      if (document.documentElement instanceof SVGSVGElement) {
+        svgs[hrefString] = document.documentElement;
+      }
+    } catch {}
+  }
 
   function findReferences(
     references: SvgReferences,
@@ -110,7 +133,7 @@ function createSvgLoader() {
     return { href, documentHref, fragment };
   }
 
-  function findDocuments(references: SvgReferences): SvgDocuments {
+  function findDocuments(references: SvgReferences): HrefMap {
     const documents = {};
 
     for (const { documentHref } of Object.values(references)) {
@@ -120,7 +143,7 @@ function createSvgLoader() {
     return documents;
   }
 
-  function filterLoadedDocuments(documents: SvgDocuments): SvgDocuments {
+  function filterLoadedDocuments(documents: HrefMap): HrefMap {
     const filtered = {};
 
     for (const href in documents) {
