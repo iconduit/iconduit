@@ -34,14 +34,24 @@ function createSvgLoader() {
         async loadSvgs() {
             const references = {};
             const documentHref = new URL(window.location.href);
+            documentHref.hash = "";
+            loadedDocuments[documentHref.toString()] = documentHref;
             // const container = createContainer();
             for (const svg of document.getElementsByTagName("svg")) {
                 findReferences(references, documentHref, svg);
             }
-            const documents = findDocuments(references);
-            const documentsToLoad = filterLoadedDocuments(documents);
-            await Promise.all(Object.values(documentsToLoad).map((href) => loadSvg(href)));
-            console.log(svgs);
+            let documentsToLoad = filterLoadedDocuments(findDocuments(references));
+            while (Object.keys(documentsToLoad).length > 0) {
+                await Promise.all(Object.values(documentsToLoad).map((href) => loadSvg(href)));
+                for (const hrefString in documentsToLoad) {
+                    const svg = svgs[hrefString];
+                    if (!svg)
+                        continue;
+                    findReferences(references, documentsToLoad[hrefString], svg);
+                }
+                documentsToLoad = filterLoadedDocuments(findDocuments(references));
+            }
+            console.log({ references, loadedDocuments });
         },
     };
     // function createContainer(): HTMLElement | SVGElement {
