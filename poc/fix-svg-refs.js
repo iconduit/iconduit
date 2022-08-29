@@ -1,173 +1,165 @@
 // const NS_SVG = "http://www.w3.org/2000/svg";
 const NS_XLINK = "http://www.w3.org/1999/xlink";
 const SVG_REFERENCE_HREF_TAG_NAMES = [
-    "image",
-    "linearGradient",
-    "pattern",
-    "radialGradient",
-    "textPath",
-    "use",
+  "image",
+  "linearGradient",
+  "pattern",
+  "radialGradient",
+  "textPath",
+  "use",
 ];
 const SVG_REFERENCE_ATTRIBUTES = [
-    "clip-path",
-    "fill",
-    "filter",
-    "marker-end",
-    "marker-mid",
-    "marker-start",
-    "mask",
-    "stroke",
+  "clip-path",
+  "fill",
+  "filter",
+  "marker-end",
+  "marker-mid",
+  "marker-start",
+  "mask",
+  "stroke",
 ];
 main().catch((error) => {
-    console.error(error);
+  console.error(error);
 });
 async function main() {
-    await domReady();
-    const svgLoader = createSvgLoader();
-    await svgLoader.loadSvgs();
+  await domReady();
+  const svgLoader = createSvgLoader();
+  await svgLoader.loadSvgs();
 }
 function createSvgLoader() {
-    const domParser = new DOMParser();
-    const loadedDocuments = {};
-    const svgs = {};
-    return {
-        async loadSvgs() {
-            const references = {};
-            const documentHref = new URL(window.location.href);
-            documentHref.hash = "";
-            loadedDocuments[documentHref.toString()] = documentHref;
-            // const container = createContainer();
-            for (const svg of document.getElementsByTagName("svg")) {
-                findReferences(references, documentHref, svg);
-            }
-            let documentsToLoad = filterLoadedDocuments(findDocuments(references));
-            while (Object.keys(documentsToLoad).length > 0) {
-                await Promise.all(Object.values(documentsToLoad).map((href) => loadSvg(href)));
-                for (const hrefString in documentsToLoad) {
-                    const svg = svgs[hrefString];
-                    if (!svg)
-                        continue;
-                    findReferences(references, documentsToLoad[hrefString], svg);
-                }
-                documentsToLoad = filterLoadedDocuments(findDocuments(references));
-            }
-            console.log({ references, loadedDocuments });
-        },
-    };
-    // function createContainer(): HTMLElement | SVGElement {
-    //   if (document.documentElement instanceof SVGSVGElement) {
-    //     return document.createElementNS(NS_SVG, "defs");
-    //   }
-    //   const container = document.createElementNS(NS_SVG, "svg");
-    //   container.setAttribute("hidden", "");
-    //   return container;
-    // }
-    async function loadSvg(href) {
-        const hrefString = href.toString();
-        loadedDocuments[hrefString] = href;
-        const res = await fetch(href);
-        if (!res.ok)
-            return;
-        try {
-            const loaded = domParser.parseFromString(await res.text(), "text/xml");
-            if (loaded.documentElement instanceof SVGSVGElement) {
-                svgs[hrefString] = loaded.documentElement;
-            }
+  const domParser = new DOMParser();
+  const loadedDocuments = {};
+  const svgs = {};
+  return {
+    async loadSvgs() {
+      const references = {};
+      const documentHref = new URL(window.location.href);
+      documentHref.hash = "";
+      loadedDocuments[documentHref.toString()] = documentHref;
+      // const container = createContainer();
+      for (const svg of document.getElementsByTagName("svg")) {
+        findReferences(references, documentHref, svg);
+      }
+      let documentsToLoad = filterLoadedDocuments(findDocuments(references));
+      while (Object.keys(documentsToLoad).length > 0) {
+        await Promise.all(
+          Object.values(documentsToLoad).map((href) => loadSvg(href))
+        );
+        for (const hrefString in documentsToLoad) {
+          const svg = svgs[hrefString];
+          if (!svg) continue;
+          findReferences(references, documentsToLoad[hrefString], svg);
         }
-        catch { }
-    }
-    function findReferences(references, documentHref, svg) {
-        for (const tagName of SVG_REFERENCE_HREF_TAG_NAMES) {
-            const elements = svg.getElementsByTagName(tagName);
-            for (const element of elements) {
-                const reference = element.getAttribute("href") ?? "";
-                const xlinkReference = element.getAttributeNS(NS_XLINK, "href") ?? "";
-                if (reference) {
-                    const href = new URL(reference, documentHref);
-                    references[href.toString()] = createReference(href);
-                }
-                if (xlinkReference) {
-                    const href = new URL(xlinkReference, documentHref);
-                    references[href.toString()] = createReference(href);
-                }
-            }
+        documentsToLoad = filterLoadedDocuments(findDocuments(references));
+      }
+      console.log({ references, loadedDocuments });
+    },
+  };
+  // function createContainer(): HTMLElement | SVGElement {
+  //   if (document.documentElement instanceof SVGSVGElement) {
+  //     return document.createElementNS(NS_SVG, "defs");
+  //   }
+  //   const container = document.createElementNS(NS_SVG, "svg");
+  //   container.setAttribute("hidden", "");
+  //   return container;
+  // }
+  async function loadSvg(href) {
+    const hrefString = href.toString();
+    loadedDocuments[hrefString] = href;
+    const res = await fetch(href);
+    if (!res.ok) return;
+    try {
+      const loaded = domParser.parseFromString(await res.text(), "text/xml");
+      if (loaded.documentElement instanceof SVGSVGElement) {
+        svgs[hrefString] = loaded.documentElement;
+      }
+    } catch {}
+  }
+  function findReferences(references, documentHref, svg) {
+    for (const tagName of SVG_REFERENCE_HREF_TAG_NAMES) {
+      const elements = svg.getElementsByTagName(tagName);
+      for (const element of elements) {
+        const reference = element.getAttribute("href") ?? "";
+        const xlinkReference = element.getAttributeNS(NS_XLINK, "href") ?? "";
+        if (reference) {
+          const href = new URL(reference, documentHref);
+          references[href.toString()] = createReference(href);
         }
-        for (const attribute of SVG_REFERENCE_ATTRIBUTES) {
-            const elements = svg.querySelectorAll(`[${attribute}]:not([${attribute}=""]`);
-            for (const element of elements) {
-                const reference = element.getAttribute(attribute) ?? "";
-                const referenceUrl = parseCssUrlReference(reference);
-                if (referenceUrl) {
-                    const href = new URL(referenceUrl, documentHref);
-                    references[href.toString()] = createReference(href);
-                }
-            }
+        if (xlinkReference) {
+          const href = new URL(xlinkReference, documentHref);
+          references[href.toString()] = createReference(href);
         }
-        return references;
+      }
     }
-    function createReference(href) {
-        const documentHref = new URL(href);
-        documentHref.hash = "";
-        const fragment = href.hash.replace(/^#/, "");
-        return { href, documentHref, fragment };
-    }
-    function findDocuments(references) {
-        const documents = {};
-        for (const { documentHref } of Object.values(references)) {
-            documents[documentHref.toString()] = documentHref;
+    for (const attribute of SVG_REFERENCE_ATTRIBUTES) {
+      const elements = svg.querySelectorAll(
+        `[${attribute}]:not([${attribute}=""]`
+      );
+      for (const element of elements) {
+        const reference = element.getAttribute(attribute) ?? "";
+        const referenceUrl = parseCssUrlReference(reference);
+        if (referenceUrl) {
+          const href = new URL(referenceUrl, documentHref);
+          references[href.toString()] = createReference(href);
         }
-        return documents;
+      }
     }
-    function filterLoadedDocuments(documents) {
-        const filtered = {};
-        for (const href in documents) {
-            if (!loadedDocuments[href])
-                filtered[href] = documents[href];
-        }
-        return filtered;
+    return references;
+  }
+  function createReference(href) {
+    const documentHref = new URL(href);
+    documentHref.hash = "";
+    const fragment = href.hash.replace(/^#/, "");
+    return { href, documentHref, fragment };
+  }
+  function findDocuments(references) {
+    const documents = {};
+    for (const { documentHref } of Object.values(references)) {
+      documents[documentHref.toString()] = documentHref;
     }
+    return documents;
+  }
+  function filterLoadedDocuments(documents) {
+    const filtered = {};
+    for (const href in documents) {
+      if (!loadedDocuments[href]) filtered[href] = documents[href];
+    }
+    return filtered;
+  }
 }
 function parseCssUrlReference(value) {
-    let remainder = value.trimStart();
-    if (!remainder.startsWith("url("))
-        return ""; // non-url
-    remainder = remainder.substring(4).trimStart();
-    const quoteStyle = (() => {
-        if (remainder.startsWith('"'))
-            return '"';
-        if (remainder.startsWith("'"))
-            return "'";
-        return "";
-    })();
-    if (quoteStyle)
-        remainder = remainder.substring(1);
-    let state = "consume";
-    let endChar = "";
-    let result = "";
-    for (const c of remainder) {
-        if (state === "consume") {
-            if (c === " " || c === ")" || c === quoteStyle) {
-                state = "end";
-                endChar = c;
-                break;
-            }
-            if (c === "\\") {
-                state = "escape";
-            }
-            else {
-                result += c;
-            }
-        }
-        else if (state === "escape") {
-            result += c;
-            state = "consume";
-        }
+  let remainder = value.trimStart();
+  if (!remainder.startsWith("url(")) return ""; // non-url
+  remainder = remainder.substring(4).trimStart();
+  const quoteStyle = (() => {
+    if (remainder.startsWith('"')) return '"';
+    if (remainder.startsWith("'")) return "'";
+    return "";
+  })();
+  if (quoteStyle) remainder = remainder.substring(1);
+  let state = "consume";
+  let endChar = "";
+  let result = "";
+  for (const c of remainder) {
+    if (state === "consume") {
+      if (c === " " || c === ")" || c === quoteStyle) {
+        state = "end";
+        endChar = c;
+        break;
+      }
+      if (c === "\\") {
+        state = "escape";
+      } else {
+        result += c;
+      }
+    } else if (state === "escape") {
+      result += c;
+      state = "consume";
     }
-    if (state !== "end")
-        return "";
-    if (quoteStyle && endChar !== quoteStyle)
-        return "";
-    return result;
+  }
+  if (state !== "end") return "";
+  if (quoteStyle && endChar !== quoteStyle) return "";
+  return result;
 }
 // function findExternalUses() {
 //   const uses = document.getElementsByTagNameNS(SVG, "use");
@@ -265,14 +257,13 @@ function parseCssUrlReference(value) {
 //   return `__fix_svg_use_${idSequence++}`;
 // }
 function domReady() {
-    return new Promise((resolve) => {
-        if (document.readyState !== "loading") {
-            resolve();
-        }
-        else {
-            document.addEventListener("DOMContentLoaded", () => {
-                resolve();
-            });
-        }
-    });
+  return new Promise((resolve) => {
+    if (document.readyState !== "loading") {
+      resolve();
+    } else {
+      document.addEventListener("DOMContentLoaded", () => {
+        resolve();
+      });
+    }
+  });
 }
