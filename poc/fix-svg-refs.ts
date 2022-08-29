@@ -161,7 +161,7 @@ function createSvgLoader() {
   }
 
   function findDocuments(references: SvgReferences): HrefMap {
-    const documents = {};
+    const documents: HrefMap = {};
 
     for (const { documentHref } of Object.values(references)) {
       documents[documentHref.toString()] = documentHref;
@@ -171,7 +171,7 @@ function createSvgLoader() {
   }
 
   function filterLoadedDocuments(documents: HrefMap): HrefMap {
-    const filtered = {};
+    const filtered: HrefMap = {};
 
     for (const href in documents) {
       if (!loadedDocuments[href]) filtered[href] = documents[href];
