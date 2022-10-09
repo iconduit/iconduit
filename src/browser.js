@@ -11,7 +11,6 @@ export function createBrowserManager (env, logger, retryOperation) {
 
   const puppeteerOptions = {
     args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-web-security'],
-    pipe: true,
     timeout,
   }
 
