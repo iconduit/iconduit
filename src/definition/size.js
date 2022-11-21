@@ -19,7 +19,7 @@ export default {
   iosAppIcon64: {key: '64', width: 64, height: 64},
   iosAppIcon68: {key: '68', width: 68, height: 68},
   iosAppIcon76: {key: '76', width: 76, height: 76},
-  // iosAppIcon83Point5: {key: '83.5', width: 83.5, height: 83.5},
+  iosAppIcon83Point5: {key: '83.5', width: 83.5, height: 83.5},
   iosAppIcon1024: {key: '1024', width: 1024, height: 1024},
   notificationBadge: {key: 'primary', width: 128, height: 128},
   notificationIcon: {key: 'primary', width: 256, height: 256},

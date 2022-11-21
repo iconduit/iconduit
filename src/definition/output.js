@@ -119,7 +119,7 @@ export default {
       'iosAppIcon64@3x',
       'iosAppIcon68@2x',
       'iosAppIcon76@2x',
-      // 'iosAppIcon83Point5@2x',
+      'iosAppIcon83Point5@2x',
       'iosAppIcon1024',
     ],
   },

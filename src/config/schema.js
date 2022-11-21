@@ -472,7 +472,7 @@ export default {
               },
               height: {
                 description: 'The height of the size',
-                type: 'integer',
+                type: 'number',
                 minimum: 1,
               },
               key: {
@@ -499,7 +499,7 @@ export default {
               },
               width: {
                 description: 'The width of the size',
-                type: 'integer',
+                type: 'number',
                 minimum: 1,
               },
             },

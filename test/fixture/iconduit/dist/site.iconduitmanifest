@@ -921,6 +921,18 @@
           },
           "type": "image/png",
           "url": "AppIcon.appiconset/76x76@2x.png"
+        },
+        "83.5@2x": {
+          "htmlSizes": "167x167",
+          "path": "AppIcon.appiconset/83.5x83.5@2x.png",
+          "size": {
+            "height": 167,
+            "pixelDensity": 72,
+            "pixelRatio": 2,
+            "width": 167
+          },
+          "type": "image/png",
+          "url": "AppIcon.appiconset/83.5x83.5@2x.png"
         }
       },
       "macosIcns": {

@@ -99,6 +99,13 @@
       "size": "76x76"
     },
     {
+      "filename": "83.5x83.5@2x.png",
+      "idiom": "universal",
+      "platform": "ios",
+      "scale": "2x",
+      "size": "83.5x83.5"
+    },
+    {
       "filename": "1024x1024.png",
       "idiom": "universal",
       "platform": "ios",
