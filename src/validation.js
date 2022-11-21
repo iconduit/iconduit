@@ -27,7 +27,7 @@ function renderErrors (errors) {
 }
 
 function renderError (error) {
-  const {dataPath, keyword, params} = error
+  const {instancePath, keyword, params} = error
   let message
 
   switch (keyword) {
@@ -41,5 +41,5 @@ function renderError (error) {
     default: message = error.message
   }
 
-  return `${dataPath} ${message}`
+  return `${instancePath} ${message}`
 }
