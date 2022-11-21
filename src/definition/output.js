@@ -1,3 +1,4 @@
+import {buildIosAppIconContents} from '../ios.js'
 import {buildWebAppManifest} from '../web-app.js'
 
 export default {
@@ -100,6 +101,33 @@ export default {
   },
   indexHtml: {
     name: 'index.html',
+  },
+  iosAppIcon: {
+    name: 'AppIcon.appiconset/[dipDimensions][atPixelRatioX].png',
+    sizes: [
+      'iosAppIcon20@2x',
+      'iosAppIcon20@3x',
+      'iosAppIcon29@2x',
+      'iosAppIcon29@3x',
+      'iosAppIcon38@2x',
+      'iosAppIcon38@3x',
+      'iosAppIcon40@2x',
+      'iosAppIcon40@3x',
+      'iosAppIcon60@2x',
+      'iosAppIcon60@3x',
+      'iosAppIcon64@2x',
+      'iosAppIcon64@3x',
+      'iosAppIcon68@2x',
+      'iosAppIcon76@2x',
+      // 'iosAppIcon83Point5@2x',
+      'iosAppIcon1024',
+    ],
+  },
+  iosAppIconContents: {
+    name: 'AppIcon.appiconset/Contents.json',
+    options: {
+      variables: {buildIosAppIconContents},
+    },
   },
   macosIcns: {
     name: 'macos.icns',

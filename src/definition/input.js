@@ -166,6 +166,12 @@ export default {
       to: 'iconFlat',
     },
   },
+  iosAppIcon: {
+    strategy: INPUT_STRATEGY_DEGRADE,
+    options: {
+      to: 'appleTouchIcon',
+    },
+  },
   macosIcns: {
     strategy: INPUT_STRATEGY_COMPOSITE,
     options: {

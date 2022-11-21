@@ -95,6 +95,11 @@
         "type": "text/html",
         "url": "index.html"
       },
+      "iosAppIconContents": {
+        "path": "AppIcon.appiconset/Contents.json",
+        "type": "application/json",
+        "url": "AppIcon.appiconset/Contents.json"
+      },
       "safariMaskIcon": {
         "path": "safari-mask-icon.svg",
         "type": "image/svg+xml",
@@ -734,6 +739,188 @@
           },
           "type": "image/png",
           "url": "github-account-icon.png"
+        }
+      },
+      "iosAppIcon": {
+        "1024": {
+          "htmlSizes": "1024x1024",
+          "path": "AppIcon.appiconset/1024x1024.png",
+          "size": {
+            "height": 1024,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 1024
+          },
+          "type": "image/png",
+          "url": "AppIcon.appiconset/1024x1024.png"
+        },
+        "20@2x": {
+          "htmlSizes": "40x40",
+          "path": "AppIcon.appiconset/20x20@2x.png",
+          "size": {
+            "height": 40,
+            "pixelDensity": 72,
+            "pixelRatio": 2,
+            "width": 40
+          },
+          "type": "image/png",
+          "url": "AppIcon.appiconset/20x20@2x.png"
+        },
+        "20@3x": {
+          "htmlSizes": "60x60",
+          "path": "AppIcon.appiconset/20x20@3x.png",
+          "size": {
+            "height": 60,
+            "pixelDensity": 72,
+            "pixelRatio": 3,
+            "width": 60
+          },
+          "type": "image/png",
+          "url": "AppIcon.appiconset/20x20@3x.png"
+        },
+        "29@2x": {
+          "htmlSizes": "58x58",
+          "path": "AppIcon.appiconset/29x29@2x.png",
+          "size": {
+            "height": 58,
+            "pixelDensity": 72,
+            "pixelRatio": 2,
+            "width": 58
+          },
+          "type": "image/png",
+          "url": "AppIcon.appiconset/29x29@2x.png"
+        },
+        "29@3x": {
+          "htmlSizes": "87x87",
+          "path": "AppIcon.appiconset/29x29@3x.png",
+          "size": {
+            "height": 87,
+            "pixelDensity": 72,
+            "pixelRatio": 3,
+            "width": 87
+          },
+          "type": "image/png",
+          "url": "AppIcon.appiconset/29x29@3x.png"
+        },
+        "38@2x": {
+          "htmlSizes": "76x76",
+          "path": "AppIcon.appiconset/38x38@2x.png",
+          "size": {
+            "height": 76,
+            "pixelDensity": 72,
+            "pixelRatio": 2,
+            "width": 76
+          },
+          "type": "image/png",
+          "url": "AppIcon.appiconset/38x38@2x.png"
+        },
+        "38@3x": {
+          "htmlSizes": "114x114",
+          "path": "AppIcon.appiconset/38x38@3x.png",
+          "size": {
+            "height": 114,
+            "pixelDensity": 72,
+            "pixelRatio": 3,
+            "width": 114
+          },
+          "type": "image/png",
+          "url": "AppIcon.appiconset/38x38@3x.png"
+        },
+        "40@2x": {
+          "htmlSizes": "80x80",
+          "path": "AppIcon.appiconset/40x40@2x.png",
+          "size": {
+            "height": 80,
+            "pixelDensity": 72,
+            "pixelRatio": 2,
+            "width": 80
+          },
+          "type": "image/png",
+          "url": "AppIcon.appiconset/40x40@2x.png"
+        },
+        "40@3x": {
+          "htmlSizes": "120x120",
+          "path": "AppIcon.appiconset/40x40@3x.png",
+          "size": {
+            "height": 120,
+            "pixelDensity": 72,
+            "pixelRatio": 3,
+            "width": 120
+          },
+          "type": "image/png",
+          "url": "AppIcon.appiconset/40x40@3x.png"
+        },
+        "60@2x": {
+          "htmlSizes": "120x120",
+          "path": "AppIcon.appiconset/60x60@2x.png",
+          "size": {
+            "height": 120,
+            "pixelDensity": 72,
+            "pixelRatio": 2,
+            "width": 120
+          },
+          "type": "image/png",
+          "url": "AppIcon.appiconset/60x60@2x.png"
+        },
+        "60@3x": {
+          "htmlSizes": "180x180",
+          "path": "AppIcon.appiconset/60x60@3x.png",
+          "size": {
+            "height": 180,
+            "pixelDensity": 72,
+            "pixelRatio": 3,
+            "width": 180
+          },
+          "type": "image/png",
+          "url": "AppIcon.appiconset/60x60@3x.png"
+        },
+        "64@2x": {
+          "htmlSizes": "128x128",
+          "path": "AppIcon.appiconset/64x64@2x.png",
+          "size": {
+            "height": 128,
+            "pixelDensity": 72,
+            "pixelRatio": 2,
+            "width": 128
+          },
+          "type": "image/png",
+          "url": "AppIcon.appiconset/64x64@2x.png"
+        },
+        "64@3x": {
+          "htmlSizes": "192x192",
+          "path": "AppIcon.appiconset/64x64@3x.png",
+          "size": {
+            "height": 192,
+            "pixelDensity": 72,
+            "pixelRatio": 3,
+            "width": 192
+          },
+          "type": "image/png",
+          "url": "AppIcon.appiconset/64x64@3x.png"
+        },
+        "68@2x": {
+          "htmlSizes": "136x136",
+          "path": "AppIcon.appiconset/68x68@2x.png",
+          "size": {
+            "height": 136,
+            "pixelDensity": 72,
+            "pixelRatio": 2,
+            "width": 136
+          },
+          "type": "image/png",
+          "url": "AppIcon.appiconset/68x68@2x.png"
+        },
+        "76@2x": {
+          "htmlSizes": "152x152",
+          "path": "AppIcon.appiconset/76x76@2x.png",
+          "size": {
+            "height": 152,
+            "pixelDensity": 72,
+            "pixelRatio": 2,
+            "width": 152
+          },
+          "type": "image/png",
+          "url": "AppIcon.appiconset/76x76@2x.png"
         }
       },
       "macosIcns": {

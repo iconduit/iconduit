@@ -83,6 +83,8 @@ export default {
       outputs: [
         'appleTouchIcon',
         'appleTouchStartup',
+        'iosAppIcon',
+        'iosAppIconContents',
       ],
     },
     macos: {
