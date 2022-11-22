@@ -3,21 +3,19 @@ on:
   push:
   pull_request:
 jobs:
-  test:
-    name: Node.js stable
+  ci:
+    name: CI
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: "16"
-      - name: Check Node.js version
-        run: node -v
+          node-version: "18"
       - name: Install dependencies
-        run: make node_modules
+        run: make link-dependencies
       - name: Make
         run: make ci
       - name: Publish coverage
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v3
