@@ -23,7 +23,6 @@ export function createBrowserManager(env, logger, retryOperation) {
       "--disable-setuid-sandbox",
       "--disable-web-security",
     ],
-    pipe: true,
     timeout,
   };
 
