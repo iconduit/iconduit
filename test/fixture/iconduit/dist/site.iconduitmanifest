@@ -117,6 +117,34 @@
       }
     },
     "image": {
+      "androidLauncherIconBackground": {
+        "primary": {
+          "htmlSizes": "1080x1080",
+          "path": "android-launcher-icon-background.png",
+          "size": {
+            "height": 1080,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 1080
+          },
+          "type": "image/png",
+          "url": "android-launcher-icon-background.png"
+        }
+      },
+      "androidLauncherIconForeground": {
+        "primary": {
+          "htmlSizes": "1080x1080",
+          "path": "android-launcher-icon-foreground.png",
+          "size": {
+            "height": 1080,
+            "pixelDensity": 72,
+            "pixelRatio": 1,
+            "width": 1080
+          },
+          "type": "image/png",
+          "url": "android-launcher-icon-foreground.png"
+        }
+      },
       "appleTouchIcon": {
         "retina": {
           "htmlSizes": "180x180",

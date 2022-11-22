@@ -784,7 +784,7 @@ export default {
         os: {
           description: "A set of operating systems to target",
           type: "array",
-          default: ["ios", "macos", "windows"],
+          default: ["android", "ios", "macos", "windows"],
         },
         web: {
           description: "A set of web platforms to target",

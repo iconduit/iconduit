@@ -55,6 +55,12 @@ export default {
     },
   },
   os: {
+    android: {
+      outputs: [
+        "androidLauncherIconBackground",
+        "androidLauncherIconForeground",
+      ],
+    },
     ios: {
       outputs: [
         "appleTouchIcon",

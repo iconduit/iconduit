@@ -2,6 +2,14 @@ import { buildIosAppIconContents } from "../ios.js";
 import { buildWebAppManifest } from "../web-app.js";
 
 export default {
+  androidLauncherIconBackground: {
+    name: "android-launcher-icon-background.png",
+    sizes: ["androidLauncherIcon"],
+  },
+  androidLauncherIconForeground: {
+    name: "android-launcher-icon-foreground.png",
+    sizes: ["androidLauncherIcon"],
+  },
   appleTouchIcon: {
     name: "apple-touch-icon-[dimensions].png",
     options: {

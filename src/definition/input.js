@@ -5,6 +5,18 @@ import {
 } from "../constant.js";
 
 export default {
+  androidLauncherIconBackground: {
+    strategy: INPUT_STRATEGY_DEGRADE,
+    options: {
+      to: "iconBackground",
+    },
+  },
+  androidLauncherIconForeground: {
+    strategy: INPUT_STRATEGY_DEGRADE,
+    options: {
+      to: "iconForeground",
+    },
+  },
   appleTouchIcon: {
     strategy: INPUT_STRATEGY_COMPOSITE,
     options: {
