@@ -1,14 +1,14 @@
-import isSelfClosingFn from 'is-self-closing'
-import {toDirUrl} from '@iconduit/consumer'
+import { toDirUrl } from "@iconduit/consumer";
+import isSelfClosingFn from "is-self-closing";
 
-import standardDeviceDefinitions from '../definition/device.js'
-import standardDisplayDefinitions from '../definition/display.js'
-import standardInputDefinitions from '../definition/input.js'
-import standardOutputDefinitions from '../definition/output.js'
-import standardSizeDefinitions from '../definition/size.js'
-import standardStyleDefinitions from '../definition/style.js'
-import standardTagDefinitions from '../definition/tag.js'
-import standardTargetDefinitions from '../definition/target.js'
+import standardDeviceDefinitions from "../definition/device.js";
+import standardDisplayDefinitions from "../definition/display.js";
+import standardInputDefinitions from "../definition/input.js";
+import standardOutputDefinitions from "../definition/output.js";
+import standardSizeDefinitions from "../definition/size.js";
+import standardStyleDefinitions from "../definition/style.js";
+import standardTagDefinitions from "../definition/tag.js";
+import standardTargetDefinitions from "../definition/target.js";
 
 const {
   all: standardAllTargetDefinition,
@@ -16,15 +16,13 @@ const {
   installer: standardInstallerTargetDefinitions,
   os: standardOsTargetDefinitions,
   web: standardWebTargetDefinitions,
-} = standardTargetDefinitions
+} = standardTargetDefinitions;
 
-export function createConfigNormalizer (validateConfig) {
-  return function normalizeConfig (config) {
-    assertObject(config, 'config')
+export function createConfigNormalizer(validateConfig) {
+  return function normalizeConfig(config) {
+    assertObject(config, "config");
 
-    const {
-      definitions = {},
-    } = config
+    const { definitions = {} } = config;
 
     return applyNormalization(
       applyDefaults(
@@ -32,14 +30,14 @@ export function createConfigNormalizer (validateConfig) {
           ...config,
 
           definitions: mergeDefinitions(definitions),
-        }),
-      ),
-    )
-  }
+        })
+      )
+    );
+  };
 }
 
-function mergeDefinitions (definitions) {
-  assertObject(definitions, 'definitions')
+function mergeDefinitions(definitions) {
+  assertObject(definitions, "definitions");
 
   const {
     color = {},
@@ -51,13 +49,13 @@ function mergeDefinitions (definitions) {
     style = {},
     tag = {},
     target = {},
-  } = definitions
+  } = definitions;
 
-  assertObject(target, 'definitions.target')
+  assertObject(target, "definitions.target");
 
-  const device = {...standardDeviceDefinitions, ...userDevice}
-  const display = {...standardDisplayDefinitions, ...userDisplay}
-  const autoSizes = buildAutoSizes(display, device)
+  const device = { ...standardDeviceDefinitions, ...userDevice };
+  const display = { ...standardDisplayDefinitions, ...userDisplay };
+  const autoSizes = buildAutoSizes(display, device);
 
   const {
     all = standardAllTargetDefinition,
@@ -65,38 +63,43 @@ function mergeDefinitions (definitions) {
     installer = {},
     os = {},
     web = {},
-  } = target
+  } = target;
 
   return {
     color,
     device,
     display,
-    input: {...standardInputDefinitions, ...input},
-    output: {...standardOutputDefinitions, ...output},
-    size: {...autoSizes, ...standardSizeDefinitions, ...size},
-    style: {...standardStyleDefinitions, ...style},
-    tag: {...standardTagDefinitions, ...tag},
+    input: { ...standardInputDefinitions, ...input },
+    output: { ...standardOutputDefinitions, ...output },
+    size: { ...autoSizes, ...standardSizeDefinitions, ...size },
+    style: { ...standardStyleDefinitions, ...style },
+    tag: { ...standardTagDefinitions, ...tag },
     target: {
       all,
-      browser: {...standardBrowserTargetDefinitions, ...browser},
-      installer: {...standardInstallerTargetDefinitions, ...installer},
-      os: {...standardOsTargetDefinitions, ...os},
-      web: {...standardWebTargetDefinitions, ...web},
+      browser: { ...standardBrowserTargetDefinitions, ...browser },
+      installer: { ...standardInstallerTargetDefinitions, ...installer },
+      os: { ...standardOsTargetDefinitions, ...os },
+      web: { ...standardWebTargetDefinitions, ...web },
     },
-  }
+  };
 }
 
-function buildAutoSizes (display, device) {
-  assertObject(display, 'definitions.display')
-  assertObject(device, 'definitions.device')
+function buildAutoSizes(display, device) {
+  assertObject(display, "definitions.display");
+  assertObject(device, "definitions.device");
 
-  const displaySizes = {}
-  const deviceSizes = {}
+  const displaySizes = {};
+  const deviceSizes = {};
 
   for (const displayName in display) {
-    const {resolution: {horizontal, vertical}, pixelDensity, pixelRatio, orientation} = display[displayName]
-    const deviceWidth = horizontal / pixelRatio
-    const deviceHeight = vertical / pixelRatio
+    const {
+      resolution: { horizontal, vertical },
+      pixelDensity,
+      pixelRatio,
+      orientation,
+    } = display[displayName];
+    const deviceWidth = horizontal / pixelRatio;
+    const deviceHeight = vertical / pixelRatio;
 
     const orientationSize = {
       width: horizontal,
@@ -105,7 +108,7 @@ function buildAutoSizes (display, device) {
       deviceHeight,
       pixelDensity,
       pixelRatio,
-    }
+    };
 
     const rotatedSize = {
       width: vertical,
@@ -114,47 +117,69 @@ function buildAutoSizes (display, device) {
       deviceHeight,
       pixelDensity,
       pixelRatio,
-    }
+    };
 
-    const portraitSize = `display.${displayName}.portrait`
-    const landscapeSize = `display.${displayName}.landscape`
+    const portraitSize = `display.${displayName}.portrait`;
+    const landscapeSize = `display.${displayName}.landscape`;
 
-    if (orientation === 'portrait') {
-      displaySizes[portraitSize] = {key: `${displayName}.portrait`, ...orientationSize, orientation: 'portrait'}
-      displaySizes[landscapeSize] = {key: `${displayName}.landscape`, ...rotatedSize, orientation: 'landscape'}
-    } else if (orientation === 'landscape') {
-      displaySizes[portraitSize] = {key: `${displayName}.portrait`, ...rotatedSize, orientation: 'portrait'}
-      displaySizes[landscapeSize] = {key: `${displayName}.landscape`, ...orientationSize, orientation: 'landscape'}
+    if (orientation === "portrait") {
+      displaySizes[portraitSize] = {
+        key: `${displayName}.portrait`,
+        ...orientationSize,
+        orientation: "portrait",
+      };
+      displaySizes[landscapeSize] = {
+        key: `${displayName}.landscape`,
+        ...rotatedSize,
+        orientation: "landscape",
+      };
+    } else if (orientation === "landscape") {
+      displaySizes[portraitSize] = {
+        key: `${displayName}.portrait`,
+        ...rotatedSize,
+        orientation: "portrait",
+      };
+      displaySizes[landscapeSize] = {
+        key: `${displayName}.landscape`,
+        ...orientationSize,
+        orientation: "landscape",
+      };
     } else {
-      throw new Error(`Invalid value for definitions.display.${displayName}.orientation`)
+      throw new Error(
+        `Invalid value for definitions.display.${displayName}.orientation`
+      );
     }
   }
 
   for (const deviceName in device) {
-    const {display: displayName} = device[deviceName]
+    const { display: displayName } = device[deviceName];
 
     if (!display[displayName]) {
-      throw new Error(`Missing definition for display.${displayName} in definitions.device.${displayName}.display`)
+      throw new Error(
+        `Missing definition for display.${displayName} in definitions.device.${displayName}.display`
+      );
     }
 
-    const {key: portraitKey, ...portraitSize} = displaySizes[`display.${displayName}.portrait`]
-    const {key: landscapeKey, ...landscapeSize} = displaySizes[`display.${displayName}.landscape`]
+    const { key: portraitKey, ...portraitSize } =
+      displaySizes[`display.${displayName}.portrait`];
+    const { key: landscapeKey, ...landscapeSize } =
+      displaySizes[`display.${displayName}.landscape`];
 
-    deviceSizes[`device.${deviceName}.portrait`] = {key: `${deviceName}.portrait`, ...portraitSize}
-    deviceSizes[`device.${deviceName}.landscape`] = {key: `${deviceName}.landscape`, ...landscapeSize}
+    deviceSizes[`device.${deviceName}.portrait`] = {
+      key: `${deviceName}.portrait`,
+      ...portraitSize,
+    };
+    deviceSizes[`device.${deviceName}.landscape`] = {
+      key: `${deviceName}.landscape`,
+      ...landscapeSize,
+    };
   }
 
-  return {...displaySizes, ...deviceSizes}
+  return { ...displaySizes, ...deviceSizes };
 }
 
-function applyDefaults (config) {
-  const {
-    applications,
-    colors,
-    definitions,
-    name,
-    shortName,
-  } = config
+function applyDefaults(config) {
+  const { applications, colors, definitions, name, shortName } = config;
 
   return {
     ...config,
@@ -163,53 +188,46 @@ function applyDefaults (config) {
     colors: applyColorsDefaults(colors),
     definitions: applyDefinitionsDefaults(definitions),
     shortName: shortName || name,
-  }
+  };
 }
 
-function applyApplicationsDefaults (applications) {
-  const {
-    native,
-  } = applications
+function applyApplicationsDefaults(applications) {
+  const { native } = applications;
 
   return {
     ...applications,
 
     native: native.map(applyNativeApplicationDefaults),
-  }
+  };
 }
 
-function applyNativeApplicationDefaults (application) {
-  const {
-    platform,
-    id,
-    url,
-  } = application
+function applyNativeApplicationDefaults(application) {
+  const { platform, id, url } = application;
 
   return {
     ...application,
 
     url: url || buildNativeApplicationUrl(platform, id),
-  }
+  };
 }
 
-function buildNativeApplicationUrl (platform, id) {
+function buildNativeApplicationUrl(platform, id) {
   switch (platform) {
-    case 'itunes': return `https://itunes.apple.com/app/id${encodeURIComponent(id)}`
-    case 'play': return `https://play.google.com/store/apps/details?id=${encodeURIComponent(id)}`
-    case 'windows': return `https://microsoft.com/p/app/${encodeURIComponent(id)}`
+    case "itunes":
+      return `https://itunes.apple.com/app/id${encodeURIComponent(id)}`;
+    case "play":
+      return `https://play.google.com/store/apps/details?id=${encodeURIComponent(
+        id
+      )}`;
+    case "windows":
+      return `https://microsoft.com/p/app/${encodeURIComponent(id)}`;
   }
 
-  return null
+  return null;
 }
 
-function applyColorsDefaults (colors) {
-  const {
-    background,
-    brand,
-    mask,
-    theme,
-    tile,
-  } = colors
+function applyColorsDefaults(colors) {
+  const { background, brand, mask, theme, tile } = colors;
 
   return {
     ...colors,
@@ -218,103 +236,91 @@ function applyColorsDefaults (colors) {
     mask: mask || brand,
     theme: theme || brand,
     tile: tile || brand,
-  }
+  };
 }
 
-function applyDefinitionsDefaults (definitions) {
-  const {
-    output,
-    tag,
-  } = definitions
+function applyDefinitionsDefaults(definitions) {
+  const { output, tag } = definitions;
 
   return {
     ...definitions,
 
     output: applyOutputDefinitionsDefaults(output),
     tag: applyTagDefinitionsDefaults(tag),
-  }
+  };
 }
 
-function applyOutputDefinitionsDefaults (output) {
-  const defaulted = {}
+function applyOutputDefinitionsDefaults(output) {
+  const defaulted = {};
 
   for (const outputName in output) {
-    const definition = output[outputName]
+    const definition = output[outputName];
 
-    const {
-      input,
-    } = definition
+    const { input } = definition;
 
     defaulted[outputName] = {
       ...definition,
 
       input: input || outputName,
-    }
+    };
   }
 
-  return defaulted
+  return defaulted;
 }
 
-function applyTagDefinitionsDefaults (tag) {
-  const defaulted = {}
+function applyTagDefinitionsDefaults(tag) {
+  const defaulted = {};
 
   for (const tagName in tag) {
-    const defaultedSections = {}
-    const sections = tag[tagName]
+    const defaultedSections = {};
+    const sections = tag[tagName];
 
     for (const section in sections) {
-      defaultedSections[section] = sections[section].map(applyTagDefaults)
+      defaultedSections[section] = sections[section].map(applyTagDefaults);
     }
 
-    defaulted[tagName] = defaultedSections
+    defaulted[tagName] = defaultedSections;
   }
 
-  return defaulted
+  return defaulted;
 }
 
-function applyTagDefaults (tag) {
-  const {
-    children,
-    isSelfClosing,
-    tag: tagName,
-  } = tag
+function applyTagDefaults(tag) {
+  const { children, isSelfClosing, tag: tagName } = tag;
 
   return {
     ...tag,
 
     children: children.map(applyTagDefaults),
-    isSelfClosing: typeof isSelfClosing === 'boolean' ? isSelfClosing : isSelfClosingFn(tagName),
-  }
+    isSelfClosing:
+      typeof isSelfClosing === "boolean"
+        ? isSelfClosing
+        : isSelfClosingFn(tagName),
+  };
 }
 
-function applyNormalization (config) {
-  const {
-    urls,
-  } = config
+function applyNormalization(config) {
+  const { urls } = config;
 
   return {
     ...config,
 
     urls: applyUrlsNormalization(urls),
-  }
+  };
 }
 
-function applyUrlsNormalization (urls) {
-  const {
-    base,
-    output,
-    scope,
-    start,
-  } = urls
+function applyUrlsNormalization(urls) {
+  const { base, output, scope, start } = urls;
 
   return {
     base: toDirUrl(base),
     output: toDirUrl(output),
     scope: toDirUrl(scope),
     start,
-  }
+  };
 }
 
-function assertObject (value, setting) {
-  if (value === null || typeof value !== 'object') throw new Error(`Invalid value for ${setting}`)
+function assertObject(value, setting) {
+  if (value === null || typeof value !== "object")
+    throw new Error(`Invalid value for ${setting}`);
 }

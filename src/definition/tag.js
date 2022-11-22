@@ -1,113 +1,119 @@
 /* eslint-disable no-template-curly-in-string */
 
-const selectAbsoluteImageUrl = '<%- absoluteImageUrl(current.name, current.size) %>'
-const selectAbsoluteStartUrl = '<%- absoluteUrl(manifest.urls.start) %>'
-const selectDescription = '<%- manifest.description %>'
-const selectDeterminer = '<%- manifest.determiner %>'
-const selectDisplayModeIsStandaloneOrFullscreen = '<%- (mode => ["standalone", "fullscreen"].includes(mode))(manifest.displayMode) ? "true" : "" %>'
-const selectFacebookAppId = '<%- manifest.applications.web.facebook.appId %>'
-const selectIosStatusBarStyle = '<%- manifest.os.ios.statusBarStyle %>'
-const selectIosStatusBarStyleIsNotDefault = '<%- manifest.os.ios.statusBarStyle !== "default" ? "true" : "" %>'
-const selectLocale = '<%- manifest.language.replace("-", "_") %>'
-const selectMaskColor = '<%- manifest.color.mask %>'
-const selectName = '<%- manifest.name %>'
-const selectOutputHeight = '<%- current.output.size.height %>'
-const selectOutputHtmlSizes = '<%- current.output.htmlSizes %>'
-const selectOutputType = '<%- current.output.type %>'
-const selectOutputUrl = '<%- current.url() %>'
-const selectOutputWidth = '<%- current.output.size.width %>'
-const selectThemeColor = '<%- manifest.color.theme %>'
-const selectTileColor = '<%- manifest.color.tile %>'
-const selectTwitterCardType = '<%- manifest.applications.web.twitter.cardType %>'
-const selectTwitterCardTypeIsApp = '<%- manifest.applications.web.twitter.cardType === "app" ? "true" : "" %>'
-const selectTwitterCardTypeIsSummary = '<%- manifest.applications.web.twitter.cardType.startsWith("summary") ? "true" : "" %>'
-const selectTwitterCreatorHandle = '<%- (handle => handle && `@${handle}`)(manifest.applications.web.twitter.creatorHandle) %>'
-const selectTwitterDescription = '<%- (manifest.description || "").length <= 200 ? manifest.description : manifest.description.substring(197) + "..." %>'
-const selectTwitterSiteHandle = '<%- (handle => handle && `@${handle}`)(manifest.applications.web.twitter.siteHandle) %>'
-const selectViewport = '<%- manifest.viewport %>'
+const selectAbsoluteImageUrl =
+  "<%- absoluteImageUrl(current.name, current.size) %>";
+const selectAbsoluteStartUrl = "<%- absoluteUrl(manifest.urls.start) %>";
+const selectDescription = "<%- manifest.description %>";
+const selectDeterminer = "<%- manifest.determiner %>";
+const selectDisplayModeIsStandaloneOrFullscreen =
+  '<%- (mode => ["standalone", "fullscreen"].includes(mode))(manifest.displayMode) ? "true" : "" %>';
+const selectFacebookAppId = "<%- manifest.applications.web.facebook.appId %>";
+const selectIosStatusBarStyle = "<%- manifest.os.ios.statusBarStyle %>";
+const selectIosStatusBarStyleIsNotDefault =
+  '<%- manifest.os.ios.statusBarStyle !== "default" ? "true" : "" %>';
+const selectLocale = '<%- manifest.language.replace("-", "_") %>';
+const selectMaskColor = "<%- manifest.color.mask %>";
+const selectName = "<%- manifest.name %>";
+const selectOutputHeight = "<%- current.output.size.height %>";
+const selectOutputHtmlSizes = "<%- current.output.htmlSizes %>";
+const selectOutputType = "<%- current.output.type %>";
+const selectOutputUrl = "<%- current.url() %>";
+const selectOutputWidth = "<%- current.output.size.width %>";
+const selectThemeColor = "<%- manifest.color.theme %>";
+const selectTileColor = "<%- manifest.color.tile %>";
+const selectTwitterCardType =
+  "<%- manifest.applications.web.twitter.cardType %>";
+const selectTwitterCardTypeIsApp =
+  '<%- manifest.applications.web.twitter.cardType === "app" ? "true" : "" %>';
+const selectTwitterCardTypeIsSummary =
+  '<%- manifest.applications.web.twitter.cardType.startsWith("summary") ? "true" : "" %>';
+const selectTwitterCreatorHandle =
+  "<%- (handle => handle && `@${handle}`)(manifest.applications.web.twitter.creatorHandle) %>";
+const selectTwitterDescription =
+  '<%- (manifest.description || "").length <= 200 ? manifest.description : manifest.description.substring(197) + "..." %>';
+const selectTwitterSiteHandle =
+  "<%- (handle => handle && `@${handle}`)(manifest.applications.web.twitter.siteHandle) %>";
+const selectViewport = "<%- manifest.viewport %>";
 
 const selectAppleTouchStartupMedia =
-  '(device-width: <%- current.output.size.deviceWidth %>px) and ' +
-  '(device-height: <%- current.output.size.deviceHeight %>px) and ' +
-  '(-webkit-device-pixel-ratio: <%- current.output.size.pixelRatio %>) and ' +
-  '(orientation: <%- current.output.size.orientation %>)'
+  "(device-width: <%- current.output.size.deviceWidth %>px) and " +
+  "(device-height: <%- current.output.size.deviceHeight %>px) and " +
+  "(-webkit-device-pixel-ratio: <%- current.output.size.pixelRatio %>) and " +
+  "(orientation: <%- current.output.size.orientation %>)";
 
-const findPrimaryIosApp = 'manifest.applications.native.find(({platform}) => platform === "itunes")'
-const findPrimaryPlayApp = 'manifest.applications.native.find(({platform}) => platform === "play")'
-const findPrimaryWindowsApp = 'manifest.applications.native.find(({platform}) => platform === "windows")'
+const findPrimaryIosApp =
+  'manifest.applications.native.find(({platform}) => platform === "itunes")';
+const findPrimaryPlayApp =
+  'manifest.applications.native.find(({platform}) => platform === "play")';
+const findPrimaryWindowsApp =
+  'manifest.applications.native.find(({platform}) => platform === "windows")';
 
-const selectPrimaryIosApp = `<%- ${findPrimaryIosApp} ? "true" : "" %>`
-const selectPrimaryIosAppCountry = `<%- (${findPrimaryIosApp} || {}).country %>`
-const selectPrimaryIosAppId = `<%- (${findPrimaryIosApp} || {}).id %>`
-const selectPrimaryIosAppLaunchUrl = `<%- (({launchUrl} = {}) => launchUrl && absoluteUrl(launchUrl))(${findPrimaryIosApp}) %>`
+const selectPrimaryIosApp = `<%- ${findPrimaryIosApp} ? "true" : "" %>`;
+const selectPrimaryIosAppCountry = `<%- (${findPrimaryIosApp} || {}).country %>`;
+const selectPrimaryIosAppId = `<%- (${findPrimaryIosApp} || {}).id %>`;
+const selectPrimaryIosAppLaunchUrl = `<%- (({launchUrl} = {}) => launchUrl && absoluteUrl(launchUrl))(${findPrimaryIosApp}) %>`;
 const selectPrimaryIosAppBannerString =
-  '<%- (({id, launchUrl} = {}) => id && (' +
-  'launchUrl ? `app-id=${id}, app-argument=${absoluteUrl(launchUrl)}` : `app-id=${id}`' +
-  `))(${findPrimaryIosApp}) %>`
+  "<%- (({id, launchUrl} = {}) => id && (" +
+  "launchUrl ? `app-id=${id}, app-argument=${absoluteUrl(launchUrl)}` : `app-id=${id}`" +
+  `))(${findPrimaryIosApp}) %>`;
 
-const selectPrimaryPlayApp = `<%- ${findPrimaryPlayApp} ? "true" : "" %>`
-const selectPrimaryPlayAppId = `<%- (${findPrimaryPlayApp} || {}).id %>`
-const selectPrimaryPlayAppLaunchUrl = `<%- (({launchUrl} = {}) => launchUrl && absoluteUrl(launchUrl))(${findPrimaryPlayApp}) %>`
+const selectPrimaryPlayApp = `<%- ${findPrimaryPlayApp} ? "true" : "" %>`;
+const selectPrimaryPlayAppId = `<%- (${findPrimaryPlayApp} || {}).id %>`;
+const selectPrimaryPlayAppLaunchUrl = `<%- (({launchUrl} = {}) => launchUrl && absoluteUrl(launchUrl))(${findPrimaryPlayApp}) %>`;
 
-const selectPrimaryWindowsApp = `<%- ${findPrimaryWindowsApp} ? "true" : "" %>`
-const selectPrimaryWindowsAppId = `<%- (${findPrimaryWindowsApp} || {}).id %>`
-const selectPrimaryWindowsAppLaunchUrl = `<%- (({launchUrl} = {}) => launchUrl && absoluteUrl(launchUrl))(${findPrimaryWindowsApp}) %>`
+const selectPrimaryWindowsApp = `<%- ${findPrimaryWindowsApp} ? "true" : "" %>`;
+const selectPrimaryWindowsAppId = `<%- (${findPrimaryWindowsApp} || {}).id %>`;
+const selectPrimaryWindowsAppLaunchUrl = `<%- (({launchUrl} = {}) => launchUrl && absoluteUrl(launchUrl))(${findPrimaryWindowsApp}) %>`;
 
 export default {
   appleItunesApp: {
     graph: [
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          name: 'apple-itunes-app',
+          name: "apple-itunes-app",
           content: selectPrimaryIosAppBannerString,
         },
-        predicate: [
-          selectPrimaryIosAppBannerString,
-        ],
+        predicate: [selectPrimaryIosAppBannerString],
       },
     ],
   },
   appleMobile: {
     meta: [
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          name: 'apple-mobile-web-app-capable',
-          content: 'yes',
+          name: "apple-mobile-web-app-capable",
+          content: "yes",
         },
         sortWeight: 1000,
-        predicate: [
-          selectDisplayModeIsStandaloneOrFullscreen,
-        ],
+        predicate: [selectDisplayModeIsStandaloneOrFullscreen],
       },
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          name: 'apple-mobile-web-app-title',
+          name: "apple-mobile-web-app-title",
           content: selectName,
         },
         sortWeight: 2000,
       },
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          name: 'apple-mobile-web-app-status-bar-style',
+          name: "apple-mobile-web-app-status-bar-style",
           content: selectIosStatusBarStyle,
         },
         sortWeight: 5000,
-        predicate: [
-          selectIosStatusBarStyleIsNotDefault,
-        ],
+        predicate: [selectIosStatusBarStyleIsNotDefault],
       },
     ],
   },
   appleTouchIcon: {
     icon: [
       {
-        tag: 'link',
+        tag: "link",
         attributes: {
-          rel: 'apple-touch-icon',
+          rel: "apple-touch-icon",
           href: selectOutputUrl,
         },
         sortWeight: -1,
@@ -117,9 +123,9 @@ export default {
   appleTouchStartup: {
     appleTouchStartup: [
       {
-        tag: 'link',
+        tag: "link",
         attributes: {
-          rel: 'apple-touch-startup-image',
+          rel: "apple-touch-startup-image",
           href: selectOutputUrl,
           media: selectAppleTouchStartupMedia,
         },
@@ -129,9 +135,9 @@ export default {
   applicationName: {
     meta: [
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          name: 'application-name',
+          name: "application-name",
           content: selectName,
         },
         sortWeight: 2000,
@@ -141,113 +147,93 @@ export default {
   appLinks: {
     graph: [
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          property: 'al:android:url',
+          property: "al:android:url",
           content: selectPrimaryPlayAppLaunchUrl,
         },
-        predicate: [
-          selectPrimaryPlayAppLaunchUrl,
-        ],
+        predicate: [selectPrimaryPlayAppLaunchUrl],
       },
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          property: 'al:android:package',
+          property: "al:android:package",
           content: selectPrimaryPlayAppId,
         },
-        predicate: [
-          selectPrimaryPlayAppId,
-        ],
+        predicate: [selectPrimaryPlayAppId],
       },
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          property: 'al:android:app_name',
+          property: "al:android:app_name",
           content: selectName,
         },
-        predicate: [
-          selectPrimaryPlayApp,
-        ],
+        predicate: [selectPrimaryPlayApp],
       },
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          property: 'al:ios:url',
+          property: "al:ios:url",
           content: selectPrimaryIosAppLaunchUrl,
         },
-        predicate: [
-          selectPrimaryIosAppLaunchUrl,
-        ],
+        predicate: [selectPrimaryIosAppLaunchUrl],
       },
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          property: 'al:ios:app_store_id',
+          property: "al:ios:app_store_id",
           content: selectPrimaryIosAppId,
         },
-        predicate: [
-          selectPrimaryIosAppId,
-        ],
+        predicate: [selectPrimaryIosAppId],
       },
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          property: 'al:ios:app_name',
+          property: "al:ios:app_name",
           content: selectName,
         },
-        predicate: [
-          selectPrimaryIosApp,
-        ],
+        predicate: [selectPrimaryIosApp],
       },
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          property: 'al:web:url',
+          property: "al:web:url",
           content: selectAbsoluteStartUrl,
         },
-        predicate: [
-          selectAbsoluteStartUrl,
-        ],
+        predicate: [selectAbsoluteStartUrl],
       },
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          property: 'al:windows:url',
+          property: "al:windows:url",
           content: selectPrimaryWindowsAppLaunchUrl,
         },
-        predicate: [
-          selectPrimaryWindowsAppLaunchUrl,
-        ],
+        predicate: [selectPrimaryWindowsAppLaunchUrl],
       },
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          property: 'al:windows:package',
+          property: "al:windows:package",
           content: selectPrimaryWindowsAppId,
         },
-        predicate: [
-          selectPrimaryWindowsAppId,
-        ],
+        predicate: [selectPrimaryWindowsAppId],
       },
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          property: 'al:windows:app_name',
+          property: "al:windows:app_name",
           content: selectName,
         },
-        predicate: [
-          selectPrimaryWindowsApp,
-        ],
+        predicate: [selectPrimaryWindowsApp],
       },
     ],
   },
   description: {
     meta: [
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          name: 'description',
+          name: "description",
           content: selectDescription,
         },
         sortWeight: 3000,
@@ -257,23 +243,21 @@ export default {
   facebook: {
     graph: [
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          property: 'fb:app_id',
+          property: "fb:app_id",
           content: selectFacebookAppId,
         },
-        predicate: [
-          selectFacebookAppId,
-        ],
+        predicate: [selectFacebookAppId],
       },
     ],
   },
   icon: {
     icon: [
       {
-        tag: 'link',
+        tag: "link",
         attributes: {
-          rel: 'icon',
+          rel: "icon",
           type: selectOutputType,
           href: selectOutputUrl,
           sizes: selectOutputHtmlSizes,
@@ -284,9 +268,9 @@ export default {
   manifest: {
     link: [
       {
-        tag: 'link',
+        tag: "link",
         attributes: {
-          rel: 'manifest',
+          rel: "manifest",
           href: selectOutputUrl,
         },
       },
@@ -295,9 +279,9 @@ export default {
   maskIcon: {
     icon: [
       {
-        tag: 'link',
+        tag: "link",
         attributes: {
-          rel: 'mask-icon',
+          rel: "mask-icon",
           href: selectOutputUrl,
           color: selectMaskColor,
         },
@@ -307,24 +291,22 @@ export default {
   mobileWebAppCapable: {
     meta: [
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          name: 'mobile-web-app-capable',
-          content: 'yes',
+          name: "mobile-web-app-capable",
+          content: "yes",
         },
         sortWeight: 1000,
-        predicate: [
-          selectDisplayModeIsStandaloneOrFullscreen,
-        ],
+        predicate: [selectDisplayModeIsStandaloneOrFullscreen],
       },
     ],
   },
   msapplicationTileColor: {
     meta: [
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          name: 'msapplication-TileColor',
+          name: "msapplication-TileColor",
           content: selectTileColor,
         },
         sortWeight: 6000,
@@ -334,9 +316,9 @@ export default {
   msapplicationTileImage: {
     meta: [
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          name: 'msapplication-TileImage',
+          name: "msapplication-TileImage",
           content: selectOutputUrl,
         },
         sortWeight: 6100,
@@ -346,9 +328,9 @@ export default {
   msapplicationConfig: {
     meta: [
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          name: 'msapplication-config',
+          name: "msapplication-config",
           content: selectOutputUrl,
         },
         sortWeight: 6200,
@@ -358,131 +340,111 @@ export default {
   openGraph: {
     graph: [
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          property: 'og:type',
-          content: 'website',
+          property: "og:type",
+          content: "website",
         },
       },
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          property: 'og:locale',
+          property: "og:locale",
           content: selectLocale,
         },
-        predicate: [
-          selectLocale,
-        ],
+        predicate: [selectLocale],
       },
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          property: 'og:url',
+          property: "og:url",
           content: selectAbsoluteStartUrl,
         },
-        predicate: [
-          selectAbsoluteStartUrl,
-        ],
+        predicate: [selectAbsoluteStartUrl],
       },
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          property: 'og:site_name',
+          property: "og:site_name",
           content: selectName,
         },
       },
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          property: 'og:determiner',
+          property: "og:determiner",
           content: selectDeterminer,
         },
-        predicate: [
-          selectDeterminer,
-        ],
+        predicate: [selectDeterminer],
       },
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          property: 'og:title',
+          property: "og:title",
           content: selectName,
         },
-        predicate: [
-          selectName,
-        ],
+        predicate: [selectName],
       },
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          property: 'og:description',
+          property: "og:description",
           content: selectDescription,
         },
-        predicate: [
-          selectDescription,
-        ],
+        predicate: [selectDescription],
       },
     ],
   },
   openGraphImage: {
     graphImage: [
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          property: 'og:image',
+          property: "og:image",
           content: selectAbsoluteImageUrl,
         },
-        predicate: [
-          selectAbsoluteImageUrl,
-        ],
+        predicate: [selectAbsoluteImageUrl],
       },
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          property: 'og:image:type',
+          property: "og:image:type",
           content: selectOutputType,
         },
-        predicate: [
-          selectAbsoluteImageUrl,
-        ],
+        predicate: [selectAbsoluteImageUrl],
       },
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          property: 'og:image:width',
+          property: "og:image:width",
           content: selectOutputWidth,
         },
-        predicate: [
-          selectAbsoluteImageUrl,
-        ],
+        predicate: [selectAbsoluteImageUrl],
       },
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          property: 'og:image:height',
+          property: "og:image:height",
           content: selectOutputHeight,
         },
-        predicate: [
-          selectAbsoluteImageUrl,
-        ],
+        predicate: [selectAbsoluteImageUrl],
       },
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          property: 'og:image:alt',
+          property: "og:image:alt",
           content: selectName,
         },
-        predicate: [
-          selectAbsoluteImageUrl,
-        ],
+        predicate: [selectAbsoluteImageUrl],
       },
     ],
   },
   themeColor: {
     meta: [
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          name: 'theme-color',
+          name: "theme-color",
           content: selectThemeColor,
         },
         sortWeight: 5000,
@@ -492,199 +454,156 @@ export default {
   twitter: {
     graph: [
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          name: 'twitter:card',
+          name: "twitter:card",
           content: selectTwitterCardType,
         },
       },
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          name: 'twitter:site',
+          name: "twitter:site",
           content: selectTwitterSiteHandle,
         },
-        predicate: [
-          selectTwitterSiteHandle,
-        ],
+        predicate: [selectTwitterSiteHandle],
       },
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          name: 'twitter:creator',
+          name: "twitter:creator",
           content: selectTwitterCreatorHandle,
         },
-        predicate: [
-          selectTwitterCardTypeIsSummary,
-          selectTwitterCreatorHandle,
-        ],
+        predicate: [selectTwitterCardTypeIsSummary, selectTwitterCreatorHandle],
       },
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          name: 'twitter:title',
+          name: "twitter:title",
           content: selectName,
         },
-        predicate: [
-          selectTwitterCardTypeIsSummary,
-        ],
+        predicate: [selectTwitterCardTypeIsSummary],
       },
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          name: 'twitter:description',
+          name: "twitter:description",
           content: selectTwitterDescription,
         },
-        predicate: [
-          selectTwitterDescription,
-        ],
+        predicate: [selectTwitterDescription],
       },
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          name: 'twitter:app:country',
+          name: "twitter:app:country",
           content: selectPrimaryIosAppCountry,
         },
-        predicate: [
-          selectTwitterCardTypeIsApp,
-          selectPrimaryIosAppCountry,
-        ],
+        predicate: [selectTwitterCardTypeIsApp, selectPrimaryIosAppCountry],
       },
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          name: 'twitter:app:name:iphone',
+          name: "twitter:app:name:iphone",
           content: selectName,
         },
-        predicate: [
-          selectTwitterCardTypeIsApp,
-          selectPrimaryIosApp,
-        ],
+        predicate: [selectTwitterCardTypeIsApp, selectPrimaryIosApp],
       },
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          name: 'twitter:app:id:iphone',
+          name: "twitter:app:id:iphone",
           content: selectPrimaryIosAppId,
         },
-        predicate: [
-          selectTwitterCardTypeIsApp,
-          selectPrimaryIosAppId,
-        ],
+        predicate: [selectTwitterCardTypeIsApp, selectPrimaryIosAppId],
       },
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          name: 'twitter:app:url:iphone',
+          name: "twitter:app:url:iphone",
           content: selectPrimaryIosAppLaunchUrl,
         },
-        predicate: [
-          selectTwitterCardTypeIsApp,
-          selectPrimaryIosAppLaunchUrl,
-        ],
+        predicate: [selectTwitterCardTypeIsApp, selectPrimaryIosAppLaunchUrl],
       },
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          name: 'twitter:app:name:ipad',
+          name: "twitter:app:name:ipad",
           content: selectName,
         },
-        predicate: [
-          selectTwitterCardTypeIsApp,
-          selectPrimaryIosApp,
-        ],
+        predicate: [selectTwitterCardTypeIsApp, selectPrimaryIosApp],
       },
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          name: 'twitter:app:id:ipad',
+          name: "twitter:app:id:ipad",
           content: selectPrimaryIosAppId,
         },
-        predicate: [
-          selectTwitterCardTypeIsApp,
-          selectPrimaryIosAppId,
-        ],
+        predicate: [selectTwitterCardTypeIsApp, selectPrimaryIosAppId],
       },
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          name: 'twitter:app:url:ipad',
+          name: "twitter:app:url:ipad",
           content: selectPrimaryIosAppLaunchUrl,
         },
-        predicate: [
-          selectTwitterCardTypeIsApp,
-          selectPrimaryIosAppLaunchUrl,
-        ],
+        predicate: [selectTwitterCardTypeIsApp, selectPrimaryIosAppLaunchUrl],
       },
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          name: 'twitter:app:name:googleplay',
+          name: "twitter:app:name:googleplay",
           content: selectName,
         },
-        predicate: [
-          selectTwitterCardTypeIsApp,
-          selectPrimaryPlayApp,
-        ],
+        predicate: [selectTwitterCardTypeIsApp, selectPrimaryPlayApp],
       },
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          name: 'twitter:app:id:googleplay',
+          name: "twitter:app:id:googleplay",
           content: selectPrimaryPlayAppId,
         },
-        predicate: [
-          selectTwitterCardTypeIsApp,
-          selectPrimaryPlayAppId,
-        ],
+        predicate: [selectTwitterCardTypeIsApp, selectPrimaryPlayAppId],
       },
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          name: 'twitter:app:url:googleplay',
+          name: "twitter:app:url:googleplay",
           content: selectPrimaryPlayAppLaunchUrl,
         },
-        predicate: [
-          selectTwitterCardTypeIsApp,
-          selectPrimaryPlayAppLaunchUrl,
-        ],
+        predicate: [selectTwitterCardTypeIsApp, selectPrimaryPlayAppLaunchUrl],
       },
     ],
   },
   twitterImage: {
     graphImage: [
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          name: 'twitter:image',
+          name: "twitter:image",
           content: selectAbsoluteImageUrl,
         },
-        predicate: [
-          selectAbsoluteImageUrl,
-        ],
+        predicate: [selectAbsoluteImageUrl],
       },
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          name: 'twitter:image:alt',
+          name: "twitter:image:alt",
           content: selectName,
         },
-        predicate: [
-          selectAbsoluteImageUrl,
-        ],
+        predicate: [selectAbsoluteImageUrl],
       },
     ],
   },
   viewport: {
     meta: [
       {
-        tag: 'meta',
+        tag: "meta",
         attributes: {
-          name: 'viewport',
+          name: "viewport",
           content: selectViewport,
         },
         sortWeight: 4000,
       },
     ],
   },
-}
+};

@@ -2,101 +2,96 @@ import {
   INPUT_STRATEGY_COMPOSITE,
   INPUT_STRATEGY_DEGRADE,
   INPUT_STRATEGY_SVG_TRANSFORM,
-} from '../constant.js'
+} from "../constant.js";
 
 export default {
   appleTouchIcon: {
     strategy: INPUT_STRATEGY_COMPOSITE,
     options: {
-      layers: [
-        {input: 'iconFlatMaskable', style: 'appleTouchIconScale'},
-      ],
+      layers: [{ input: "iconFlatMaskable", style: "appleTouchIconScale" }],
     },
   },
   appleTouchStartup: {
     strategy: INPUT_STRATEGY_COMPOSITE,
     options: {
       layers: [
-        {input: 'backgroundColor'},
-        {input: 'iconSilhouette', style: 'opacity10Percent'},
+        { input: "backgroundColor" },
+        { input: "iconSilhouette", style: "opacity10Percent" },
       ],
     },
   },
   facebookAppIcon: {
     strategy: INPUT_STRATEGY_DEGRADE,
     options: {
-      to: 'iconMaskableNoPadding',
+      to: "iconMaskableNoPadding",
     },
   },
   favicon: {
     strategy: INPUT_STRATEGY_DEGRADE,
     options: {
-      to: 'iconMaskedNoPadding',
+      to: "iconMaskedNoPadding",
     },
   },
   faviconIco: {
     strategy: INPUT_STRATEGY_DEGRADE,
     options: {
-      to: 'favicon',
+      to: "favicon",
     },
   },
   faviconPng: {
     strategy: INPUT_STRATEGY_DEGRADE,
     options: {
-      to: 'favicon',
+      to: "favicon",
     },
   },
   githubAccountIcon: {
     strategy: INPUT_STRATEGY_DEGRADE,
     options: {
-      to: 'iconMaskableNoPadding',
+      to: "iconMaskableNoPadding",
     },
   },
   iconBackground: {
     strategy: INPUT_STRATEGY_DEGRADE,
     options: {
-      to: 'backgroundColor',
+      to: "backgroundColor",
     },
   },
   iconBleed: {
     strategy: INPUT_STRATEGY_DEGRADE,
     options: {
-      to: 'transparent',
+      to: "transparent",
     },
   },
   iconFlat: {
     strategy: INPUT_STRATEGY_DEGRADE,
     options: {
-      to: 'icon',
+      to: "icon",
     },
   },
   iconFlatBackground: {
     strategy: INPUT_STRATEGY_DEGRADE,
     options: {
-      to: 'iconBackground',
+      to: "iconBackground",
     },
   },
   iconFlatBleed: {
     strategy: INPUT_STRATEGY_DEGRADE,
     options: {
-      to: 'iconBleed',
+      to: "iconBleed",
     },
   },
   iconFlatForeground: {
     strategy: INPUT_STRATEGY_COMPOSITE,
     options: {
-      layers: [
-        {input: 'iconFlatBleed'},
-        {input: 'iconFlat'},
-      ],
+      layers: [{ input: "iconFlatBleed" }, { input: "iconFlat" }],
     },
   },
   iconFlatMaskable: {
     strategy: INPUT_STRATEGY_COMPOSITE,
     options: {
       layers: [
-        {input: 'iconFlatBackground'},
-        {input: 'iconFlatForeground'},
+        { input: "iconFlatBackground" },
+        { input: "iconFlatForeground" },
       ],
     },
   },
@@ -105,182 +100,152 @@ export default {
     options: {
       isMasked: true,
       layers: [
-        {input: 'iconFlatBackground'},
-        {input: 'iconFlatForeground'},
+        { input: "iconFlatBackground" },
+        { input: "iconFlatForeground" },
       ],
     },
   },
   iconForeground: {
     strategy: INPUT_STRATEGY_COMPOSITE,
     options: {
-      layers: [
-        {input: 'iconBleed'},
-        {input: 'icon'},
-      ],
+      layers: [{ input: "iconBleed" }, { input: "icon" }],
     },
   },
   iconMask: {
     strategy: INPUT_STRATEGY_DEGRADE,
     options: {
-      to: 'iconMaskAndroidCircle',
+      to: "iconMaskAndroidCircle",
     },
   },
   iconMaskable: {
     strategy: INPUT_STRATEGY_COMPOSITE,
     options: {
-      layers: [
-        {input: 'iconBackground'},
-        {input: 'iconForeground'},
-      ],
+      layers: [{ input: "iconBackground" }, { input: "iconForeground" }],
     },
   },
   iconMaskableNoPadding: {
     strategy: INPUT_STRATEGY_COMPOSITE,
     options: {
-      layers: [
-        {input: 'iconMaskable', style: 'noPaddingIconScale'},
-      ],
+      layers: [{ input: "iconMaskable", style: "noPaddingIconScale" }],
     },
   },
   iconMasked: {
     strategy: INPUT_STRATEGY_COMPOSITE,
     options: {
       isMasked: true,
-      layers: [
-        {input: 'iconBackground'},
-        {input: 'iconForeground'},
-      ],
+      layers: [{ input: "iconBackground" }, { input: "iconForeground" }],
     },
   },
   iconMaskedNoPadding: {
     strategy: INPUT_STRATEGY_COMPOSITE,
     options: {
-      layers: [
-        {input: 'iconMasked', style: 'noPaddingIconScale'},
-      ],
+      layers: [{ input: "iconMasked", style: "noPaddingIconScale" }],
     },
   },
   iconSilhouette: {
     strategy: INPUT_STRATEGY_DEGRADE,
     options: {
-      to: 'iconFlat',
+      to: "iconFlat",
     },
   },
   iosAppIcon: {
     strategy: INPUT_STRATEGY_DEGRADE,
     options: {
-      to: 'appleTouchIcon',
+      to: "appleTouchIcon",
     },
   },
   macosIcns: {
     strategy: INPUT_STRATEGY_COMPOSITE,
     options: {
-      layers: [
-        {input: 'iconFlatMasked', style: 'macosIconScale'},
-      ],
+      layers: [{ input: "iconFlatMasked", style: "macosIconScale" }],
     },
   },
   notificationBadge: {
     strategy: INPUT_STRATEGY_COMPOSITE,
     options: {
-      layers: [
-        {input: 'iconSilhouette', style: 'notificationBadgeScale'},
-      ],
+      layers: [{ input: "iconSilhouette", style: "notificationBadgeScale" }],
     },
   },
   notificationIcon: {
     strategy: INPUT_STRATEGY_DEGRADE,
     options: {
-      to: 'iconMaskedNoPadding',
+      to: "iconMaskedNoPadding",
     },
   },
   openGraphImage: {
     strategy: INPUT_STRATEGY_DEGRADE,
     options: {
-      to: 'socialShareImage',
+      to: "socialShareImage",
     },
   },
   safariMaskIcon: {
     strategy: INPUT_STRATEGY_SVG_TRANSFORM,
     options: {
-      input: 'iconSilhouette',
-      style: 'safariMaskIconScale',
-      maskColor: 'brand',
+      input: "iconSilhouette",
+      style: "safariMaskIconScale",
+      maskColor: "brand",
     },
   },
   socialShareImage: {
     strategy: INPUT_STRATEGY_COMPOSITE,
     options: {
-      layers: [
-        {input: 'backgroundColor'},
-        {input: 'iconSilhouette'},
-      ],
+      layers: [{ input: "backgroundColor" }, { input: "iconSilhouette" }],
     },
   },
   twitterCardImage: {
     strategy: INPUT_STRATEGY_DEGRADE,
     options: {
-      to: 'socialShareImage',
+      to: "socialShareImage",
     },
   },
   webAppIconMaskable: {
     strategy: INPUT_STRATEGY_COMPOSITE,
     options: {
-      layers: [
-        {input: 'iconMaskable', style: 'webAppIconMaskableScale'},
-      ],
+      layers: [{ input: "iconMaskable", style: "webAppIconMaskableScale" }],
     },
   },
   webAppIconMasked: {
     strategy: INPUT_STRATEGY_COMPOSITE,
     options: {
-      layers: [
-        {input: 'iconMasked', style: 'webAppIconMaskedScale'},
-      ],
+      layers: [{ input: "iconMasked", style: "webAppIconMaskedScale" }],
     },
   },
   windowsIco: {
     strategy: INPUT_STRATEGY_DEGRADE,
     options: {
-      to: 'iconMaskedNoPadding',
+      to: "iconMaskedNoPadding",
     },
   },
   windowsTileIcon: {
     strategy: INPUT_STRATEGY_DEGRADE,
     options: {
-      to: 'iconSilhouette',
+      to: "iconSilhouette",
     },
   },
   windowsTileLarge: {
     strategy: INPUT_STRATEGY_COMPOSITE,
     options: {
-      layers: [
-        {input: 'windowsTileIcon', style: 'windowsTileIconScale'},
-      ],
+      layers: [{ input: "windowsTileIcon", style: "windowsTileIconScale" }],
     },
   },
   windowsTileMedium: {
     strategy: INPUT_STRATEGY_COMPOSITE,
     options: {
-      layers: [
-        {input: 'windowsTileIcon', style: 'windowsTileIconScale'},
-      ],
+      layers: [{ input: "windowsTileIcon", style: "windowsTileIconScale" }],
     },
   },
   windowsTileSmall: {
     strategy: INPUT_STRATEGY_COMPOSITE,
     options: {
       layers: [
-        {input: 'windowsTileIcon', style: 'windowsTileIconSmallScale'},
+        { input: "windowsTileIcon", style: "windowsTileIconSmallScale" },
       ],
     },
   },
   windowsTileWide: {
     strategy: INPUT_STRATEGY_COMPOSITE,
     options: {
-      layers: [
-        {input: 'windowsTileIcon', style: 'windowsTileIconScale'},
-      ],
+      layers: [{ input: "windowsTileIcon", style: "windowsTileIconScale" }],
     },
   },
-}
+};

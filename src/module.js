@@ -1,81 +1,85 @@
-import resolveCps from 'resolve'
-import {promisify} from 'util'
+import resolveCps from "resolve";
+import { promisify } from "util";
 
-import {EXTENSIONS_INPUT} from './constant.js'
+import { EXTENSIONS_INPUT } from "./constant.js";
 
-const resolve = promisify(resolveCps)
+const resolve = promisify(resolveCps);
 
-export function createInputResolverFactory (logger) {
-  const resolvers = {}
+export function createInputResolverFactory(logger) {
+  const resolvers = {};
 
-  return function createInputResolver (basePath, inputPath) {
-    const existingResolver = resolvers[inputPath]
+  return function createInputResolver(basePath, inputPath) {
+    const existingResolver = resolvers[inputPath];
 
-    if (existingResolver) return existingResolver
+    if (existingResolver) return existingResolver;
 
     const options = {
       basedir: basePath,
       extensions: EXTENSIONS_INPUT,
-    }
-    const resolutions = {}
-    const results = {}
+    };
+    const resolutions = {};
+    const results = {};
 
     resolvers[inputPath] = {
-      async resolveAsync (id) {
-        if (id === '.') {
-          logger.debug(`Module ID . resolved to ${inputPath}`)
+      async resolveAsync(id) {
+        if (id === ".") {
+          logger.debug(`Module ID . resolved to ${inputPath}`);
 
-          return inputPath
+          return inputPath;
         }
 
-        if (results[id]) return results[id]
+        if (results[id]) return results[id];
 
         if (!resolutions[id]) {
           resolutions[id] = resolve(id, options)
             .then(
-              resolvedPath => {
-                logger.debug(`Module ID ${id} resolved to ${resolvedPath} in ${basePath}`)
+              (resolvedPath) => {
+                logger.debug(
+                  `Module ID ${id} resolved to ${resolvedPath} in ${basePath}`
+                );
 
-                return resolvedPath
+                return resolvedPath;
               },
               () => {
-                logger.debug(`Module ID ${id} did not resolve in ${basePath}`)
+                logger.debug(`Module ID ${id} did not resolve in ${basePath}`);
 
-                return null
-              },
+                return null;
+              }
             )
-            .then(result => {
-              results[id] = result
+            .then((result) => {
+              results[id] = result;
 
-              return result
-            })
+              return result;
+            });
         }
 
-        return resolutions[id]
+        return resolutions[id];
       },
 
-      resolveSync (id) {
-        if (id === '.') {
-          logger.debug(`Module ID . resolved to ${inputPath}`)
+      resolveSync(id) {
+        if (id === ".") {
+          logger.debug(`Module ID . resolved to ${inputPath}`);
 
-          return inputPath
+          return inputPath;
         }
 
         if (!results[id]) {
           try {
-            results[id] = resolve.sync(id, options)
-            logger.debug(`Module ID ${id} resolved to ${results[id]} in ${basePath}`)
+            results[id] = resolve.sync(id, options);
+            logger.debug(
+              `Module ID ${id} resolved to ${results[id]} in ${basePath}`
+            );
           } catch (error) {
-            logger.debug(`Module ID ${id} did not resolve in ${basePath}`)
+            logger.debug(`Module ID ${id} did not resolve in ${basePath}`);
 
-            results[id] = null
+            results[id] = null;
           }
         }
 
-        return results[id]
+        return results[id];
       },
-    }
+    };
 
-    return resolvers[inputPath]
-  }
+    return resolvers[inputPath];
+  };
 }

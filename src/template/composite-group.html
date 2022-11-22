@@ -1,11 +1,11 @@
-<div class="<%= group.isMasked ? 'masked' : '' %>" style="<%= css(style) %>"> <!-- start depth <%= depth %> -->
-<% for (const {group: subGroup, style: subStyle, type, url} of group.layers) {
-if (subGroup) { %>
-<%- include('composite-group.html', {depth: depth + 1, group: subGroup, style: subStyle}) %>
-<% } else if (type === 'image') { %>
-<img src="<%= url %>" />
-<% } else if (type === 'document') { %>
-<iframe src="<%= url %>"></iframe>
-<% }
-} %>
-</div> <!-- end depth <%= depth %> -->
+<div class="<%= group.isMasked ? 'masked' : '' %>" style="<%= css(style) %>">
+  <!-- start depth <%= depth %> -->
+  <% for (const {group: subGroup, style: subStyle, type, url} of group.layers) {
+  if (subGroup) { %> <%- include('composite-group.html', {depth: depth + 1,
+  group: subGroup, style: subStyle}) %> <% } else if (type === 'image') { %>
+  <img src="<%= url %>" />
+  <% } else if (type === 'document') { %>
+  <iframe src="<%= url %>"></iframe>
+  <% } } %>
+</div>
+<!-- end depth <%= depth %> -->

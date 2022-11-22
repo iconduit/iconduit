@@ -1,18 +1,18 @@
-import {resolveUrl} from '@iconduit/consumer'
+import { resolveUrl } from "@iconduit/consumer";
 
-import {getType} from './mime.js'
-import {renderSize, resolveSize} from './size.js'
-import {resolveColors} from './config/resolution.js'
+import { resolveColors } from "./config/resolution.js";
+import { getType } from "./mime.js";
+import { renderSize, resolveSize } from "./size.js";
 
-export function buildManifest (config, outputs, tags) {
-  const meta = {...config}
-  delete meta.colors
-  delete meta.definitions
-  delete meta.inputs
-  delete meta.outputs
-  delete meta.outputPath
-  delete meta.tags
-  delete meta.targets
+export function buildManifest(config, outputs, tags) {
+  const meta = { ...config };
+  delete meta.colors;
+  delete meta.definitions;
+  delete meta.inputs;
+  delete meta.outputs;
+  delete meta.outputPath;
+  delete meta.tags;
+  delete meta.targets;
 
   return {
     ...meta,
@@ -20,45 +20,48 @@ export function buildManifest (config, outputs, tags) {
     color: resolveColors(config),
     output: buildManifestOutput(config, outputs),
     tag: buildManifestTag(tags, outputs),
-  }
+  };
 }
 
-function buildManifestOutput (config, outputs) {
-  const {definitions: {size: sizeDefinitions}, urls: {output: outputBaseUrl}} = config
-  const output = {document: {}, image: {}}
+function buildManifestOutput(config, outputs) {
+  const {
+    definitions: { size: sizeDefinitions },
+    urls: { output: outputBaseUrl },
+  } = config;
+  const output = { document: {}, image: {} };
 
   for (const outputName in outputs) {
-    const {name: template, sizes} = outputs[outputName]
+    const { name: template, sizes } = outputs[outputName];
 
     if (sizes.length > 0) {
-      const imageSizes = {}
+      const imageSizes = {};
 
       for (const selector of sizes) {
-        const {key, ...size} = resolveSize(sizeDefinitions, selector)
-        const htmlSizes = renderSize('[dimensions]', size)
-        const filename = renderSize(template, size)
-        const type = getType(filename)
-        const url = resolveUrl(outputBaseUrl, filename)
+        const { key, ...size } = resolveSize(sizeDefinitions, selector);
+        const htmlSizes = renderSize("[dimensions]", size);
+        const filename = renderSize(template, size);
+        const type = getType(filename);
+        const url = resolveUrl(outputBaseUrl, filename);
 
-        imageSizes[key] = {htmlSizes, path: filename, size, type, url}
+        imageSizes[key] = { htmlSizes, path: filename, size, type, url };
       }
 
-      output.image[outputName] = imageContainerSize(imageSizes) || imageSizes
+      output.image[outputName] = imageContainerSize(imageSizes) || imageSizes;
     } else {
-      const type = getType(template)
-      const url = resolveUrl(outputBaseUrl, template)
+      const type = getType(template);
+      const url = resolveUrl(outputBaseUrl, template);
 
-      output.document[outputName] = {path: template, type, url}
+      output.document[outputName] = { path: template, type, url };
     }
   }
 
-  return output
+  return output;
 }
 
-function imageContainerSize (sizesByKey) {
-  const sizes = Object.values(sizesByKey)
+function imageContainerSize(sizesByKey) {
+  const sizes = Object.values(sizesByKey);
 
-  if (sizes.length < 2) return null
+  if (sizes.length < 2) return null;
 
   const {
     htmlSizes: firstHtmlSizes,
@@ -66,7 +69,7 @@ function imageContainerSize (sizesByKey) {
     size: firstSize,
     type,
     url: firstUrl,
-  } = sizes.shift()
+  } = sizes.shift();
 
   const containerSize = {
     path: firstPath,
@@ -74,71 +77,80 @@ function imageContainerSize (sizesByKey) {
     sizes: [firstSize],
     type,
     url: firstUrl,
+  };
+  const containerHtmlSizes = new Set([firstHtmlSizes]);
+
+  for (const { htmlSizes, path, size, url } of sizes) {
+    if (path !== containerSize.path || url !== containerSize.url) return null;
+
+    containerHtmlSizes.add(htmlSizes);
+    containerSize.sizes.push(size);
+
+    if (compareSize(containerSize.size, size) > 0) containerSize.size = size;
   }
-  const containerHtmlSizes = new Set([firstHtmlSizes])
 
-  for (const {htmlSizes, path, size, url} of sizes) {
-    if (path !== containerSize.path || url !== containerSize.url) return null
+  containerSize.htmlSizes = Array.from(containerHtmlSizes)
+    .sort((a, b) => {
+      return parseInt(a, 10) - parseInt(b, 10);
+    })
+    .join(" ");
 
-    containerHtmlSizes.add(htmlSizes)
-    containerSize.sizes.push(size)
-
-    if (compareSize(containerSize.size, size) > 0) containerSize.size = size
-  }
-
-  containerSize.htmlSizes = Array.from(containerHtmlSizes).sort((a, b) => {
-    return parseInt(a, 10) - parseInt(b, 10)
-  }).join(' ')
-
-  return {container: containerSize}
+  return { container: containerSize };
 }
 
-function compareSize (a, b) {
-  const widthDelta = b.width - a.width
+function compareSize(a, b) {
+  const widthDelta = b.width - a.width;
 
-  if (widthDelta !== 0) return widthDelta
+  if (widthDelta !== 0) return widthDelta;
 
-  return b.height - a.height
+  return b.height - a.height;
 }
 
-function buildManifestTag (tags, outputs) {
-  const tag = {}
+function buildManifestTag(tags, outputs) {
+  const tag = {};
 
   for (const tagName in tags) {
-    const setDefinition = tags[tagName]
+    const setDefinition = tags[tagName];
 
     for (const sectionName in setDefinition) {
-      tag[sectionName] = (tag[sectionName] || []).concat(setDefinition[sectionName])
+      tag[sectionName] = (tag[sectionName] || []).concat(
+        setDefinition[sectionName]
+      );
     }
   }
 
   for (const outputName in outputs) {
-    const {sizes, tags: outputTags} = outputs[outputName]
-    const nameKey = sizes.length > 0 ? 'imageName' : 'documentName'
+    const { sizes, tags: outputTags } = outputs[outputName];
+    const nameKey = sizes.length > 0 ? "imageName" : "documentName";
 
     for (const tagName in outputTags) {
-      const setDefinition = outputTags[tagName]
+      const setDefinition = outputTags[tagName];
 
       for (const sectionName in setDefinition) {
         tag[sectionName] = (tag[sectionName] || []).concat(
-          setDefinition[sectionName].map(tagDefinition => ({[nameKey]: outputName, ...tagDefinition})),
-        )
+          setDefinition[sectionName].map((tagDefinition) => ({
+            [nameKey]: outputName,
+            ...tagDefinition,
+          }))
+        );
       }
     }
   }
 
   for (const sectionName in tag) {
-    const sectionTags = tag[sectionName]
+    const sectionTags = tag[sectionName];
 
     sectionTags.sort((a, b) => {
-      const {sortWeight: weightA} = a
-      const {sortWeight: weightB} = b
+      const { sortWeight: weightA } = a;
+      const { sortWeight: weightB } = b;
 
-      return weightA - weightB
-    })
+      return weightA - weightB;
+    });
 
-    tag[sectionName] = sectionTags.map(({sortWeight, ...tagDefinition}) => tagDefinition)
+    tag[sectionName] = sectionTags.map(
+      ({ sortWeight, ...tagDefinition }) => tagDefinition
+    );
   }
 
-  return tag
+  return tag;
 }

@@ -1,6 +1,5 @@
 /.makefiles/
 /artifacts/
 /node_modules/
-/src/input/*.ejs
 /src/input/*.html
 /test/fixture/

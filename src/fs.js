@@ -1,15 +1,15 @@
-import fs from 'fs'
-import rmfr from 'rmfr'
-import {join} from 'path'
-import {promisify} from 'util'
-import {tmpdir} from 'os'
+import fs from "fs";
+import { tmpdir } from "os";
+import { join } from "path";
+import rmfr from "rmfr";
+import { promisify } from "util";
 
-export function createFileSystem (env, logger) {
-  const access = promisify(fs.access)
-  const mkdir = promisify(fs.mkdir)
-  const mkdtemp = promisify(fs.mkdtemp)
-  const readFile = promisify(fs.readFile)
-  const writeFile = promisify(fs.writeFile)
+export function createFileSystem(env, logger) {
+  const access = promisify(fs.access);
+  const mkdir = promisify(fs.mkdir);
+  const mkdtemp = promisify(fs.mkdtemp);
+  const readFile = promisify(fs.readFile);
+  const writeFile = promisify(fs.writeFile);
 
   return {
     access,
@@ -19,23 +19,23 @@ export function createFileSystem (env, logger) {
     rmfr,
     withTempDir,
     writeFile,
-  }
+  };
 
-  async function withTempDir (fn) {
-    const {KEEP_TEMP_DIRS = ''} = env
-    const tempPath = await mkdtemp(join(tmpdir(), 'iconduit-'))
-    let result
+  async function withTempDir(fn) {
+    const { KEEP_TEMP_DIRS = "" } = env;
+    const tempPath = await mkdtemp(join(tmpdir(), "iconduit-"));
+    let result;
 
     try {
-      result = await fn(tempPath)
+      result = await fn(tempPath);
     } finally {
       if (KEEP_TEMP_DIRS) {
-        logger.warn(`Keeping temporary directory ${tempPath}`)
+        logger.warn(`Keeping temporary directory ${tempPath}`);
       } else {
-        await rmfr(tempPath)
+        await rmfr(tempPath);
       }
     }
 
-    return result
+    return result;
   }
 }

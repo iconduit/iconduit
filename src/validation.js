@@ -1,45 +1,48 @@
-import Ajv from 'ajv'
-import ajvFormats from 'ajv-formats'
-import escapeString from 'js-string-escape'
+import Ajv from "ajv";
+import ajvFormats from "ajv-formats";
+import escapeString from "js-string-escape";
 
-export function createValidator (schema) {
-  const ajv = new Ajv({allErrors: true, useDefaults: true})
-  ajvFormats(ajv)
+export function createValidator(schema) {
+  const ajv = new Ajv({ allErrors: true, useDefaults: true });
+  ajvFormats(ajv);
 
-  const validator = ajv.compile(schema)
+  const validator = ajv.compile(schema);
 
-  return function validate (data) {
-    const isValid = validator(data)
+  return function validate(data) {
+    const isValid = validator(data);
 
-    if (isValid) return data
+    if (isValid) return data;
 
-    const {errors} = validator
+    const { errors } = validator;
 
-    const error = new Error(renderErrors(errors))
-    error.errors = errors
+    const error = new Error(renderErrors(errors));
+    error.errors = errors;
 
-    throw error
-  }
+    throw error;
+  };
 }
 
-function renderErrors (errors) {
-  return `  - ${errors.map(renderError).join('\n  - ')}\n`
+function renderErrors(errors) {
+  return `  - ${errors.map(renderError).join("\n  - ")}\n`;
 }
 
-function renderError (error) {
-  const {instancePath, keyword, params} = error
-  let message
+function renderError(error) {
+  const { instancePath, keyword, params } = error;
+  let message;
 
   switch (keyword) {
-    case 'additionalProperties': {
-      const {additionalProperty} = params
-      message = `should NOT have additional property '${escapeString(additionalProperty)}'`
+    case "additionalProperties": {
+      const { additionalProperty } = params;
+      message = `should NOT have additional property '${escapeString(
+        additionalProperty
+      )}'`;
 
-      break
+      break;
     }
 
-    default: message = error.message
+    default:
+      message = error.message;
   }
 
-  return `${instancePath} ${message}`
+  return `${instancePath} ${message}`;
 }

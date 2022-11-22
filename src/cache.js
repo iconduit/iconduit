@@ -1,26 +1,26 @@
-export function createCacheFactory (logger) {
-  return function createCache () {
-    const map = {}
+export function createCacheFactory(logger) {
+  return function createCache() {
+    const map = {};
 
-    return async function produceCached (key, fn) {
-      const cached = map[key]
+    return async function produceCached(key, fn) {
+      const cached = map[key];
 
       if (cached) {
-        logger.debug(`Cache hit ${key}`)
+        logger.debug(`Cache hit ${key}`);
 
-        return cached
+        return cached;
       }
 
-      logger.debug(`Cache miss ${key}`)
+      logger.debug(`Cache miss ${key}`);
 
-      const promise = Promise.resolve(fn())
-      map[key] = promise
+      const promise = Promise.resolve(fn());
+      map[key] = promise;
 
-      const result = await promise
+      const result = await promise;
 
-      logger.debug(`Caching ${key} as ${JSON.stringify(result)}`)
+      logger.debug(`Caching ${key} as ${JSON.stringify(result)}`);
 
-      return promise
-    }
-  }
+      return promise;
+    };
+  };
 }

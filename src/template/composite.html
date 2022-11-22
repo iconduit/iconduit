@@ -1,47 +1,46 @@
 <html>
-<head>
+  <head>
+    <style>
+      body {
+        margin: 0;
+        background-color: <%- isTransparent ? 'transparent' : 'black' %>;
+      }
 
-<style>
-  body {
-    margin: 0;
-    background-color: <%- isTransparent ? 'transparent' : 'black' %>;
-  }
+      #viewport {
+        overflow: hidden;
+      }
 
-  #viewport {
-    overflow: hidden;
-  }
+      #viewport div {
+        width: 100vw;
+        height: 100vh;
+        display: grid;
+        grid-template-areas: "viewport";
+      }
 
-  #viewport div {
-    width: 100vw;
-    height: 100vh;
-    display: grid;
-    grid-template-areas: "viewport";
-  }
+      #viewport div > * {
+        grid-area: viewport;
+        width: 100vw;
+        height: 100vh;
+        border: none;
+        isolation: isolate;
+      }
 
-  #viewport div > * {
-    grid-area: viewport;
-    width: 100vw;
-    height: 100vh;
-    border: none;
-    isolation: isolate;
-  }
+      .masked {
+        -webkit-mask-image: url(<%- maskUrl %>);
+      }
+    </style>
 
-  .masked {
-    -webkit-mask-image: url(<%- maskUrl %>);
-  }
-</style>
-
-<script>
-  window.ready =
-    fn => { document.readyState !== 'loading' ? fn() : document.addEventListener('DOMContentLoaded', fn) }
-</script>
-
-</head>
-<body>
-
-<div id="viewport" class="<%= isMasked ? 'masked' : '' %>">
-<%- include('composite-group.html', {depth: 0, group, style: {}}) %>
-</div>
-
-</body>
+    <script>
+      window.ready = (fn) => {
+        document.readyState !== "loading"
+          ? fn()
+          : document.addEventListener("DOMContentLoaded", fn);
+      };
+    </script>
+  </head>
+  <body>
+    <div id="viewport" class="<%= isMasked ? 'masked' : '' %>">
+      <%- include('composite-group.html', {depth: 0, group, style: {}}) %>
+    </div>
+  </body>
 </html>

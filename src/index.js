@@ -1,5 +1,5 @@
-import {services} from './services.js'
+import services from "./services.js";
 
-export async function buildConfigs (options, ...buildPaths) {
-  return services.buildConfigs(options, ...buildPaths)
+export async function buildConfigs(options, ...buildPaths) {
+  return services.buildConfigs(options, ...buildPaths);
 }

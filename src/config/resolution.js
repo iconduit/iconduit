@@ -1,14 +1,17 @@
-export function resolveColors (config) {
-  const {colors, definitions: {color}} = config
+export function resolveColors(config) {
+  const {
+    colors,
+    definitions: { color },
+  } = config;
 
-  const resolved = {}
+  const resolved = {};
 
   for (const colorType in colors) {
-    const name = colors[colorType]
-    const definition = color[name]
+    const name = colors[colorType];
+    const definition = color[name];
 
-    resolved[colorType] = definition || name
+    resolved[colorType] = definition || name;
   }
 
-  return resolved
+  return resolved;
 }

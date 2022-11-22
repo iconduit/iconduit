@@ -1,10 +1,19 @@
-import {FILE_NAME_TOKEN_PATTERN, SIZE_SELECTOR_PATTERN} from './constant.js'
+import { FILE_NAME_TOKEN_PATTERN, SIZE_SELECTOR_PATTERN } from "./constant.js";
 
-export function applyMultiplier (definition, multiplier) {
-  const {key, width, height, deviceWidth, deviceHeight, orientation, pixelDensity, pixelRatio} = definition
+export function applyMultiplier(definition, multiplier) {
+  const {
+    key,
+    width,
+    height,
+    deviceWidth,
+    deviceHeight,
+    orientation,
+    pixelDensity,
+    pixelRatio,
+  } = definition;
 
-  const [keyName] = parseSelector(key)
-  const keyAtMultiplierX = multiplier === 1 ? '' : `@${multiplier}x`
+  const [keyName] = parseSelector(key);
+  const keyAtMultiplierX = multiplier === 1 ? "" : `@${multiplier}x`;
 
   return {
     key: `${keyName}${keyAtMultiplierX}`,
@@ -15,53 +24,63 @@ export function applyMultiplier (definition, multiplier) {
     orientation,
     pixelDensity,
     pixelRatio: pixelRatio * multiplier,
-  }
+  };
 }
 
-export function dipSize (size) {
-  const {width, height, pixelRatio} = size
+export function dipSize(size) {
+  const { width, height, pixelRatio } = size;
 
   return {
     width: width / pixelRatio,
     height: height / pixelRatio,
-  }
+  };
 }
 
-export function groupSizes (template, sizes) {
-  if (sizes.length < 1) return {[template]: []}
+export function groupSizes(template, sizes) {
+  if (sizes.length < 1) return { [template]: [] };
 
-  const map = {}
+  const map = {};
 
   for (const size of sizes) {
-    const name = renderSize(template, size)
-    const existing = map[name]
+    const name = renderSize(template, size);
+    const existing = map[name];
 
     if (existing) {
-      existing.push(size)
+      existing.push(size);
     } else {
-      map[name] = [size]
+      map[name] = [size];
     }
   }
 
-  return map
+  return map;
 }
 
-export function parseSelector (selector) {
-  const match = SIZE_SELECTOR_PATTERN.exec(selector)
+export function parseSelector(selector) {
+  const match = SIZE_SELECTOR_PATTERN.exec(selector);
 
-  if (!match) throw new Error(`Invalid size selector ${JSON.stringify(selector)}`)
+  if (!match)
+    throw new Error(`Invalid size selector ${JSON.stringify(selector)}`);
 
-  const [, name, multiplier] = match
+  const [, name, multiplier] = match;
 
-  return [name, multiplier ? parseInt(multiplier, 10) : null]
+  return [name, multiplier ? parseInt(multiplier, 10) : null];
 }
 
-export function renderSize (template, size) {
-  const {key, width, height, deviceWidth, deviceHeight, orientation, pixelDensity, pixelRatio} = size
-  const {width: dipWidth, height: dipHeight} = dipSize(size)
+export function renderSize(template, size) {
+  const {
+    key,
+    width,
+    height,
+    deviceWidth,
+    deviceHeight,
+    orientation,
+    pixelDensity,
+    pixelRatio,
+  } = size;
+  const { width: dipWidth, height: dipHeight } = dipSize(size);
 
   const replacements = {
-    atPixelRatioX: pixelRatio === 1 ? '' : `@${pixelRatio}x`,
+    atPixelRatioX: pixelRatio === 1 ? "" : `@${pixelRatio}x`,
     deviceHeight,
     deviceWidth,
     dimensions: `${width}x${height}`,
@@ -74,31 +93,36 @@ export function renderSize (template, size) {
     pixelDensity: pixelDensity.toString(),
     pixelRatio: pixelRatio.toString(),
     width: width.toString(),
-  }
+  };
 
   return template.replace(FILE_NAME_TOKEN_PATTERN, (match, key) => {
-    return replacements[key] || ''
-  })
+    return replacements[key] || "";
+  });
 }
 
-export function resolveSize (definitions, selector) {
-  const [name, multiplier] = parseSelector(selector)
-  const definition = definitions[name]
+export function resolveSize(definitions, selector) {
+  const [name, multiplier] = parseSelector(selector);
+  const definition = definitions[name];
 
-  if (!definition) throw new Error(`Unable to find definition for size.${name}`)
+  if (!definition)
+    throw new Error(`Unable to find definition for size.${name}`);
 
-  return multiplier === null ? definition : applyMultiplier(definition, multiplier)
+  return multiplier === null
+    ? definition
+    : applyMultiplier(definition, multiplier);
 }
 
-export function resolveSizesForOutputs (config, outputs) {
-  const {definitions: {size: definitions}} = config
-  const sizes = {}
+export function resolveSizesForOutputs(config, outputs) {
+  const {
+    definitions: { size: definitions },
+  } = config;
+  const sizes = {};
 
   for (const name in outputs) {
-    const {sizes: outputSizes} = outputs[name]
+    const { sizes: outputSizes } = outputs[name];
 
-    sizes[name] = outputSizes.map(resolveSize.bind(null, definitions))
+    sizes[name] = outputSizes.map(resolveSize.bind(null, definitions));
   }
 
-  return sizes
+  return sizes;
 }

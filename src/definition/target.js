@@ -1,140 +1,93 @@
 export default {
   all: {
-    outputs: [
-      'iconduitConsumerCjs',
-      'iconduitConsumerMjs',
-      'iconduitManifest',
-    ],
+    outputs: ["iconduitConsumerCjs", "iconduitConsumerMjs", "iconduitManifest"],
   },
   browser: {
     all: {
       outputs: [
-        'faviconIco',
-        'faviconPng',
-        'indexHtml',
-        'notificationBadge',
-        'notificationIcon',
-        'serviceWorker',
-        'tagsHtml',
-        'webAppIconMaskable',
-        'webAppIconMasked',
-        'webAppManifest',
+        "faviconIco",
+        "faviconPng",
+        "indexHtml",
+        "notificationBadge",
+        "notificationIcon",
+        "serviceWorker",
+        "tagsHtml",
+        "webAppIconMaskable",
+        "webAppIconMasked",
+        "webAppManifest",
       ],
-      tags: [
-        'applicationName',
-        'description',
-        'themeColor',
-        'viewport',
-      ],
+      tags: ["applicationName", "description", "themeColor", "viewport"],
     },
     and_chr: {
-      tags: [
-        'mobileWebAppCapable',
-      ],
+      tags: ["mobileWebAppCapable"],
     },
     edge: {
       outputs: [
-        'browserconfigXml',
-        'windowsTileLarge',
-        'windowsTileMedium',
-        'windowsTileSmall',
-        'windowsTileWide',
+        "browserconfigXml",
+        "windowsTileLarge",
+        "windowsTileMedium",
+        "windowsTileSmall",
+        "windowsTileWide",
       ],
-      tags: [
-        'msapplicationTileColor',
-      ],
+      tags: ["msapplicationTileColor"],
     },
     ie: {
       outputs: [
-        'browserconfigXml',
-        'windowsTileLarge',
-        'windowsTileMedium',
-        'windowsTileSmall',
-        'windowsTileWide',
+        "browserconfigXml",
+        "windowsTileLarge",
+        "windowsTileMedium",
+        "windowsTileSmall",
+        "windowsTileWide",
       ],
-      tags: [
-        'msapplicationTileColor',
-      ],
+      tags: ["msapplicationTileColor"],
     },
     ios_saf: {
-      outputs: [
-        'safariMaskIcon',
-      ],
-      tags: [
-        'appleItunesApp',
-        'appleMobile',
-      ],
+      outputs: ["safariMaskIcon"],
+      tags: ["appleItunesApp", "appleMobile"],
     },
     safari: {
-      outputs: [
-        'safariMaskIcon',
-      ],
+      outputs: ["safariMaskIcon"],
     },
   },
   installer: {
     dmg: {
-      outputs: [
-        'dmgBackground',
-      ],
+      outputs: ["dmgBackground"],
     },
   },
   os: {
     ios: {
       outputs: [
-        'appleTouchIcon',
-        'appleTouchStartup',
-        'iosAppIcon',
-        'iosAppIconContents',
+        "appleTouchIcon",
+        "appleTouchStartup",
+        "iosAppIcon",
+        "iosAppIconContents",
       ],
     },
     macos: {
-      outputs: [
-        'macosIcns',
-      ],
+      outputs: ["macosIcns"],
     },
     windows: {
-      outputs: [
-        'windowsIco',
-      ],
+      outputs: ["windowsIco"],
     },
   },
   web: {
     facebook: {
-      outputs: [
-        'facebookAppIcon',
-        'openGraphImage',
-      ],
-      tags: [
-        'appLinks',
-        'facebook',
-        'openGraph',
-      ],
+      outputs: ["facebookAppIcon", "openGraphImage"],
+      tags: ["appLinks", "facebook", "openGraph"],
     },
     github: {
-      outputs: [
-        'githubAccountIcon',
-      ],
+      outputs: ["githubAccountIcon"],
     },
     pinterest: {
-      tags: [
-        'appLinks',
-      ],
+      tags: ["appLinks"],
     },
     reddit: {
-      outputs: [
-        'openGraphImage',
-      ],
-      tags: [
-        'openGraph',
-      ],
+      outputs: ["openGraphImage"],
+      tags: ["openGraph"],
     },
     twitter: {
-      outputs: [
-        'twitterCardImage',
-      ],
-      tags: [
-        'twitter',
-      ],
+      outputs: ["twitterCardImage"],
+      tags: ["twitter"],
     },
   },
-}
+};
