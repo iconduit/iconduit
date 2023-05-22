@@ -52,7 +52,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jest": "^27.0.1",
-    "eslint-plugin-n": "^15.2.4",
+    "eslint-plugin-n": "^16.0.0",
     "eslint-plugin-promise": "^6.0.0",
     "prettier": "^2.7.1",
     "prettier-plugin-organize-imports": "^3.2.0",
