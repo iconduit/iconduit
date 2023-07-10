@@ -27,7 +27,7 @@ export function createBuilder(
   logger,
   minifyImage,
   readTemplate,
-  screenshot
+  screenshot,
 ) {
   const { now } = clock;
   const { mkdir, readFile, writeFile } = fileSystem;
@@ -58,7 +58,7 @@ export function createBuilder(
       const { input: inputName, name: fileNameTemplate } = outputs[outputName];
       const sizesByFilename = groupSizes(
         fileNameTemplate,
-        sizesByOutput[outputName]
+        sizesByOutput[outputName],
       );
       const cwdPath = cwd();
 
@@ -67,7 +67,7 @@ export function createBuilder(
           filename,
           inputName,
           outputName,
-          sizesByFilename[filename]
+          sizesByFilename[filename],
         );
         const fullOutputPath = join(outputPath, filename);
 
@@ -75,7 +75,7 @@ export function createBuilder(
         await writeFile(fullOutputPath, content);
 
         logger.info(
-          `Produced ${relative(cwdPath, fullOutputPath)} from ${inputName}`
+          `Produced ${relative(cwdPath, fullOutputPath)} from ${inputName}`,
         );
       }
     }
@@ -84,7 +84,7 @@ export function createBuilder(
       filename,
       inputName,
       outputName,
-      outputSizes
+      outputSizes,
     ) {
       switch (extname(filename)) {
         case ".png":
@@ -92,7 +92,7 @@ export function createBuilder(
             inputName,
             outputName,
             outputSizes,
-            IMAGE_TYPE_PNG
+            IMAGE_TYPE_PNG,
           );
 
         case ".jpeg":
@@ -101,7 +101,7 @@ export function createBuilder(
             inputName,
             outputName,
             outputSizes,
-            IMAGE_TYPE_JPEG
+            IMAGE_TYPE_JPEG,
           );
 
         case ".icns":
@@ -122,11 +122,11 @@ export function createBuilder(
         outputSizes.map(async (size) => {
           const content = await minifyImage(
             IMAGE_TYPE_PNG,
-            await buildImage(inputName, outputName, size, IMAGE_TYPE_PNG)
+            await buildImage(inputName, outputName, size, IMAGE_TYPE_PNG),
           );
 
           return { content, size };
-        })
+        }),
       );
 
       return toIcns(logger, entries);
@@ -137,11 +137,11 @@ export function createBuilder(
         outputSizes.map(async (size) => {
           const content = await minifyImage(
             IMAGE_TYPE_ICO_PNG,
-            await buildImage(inputName, outputName, size, IMAGE_TYPE_PNG)
+            await buildImage(inputName, outputName, size, IMAGE_TYPE_PNG),
           );
 
           return { content, size };
-        })
+        }),
       );
 
       return toIco(logger, entries);
@@ -151,13 +151,13 @@ export function createBuilder(
       inputName,
       outputName,
       outputSizes,
-      imageType
+      imageType,
     ) {
       const size = assertFirstSize(outputSizes, outputName);
 
       return minifyImage(
         imageType,
-        await buildImage(inputName, outputName, size, imageType)
+        await buildImage(inputName, outputName, size, imageType),
       );
     }
 
@@ -222,7 +222,7 @@ export function createConfigBuilder(
   browserManager,
   build,
   fileSystem,
-  readConfig
+  readConfig,
 ) {
   const { withTempDir } = fileSystem;
   const { run } = browserManager;

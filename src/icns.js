@@ -27,7 +27,7 @@ export async function toIcns(logger, entries) {
     const content = entriesBySize[`${dimension}.${pixelRatio}`];
     if (!content)
       return logger.debug(
-        `No ICNS entry supplied for ${dimension}@${pixelRatio}x`
+        `No ICNS entry supplied for ${dimension}@${pixelRatio}x`,
       );
 
     logger.debug(`Adding ICNS PNG entry for ${dimension}@${pixelRatio}x`);
@@ -39,7 +39,7 @@ export async function toIcns(logger, entries) {
 
     if (!content)
       return logger.debug(
-        `No ICNS entry supplied for ${dimension}@${pixelRatio}x`
+        `No ICNS entry supplied for ${dimension}@${pixelRatio}x`,
       );
 
     const png = PNG.sync.read(content);

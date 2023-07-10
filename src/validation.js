@@ -34,7 +34,7 @@ function renderError(error) {
     case "additionalProperties": {
       const { additionalProperty } = params;
       message = `should NOT have additional property '${escapeString(
-        additionalProperty
+        additionalProperty,
       )}'`;
 
       break;

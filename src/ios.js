@@ -35,7 +35,7 @@ function buildImages(consumer) {
       if (a.pixelRatio > b.pixelRatio) return 1;
 
       return 0;
-    }
+    },
   );
 
   for (const [key, entry] of entries) {

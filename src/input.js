@@ -23,13 +23,13 @@ export function createInputBuilderFactory(
   fileSystem,
   readInternalTemplate,
   readTemplate,
-  transformSvg
+  transformSvg,
 ) {
   const { writeFile } = fileSystem;
 
   const { resolveAsync: resolveDefaultInput } = createInputResolver(
     defaultInputDir,
-    defaultInputDir
+    defaultInputDir,
   );
 
   return function createInputBuilder(config, options) {
@@ -44,7 +44,7 @@ export function createInputBuilderFactory(
     const produceCached = createCache();
     const { resolveAsync: resolveUserInput } = createInputResolver(
       userInputDir,
-      configPath
+      configPath,
     );
     const color = resolveColors(config);
 
@@ -76,7 +76,7 @@ export function createInputBuilderFactory(
       async function deriveSource() {
         if (!inputDefinition)
           throw new Error(
-            `Missing definition for input.${inputName}:\n${renderStack(stack)}`
+            `Missing definition for input.${inputName}:\n${renderStack(stack)}`,
           );
 
         const { strategy } = inputDefinition;
@@ -96,7 +96,7 @@ export function createInputBuilderFactory(
       async function deriveCompositeSource() {
         if (inputType === INPUT_TYPE_SVG)
           throw new Error(
-            `SVG inputs cannot be composites:\n${renderStack(stack)}`
+            `SVG inputs cannot be composites:\n${renderStack(stack)}`,
           );
 
         const maskUrl = fileUrl(
@@ -104,7 +104,7 @@ export function createInputBuilderFactory(
             name: maskName,
             type: INPUT_TYPE_SVG,
             stack: subStack,
-          })
+          }),
         );
 
         const renderedPath = join(tempPath, `${cacheKey}.composite.html`);
@@ -134,7 +134,7 @@ export function createInputBuilderFactory(
 
         if (!styleDefinition)
           throw new Error(
-            `Missing definition for style.${style}:\n${renderStack(stack)}`
+            `Missing definition for style.${style}:\n${renderStack(stack)}`,
           );
 
         const originalUrl = fileUrl(
@@ -142,7 +142,7 @@ export function createInputBuilderFactory(
             name: transformInputName,
             type: INPUT_TYPE_SVG,
             stack: subStack,
-          })
+          }),
         );
         const transformedPath = join(tempPath, `${cacheKey}.transformed.svg`);
 
@@ -212,7 +212,7 @@ export function createInputBuilderFactory(
 
             if (!styleDefinition)
               throw new Error(
-                `Missing definition for style.${style}:\n${renderStack(stack)}`
+                `Missing definition for style.${style}:\n${renderStack(stack)}`,
               );
 
             const hasStyle = Object.keys(styleDefinition).length > 0;
@@ -224,7 +224,7 @@ export function createInputBuilderFactory(
             if (hasStyle) return { style: styleDefinition, group };
 
             return group.layers;
-          })
+          }),
         );
 
         return { isMasked: isGroupMasked, layers: flat(layers) };
@@ -261,7 +261,7 @@ export function createInputBuilderFactory(
 
         if (!resolvedPath) {
           throw new Error(
-            `Unable to resolve input for ${inputName} at ${userModuleId} from ${userInputDir}`
+            `Unable to resolve input for ${inputName} at ${userModuleId} from ${userInputDir}`,
           );
         }
 
@@ -280,11 +280,11 @@ export function createInputBuilderFactory(
     async function buildDocumentInput(inputName, documentPath) {
       const renderedPath = join(
         tempPath,
-        `input.${inputName}.rendered${extname(documentPath)}`
+        `input.${inputName}.rendered${extname(documentPath)}`,
       );
       const { resolveSync: resolveTemplateInput } = createInputResolver(
         dirname(documentPath),
-        documentPath
+        documentPath,
       );
 
       function url(moduleId) {
@@ -310,7 +310,7 @@ function assertNonRecursive(request) {
   for (const frame of stack) {
     if (seen.includes(frame))
       throw new Error(
-        `Recursive definition found for input.${name}:\n${renderStack(stack)}`
+        `Recursive definition found for input.${name}:\n${renderStack(stack)}`,
       );
 
     seen.push(frame);

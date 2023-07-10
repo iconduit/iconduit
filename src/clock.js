@@ -18,7 +18,7 @@ function withTimeout(delay, fn) {
       status.isTimeout = true;
 
       const error = new Error(
-        `Operation ${fn.name || "(anonymous)"} timed out`
+        `Operation ${fn.name || "(anonymous)"} timed out`,
       );
       error.isTimeout = true;
 

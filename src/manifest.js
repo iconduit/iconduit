@@ -114,7 +114,7 @@ function buildManifestTag(tags, outputs) {
 
     for (const sectionName in setDefinition) {
       tag[sectionName] = (tag[sectionName] || []).concat(
-        setDefinition[sectionName]
+        setDefinition[sectionName],
       );
     }
   }
@@ -131,7 +131,7 @@ function buildManifestTag(tags, outputs) {
           setDefinition[sectionName].map((tagDefinition) => ({
             [nameKey]: outputName,
             ...tagDefinition,
-          }))
+          })),
         );
       }
     }
@@ -148,7 +148,7 @@ function buildManifestTag(tags, outputs) {
     });
 
     tag[sectionName] = sectionTags.map(
-      ({ sortWeight, ...tagDefinition }) => tagDefinition
+      ({ sortWeight, ...tagDefinition }) => tagDefinition,
     );
   }
 

@@ -39,7 +39,7 @@ export function buildWebAppManifest(consumer) {
       webManifest,
       "prefer_related_applications",
       preferNative,
-      false
+      false,
     );
   }
 

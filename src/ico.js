@@ -5,8 +5,8 @@ export function toIco(logger, entries) {
   const ico = Buffer.alloc(
     entries.reduce(
       (total, { content: { length } }) => total + length + ICONDIRENTRY_SIZE,
-      ICONDIR_SIZE
-    )
+      ICONDIR_SIZE,
+    ),
   );
 
   // ICONDIR
@@ -18,7 +18,7 @@ export function toIco(logger, entries) {
   let imageOffset = ICONDIR_SIZE + ICONDIRENTRY_SIZE * entries.length;
 
   entries.sort(
-    ({ content: { length: a } }, { content: { length: b } }) => a - b
+    ({ content: { length: a } }, { content: { length: b } }) => a - b,
   );
 
   for (const {

@@ -35,7 +35,7 @@ export function createInputResolverFactory(logger) {
             .then(
               (resolvedPath) => {
                 logger.debug(
-                  `Module ID ${id} resolved to ${resolvedPath} in ${basePath}`
+                  `Module ID ${id} resolved to ${resolvedPath} in ${basePath}`,
                 );
 
                 return resolvedPath;
@@ -44,7 +44,7 @@ export function createInputResolverFactory(logger) {
                 logger.debug(`Module ID ${id} did not resolve in ${basePath}`);
 
                 return null;
-              }
+              },
             )
             .then((result) => {
               results[id] = result;
@@ -67,7 +67,7 @@ export function createInputResolverFactory(logger) {
           try {
             results[id] = resolve.sync(id, options);
             logger.debug(
-              `Module ID ${id} resolved to ${results[id]} in ${basePath}`
+              `Module ID ${id} resolved to ${results[id]} in ${basePath}`,
             );
           } catch (error) {
             logger.debug(`Module ID ${id} did not resolve in ${basePath}`);

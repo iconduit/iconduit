@@ -28,7 +28,7 @@ bottle.serviceFactory(
   createBrowserManager,
   "env",
   "logger",
-  "retryOperation"
+  "retryOperation",
 );
 bottle.serviceFactory(
   "build",
@@ -40,7 +40,7 @@ bottle.serviceFactory(
   "logger",
   "minifyImage",
   "readTemplate",
-  "screenshot"
+  "screenshot",
 );
 bottle.serviceFactory(
   "buildConfigs",
@@ -48,7 +48,7 @@ bottle.serviceFactory(
   "browserManager",
   "build",
   "fileSystem",
-  "readConfig"
+  "readConfig",
 );
 bottle.constant("clock", systemClock);
 bottle.serviceFactory("validateConfig", createConfigValidator);
@@ -62,12 +62,12 @@ bottle.serviceFactory(
   "fileSystem",
   "readInternalTemplate",
   "readTemplate",
-  "transformSvg"
+  "transformSvg",
 );
 bottle.serviceFactory(
   "createInputResolver",
   createInputResolverFactory,
-  "logger"
+  "logger",
 );
 bottle.constant("cwd", process.cwd.bind(process));
 bottle.constant("defaultInputDir", join(__dirname, "input"));
@@ -78,40 +78,40 @@ bottle.serviceFactory("minifyImage", createImageMinifier);
 bottle.serviceFactory(
   "normalizeConfig",
   createConfigNormalizer,
-  "validateConfig"
+  "validateConfig",
 );
 bottle.serviceFactory(
   "readConfig",
   createConfigReader,
   "cwd",
   "fileSystem",
-  "normalizeConfig"
+  "normalizeConfig",
 );
 bottle.serviceFactory(
   "readInternalTemplate",
   createBoundTemplateReader,
   "fileSystem",
   "cwd",
-  "templateDir"
+  "templateDir",
 );
 bottle.serviceFactory(
   "readTemplate",
   createTemplateReader,
   "fileSystem",
-  "cwd"
+  "cwd",
 );
 bottle.serviceFactory(
   "retryOperation",
   createOperationRunner,
   "clock",
   "env",
-  "logger"
+  "logger",
 );
 bottle.serviceFactory("screenshot", createScreenshotFactory, "withBrowserPage");
 bottle.constant("templateDir", join(__dirname, "template"));
 bottle.serviceFactory("transformSvg", createSvgTransformer, "withBrowserPage");
 bottle.factory("withBrowserPage", ({ browserManager }) =>
-  browserManager.withPage.bind(browserManager)
+  browserManager.withPage.bind(browserManager),
 );
 
 export default bottle.container;

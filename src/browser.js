@@ -39,7 +39,7 @@ export function createBrowserManager(env, logger, retryOperation) {
           page.setDefaultTimeout(timeout);
 
           return page;
-        })
+        }),
       );
 
       available = new Set(pages);

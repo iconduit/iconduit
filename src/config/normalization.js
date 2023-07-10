@@ -30,8 +30,8 @@ export function createConfigNormalizer(validateConfig) {
           ...config,
 
           definitions: mergeDefinitions(definitions),
-        })
-      )
+        }),
+      ),
     );
   };
 }
@@ -146,7 +146,7 @@ function buildAutoSizes(display, device) {
       };
     } else {
       throw new Error(
-        `Invalid value for definitions.display.${displayName}.orientation`
+        `Invalid value for definitions.display.${displayName}.orientation`,
       );
     }
   }
@@ -156,7 +156,7 @@ function buildAutoSizes(display, device) {
 
     if (!display[displayName]) {
       throw new Error(
-        `Missing definition for display.${displayName} in definitions.device.${displayName}.display`
+        `Missing definition for display.${displayName} in definitions.device.${displayName}.display`,
       );
     }
 
@@ -217,7 +217,7 @@ function buildNativeApplicationUrl(platform, id) {
       return `https://itunes.apple.com/app/id${encodeURIComponent(id)}`;
     case "play":
       return `https://play.google.com/store/apps/details?id=${encodeURIComponent(
-        id
+        id,
       )}`;
     case "windows":
       return `https://microsoft.com/p/app/${encodeURIComponent(id)}`;

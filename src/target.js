@@ -31,7 +31,7 @@ export function selectOutputs(config) {
     tagNames,
     "installer",
     installerDefinitions,
-    installer
+    installer,
   );
   selectOutputsForCategory(outputNames, tagNames, "os", osDefinitions, os);
   selectOutputsForCategory(outputNames, tagNames, "web", webDefinitions, web);
@@ -80,8 +80,8 @@ function selectBrowserOutputs(outputNames, tagNames, definitions, browser) {
 function selectBrowsers(browser, definitions) {
   const selected = new Set(
     browserslist(browser).map((result) =>
-      result.substring(0, result.indexOf(" "))
-    )
+      result.substring(0, result.indexOf(" ")),
+    ),
   );
 
   return Array.from(selected).filter((name) => definitions[name]);
@@ -92,7 +92,7 @@ function selectOutputsForCategory(
   tagNames,
   type,
   definitions,
-  targets
+  targets,
 ) {
   for (const target of targets) {
     const definition = definitions[target];
