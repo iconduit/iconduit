@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* eslint-disable n/no-unpublished-bin */ /* false positive? */
 import services from "../src/services.js";
 
 const { buildConfigs, logger } = services;
