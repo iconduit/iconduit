@@ -1,0 +1,4 @@
+{
+  "description": "DO NOT EDIT - This file is managed by iconduit/repos.",
+  "extends": ["github>iconduit/renovate"]
+}
