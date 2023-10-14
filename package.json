@@ -12,10 +12,10 @@
   "main": "src/index.js",
   "bin": "bin/iconduit.js",
   "files": [
-    "/bin/",
-    "/input/",
-    "/src/",
-    "/template/"
+    "./bin/",
+    "./input/",
+    "./src/",
+    "./template/"
   ],
   "engines": {
     "node": ">=16"
