@@ -41,18 +41,4 @@ module.exports = {
     "n/no-unsupported-features/es-syntax": "off",
     "n/no-unsupported-features/node-builtins": "off",
   },
-  overrides: [
-    {
-      files: ["*.spec.js", "*.spec.jsx", "*.test.js", "*.test.jsx"],
-      extends: ["plugin:jest/recommended"],
-      plugins: ["jest"],
-      env: {
-        jest: true,
-      },
-      rules: {
-        // focused tests that make it to CI will cause a build failure
-        "jest/no-focused-tests": "warn",
-      },
-    },
-  ],
 };
