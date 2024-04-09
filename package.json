@@ -24,7 +24,7 @@
     "@fiahfy/packbits": "^0.0.6",
     "@iconduit/consumer": "^0.4.0",
     "ajv": "^8.1.0",
-    "ajv-formats": "^2.0.2",
+    "ajv-formats": "^3.0.0",
     "array.prototype.flat": "^1.2.4",
     "bottlejs": "^2.0.0",
     "browserslist": "^4.16.4",
