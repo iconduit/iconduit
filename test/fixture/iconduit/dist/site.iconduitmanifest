@@ -82,7 +82,7 @@
       },
       "iconduitConsumerMjs": {
         "path": "iconduit.consumer.mjs",
-        "type": "application/javascript",
+        "type": "text/javascript",
         "url": "iconduit.consumer.mjs"
       },
       "iconduitManifest": {
