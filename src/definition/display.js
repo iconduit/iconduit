@@ -59,6 +59,18 @@ export default {
     pixelRatio: 3,
     orientation: "portrait",
   },
+  iphone1179x2556d460: {
+    resolution: { horizontal: 1179, vertical: 2556 },
+    pixelDensity: 460,
+    pixelRatio: 3,
+    orientation: "portrait",
+  },
+  iphone1206x2622d460: {
+    resolution: { horizontal: 1206, vertical: 2622 },
+    pixelDensity: 460,
+    pixelRatio: 3,
+    orientation: "portrait",
+  },
   iphone1242x2688d458: {
     resolution: { horizontal: 1242, vertical: 2688 },
     pixelDensity: 458,
@@ -68,6 +80,18 @@ export default {
   iphone1284x2778d458: {
     resolution: { horizontal: 1284, vertical: 2778 },
     pixelDensity: 458,
+    pixelRatio: 3,
+    orientation: "portrait",
+  },
+  iphone1290x2796d460: {
+    resolution: { horizontal: 1290, vertical: 2796 },
+    pixelDensity: 460,
+    pixelRatio: 3,
+    orientation: "portrait",
+  },
+  iphone1320x2868d460: {
+    resolution: { horizontal: 1320, vertical: 2868 },
+    pixelDensity: 460,
     pixelRatio: 3,
     orientation: "portrait",
   },
