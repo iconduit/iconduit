@@ -59,12 +59,6 @@ export default {
     pixelRatio: 3,
     orientation: "portrait",
   },
-  iphone1242x2208d462: {
-    resolution: { horizontal: 1242, vertical: 2208 },
-    pixelDensity: 462,
-    pixelRatio: 3,
-    orientation: "portrait",
-  },
   iphone1242x2688d458: {
     resolution: { horizontal: 1242, vertical: 2688 },
     pixelDensity: 458,

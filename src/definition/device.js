@@ -75,12 +75,6 @@ export default {
   iphone12Mini: { name: "iPhone 12 Mini", display: "iphone1080x2340d476" },
   iphone12Pro: { name: "iPhone 12 Pro", display: "iphone1170x2532d460" },
   iphone12ProMax: { name: "iPhone 12 Pro Max", display: "iphone1284x2778d458" },
-  iphone6s: { name: "iPhone 6s", display: "iphone750x1334d326" },
-  iphone6sPlus: { name: "iPhone 6s Plus", display: "iphone1242x2208d462" },
-  iphone7: { name: "iPhone 7", display: "iphone750x1334d326" },
-  iphone7Plus: { name: "iPhone 7 Plus", display: "iphone1242x2208d462" },
-  iphone8: { name: "iPhone 8", display: "iphone750x1334d326" },
-  iphone8Plus: { name: "iPhone 8 Plus", display: "iphone1242x2208d462" },
   iphoneSe2ndGeneration: {
     name: "iPhone SE (2nd generation)",
     display: "iphone750x1334d326",
