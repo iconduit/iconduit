@@ -17,6 +17,22 @@ export default {
     name: "iPad (8th generation)",
     display: "ipad1620x2160d264",
   },
+  ipad9thGeneration: {
+    name: "iPad (9th generation)",
+    display: "ipad1620x2160d264",
+  },
+  ipad10thGeneration: {
+    name: "iPad (10th generation)",
+    display: "ipad1640x2360d264",
+  },
+  ipadAir11InchM2: {
+    name: "iPad Air (11-inch) (M2)",
+    display: "ipad1640x2360d264",
+  },
+  ipadAir13InchM2: {
+    name: "iPad Air (13-inch) (M2)",
+    display: "ipad2048x2732d264",
+  },
   ipadAir3rdGeneration: {
     name: "iPad Air (3rd generation)",
     display: "ipad1668x2224d264",
@@ -25,13 +41,25 @@ export default {
     name: "iPad Air (4th generation)",
     display: "ipad1640x2360d264",
   },
+  ipadAir5thGeneration: {
+    name: "iPad Air (5th generation)",
+    display: "ipad1640x2360d264",
+  },
   ipadMini5thGeneration: {
     name: "iPad mini (5th generation)",
     display: "ipad1536x2048d326",
   },
+  ipadMini6thGeneration: {
+    name: "iPad mini (6th generation)",
+    display: "ipad1488x2266d326",
+  },
   ipadPro11Inch: { name: "iPad Pro (11-inch)", display: "ipad1668x2388d264" },
   ipadPro11Inch2ndGeneration: {
     name: "iPad Pro (11-inch) (2nd generation)",
+    display: "ipad1668x2388d264",
+  },
+  ipadPro11Inch3ndGeneration: {
+    name: "iPad Pro (11-inch) (3nd generation)",
     display: "ipad1668x2388d264",
   },
   ipadPro12Point9Inch3rdGeneration: {
@@ -40,6 +68,14 @@ export default {
   },
   ipadPro12Point9Inch4thGeneration: {
     name: "iPad Pro (12.9-inch) (4th generation)",
+    display: "ipad2048x2732d264",
+  },
+  ipadPro12Point9Inch5thGeneration: {
+    name: "iPad Pro (12.9-inch) (5th generation)",
+    display: "ipad2048x2732d264",
+  },
+  ipadPro12Point9Inch6thGeneration: {
+    name: "iPad Pro (12.9-inch) (6th generation)",
     display: "ipad2048x2732d264",
   },
   iphone11: { name: "iPhone 11", display: "iphone828x1792d326" },

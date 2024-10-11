@@ -174,6 +174,36 @@
         }
       },
       "appleTouchStartup": {
+        "ipad1488x2266d326.landscape": {
+          "htmlSizes": "2266x1488",
+          "path": "apple-touch-startup-2266x1488r2.png",
+          "size": {
+            "deviceHeight": 1133,
+            "deviceWidth": 744,
+            "height": 1488,
+            "orientation": "landscape",
+            "pixelDensity": 326,
+            "pixelRatio": 2,
+            "width": 2266
+          },
+          "type": "image/png",
+          "url": "apple-touch-startup-2266x1488r2.png"
+        },
+        "ipad1488x2266d326.portrait": {
+          "htmlSizes": "1488x2266",
+          "path": "apple-touch-startup-1488x2266r2.png",
+          "size": {
+            "deviceHeight": 1133,
+            "deviceWidth": 744,
+            "height": 2266,
+            "orientation": "portrait",
+            "pixelDensity": 326,
+            "pixelRatio": 2,
+            "width": 1488
+          },
+          "type": "image/png",
+          "url": "apple-touch-startup-1488x2266r2.png"
+        },
         "ipad1536x2048d326.landscape": {
           "htmlSizes": "2048x1536",
           "path": "apple-touch-startup-2048x1536r2.png",

@@ -24,6 +24,8 @@ export default {
       isTransparent: false,
     },
     sizes: [
+      "display.ipad1488x2266d326.landscape",
+      "display.ipad1488x2266d326.portrait",
       "display.ipad1536x2048d326.landscape",
       "display.ipad1536x2048d326.portrait",
       "display.ipad1620x2160d264.landscape",

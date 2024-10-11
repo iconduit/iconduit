@@ -1,4 +1,10 @@
 export default {
+  ipad1488x2266d326: {
+    resolution: { horizontal: 1488, vertical: 2266 },
+    pixelDensity: 326,
+    pixelRatio: 2,
+    orientation: "portrait",
+  },
   ipad1536x2048d326: {
     resolution: { horizontal: 1536, vertical: 2048 },
     pixelDensity: 326,
