@@ -21,11 +21,11 @@ export function createImageMinifier() {
   return async function minifyImage(type, image) {
     switch (type) {
       case IMAGE_TYPE_ICO_PNG:
-        return buffer(image, icoPngOptions);
+        return Buffer.from(await buffer(image, icoPngOptions));
       case IMAGE_TYPE_JPEG:
-        return buffer(image, lossyJpegOptions);
+        return Buffer.from(await buffer(image, lossyJpegOptions));
       case IMAGE_TYPE_PNG:
-        return buffer(image, lossyPngOptions);
+        return Buffer.from(await buffer(image, lossyPngOptions));
     }
 
     return image;
