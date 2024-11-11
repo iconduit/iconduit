@@ -113,8 +113,4 @@ export default {
   iphoneXr: { name: "iPhone XR", display: "iphone828x1792d326" },
   iphoneXs: { name: "iPhone XS", display: "iphone1125x2436d458" },
   iphoneXsMax: { name: "iPhone XS Max", display: "iphone1242x2688d458" },
-  ipodTouch7thGeneration: {
-    name: "iPod touch (7th generation)",
-    display: "iphone640x1136d326",
-  },
 };

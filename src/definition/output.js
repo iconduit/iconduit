@@ -56,8 +56,6 @@ export default {
       "display.iphone1290x2796d460.portrait",
       "display.iphone1320x2868d460.landscape",
       "display.iphone1320x2868d460.portrait",
-      "display.iphone640x1136d326.landscape",
-      "display.iphone640x1136d326.portrait",
       "display.iphone750x1334d326.landscape",
       "display.iphone750x1334d326.portrait",
       "display.iphone828x1792d326.landscape",
