@@ -98,6 +98,7 @@ export default {
   iphone15Pro: { name: "iPhone 15 Pro", display: "iphone1179x2556d460" },
   iphone15ProMax: { name: "iPhone 15 Pro Max", display: "iphone1290x2796d460" },
   iphone16: { name: "iPhone 16", display: "iphone1179x2556d460" },
+  iphone16E: { name: "iPhone 16e", display: "iphone1170x2532d460" },
   iphone16Plus: { name: "iPhone 16 Plus", display: "iphone1290x2796d460" },
   iphone16Pro: { name: "iPhone 16 Pro", display: "iphone1206x2622d460" },
   iphone16ProMax: { name: "iPhone 16 Pro Max", display: "iphone1320x2868d460" },
