@@ -102,6 +102,10 @@ export default {
   iphone16Plus: { name: "iPhone 16 Plus", display: "iphone1290x2796d460" },
   iphone16Pro: { name: "iPhone 16 Pro", display: "iphone1206x2622d460" },
   iphone16ProMax: { name: "iPhone 16 Pro Max", display: "iphone1320x2868d460" },
+  iphone17: { name: "iPhone 17", display: "iphone1206x2622d460" },
+  iphone17Pro: { name: "iPhone 17 Pro", display: "iphone1206x2622d460" },
+  iphone17ProMax: { name: "iPhone 17 Pro Max", display: "iphone1320x2868d460" },
+  iphoneAir: { name: "iPhone Air", display: "iphone1260x2736d460" },
   iphoneSe2ndGeneration: {
     name: "iPhone SE (2nd generation)",
     display: "iphone750x1334d326",
