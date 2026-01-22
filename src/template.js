@@ -1,7 +1,9 @@
 import { cssifyObject as css } from "css-in-js-utils";
-import { compile } from "ejs";
+import ejs from "ejs";
 import stringify from "json-stable-stringify-without-jsonify";
 import { join, resolve } from "path";
+
+const { compile } = ejs;
 
 export function createBoundTemplateReader(fileSystem, cwd, basePath) {
   const readTemplate = createTemplateReader(fileSystem, cwd);
